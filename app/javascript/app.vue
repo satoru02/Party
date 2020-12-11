@@ -1,11 +1,17 @@
 <template>
   <div id="app">
     <v-app dark>
+      <v-app-bar app dark>
+        <h2>Broadcast</h2>
+        <v-spacer></v-spacer>
+      </v-app-bar>
       <v-main>
+        <div class="center-content">
+        </div>
         <router-view></router-view>
       </v-main>
       <v-footer padless>
-      <v-col class="text-center" cols="12">2020</v-col>
+        <v-col class="text-center" cols="12">2021</v-col>
       </v-footer>
     </v-app>
   </div>
@@ -29,15 +35,7 @@
     }]
   })
 
-
   export default {
     router,
   }
 </script>
-
-<style scoped>
-  p {
-    font-size: 2em;
-    text-align: center;
-  }
-</style>
