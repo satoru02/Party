@@ -1,14 +1,12 @@
 <template>
   <div id="app">
-    <v-app>
+    <v-app dark>
       <v-main>
         <router-view></router-view>
       </v-main>
       <v-footer padless>
-      <v-col
-      class="text-center"
-      cols="12"
-    >2020</v-col></v-footer>
+      <v-col class="text-center" cols="12">2020</v-col>
+      </v-footer>
     </v-app>
   </div>
 </template>
