@@ -3,22 +3,26 @@ module Api
     class PostsController < ApplicationController
       before_action :set_post, only: [:show]
 
-      # GET /posts
+      # GET api/v1/posts
       def index
         @posts = Post.all
         render json: @posts
       end
 
-      # GET /posts/1
+      # GET api/v1/posts/1
       def show
         render json: response_fields(@post.to_json)
       end
 
-      # POST /posts/
+      # POST api/v1/posts/
       def create
         @post = Post.new(post_params)
         @post.save!
-        @post.customize_time
+        @post.import_time
+      end
+
+      # response posts on requested query.
+      def search
       end
 
       def edit
@@ -28,10 +32,6 @@ module Api
       end
 
       def destroy
-      end
-
-      # response posts on requested query.
-      def search
       end
 
       private

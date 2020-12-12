@@ -1,17 +1,18 @@
 <template>
   <div id="app">
-    <v-app>
-      <v-app-bar app>
-        <h2>Broadcast</h2>
+    <v-app style="background-color:#0f0e17">
+      <v-app-bar app color="black">
+        <h3 style="color:white">Broadcast</h3>
         <v-spacer></v-spacer>
       </v-app-bar>
+      <v-spacer></v-spacer>
       <v-main>
         <div class="center-content">
         </div>
         <router-view></router-view>
       </v-main>
-      <v-footer padless>
-        <v-col class="text-center" cols="12">2021</v-col>
+      <v-footer padless dark height=270 color="black">
+        <v-col class="text-center" cols="12"></v-col>
       </v-footer>
     </v-app>
   </div>
@@ -39,3 +40,13 @@
     router,
   }
 </script>
+
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700&display=swap');
+  @import url('https://fonts.googleapis.com/css2?family=Montserrat&family=Open+Sans:wght@400;700&display=swap');
+
+  h3 {
+    font-family: 'Montserrat', sans-serif;
+    font-family: 'Open Sans', sans-serif;
+  }
+</style>
