@@ -1,7 +1,7 @@
 <template>
   <div id="app">
-    <v-app dark>
-      <v-app-bar app dark>
+    <v-app>
+      <v-app-bar app>
         <h2>Broadcast</h2>
         <v-spacer></v-spacer>
       </v-app-bar>

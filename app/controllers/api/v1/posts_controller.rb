@@ -14,11 +14,11 @@ module Api
         render json: response_fields(@post.to_json)
       end
 
-      def new
-      end
-
-      # POST /posts/:id
+      # POST /posts/
       def create
+        @post = Post.new(post_params)
+        @post.save!
+        @post.customize_time
       end
 
       def edit

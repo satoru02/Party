@@ -5,9 +5,9 @@ import 'vuetify/dist/vuetify.min.css'
 
 Vue.use(Vuetify)
 
-export default new Vuetify({
-  theme: { dark: true },
-})
+// export default new Vuetify({
+//   theme: { dark: true },
+// })
 
 document.addEventListener('DOMContentLoaded', () => {
   const app = new Vue({
