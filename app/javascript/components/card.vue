@@ -4,7 +4,7 @@
       <v-row no-gutters>
         <v-col class="mb-7 pr-8" v-for="post in posts" :key="post.id" :title="post.title" :url="post.url"
           :time="post.date" cols="12" sm="4">
-          <v-card class="rounded-xl" elevation="10" color="#010101" max-width="400">
+          <v-card class="rounded-xl" color="#010101" max-width="400">
             <v-card-title>
               <p>{{ post.title }}</p>
             </v-card-title>
@@ -13,11 +13,7 @@
             </v-card-text>
             <v-card-actions>
               <v-list-item class="grow">
-                <v-list-item-avatar color="grey darken-3" size=25>
-                  <v-img class="elevation-1" alt=""
-                    src="https://avataaars.io/?avatarStyle=Transparent&topType=ShortHairShortCurly&accessoriesType=Prescription02&hairColor=Black&facialHairType=Blank&clotheType=Hoodie&clotheColor=White&eyeType=Default&eyebrowType=DefaultNatural&mouthType=Default&skinColor=Light">
-                  </v-img>
-                </v-list-item-avatar>
+                <avatar></avatar>
                 <v-list-item-content>
                   <v-list-item-subtitle>John Smith</v-list-item-subtitle>
                 </v-list-item-content>
@@ -35,9 +31,13 @@
 
 <script>
   import axios from 'axios';
+  import Avatar from '../components/TheAvatar.vue'
 
   export default {
     name: 'card',
+    components: {
+      'avatar': Avatar,
+    },
     props: {
       title: {
         status: {
@@ -71,3 +71,6 @@
     }
   }
 </script>
+
+<style>
+</style>

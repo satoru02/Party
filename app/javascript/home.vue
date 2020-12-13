@@ -1,9 +1,6 @@
 <template>
   <div class="homes">
-    <div>
-      <v-container class="mt-10">
-      </v-container>
-    </div>
+    <!-- <top-grider></top-grider> -->
     <card></card>
     <!-- <post></post> -->
   </div>
@@ -12,12 +9,14 @@
 <script>
   import post from './components/post.vue';
   import card from './components/card.vue';
+  import topgrider from './components/TheGrider.vue';
 
   export default {
     name: 'home',
     components: {
       'post': post,
       'card': card,
+      'top-grider': topgrider,
     }
   }
 </script>
