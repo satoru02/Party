@@ -1,15 +1,15 @@
 <template>
   <div>
-    <v-container class="mt-10">
+    <v-container class="mt-8">
       <v-row no-gutters>
-        <v-col class="mb-7 pr-8" v-for="post in posts" :key="post.id" :title="post.title" :url="post.url"
+        <v-col class="mb-9 pr-7" v-for="post in posts" :key="post.id" :title="post.title" :url="post.url"
           :time="post.date" cols="12" sm="4">
           <v-card class="rounded-xl" color="#010101" max-width="400">
             <v-card-title>
-              <p>{{ post.title }}</p>
+              <!-- <p>{{ post.title }}</p> -->
             </v-card-title>
-            <v-card-text>
-              <a v-bind:href="post.url">{{ post.url }}</a>
+            <v-card-text class="mr-n14 mt-7">
+              <a v-bind:href="post.url">{{ post.title }}</a>
             </v-card-text>
             <v-card-actions>
               <v-list-item class="grow">
@@ -18,7 +18,7 @@
                   <v-list-item-subtitle>John Smith</v-list-item-subtitle>
                 </v-list-item-content>
                 <v-row align="center" justify="end">
-                  <span class="subheading mr-2" style="color:white">{{ post.date }}</span>
+                  <span class="subheading mr-2 mt-5" style="color:white">{{ post.date }}</span>
                 </v-row>
               </v-list-item>
             </v-card-actions>

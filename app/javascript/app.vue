@@ -2,9 +2,10 @@
   <div id="app">
     <v-app style="background-color:#0c0e17">
       <v-app-bar app color="black">
-        <h3 style="color:white">LAPLACE</h3>
+        <h2 style="color:white">LAPLACE</h2>
         <v-col class="logo">
           <avatar></avatar>
+          <!-- <v-icon>mdi-menu</v-icon> -->
         </v-col>
         <v-spacer></v-spacer>
       </v-app-bar>
@@ -14,9 +15,6 @@
         </div>
         <router-view></router-view>
       </v-main>
-      <!-- <v-footer padless dark height=270 color="black">
-        <v-col class="text-center" cols="12"></v-col>
-      </v-footer> -->
     </v-app>
   </div>
 </template>
@@ -27,6 +25,7 @@
   import VueRouter from 'vue-router';
   import VuePaginate from 'vue-paginate';
   import Avatar from './components/TheAvatar.vue';
+  import '@mdi/font/css/materialdesignicons.css';
 
   Vue.use(VueRouter)
   Vue.use(VuePaginate)
@@ -58,6 +57,6 @@
   }
 
   .logo{
-    margin-left: 1280px;
+    margin-left: 1240px;
   }
 </style>
