@@ -19,8 +19,10 @@
   import VuePaginate from 'vue-paginate';
   import Avatar from './components/TheAvatar.vue';
   import Header from './components/TheHeader.vue';
+  import ScrollLoader from 'vue-scroll-loader';
   import '@mdi/font/css/materialdesignicons.css';
 
+  Vue.use(ScrollLoader)
   Vue.use(VueRouter)
   Vue.use(VuePaginate)
 
@@ -37,7 +39,7 @@
     router,
     components: {
       'avatar': Avatar,
-      'top-header': Header
+      'top-header': Header,
     }
   }
 </script>

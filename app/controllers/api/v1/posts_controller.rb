@@ -5,7 +5,7 @@ module Api
 
       # GET api/v1/posts
       def index
-        @posts = Post.all
+        @posts = Post.pager(page: params[:page], per: params[:per_page])
         render json: @posts
       end
 

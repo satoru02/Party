@@ -6,7 +6,6 @@
           :time="post.date" cols="12" sm="4">
           <v-card class="rounded-xl" color="#010101" max-width="400">
             <v-card-title>
-              <!-- <p>{{ post.title }}</p> -->
             </v-card-title>
             <v-card-text class="mr-n14 mt-7">
               <a v-bind:href="post.url">{{ post.title }}</a>
@@ -25,13 +24,15 @@
           </v-card>
         </v-col>
       </v-row>
+      <scroll-loader :loader-method="getPostList">
+      </scroll-loader>
     </v-container>
   </div>
 </template>
 
 <script>
   import axios from 'axios';
-  import Avatar from '../components/TheAvatar.vue'
+  import Avatar from '../components/TheAvatar.vue';
 
   export default {
     name: 'card',
@@ -60,17 +61,28 @@
     },
     data() {
       return {
+        disable: false,
+        page: 1,
+        pageSize: 9,
         posts: [],
       }
     },
-    mounted() {
-      axios.get('api/v1/posts')
-        .then(response => {
-          this.posts = response.data
-        })
-    }
+    methods: {
+      getPostList() {
+        axios.get('api/v1/posts', {
+            params: {
+              page: this.page++,
+              per_page: this.pageSize,
+            },
+          })
+          .then((res) => {
+            this.posts = [...this.posts, ...res.data]
+            // this.disable = res.data.length < 50
+          })
+          .catch(error => {
+            console.log(error);
+          })
+      }
+    },
   }
 </script>
-
-<style>
-</style>

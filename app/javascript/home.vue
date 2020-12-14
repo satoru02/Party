@@ -1,19 +1,22 @@
 <template>
   <div class="homes">
+    <!-- <post></post>
+    <about></about> -->
     <card></card>
-    <!-- <post></post> -->
   </div>
 </template>
 
 <script>
   import post from './components/post.vue';
   import card from './components/card.vue';
+  import about from './components/TheAbout.vue';
 
   export default {
     name: 'home',
     components: {
       'post': post,
       'card': card,
+      'about': about
     }
   }
 </script>

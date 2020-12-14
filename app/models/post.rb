@@ -3,6 +3,11 @@ class Post < ApplicationRecord
   validates :url, presence: true
   # before_validation :url_chack
 
+  scope :pager, ->(page: 1, per: 10) {
+    num = page.to_i.positive? ? page.to_i - 1 : 0
+    limit(per).offset(per * num)
+  }
+
   # callback処理でなく、現在はhttpリクエスト時に使っている。
   def import_time
     self.update! date: customize_time
@@ -10,9 +15,6 @@ class Post < ApplicationRecord
 
   # url判定ロジック
   def url_check
-    # Netflix
-    # Amazon
-    # Hulu
   end
 
   private

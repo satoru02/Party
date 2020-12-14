@@ -1,11 +1,30 @@
 <template>
   <div class="post-form">
-    <h1>Postform配置予定</h1>
-    <v-text-field label="Regular" v-model="title" placeholder="Placeholder"></v-text-field>
-    <v-text-field label="Regular" v-model="url" placeholder="Placeholder"></v-text-field>
-    <v-btn color="success" class="mr-4" @click="postUrl(title, url)">
-      Post
+    <v-btn class="mx-1" fab dark small color="indigo" @click="dialog = !dialog">
+      <v-icon dark>
+        mdi-plus
+      </v-icon>
     </v-btn>
+
+    <v-dialog v-model="dialog" max-width="600px" class="rounded">
+      <v-card elevation="0">
+        <v-card-text>
+          <v-spacer></v-spacer>
+          <v-text-field v-model="title" label="Title"></v-text-field>
+          <v-text-field v-model="url" label="URL"></v-text-field>
+          <v-text-field label="Category"></v-text-field>
+          <v-text-field label="Platform"></v-text-field>
+          <v-text-field label="一言"></v-text-field>
+        </v-card-text>
+
+        <v-card-actions>
+          <v-spacer></v-spacer>
+          <v-btn text color="primary" @click="postUrl(title,url), dialog = !dialog">
+            submit
+          </v-btn>
+        </v-card-actions>
+      </v-card>
+    </v-dialog>
   </div>
 </template>
 
@@ -17,7 +36,8 @@
     data() {
       return {
         title: '',
-        url: ''
+        url: '',
+        dialog: false,
       }
     },
     methods: {
@@ -27,9 +47,7 @@
             title: title,
             url: url
           })
-          .then(function (response) {
-            console.log(response)
-          })
+          .then(function (response) {})
       }
     }
   }
