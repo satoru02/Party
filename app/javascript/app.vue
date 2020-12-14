@@ -1,14 +1,7 @@
 <template>
   <div id="app">
     <v-app style="background-color:#0c0e17">
-      <v-app-bar app color="black">
-        <h2 style="color:white">LAPLACE</h2>
-        <v-col class="logo">
-          <avatar></avatar>
-          <!-- <v-icon>mdi-menu</v-icon> -->
-        </v-col>
-        <v-spacer></v-spacer>
-      </v-app-bar>
+      <top-header></top-header>
       <v-spacer></v-spacer>
       <v-main>
         <div class="center-content">
@@ -25,6 +18,7 @@
   import VueRouter from 'vue-router';
   import VuePaginate from 'vue-paginate';
   import Avatar from './components/TheAvatar.vue';
+  import Header from './components/TheHeader.vue';
   import '@mdi/font/css/materialdesignicons.css';
 
   Vue.use(VueRouter)
@@ -42,7 +36,8 @@
   export default {
     router,
     components: {
-      'avatar': Avatar
+      'avatar': Avatar,
+      'top-header': Header
     }
   }
 </script>
