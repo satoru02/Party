@@ -2,8 +2,8 @@
   <div>
     <v-container class="mt-8">
       <v-row no-gutters>
-        <v-col class="mb-9 pr-7" v-for="post in posts" :key="post.id" :title="post.title" :url="post.url"
-          :time="post.date" cols="12" sm="4">
+        <v-col v-for="post in posts" :key="post.id" :title="post.title" :url="post.url" :time="post.date"
+          class="mb-9 pr-7" cols="12" sm="4">
           <v-card class="rounded-xl" color="#010101" max-width="400">
             <v-card-title>
             </v-card-title>
@@ -24,20 +24,21 @@
           </v-card>
         </v-col>
       </v-row>
-      <scroll-loader :loader-method="getPostList">
-      </scroll-loader>
     </v-container>
+    <infinite-loading spinner="spiral" @infinite="infiniteHandler"></infinite-loading>
   </div>
 </template>
 
 <script>
   import axios from 'axios';
   import Avatar from '../components/TheAvatar.vue';
+  import InfiniteLoading from 'vue-infinite-loading';
 
   export default {
     name: 'card',
     components: {
       'avatar': Avatar,
+      'infinite-loading': InfiniteLoading,
     },
     props: {
       title: {
@@ -61,26 +62,29 @@
     },
     data() {
       return {
-        disable: false,
         page: 1,
         pageSize: 9,
         posts: [],
       }
     },
     methods: {
-      getPostList() {
+      infiniteHandler($state) {
         axios.get('api/v1/posts', {
             params: {
-              page: this.page++,
+              page: this.page,
               per_page: this.pageSize,
             },
           })
           .then((res) => {
-            this.posts = [...this.posts, ...res.data]
-            // this.disable = res.data.length < 50
-          })
-          .catch(error => {
-            console.log(error);
+            setTimeout(() => {
+              if (res.data.length) {
+                this.page += 1;
+                this.posts.push(...res.data);
+                $state.loaded();
+              } else {
+                $state.complete();
+              }
+            }, 1000)
           })
       }
     },

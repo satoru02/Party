@@ -24,7 +24,14 @@
 
   Vue.use(VueRouter)
   Vue.use(VuePaginate)
-  Vue.use(InfiniteLoading)
+  Vue.use(InfiniteLoading, {
+    slots: {
+      noMore: "",
+      error: {
+        render: h => h('div'),
+      },
+    }
+  })
 
   const router = new VueRouter({
     mode: 'history',
@@ -53,7 +60,7 @@
     font-family: 'Open Sans', sans-serif;
   }
 
-  .logo{
+  .logo {
     margin-left: 1240px;
   }
 </style>
