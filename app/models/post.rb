@@ -5,7 +5,7 @@ class Post < ApplicationRecord
 
   scope :pager, ->(page: 1, per: 10) {
     num = page.to_i.positive? ? page.to_i - 1 : 0
-    limit(per).offset(per * num)
+    limit(per).offset(per.to_i * num)
   }
 
   # callback処理でなく、現在はhttpリクエスト時に使っている。

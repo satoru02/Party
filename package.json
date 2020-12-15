@@ -10,7 +10,7 @@
     "axios": "^0.21.0",
     "turbolinks": "^5.2.0",
     "vue": "^2.6.12",
-    "vue-infinite-loading": "^2.4.5",
+    "vue-infinite-loading": "https://github.com/DomcaSuzi/vue-infinite-loading",
     "vue-loader": "^15.9.5",
     "vue-paginate": "^3.6.0",
     "vue-router": "^3.4.9",

@@ -7436,10 +7436,9 @@ vue-hot-reload-api@^2.3.0:
   resolved "https://registry.yarnpkg.com/vue-hot-reload-api/-/vue-hot-reload-api-2.3.4.tgz#532955cc1eb208a3d990b3a9f9a70574657e08f2"
   integrity sha512-BXq3jwIagosjgNVae6tkHzzIk6a8MHFtzAdwhnV5VlvPTFxDCvIttgSiHWjdGoTJvXtmRu5HacExfdarRcFhog==
 
-vue-infinite-loading@^2.4.5:
+"vue-infinite-loading@https://github.com/DomcaSuzi/vue-infinite-loading":
   version "2.4.5"
-  resolved "https://registry.yarnpkg.com/vue-infinite-loading/-/vue-infinite-loading-2.4.5.tgz#cc20fd40af7f20188006443c99b60470cf1de1b3"
-  integrity sha512-xhq95Mxun060bRnsOoLE2Be6BR7jYwuC89kDe18+GmCLVrRA/dU0jrGb12Xu6NjmKs+iTW0AA6saSEmEW4cR7g==
+  resolved "https://github.com/DomcaSuzi/vue-infinite-loading#b1ed70d82e21ebc5761652f2b9d138e9f48b4b72"
 
 vue-loader@^15.9.5:
   version "15.9.5"

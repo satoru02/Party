@@ -19,12 +19,12 @@
   import VuePaginate from 'vue-paginate';
   import Avatar from './components/TheAvatar.vue';
   import Header from './components/TheHeader.vue';
-  import ScrollLoader from 'vue-scroll-loader';
+  import InfiniteLoading from 'vue-infinite-loading';
   import '@mdi/font/css/materialdesignicons.css';
 
-  Vue.use(ScrollLoader)
   Vue.use(VueRouter)
   Vue.use(VuePaginate)
+  Vue.use(InfiniteLoading)
 
   const router = new VueRouter({
     mode: 'history',
