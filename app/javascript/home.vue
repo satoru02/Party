@@ -9,7 +9,7 @@
 <script>
   import post from './components/post.vue';
   import card from './components/card.vue';
-  import about from './components/TheAbout.vue';
+  import about from './components/perpage/TheAbout.vue';
 
   export default {
     name: 'home',

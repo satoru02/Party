@@ -17,8 +17,8 @@
   import Home from 'home.vue';
   import VueRouter from 'vue-router';
   import VuePaginate from 'vue-paginate';
-  import Avatar from './components/TheAvatar.vue';
-  import Header from './components/TheHeader.vue';
+  import Avatar from './components/perpage/TheAvatar.vue';
+  import Header from './components/perpage/TheHeader.vue';
   import InfiniteLoading from 'vue-infinite-loading';
   import '@mdi/font/css/materialdesignicons.css';
 

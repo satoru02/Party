@@ -7,7 +7,7 @@
     </v-btn>
 
     <v-dialog v-model="dialog" max-width="600px" class="rounded">
-      <v-card elevation="0">
+      <v-card>
         <v-card-text>
           <v-spacer></v-spacer>
           <v-text-field v-model="title" label="Title"></v-text-field>
@@ -19,6 +19,9 @@
 
         <v-card-actions>
           <v-spacer></v-spacer>
+          <v-btn text color="primary" @click="postUrl(title,url), dialog = !dialog">
+            cancel
+          </v-btn>
           <v-btn text color="primary" @click="postUrl(title,url), dialog = !dialog">
             submit
           </v-btn>

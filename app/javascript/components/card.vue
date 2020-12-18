@@ -31,7 +31,7 @@
 
 <script>
   import axios from 'axios';
-  import Avatar from '../components/TheAvatar.vue';
+  import Avatar from '../components/perpage/TheAvatar.vue';
   import InfiniteLoading from 'vue-infinite-loading';
 
   export default {
