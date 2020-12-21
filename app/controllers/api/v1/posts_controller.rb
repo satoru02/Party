@@ -21,17 +21,14 @@ module Api
         @post.import_time
       end
 
-      # response posts on requested query.
-      def search
-      end
-
-      def edit
-      end
-
       def update
       end
 
       def destroy
+      end
+
+      # response posts on requested query.
+      def search
       end
 
       private
