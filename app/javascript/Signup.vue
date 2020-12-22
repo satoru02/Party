@@ -24,7 +24,7 @@
 <script>
 import axios from 'axios'
 
-const API_URL = '/api/v1/users'
+const API_URL = '/api/v1/signup'
 const signupAxios = axios.create({
   withCredential: true,
   headers: {
