@@ -1,10 +1,10 @@
 Rails.application.routes.draw do
 
   root to: 'home#index'
-  # resources :users
 
   namespace 'api' do
     namespace 'v1' do
+      resources :users
       resources :posts do
         collection do
           get :search
@@ -12,4 +12,5 @@ Rails.application.routes.draw do
       end
     end
   end
+  get '*path', to: 'home#index'
 end

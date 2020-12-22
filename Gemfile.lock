@@ -85,6 +85,7 @@ GEM
       activesupport (>= 3.0.0, < 6.1)
       ruby2_keywords (>= 0.0.2, < 1.0)
     ast (2.4.1)
+    bcrypt (3.1.16)
     better_errors (2.9.1)
       coderay (>= 1.0.0)
       erubi (>= 1.0.0)
@@ -397,6 +398,7 @@ PLATFORMS
 
 DEPENDENCIES
   activeadmin
+  bcrypt
   better_errors
   binding_of_caller
   bootsnap (>= 1.4.2)
@@ -408,6 +410,7 @@ DEPENDENCIES
   foreman
   guard-rspec
   jbuilder (~> 2.7)
+  jwt
   jwt_sessions
   kaminari (~> 1.0)
   listen (~> 3.2)

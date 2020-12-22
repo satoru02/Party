@@ -26,6 +26,8 @@ gem 'faker', :git => 'https://github.com/faker-ruby/faker.git', :branch => 'mast
 gem 'rack-cors'
 gem 'redis-rails'
 gem 'jwt_sessions'
+gem 'bcrypt'
+gem 'jwt'
 
 group :development, :test do
   gem 'byebug', platforms: %i[mri mingw x64_mingw]

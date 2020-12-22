@@ -20,10 +20,12 @@
   import Avatar from './components/perpage/TheAvatar.vue';
   import Header from './components/perpage/TheHeader.vue';
   import InfiniteLoading from 'vue-infinite-loading';
+  import Login from './Login.vue';
+  import Signup from './Signup.vue';
   import '@mdi/font/css/materialdesignicons.css';
 
-  Vue.use(VueRouter)
   Vue.use(VuePaginate)
+  Vue.use(VueRouter)
   Vue.use(InfiniteLoading, {
     slots: {
       noMore: "",
@@ -35,11 +37,23 @@
 
   const router = new VueRouter({
     mode: 'history',
-    routes: [{
-      path: "/",
-      name: "home",
-      component: Home
-    }]
+    routes: [
+      {
+        path: "/",
+        name: "home",
+        component: Home
+      },
+      {
+        path: "/login",
+        name: "login",
+        component: Login
+      },
+      {
+        path: "/signup",
+        name: "signup",
+        component: Signup
+      }
+    ]
   })
 
   export default {
