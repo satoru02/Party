@@ -4,11 +4,20 @@ Rails.application.routes.draw do
 
   namespace 'api' do
     namespace 'v1' do
+      namespace :admin do
+        resources :users, only: [:index]
+      end
+
       resources :signup
       resources :login
       resources :refresh
 
-      resources :users
+      resources :users do
+        collection do
+          get :me
+        end
+      end
+
       resources :posts do
         collection do
           get :search

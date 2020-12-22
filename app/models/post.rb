@@ -1,6 +1,7 @@
 class Post < ApplicationRecord
   validates :title, presence: true, length: { maximum: 100 }
   validates :url, presence: true
+  belongs_to :user
   # before_validation :url_chack
 
   scope :pager, ->(page: 1, per: 10) {

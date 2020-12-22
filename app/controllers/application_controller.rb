@@ -1,8 +1,13 @@
 class ApplicationController < ActionController::API
   include JWTSessions::RailsAuthorization
   rescue_from JWTSessions::Errors::Unauthorized, with: :not_authorized
+  rescue_from JWTSessions::Errors::ClaimsVerification, with: :forbidden
 
   private
+
+    def current_user
+      @current_user ||= User.find(payload['user_id'])
+    end
 
     def not_authorized
       render json: { error: "Not Authorized" }, status: :unauthorized
@@ -30,5 +35,9 @@ class ApplicationController < ActionController::API
 
     def response_internal_server_error
       render status: 500, json: { status: 500, message: 'Internal Server Error' }
+    end
+
+    def forbidden
+      render json: { error: 'Forbidden' }, status: :forbidden
     end
 end
