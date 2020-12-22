@@ -4,9 +4,11 @@ Rails.application.routes.draw do
 
   namespace 'api' do
     namespace 'v1' do
-      resources :users
       resources :signup
       resources :login
+      resources :refresh
+
+      resources :users
       resources :posts do
         collection do
           get :search

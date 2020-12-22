@@ -1,8 +1,6 @@
 module Api
   module V1
     class SignupController < ApplicationController
-
-      # POST
       def create
         user = User.new(user_params)
         if user.save
