@@ -40,7 +40,6 @@
     'Content-Type': 'application/json'
   }
   });
-
   export default {
     name: 'top-header',
     components: {
