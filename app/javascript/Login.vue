@@ -75,14 +75,9 @@ export default {
     },
     signinFailed(error) {
       this.error = (error.response && error.response.data && error.response.data.error) || ""
-      // delete localStorage.csrf
-      // delete localStorage.signedIn
       this.$store.commit('unsetCurrentUser')
     },
     checkSignedIn() {
-      // if (localStorage.signedIn) {
-      //   this.$router.replace('/')
-      // }
       if (this.$store.state.signedIn) {
         this.$router.replace('/')
       }

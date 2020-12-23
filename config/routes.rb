@@ -8,9 +8,16 @@ Rails.application.routes.draw do
         resources :users, only: [:index]
       end
 
-      resources :signup
-      resources :login
-      resources :refresh
+      resources :signup, only: [:create]
+      resources :login, only: [:create, :destroy]
+      resources :refresh, only: [:create]
+
+      resources :password_resets, only: [:create] do
+        collection do
+          get ':token', action: :edit, as: :edit
+          patch ':token', action: :update
+        end
+      end
 
       resources :users do
         collection do
@@ -25,6 +32,5 @@ Rails.application.routes.draw do
       end
     end
   end
-
   get '*path', to: 'home#index'
 end

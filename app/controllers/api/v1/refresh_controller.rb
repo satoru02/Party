@@ -4,7 +4,12 @@ module Api
       before_action :authorize_refresh_by_access_request!
 
       def create
-        session = JWTSessions::Session.new(payload: claimeless_payload, refresh_by_access_allowed: true)
+        session = JWTSessions::Session.new(
+          payload: claimeless_payload,
+          refresh_by_access_allowed: true,
+          namespace: "user_#{claimeless_payload['user_id']}"
+        )
+
         tokens = session.refresh_by_access_payload do
           raise JWTSessions::Errors::Unauthorized, 'Malicious activity detected!'
         end

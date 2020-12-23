@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_12_22_140204) do
+ActiveRecord::Schema.define(version: 2020_12_23_042140) do
 
   create_table "posts", force: :cascade do |t|
     t.string "title", null: false
@@ -29,7 +29,10 @@ ActiveRecord::Schema.define(version: 2020_12_22_140204) do
     t.datetime "updated_at", precision: 6, null: false
     t.string "password_digest"
     t.integer "role", default: 0
+    t.string "reset_password_token"
+    t.datetime "reset_password_token_expires_at"
     t.index ["email"], name: "index_users_on_email", unique: true
+    t.index ["reset_password_token"], name: "index_users_on_reset_password_token"
   end
 
   add_foreign_key "posts", "users"
