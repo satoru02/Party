@@ -18,16 +18,16 @@
       'card': card,
       'about': about,
     },
-    created() {
-      this.checkSignedIn()
-    },
-    methods: {
-      checkSignedIn() {
-        if(!this.$store.state.signedIn) {
-          this.$router.replace('/login')
-        }
-      }
-    }
+    // created() {
+    //   this.checkSignedIn()
+    // },
+    // methods: {
+    //   checkSignedIn() {
+    //     if(!this.$store.state.signedIn) {
+    //       this.$router.replace('/login')
+    //     }
+    //   }
+    // }
   }
 </script>
 

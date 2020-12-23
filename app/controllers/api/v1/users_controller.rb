@@ -5,7 +5,7 @@ module Api
 
       # ログインが済んでいれば、current_userでpayloadをデコードして、user_idが取り出せる
       def me
-        render json: current_user.as_json(only: [:id, :email, :role])
+        render json: current_user.as_json
       end
 
       def index
@@ -23,7 +23,6 @@ module Api
 
       def destroy
       end
-
     end
   end
 end

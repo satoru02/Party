@@ -19,14 +19,18 @@
   import VuePaginate from 'vue-paginate';
   import Vuex from 'vuex';
   import createPersistedState from 'vuex-persistedstate';
+  import InfiniteLoading from 'vue-infinite-loading';
+  import '@mdi/font/css/materialdesignicons.css';
+
   import Avatar from './components/perpage/TheAvatar.vue';
   import Header from './components/perpage/TheHeader.vue';
-  import InfiniteLoading from 'vue-infinite-loading';
   import Login from './Login.vue';
   import Signup from './Signup.vue';
-  import UsersList from './components/admin/users/List.vue'
-  import UserPostsList from './components/admin/users/posts/List.vue'
-  import '@mdi/font/css/materialdesignicons.css';
+  import UsersList from './components/admin/users/List.vue';
+  import UserPostsList from './components/admin/users/posts/List.vue';
+  import ForgotPassword from './components/ForgotPassword.vue';
+  import ResetPassword from './components/ResetPassword.vue';
+  import UserEdit from './components/Edit.vue';
 
   Vue.use(VuePaginate)
   Vue.use(VueRouter)
@@ -52,6 +56,9 @@
       },
       isManager: state => {
         return state.currentUser.role == "manager"
+      },
+      currentUserId: state => {
+        return state.currentUser && state.currentUser.id
       }
     },
     mutations: {
@@ -100,6 +107,21 @@
         path: "/admin/users/:id/posts",
         name: "UserPostsList",
         component: UserPostsList
+      },
+      {
+        path: "/forgot_password",
+        name: "ForgotPassword",
+        component: ForgotPassword
+      },
+      {
+        path: "/password_resets/:token",
+        name: "ResetPassword",
+        component: ResetPassword
+      },
+      {
+        path: "/admin/users/:id",
+        name: "UserEdit",
+        component: UserEdit
       }
     ]
   })
