@@ -6,6 +6,14 @@ class ApplicationController < ActionController::API
   private
 
     def current_user
+      # payload(Ex) =>
+      # {
+      #  "exp"=>1608688240,
+      #  "user_id"=>38,
+      #  "aud"=>["user"],
+      #  "uid"=>"e1b9bd13-4869-40c3-a05b-2a7c53320a25",
+      #  "ruid"=>"6aea67ce-0aed-4c25-9ebf-dd776c8a0063"
+      # }
       @current_user ||= User.find(payload['user_id'])
     end
 

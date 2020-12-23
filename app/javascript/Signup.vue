@@ -24,7 +24,8 @@
 <script>
 import axios from 'axios'
 
-const API_URL = '/api/v1/signup'
+const SIGNUP_URL = '/api/v1/signup'
+const USER_INFO_URL = '/api/v1/users/me'
 const signupAxios = axios.create({
   withCredential: true,
   headers: {
@@ -43,15 +44,14 @@ export default {
     }
   },
   created() {
-    this.checkSigndIn()
+    this.checkSignedIn()
   },
   updated() {
-    this.checkSigndIn()
+    this.checkSignedIn()
   },
   methods: {
-    signup() {
-      signupAxios.post(
-      API_URL,
+     signup() {
+      signupAxios.post(SIGNUP_URL,
       {
         email: this.email,
         password: this.password,
@@ -62,21 +62,23 @@ export default {
     },
     signupSuccessful(response) {
       if(!response.data.csrf) {
-        this.signupFailed(response)
+        this.signnupFailed(response)
         return
       }
-      localStorage.csrf = response.data.csrf
-      localStorage.signedIn = true
-      this.error = ''
-      this.$router.replace('/')
+      signupAxios.get(USER_INFO_URL)
+       .then(me_response => {
+         this.$store.commit('setCurrentUser', { currentUser: me_response.data, csrf: response.data.csrf })
+         this.error = ''
+         this.$router.replace('/')
+       })
+       .catch(error => this.signupFailed(error))
     },
     signupFailed(error) {
-      this.error = (error.response && error.response.data && error.response.data.error) || "Something went wrong"
-      delete localStorage.csrf
-      delete localStorage.signedIn
+      this.error = (error.response && error.response.data && error.response.data.error) || ""
+      this.$store.commit('unsetCurrentUser')
     },
-    checkSigndIn() {
-      if (localStorage.signedIn) {
+    checkSignedIn() {
+      if (this.$store.state.signedIn) {
         this.$router.replace('/')
       }
     }

@@ -17,15 +17,20 @@
   import Home from 'home.vue';
   import VueRouter from 'vue-router';
   import VuePaginate from 'vue-paginate';
+  import Vuex from 'vuex';
+  import createPersistedState from 'vuex-persistedstate';
   import Avatar from './components/perpage/TheAvatar.vue';
   import Header from './components/perpage/TheHeader.vue';
   import InfiniteLoading from 'vue-infinite-loading';
   import Login from './Login.vue';
   import Signup from './Signup.vue';
+  import UsersList from './components/admin/users/List.vue'
+  import UserPostsList from './components/admin/users/posts/List.vue'
   import '@mdi/font/css/materialdesignicons.css';
 
   Vue.use(VuePaginate)
   Vue.use(VueRouter)
+  Vue.use(Vuex)
   Vue.use(InfiniteLoading, {
     slots: {
       noMore: "",
@@ -33,6 +38,39 @@
         render: h => h('div'),
       },
     }
+  })
+
+  const store = new Vuex.Store({
+    state: {
+      currentUser: {},
+      signedIn: false,
+      csrf: null
+    },
+    getters: {
+      isAdmin: state => {
+        return state.currentUser.role == "admin"
+      },
+      isManager: state => {
+        return state.currentUser.role == "manager"
+      }
+    },
+    mutations: {
+      setCurrentUser(state, {currentUser, csrf}) {
+        state.currentUser = currentUser
+        state.signedIn = true
+        state.csrf = csrf
+      },
+      unsetCurrentUser(state) {
+        state.currentUser = {}
+        state.signedIn = false
+        state.csrf = null
+      },
+      refresh (state, csrf) {
+        state.signedIn = true
+        state.csrf = csrf
+      }
+    },
+    plugins: [createPersistedState()]
   })
 
   const router = new VueRouter({
@@ -52,12 +90,23 @@
         path: "/signup",
         name: "signup",
         component: Signup
+      },
+      {
+        path: "/admin/users",
+        name: "UsersList",
+        component: UsersList
+      },
+      {
+        path: "/admin/users/:id/posts",
+        name: "UserPostsList",
+        component: UserPostsList
       }
     ]
   })
 
   export default {
     router,
+    store,
     components: {
       'avatar': Avatar,
       'top-header': Header,

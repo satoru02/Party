@@ -19,7 +19,8 @@
 <script>
 import axios from 'axios'
 
-const API_URL = '/api/v1/login'
+const LOGIN_URL = '/api/v1/login'
+const USER_INFO_URL = '/api/v1/users/me'
 const signinAxios = axios.create({
   withCredential: true,
   headers: {
@@ -37,15 +38,18 @@ export default {
     }
   },
   created() {
-    this.checkSigndIn()
+    this.checkSignedIn()
   },
   updated() {
-    this.checkSigndIn()
+    this.checkSignedIn()
   },
   methods: {
     signin() {
-      signinAxios.post(
-      API_URL,
+      // #First API CALL
+      //  => ①cookieにユーザー情報の入ったjwt_tokenをもらう。
+      //  => ②responsebodyでcsrf_tokenもらう。
+      //  => ③signInの記録を保持する。
+      signinAxios.post(LOGIN_URL,
       {
         email: this.email,
         password: this.password,
@@ -58,18 +62,28 @@ export default {
         this.signinFailed(response)
         return
       }
-      localStorage.csrf = response.data.csrf
-      localStorage.signedIn = true
-      this.error = ''
-      this.$router.replace('/')
+      // #Second API CALL
+      //  => ①Users controller def me; end
+      //  => ②current_userでは、payloadメソッドでdecodeしてuser_idを取得
+      signinAxios.get(USER_INFO_URL)
+       .then(me_response => {
+         this.$store.commit('setCurrentUser', { currentUser: me_response.data, csrf: response.data.csrf })
+         this.error = ''
+         this.$router.replace('/')
+       })
+       .catch(error => this.signinFailed(error))
     },
     signinFailed(error) {
-      this.error = (error.response && error.response.data && error.response.data.error) || "Something went wrong"
-      delete localStorage.csrf
-      delete localStorage.signedIn
+      this.error = (error.response && error.response.data && error.response.data.error) || ""
+      // delete localStorage.csrf
+      // delete localStorage.signedIn
+      this.$store.commit('unsetCurrentUser')
     },
-    checkSigndIn() {
-      if (localStorage.signedIn) {
+    checkSignedIn() {
+      // if (localStorage.signedIn) {
+      //   this.$router.replace('/')
+      // }
+      if (this.$store.state.signedIn) {
         this.$router.replace('/')
       }
     }

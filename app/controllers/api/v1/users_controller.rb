@@ -3,6 +3,7 @@ module Api
     class UsersController < ApplicationController
       before_action :authorize_access_request!
 
+      # ログインが済んでいれば、current_userでpayloadをデコードして、user_idが取り出せる
       def me
         render json: current_user.as_json(only: [:id, :email, :role])
       end
@@ -23,7 +24,6 @@ module Api
       def destroy
       end
 
-      private
     end
   end
 end
