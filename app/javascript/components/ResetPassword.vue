@@ -8,7 +8,8 @@
     </div>
     <div class="form-group">
       <label for="password">Password Confirmation</label>
-      <input v-model="password_confirmation" type="password" class="form-control" id="password_confirmation" placeholder="Password Confirmation">
+      <input v-model="password_confirmation" type="password" class="form-control" id="password_confirmation"
+        placeholder="Password Confirmation">
     </div>
     <button type="submit" class="btn btn-primary mb-3">Reset password</button>
     <div>
@@ -18,49 +19,51 @@
 </template>
 
 <script>
-import { simpleAxios, secureAxios } from '../backend/axios.js'
-const PASSWORD_RESET_URL = '/api/v1/password_resets'
+  import {
+    simpleAxios,
+    secureAxios
+  } from '../backend/axios.js'
+  const PASSWORD_RESET_URL = '/api/v1/password_resets'
 
-export default {
-  name: 'ResetPassword',
-  data () {
-    return {
-      password: '',
-      password_confirmation: '',
-      error: '',
-      notice: ''
-    }
-  },
-  created () {
-    this.checkPasswordToken()
-  },
-  methods: {
-    reset() {
-      secureAxios.patch(PASSWORD_RESET_URL + `/` + `${this.$route.params.token}`,
-      {
-        password: this.password,
-        password_confirmation: this.password_confirmation
-      })
-      .then(response => this.resetSuccessful(response))
-      .catch(error => this.resetFailed(error))
+  export default {
+    name: 'ResetPassword',
+    data() {
+      return {
+        password: '',
+        password_confirmation: '',
+        error: '',
+        notice: ''
+      }
     },
-    resetSuccessful (response) {
-      this.notice = 'Your password has been reset.'
-      this.error = ''
-      this.password = ''
-      this.password_confirmation = ''
+    created() {
+      this.checkPasswordToken()
     },
-    resetFailed (error) {
-      this.error = (error.response && error.response.data && error.response.data.error) || 'Something went wrong'
-      this.notice = ''
-    },
-    checkPasswordToken () {
-      simpleAxios.get(PASSWORD_RESET_URL + `/` + `${this.$route.params.token}`)
-      .catch(error => {
-        this.resetFailed(error)
-        this.$router.replace('/')
-      })
+    methods: {
+      reset() {
+        secureAxios.patch(PASSWORD_RESET_URL + `/` + `${this.$route.params.token}`, {
+            password: this.password,
+            password_confirmation: this.password_confirmation
+          })
+          .then(response => this.resetSuccessful(response))
+          .catch(error => this.resetFailed(error))
+      },
+      resetSuccessful(response) {
+        this.notice = 'Your password has been reset.'
+        this.error = ''
+        this.password = ''
+        this.password_confirmation = ''
+      },
+      resetFailed(error) {
+        this.error = (error.response && error.response.data && error.response.data.error) || 'Something went wrong'
+        this.notice = ''
+      },
+      checkPasswordToken() {
+        simpleAxios.get(PASSWORD_RESET_URL + `/` + `${this.$route.params.token}`)
+          .catch(error => {
+            this.resetFailed(error)
+            this.$router.replace('/')
+          })
+      }
     }
   }
-}
 </script>

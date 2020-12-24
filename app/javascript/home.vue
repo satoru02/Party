@@ -7,16 +7,16 @@
 </template>
 
 <script>
-  import post from './components/post.vue';
-  import card from './components/card.vue';
-  import about from './components/perpage/TheAbout.vue';
+  import Post from './components/Post.vue';
+  import Card from './components/Card.vue';
+  import About from './components/perpage/TheAbout.vue';
 
   export default {
-    name: 'home',
+    name: 'Home',
     components: {
-      'post': post,
-      'card': card,
-      'about': about,
+      'post': Post,
+      'card': Card,
+      'about': About,
     },
     created() {
       this.checkSignedIn()

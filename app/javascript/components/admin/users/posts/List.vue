@@ -25,29 +25,36 @@
 </template>
 
 <script>
-  import { simpleAxios, secureAxios } from '../../../../backend/axios.js'
+  import {
+    simpleAxios,
+    secureAxios
+  } from '../../../../backend/axios.js'
   const ADMIN_USERS_POST_URL = '/api/v1/admin/users';
 
   export default {
     name: "UserPostsList",
-    data () {
+    data() {
       return {
         error: '',
         posts: []
       }
     },
-    created () {
+    created() {
       if (this.$store.state.signedIn && this.$store.getters.isAdmin) {
         secureAxios.defaults.headers.common['X-CSRF-TOKEN'] = this.$store.state.csrf
         secureAxios.get(ADMIN_USERS_POST_URL + `/` + `${this.$route.params.id}` + `/posts`)
-         .then(response => { this.posts = response.data })
-         .catch(error => { this.setError(error, "Something went wrong") })
+          .then(response => {
+            this.posts = response.data
+          })
+          .catch(error => {
+            this.setError(error, "Something went wrong")
+          })
       } else {
         this.$route.replace('/')
       }
     },
     methods: {
-      setError (error, text) {
+      setError(error, text) {
         this.error = (error.response && error.response.data && error.response.data.error) || text
       }
     }

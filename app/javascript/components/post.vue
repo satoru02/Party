@@ -32,7 +32,9 @@
 </template>
 
 <script>
-  import { secureAxios } from '../backend/axios.js'
+  import {
+    secureAxios
+  } from '../backend/axios.js'
   const POST_URL = '/api/v1/posts'
 
   export default {
@@ -45,10 +47,10 @@
       }
     },
     methods: {
-      setError (error, text) {
+      setError(error, text) {
         this.error = (error.response && error.response.data && error.response.data.error) || text
       },
-      postUrl (title, url) {
+      postUrl(title, url) {
         secureAxios.defaults.headers.common['X-CSRF-TOKEN'] = this.$store.state.csrf
         secureAxios.post(POST_URL, {
             title: title,

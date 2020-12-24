@@ -30,14 +30,16 @@
 </template>
 
 <script>
-  import { simpleAxios } from '../backend/axios.js'
+  import {
+    simpleAxios
+  } from '../backend/axios.js'
   import Avatar from '../components/perpage/TheAvatar.vue';
   import InfiniteLoading from 'vue-infinite-loading';
 
   const CONTENT_URL = 'api/v1/posts'
 
   export default {
-    name: 'card',
+    name: 'Card',
     components: {
       'avatar': Avatar,
       'infinite-loading': InfiniteLoading,

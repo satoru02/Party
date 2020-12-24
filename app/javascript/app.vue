@@ -14,7 +14,7 @@
 
 <script>
   import Vue from 'vue';
-  import Home from 'home.vue';
+  import Home from 'Home.vue';
   import VueRouter from 'vue-router';
   import VuePaginate from 'vue-paginate';
   import Vuex from 'vuex';

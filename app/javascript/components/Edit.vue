@@ -22,55 +22,63 @@
 </template>
 
 <script>
-import { simpleAxios, secureAxios } from '../backend/axios.js'
-const ADMIN_URL = '/api/v1/password_resets'
+  import {
+    simpleAxios,
+    secureAxios
+  } from '../backend/axios.js'
+  const ADMIN_URL = '/api/v1/password_resets'
 
-export default {
-  name: 'UserEdit',
-  data () {
-    return {
-      error: '',
-      notice: '',
-      user: {}
-    }
-  },
-  created() {
-    this.checkSignedIn()
-  },
-  methods: {
-    update () {
-      secureAxios.defaults.headers.common['X-CSRF-TOKEN'] = this.$store.state.csrf
-      secureAxios.patch(ADMIN_URL + `/` + `${this.$route.params.id}`,
-      { user: { role: this.user.role }})
-      .then(response => this.updateSuccessful(response))
-      .catch(error => this.updateFailed(error))
+  export default {
+    name: 'UserEdit',
+    data() {
+      return {
+        error: '',
+        notice: '',
+        user: {}
+      }
     },
-    updateSuccessful (response) {
-      this.notice = '',
-      this.error = ''
+    created() {
+      this.checkSignedIn()
     },
-    updateFailed (error) {
-      this.error = (error.response && error.response.data && error.response.data.error) || ''
-      this.notice = ''
-    },
-    setError(error, text) {
-      this.error = (error.response && error.response.data && error.response.data.error) || text
-      this.notice = ''
-    },
-    checkSignedIn () {
-      if (this.$store.state.signedIn && this.$store.getters.isAdmin) {
-        secureAxios.get(ADMIN_URL + `/` + `${this.$route.params.id}`)
-        .then(response => {
-          if (this.$store.getters.currentUserId === response.data.id) {
-          this.$route.replace('/')
-          return
+    methods: {
+      update() {
+        secureAxios.defaults.headers.common['X-CSRF-TOKEN'] = this.$store.state.csrf
+        secureAxios.patch(ADMIN_URL + `/` + `${this.$route.params.id}`, {
+            user: {
+              role: this.user.role
+            }
+          })
+          .then(response => this.updateSuccessful(response))
+          .catch(error => this.updateFailed(error))
+      },
+      updateSuccessful(response) {
+        this.notice = '',
+          this.error = ''
+      },
+      updateFailed(error) {
+        this.error = (error.response && error.response.data && error.response.data.error) || ''
+        this.notice = ''
+      },
+      setError(error, text) {
+        this.error = (error.response && error.response.data && error.response.data.error) || text
+        this.notice = ''
+      },
+      checkSignedIn() {
+        if (this.$store.state.signedIn && this.$store.getters.isAdmin) {
+          secureAxios.get(ADMIN_URL + `/` + `${this.$route.params.id}`)
+            .then(response => {
+              if (this.$store.getters.currentUserId === response.data.id) {
+                this.$route.replace('/')
+                return
+              }
+              this.user = response.data
+            }).catch(error => {
+              this.setError(error, 'Something went wrong')
+            })
+        } else {
+          this.$router.replace('/')
         }
-        this.user = response.data
-        }).catch(error => { this.setError(error, 'Something went wrong')})
-      } else {
-        this.$router.replace('/')
       }
     }
   }
-}
 </script>
