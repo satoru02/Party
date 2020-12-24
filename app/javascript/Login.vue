@@ -19,16 +19,9 @@
 </template>
 
 <script>
-import axios from 'axios'
-
+import { simpleAxios } from './backend/axios.js'
 const LOGIN_URL = '/api/v1/login'
 const USER_INFO_URL = '/api/v1/users/me'
-const signinAxios = axios.create({
-  withCredential: true,
-  headers: {
-    'Content-Type': 'application/json'
-  }
-})
 
 export default {
   name: 'Signin',
@@ -51,7 +44,7 @@ export default {
       //  => ①cookieにユーザー情報の入ったjwt_tokenをもらう。
       //  => ②responsebodyでcsrf_tokenもらう。
       //  => ③signInの記録を保持する。
-      signinAxios.post(LOGIN_URL,
+    simpleAxios.post(LOGIN_URL,
       {
         email: this.email,
         password: this.password,
@@ -67,7 +60,7 @@ export default {
       // #Second API CALL
       //  => ①Users controller def me; end
       //  => ②current_userでは、payloadメソッドでdecodeしてuser_idを取得
-      signinAxios.get(USER_INFO_URL)
+    simpleAxios.get(USER_INFO_URL)
        .then(me_response => {
          this.$store.commit('setCurrentUser', { currentUser: me_response.data, csrf: response.data.csrf })
          this.error = ''

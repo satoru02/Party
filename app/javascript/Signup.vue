@@ -24,16 +24,9 @@
 </template>
 
 <script>
-import axios from 'axios'
-
+import { simpleAxios } from './backend/axios.js'
 const SIGNUP_URL = '/api/v1/signup'
 const USER_INFO_URL = '/api/v1/users/me'
-const signupAxios = axios.create({
-  withCredential: true,
-  headers: {
-    'Content-Type': 'application/json'
-  }
-})
 
 export default {
   name: 'Signup',
@@ -53,7 +46,7 @@ export default {
   },
   methods: {
      signup() {
-      signupAxios.post(SIGNUP_URL,
+      simpleAxios.post(SIGNUP_URL,
       {
         email: this.email,
         password: this.password,
@@ -67,7 +60,7 @@ export default {
         this.signnupFailed(response)
         return
       }
-      signupAxios.get(USER_INFO_URL)
+      simpleAxios.get(USER_INFO_URL)
        .then(me_response => {
          this.$store.commit('setCurrentUser', { currentUser: me_response.data, csrf: response.data.csrf })
          this.error = ''

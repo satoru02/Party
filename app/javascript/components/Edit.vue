@@ -22,14 +22,9 @@
 </template>
 
 <script>
-import axios from 'axios';
+import { simpleAxios, secureAxios } from '../backend/axios.js'
 const ADMIN_URL = '/api/v1/password_resets'
-const patchAxios = axios.create({
-  withCredential: true,
-  headers: {
-    'Content-Type': 'application/json'
-  }
-})
+
 export default {
   name: 'UserEdit',
   data () {
@@ -44,8 +39,8 @@ export default {
   },
   methods: {
     update () {
-      patchAxios.defaults.headers.common['X-CSRF-TOKEN'] = this.$store.state.csrf
-      patchAxios.patch(ADMIN_URL + `/` + `${this.$route.params.id}`,
+      secureAxios.defaults.headers.common['X-CSRF-TOKEN'] = this.$store.state.csrf
+      secureAxios.patch(ADMIN_URL + `/` + `${this.$route.params.id}`,
       { user: { role: this.user.role }})
       .then(response => this.updateSuccessful(response))
       .catch(error => this.updateFailed(error))
@@ -64,7 +59,7 @@ export default {
     },
     checkSignedIn () {
       if (this.$store.state.signedIn && this.$store.getters.isAdmin) {
-        patchAxios.get(ADMIN_URL + `/` + `${this.$route.params.id}`)
+        secureAxios.get(ADMIN_URL + `/` + `${this.$route.params.id}`)
         .then(response => {
           if (this.$store.getters.currentUserId === response.data.id) {
           this.$route.replace('/')

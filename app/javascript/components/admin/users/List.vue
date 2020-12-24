@@ -31,43 +31,36 @@
 </template>
 
 <script>
-  import axios from 'axios'
-
+  import { simpleAxios, secureAxios } from '../../../backend/axios.js';
   const ADMIN_USER_URL = '/api/v1/admin/users';
-  const adminAxios = axios.create({
-  withCredential: true,
-  headers: {
-    'Content-Type': 'application/json'
-  }
-  });
 
-export default {
-  name: 'UsersList',
-  data() {
-    return {
-      error: '',
-      users: []
-    }
-  },
-  created () {
-    if (this.$store.state.signedIn && (this.$store.getters.isAdmin || this.$store.getters.isManager)) {
-      adminAxios.defaults.headers.common['X-CSRF-TOKEN'] = this.$store.state.csrf
-      adminAxios.get(ADMIN_USER_URL)
-      .then(response => { this.users = response.data })
-      .catch(error => { this.setError(error, 'Something went wrong')})
-    } else {
-      this.$router.replace('/')
-    }
-  },
-  methods: {
-    setError (error, text) {
-      this.error = (error.response && error.response.data && error.response.data.error) || text
+  export default {
+    name: 'UsersList',
+    data() {
+      return {
+        error: '',
+        users: []
+      }
     },
-    showPostsLink() {
-      return this.$store.getters.isAdmin
+    created () {
+      if (this.$store.state.signedIn && (this.$store.getters.isAdmin || this.$store.getters.isManager)) {
+        secureAxios.defaults.headers.common['X-CSRF-TOKEN'] = this.$store.state.csrf
+        secureAxios.get(ADMIN_USER_URL)
+        .then(response => { this.users = response.data })
+        .catch(error => { this.setError(error, 'Something went wrong')})
+      } else {
+        this.$router.replace('/')
+      }
+    },
+    methods: {
+      setError (error, text) {
+        this.error = (error.response && error.response.data && error.response.data.error) || text
+      },
+      showPostsLink() {
+        return this.$store.getters.isAdmin
+      }
     }
   }
-}
 </script>
 
 <style>

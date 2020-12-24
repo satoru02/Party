@@ -21,7 +21,6 @@
   import createPersistedState from 'vuex-persistedstate';
   import InfiniteLoading from 'vue-infinite-loading';
   import '@mdi/font/css/materialdesignicons.css';
-
   import Avatar from './components/perpage/TheAvatar.vue';
   import Header from './components/perpage/TheHeader.vue';
   import Login from './Login.vue';

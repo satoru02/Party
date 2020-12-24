@@ -32,15 +32,8 @@
 </template>
 
 <script>
-  import axios from 'axios';
-
+  import { secureAxios } from '../backend/axios.js'
   const POST_URL = '/api/v1/posts'
-  const postAxios = axios.create({
-    withCredential: true,
-    headers: {
-      'Content-Type': 'application/json'
-    }
-  })
 
   export default {
     name: 'post',
@@ -56,8 +49,8 @@
         this.error = (error.response && error.response.data && error.response.data.error) || text
       },
       postUrl (title, url) {
-        postAxios.defaults.headers.common['X-CSRF-TOKEN'] = this.$store.state.csrf
-        postAxios.post(POST_URL, {
+        secureAxios.defaults.headers.common['X-CSRF-TOKEN'] = this.$store.state.csrf
+        secureAxios.post(POST_URL, {
             title: title,
             url: url
           })

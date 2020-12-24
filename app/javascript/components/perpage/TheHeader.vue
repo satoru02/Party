@@ -31,15 +31,9 @@
 
 <script>
   import Avatar from './TheAvatar.vue';
-  import axios from 'axios';
-
+  import { simpleAxios, secureAxios } from '../../backend/axios.js';
   const LOGOUT_URL = '/api/v1/login';
-  const signoutAxios = axios.create({
-  withCredential: true,
-  headers: {
-    'Content-Type': 'application/json'
-  }
-  });
+
   export default {
     name: 'top-header',
     components: {
@@ -50,8 +44,8 @@
         this.error = (error.response && error.response.data && error.response.data.error) || text
       },
       signOut () {
-        signoutAxios.defaults.headers.common['X-CSRF-TOKEN'] = this.$store.state.csrf
-        signoutAxios.delete(LOGOUT_URL + `/` + `${this.$store.state.currentUser.id}`)
+        secureAxios.defaults.headers.common['X-CSRF-TOKEN'] = this.$store.state.csrf
+        secureAxios.delete(LOGOUT_URL + `/` + `${this.$store.state.currentUser.id}`)
         .then(response => {
           this.$store.commit('unsetCurrentUser')
           this.$router.replace('/')

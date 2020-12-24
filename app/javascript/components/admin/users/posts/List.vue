@@ -25,38 +25,31 @@
 </template>
 
 <script>
-  import axios from 'axios'
-
+  import { simpleAxios, secureAxios } from '../../../../backend/axios.js'
   const ADMIN_USERS_POST_URL = '/api/v1/admin/users';
-  const adminAxios = axios.create({
-  withCredential: true,
-  headers: {
-    'Content-Type': 'application/json'
-  }
-  });
 
-export default {
-  name: "UserPostsList",
-  data () {
-    return {
-      error: '',
-      posts: []
-    }
-  },
-  created () {
-    if (this.$store.state.signedIn && this.$store.getters.isAdmin) {
-      adminAxios.defaults.headers.common['X-CSRF-TOKEN'] = this.$store.state.csrf
-      adminAxios.get(ADMIN_USERS_POST_URL + `/` + `${this.$route.params.id}` + `/posts`)
-       .then(response => { this.posts = response.data })
-       .catch(error => { this.setError(error, "Something went wrong") })
-    } else {
-      this.$route.replace('/')
-    }
-  },
-  methods: {
-    setError (error, text) {
-      this.error = (error.response && error.response.data && error.response.data.error) || text
+  export default {
+    name: "UserPostsList",
+    data () {
+      return {
+        error: '',
+        posts: []
+      }
+    },
+    created () {
+      if (this.$store.state.signedIn && this.$store.getters.isAdmin) {
+        secureAxios.defaults.headers.common['X-CSRF-TOKEN'] = this.$store.state.csrf
+        secureAxios.get(ADMIN_USERS_POST_URL + `/` + `${this.$route.params.id}` + `/posts`)
+         .then(response => { this.posts = response.data })
+         .catch(error => { this.setError(error, "Something went wrong") })
+      } else {
+        this.$route.replace('/')
+      }
+    },
+    methods: {
+      setError (error, text) {
+        this.error = (error.response && error.response.data && error.response.data.error) || text
+      }
     }
   }
-}
 </script>

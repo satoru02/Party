@@ -30,9 +30,11 @@
 </template>
 
 <script>
-  import axios from 'axios';
+  import { simpleAxios } from '../backend/axios.js'
   import Avatar from '../components/perpage/TheAvatar.vue';
   import InfiniteLoading from 'vue-infinite-loading';
+
+  const CONTENT_URL = 'api/v1/posts'
 
   export default {
     name: 'card',
@@ -69,7 +71,7 @@
     },
     methods: {
       infiniteHandler($state) {
-        axios.get('api/v1/posts', {
+        simpleAxios.get(CONTENT_URL, {
             params: {
               page: this.page,
               per_page: this.pageSize,

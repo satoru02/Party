@@ -15,15 +15,8 @@
 </template>
 
 <script>
-import axios from 'axios';
-
+import { simpleAxios } from '../backend/axios.js'
 const PASSWORD_RESET_URL = '/api/v1/password_resets';
-const resetAxios = axios.create({
-  withCredential: true,
-  headers: {
-    'Content-Type': 'application/json'
-  }
-})
 
 export default {
   name: "ForgotPassword",
@@ -36,7 +29,7 @@ export default {
   },
   methods: {
     submit () {
-      resetAxios.post(PASSWORD_RESET_URL, { email: this.email })
+      simpleAxios.post(PASSWORD_RESET_URL, { email: this.email })
       .then(() => this.submitSuccessful())
       .catch(error => this.submitFailed())
     },

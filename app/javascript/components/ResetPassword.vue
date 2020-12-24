@@ -18,15 +18,8 @@
 </template>
 
 <script>
-import axios from 'axios';
-
+import { simpleAxios, secureAxios } from '../backend/axios.js'
 const PASSWORD_RESET_URL = '/api/v1/password_resets'
-const resetAxios = axios.create({
-  withCredential: true,
-  headers: {
-    'Content-Type': 'application/json'
-  }
-})
 
 export default {
   name: 'ResetPassword',
@@ -43,7 +36,7 @@ export default {
   },
   methods: {
     reset() {
-      resetAxios.patch(PASSWORD_RESET_URL + `/` + `${this.$route.params.token}`,
+      secureAxios.patch(PASSWORD_RESET_URL + `/` + `${this.$route.params.token}`,
       {
         password: this.password,
         password_confirmation: this.password_confirmation
@@ -62,7 +55,7 @@ export default {
       this.notice = ''
     },
     checkPasswordToken () {
-      resetAxios.get(PASSWORD_RESET_URL + `/` + `${this.$route.params.token}`)
+      simpleAxios.get(PASSWORD_RESET_URL + `/` + `${this.$route.params.token}`)
       .catch(error => {
         this.resetFailed(error)
         this.$router.replace('/')
