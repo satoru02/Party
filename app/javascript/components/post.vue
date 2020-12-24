@@ -34,6 +34,14 @@
 <script>
   import axios from 'axios';
 
+  const POST_URL = '/api/v1/posts'
+  const postAxios = axios.create({
+    withCredential: true,
+    headers: {
+      'Content-Type': 'application/json'
+    }
+  })
+
   export default {
     name: 'post',
     data() {
@@ -44,13 +52,19 @@
       }
     },
     methods: {
-      postUrl: function (title, url) {
-        axios
-          .post('/api/v1/posts', {
+      setError (error, text) {
+        this.error = (error.response && error.response.data && error.response.data.error) || text
+      },
+      postUrl (title, url) {
+        postAxios.defaults.headers.common['X-CSRF-TOKEN'] = this.$store.state.csrf
+        postAxios.post(POST_URL, {
             title: title,
             url: url
           })
-          .then(function (response) {})
+          .then(response => {
+            this.$router.replace('/')
+          })
+          .catch(error => this.setError(error, "Cannot post"))
       }
     }
   }

@@ -1,6 +1,7 @@
 module Api
   module V1
     class PostsController < ApplicationController
+      before_action :authorize_access_request!
       before_action :set_post, only: [:show]
 
       # GET api/v1/posts
@@ -16,9 +17,11 @@ module Api
 
       # POST api/v1/posts/
       def create
-        @post = Post.new(post_params)
-        @post.save!
-        @post.import_time
+        @post = current_user.posts.build(post_params)
+        if @post.save!
+          @post.import_time
+          redirect_to root_url
+        end
       end
 
       def update
@@ -34,11 +37,11 @@ module Api
       private
 
         def set_post
-          @post = Post.find_by id: params[:id]
+          @post = Post.find_by(id: params[:id])
         end
 
         def post_params
-          params.require(:post).permit(:title, :url)
+          params.require(:post).permit(:title, :url, :user_id)
         end
 
         def response_fields(post)
