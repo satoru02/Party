@@ -11,7 +11,6 @@ Rails.application.routes.draw do
       resources :signup, only: [:create]
       resources :login, only: [:create, :destroy]
       resources :refresh, only: [:create]
-
       resources :account_activations, only: [:create] do
         collection do
           post ':token', action: :create
@@ -38,5 +37,6 @@ Rails.application.routes.draw do
       end
     end
   end
+
   get '*path', to: 'home#index'
 end

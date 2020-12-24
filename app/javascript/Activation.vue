@@ -9,9 +9,13 @@ const USER_INFO_URL = '/api/v1/users/me'
 export default {
   name: 'Activation',
   created() {
+    this.checkSignedIn()
     secureAxios.post(ACTIVATION_URL + `/` + `${this.$route.params.token}`)
     .then(response => this.activationSuccessful(response))
     .catch(error => this.activationFailed(error))
+  },
+  updated(){
+    this.checkSignedIn()
   },
   methods: {
     activationSuccessful(response) {
@@ -33,6 +37,11 @@ export default {
      activationFailed(error) {
        this.error = (error.response && error.response.data && error.response.data.error) || ""
        this.$store.commit('unsetCurrentUser')
+     },
+     checkSignedIn(){
+       if(this.$store.state.signedIn){
+         this.$router.replace('/')
+       }
      }
   }
 }
