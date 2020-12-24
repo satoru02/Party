@@ -12,6 +12,12 @@ Rails.application.routes.draw do
       resources :login, only: [:create, :destroy]
       resources :refresh, only: [:create]
 
+      resources :account_activations, only: [:create] do
+        collection do
+          post ':token', action: :create
+        end
+      end
+
       resources :password_resets, only: [:create] do
         collection do
           get ':token', action: :edit, as: :edit

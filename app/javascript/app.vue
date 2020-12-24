@@ -14,7 +14,6 @@
 
 <script>
   import Vue from 'vue';
-  import Home from 'Home.vue';
   import VueRouter from 'vue-router';
   import VuePaginate from 'vue-paginate';
   import Vuex from 'vuex';
@@ -23,8 +22,10 @@
   import '@mdi/font/css/materialdesignicons.css';
   import Avatar from './components/perpage/TheAvatar.vue';
   import Header from './components/perpage/TheHeader.vue';
+  import Home from 'Home.vue';
   import Login from './Login.vue';
   import Signup from './Signup.vue';
+  import Activation from './Activation.vue';
   import UsersList from './components/admin/users/List.vue';
   import UserPostsList from './components/admin/users/posts/List.vue';
   import ForgotPassword from './components/ForgotPassword.vue';
@@ -121,6 +122,11 @@
         path: "/admin/users/:id",
         name: "UserEdit",
         component: UserEdit
+      },
+      {
+        path: "/account_activations/:token",
+        name: "AccountActivations",
+        component: Activation
       }
     ]
   })

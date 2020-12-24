@@ -28,7 +28,6 @@
     simpleAxios
   } from './backend/axios.js'
   const SIGNUP_URL = '/api/v1/signup'
-  const USER_INFO_URL = '/api/v1/users/me'
 
   export default {
     name: 'Signup',
@@ -57,20 +56,20 @@
           .catch(error => this.signupFailed(error))
       },
       signupSuccessful(response) {
-        if (!response.data.csrf) {
-          this.signnupFailed(response)
-          return
-        }
-        simpleAxios.get(USER_INFO_URL)
-          .then(me_response => {
-            this.$store.commit('setCurrentUser', {
-              currentUser: me_response.data,
-              csrf: response.data.csrf
-            })
-            this.error = ''
-            this.$router.replace('/')
-          })
-          .catch(error => this.signupFailed(error))
+        // if (!response.data.csrf) {
+        //   this.signnupFailed(response)
+        //   return
+        // }
+        // simpleAxios.get(USER_INFO_URL)
+        //   .then(me_response => {
+        //     this.$store.commit('setCurrentUser', {
+        //       currentUser: me_response.data,
+        //       csrf: response.data.csrf
+        //     })
+        //     this.error = ''
+        //     this.$router.replace('/')
+        //   })
+        //   .catch(error => this.signupFailed(error))
       },
       signupFailed(error) {
         this.error = (error.response && error.response.data && error.response.data.error) || ""

@@ -30,7 +30,7 @@ module Api
       private
 
         def password_params
-          params.tap { |p| p.require(KEYS) }.permit(*KEYS) 
+          params.tap { |p| p.require(KEYS) }.permit(*KEYS)
         end
 
         def set_user

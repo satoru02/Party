@@ -7,9 +7,9 @@
 </template>
 
 <script>
+  import About from './components/perpage/TheAbout.vue';
   import Post from './components/Post.vue';
   import Card from './components/Card.vue';
-  import About from './components/perpage/TheAbout.vue';
 
   export default {
     name: 'Home',

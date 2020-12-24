@@ -1,0 +1,10 @@
+Password reset
+
+To reset your password click the link below:
+
+<%= "http://localhost:5000/account_activations/#{@user.activation_token}"
+
+This link will expire in two hours.
+
+If you did not request your password to be reset, please ignore this email and
+your password will stay as it is.

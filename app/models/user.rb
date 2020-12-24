@@ -4,12 +4,36 @@ class User < ApplicationRecord
   has_many :posts
   has_secure_password
   enum role: %i[user manager admin].freeze
-  validates :email, format: { with: URI::MailTo::EMAIL_REGEXP },
-             presence: true,
+  before_save :downcase_email
+  VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
+  validates :email, presence: true, length: { maximum: 235 },
+             format: { with:VALID_EMAIL_REGEX },
              uniqueness: { case_sensitive: false }
+  validates :password, presence: true, length: { minimum: 6 }, allow_nil:true
 
   def attributes
     { id: id, email: email, role: role }
+  end
+
+  def authenticated?(attribute, token)
+    token = send("#{attribute}_token")
+    return false if token.nil?
+    self.activation_token == token
+  end
+
+  def send_activation_email
+    UserMailer.account_activation(self).deliver_now
+  end
+
+  def generate_activation_token!
+    begin
+      self.activation_token = SecureRandom.urlsafe_base64
+    end
+    save!
+  end
+
+  def activate
+    update_columns(activated: true, activated_at: Time.zone.now)
   end
 
   def generate_password_token!
@@ -24,4 +48,10 @@ class User < ApplicationRecord
     self.reset_password_token = nil
     self.reset_password_token_expires_at = nil
   end
+
+  private
+
+    def downcase_email
+      self.email = email.downcase
+    end
 end
