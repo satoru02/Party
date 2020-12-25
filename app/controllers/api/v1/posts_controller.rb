@@ -4,18 +4,15 @@ module Api
       before_action :authorize_access_request!
       before_action :set_post, only: [:show]
 
-      # GET api/v1/posts
       def index
         @posts = Post.pager(page: params[:page], per: params[:per_page])
         render json: @posts
       end
 
-      # GET api/v1/posts/1
       def show
         render json: response_fields(@post.to_json)
       end
 
-      # POST api/v1/posts/
       def create
         @post = current_user.posts.build(post_params)
         if @post.save!
@@ -30,7 +27,6 @@ module Api
       def destroy
       end
 
-      # response posts on requested query.
       def search
       end
 

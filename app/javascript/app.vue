@@ -31,6 +31,8 @@
   import ForgotPassword from './components/ForgotPassword.vue';
   import ResetPassword from './components/ResetPassword.vue';
   import UserEdit from './components/Edit.vue';
+  import Users from './components/user/users.vue';
+  import User from './components/user/user.vue';
 
   Vue.use(VuePaginate)
   Vue.use(VueRouter)
@@ -127,6 +129,16 @@
         path: "/account_activations/:token",
         name: "AccountActivations",
         component: Activation
+      },
+      {
+        path: "/users",
+        name: "Users",
+        component: Users
+      },
+      {
+        path: "/users/:id",
+        name: "User",
+        component: User
       }
     ]
   })
