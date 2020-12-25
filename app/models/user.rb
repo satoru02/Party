@@ -19,6 +19,7 @@ class User < ApplicationRecord
       about: about,
       web_url: web_url,
       name: name,
+      location: location,
       username: username,
       youtube_url: youtube_url,
       facebook_url: facebook_url,

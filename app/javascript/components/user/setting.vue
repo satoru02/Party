@@ -57,16 +57,16 @@
     data() {
       return {
         user: '',
-        email: '',
-        name: '',
-        username: '',
-        about: '',
-        location: '',
-        web_url: '',
-        youtube_url: '',
-        facebook_url: '',
-        instagram_url: '',
-        filmarks_url: '',
+        // email: '',
+        // name: '',
+        // username: '',
+        // about: '',
+        // location: '',
+        // web_url: '',
+        // youtube_url: '',
+        // facebook_url: '',
+        // instagram_url: '',
+        // filmarks_url: '',
       }
     },
     created() {

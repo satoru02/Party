@@ -1,5 +1,47 @@
 <template>
+  <div v-bind="user" :key="user.id">
+    <p :name="user.name">{{ user.name }}</p>
+    <p :username="user.username">{{ user.username }}</p>
+    <p :email="user.email">{{ user.email }}</p>
+    <p :about="user.about">{{ user.about }}</p>
+    <p :location="user.location">{{ user.location }}</p>
+    <p :web_url="user.web_url">{{ user.web_url }}</p>
+    <p :youtube_url="user.youtube_url">{{ user.youtube_url }}</p>
+    <p :facebook_url="user.facebook_url">{{ user.facebook_url }}</p>
+    <p :instagram_url="user.instagram_url">{{ user.instagram_url }}</p>
+    <p :filmarks_url="user.filmarks_url">{{ user.filmarks_url }}</p>
+  </div>
 </template>
+
 <script>
-// api/v1/user/:id
+  import {
+    simpleAxios,
+    secureAxios
+  } from '../../backend/axios.js'
+  const USER_INFO_URL = '/api/v1/users/me'
+
+  export default {
+    name: 'User',
+    data () {
+      return {
+        user: '',
+      }
+    },
+    created() {
+      this.fecthUserInformation()
+    },
+    methods: {
+      fecthUserInformation() {
+        simpleAxios.get(USER_INFO_URL)
+          .then(response => this.Successful(response))
+          .catch(error => this.Failed(error))
+      },
+      Successful(response) {
+        this.user = response.data
+      },
+      Failed(error) {
+        this.error = (error.response && error.response.data && error.response.data.error) || ""
+      }
+   }
+}
 </script>
