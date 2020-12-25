@@ -22,7 +22,7 @@
   import '@mdi/font/css/materialdesignicons.css';
   import Avatar from './components/perpage/TheAvatar.vue';
   import Header from './components/perpage/TheHeader.vue';
-  import Home from 'Home.vue';
+  import Home from './home.vue';
   import Login from './Login.vue';
   import Signup from './Signup.vue';
   import Activation from './Activation.vue';
@@ -33,6 +33,7 @@
   import UserEdit from './components/Edit.vue';
   import Users from './components/user/users.vue';
   import User from './components/user/user.vue';
+  import Setting from './components/user/setting.vue';
 
   Vue.use(VuePaginate)
   Vue.use(VueRouter)
@@ -139,6 +140,11 @@
         path: "/users/:id",
         name: "User",
         component: User
+      },
+      {
+        path: "/setting",
+        name: "Setting",
+        component: Setting
       }
     ]
   })

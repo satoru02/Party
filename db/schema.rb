@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_12_24_124746) do
+ActiveRecord::Schema.define(version: 2020_12_25_072835) do
 
   create_table "posts", force: :cascade do |t|
     t.string "title", null: false
@@ -34,6 +34,14 @@ ActiveRecord::Schema.define(version: 2020_12_24_124746) do
     t.string "activation_token"
     t.boolean "activated"
     t.datetime "activated_at"
+    t.text "about"
+    t.string "web_url"
+    t.string "youtube_url"
+    t.string "facebook_url"
+    t.string "instagram_url"
+    t.string "filmarks_url"
+    t.string "username"
+    t.string "location"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token"
   end

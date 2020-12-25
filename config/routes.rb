@@ -27,6 +27,7 @@ Rails.application.routes.draw do
       resources :users do
         collection do
           get :me
+          # get ':id', action: :edit, as: :edit
         end
       end
 
@@ -38,5 +39,7 @@ Rails.application.routes.draw do
     end
   end
 
+  # fix
+  get '/api/v1/users/:id/edit', to:'api/v1/users#edit'
   get '*path', to: 'home#index'
 end

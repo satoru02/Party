@@ -4,7 +4,7 @@
       <v-row class="d-flex justify-space-around mb-6">
         <v-col class="pa-2 mt-13">
           <router-link to="/">
-            <h3 style="color:white">LAPLACE</h3>
+            <h3 style="color:white">VIDEOKIT</h3>
           </router-link>
         </v-col>
         <v-spacer></v-spacer>
@@ -22,7 +22,9 @@
           <v-icon @click="signOut">mdi-wifi</v-icon>
         </v-col>
         <v-col class="pa-2 mt-10">
+        <router-link :to="{ name: 'User', params: {id: `${this.$store.state.currentUser.id}`} }">
           <avatar></avatar>
+        </router-link>
         </v-col>
       </v-row>
     </v-container>

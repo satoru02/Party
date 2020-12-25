@@ -2,7 +2,7 @@
   <div>
     <v-container class="mt-8">
       <v-row no-gutters>
-        <v-col v-for="post in posts" :key="post.id" :title="post.title" :url="post.url" :time="post.date"
+        <v-col v-for="post in posts" :key="post.id" :title="post.title" :url="post.url" :time="post.date" :user_id="post.user_id"
           class="mb-9 pr-7" cols="12" sm="4">
           <v-card class="rounded-xl" color="#010101" max-width="400">
             <v-card-title>
@@ -12,7 +12,9 @@
             </v-card-text>
             <v-card-actions>
               <v-list-item class="grow">
-                <avatar></avatar>
+                <router-link :to="{ name: 'User', params: {id: `${post.user_id}` }}">
+                  <avatar></avatar>
+                </router-link>
                 <v-list-item-content>
                   <v-list-item-subtitle>John Smith</v-list-item-subtitle>
                 </v-list-item-content>
@@ -63,6 +65,12 @@
           required: true,
         }
       },
+      user_id: {
+        status: {
+          type: String,
+          required: true
+        }
+      }
     },
     data() {
       return {
