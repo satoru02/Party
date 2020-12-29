@@ -16,7 +16,6 @@
     </ul>
     <ul>
     </ul>
-    <cube></cube>
     <ul class="squares">
       <cube ref="cube" v-for="year in years" :key="year.id" :date="year.date" :style="year.styleObject">
       </cube>

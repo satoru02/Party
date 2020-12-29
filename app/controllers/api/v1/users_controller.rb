@@ -2,7 +2,7 @@ module Api
   module V1
     class UsersController < ApplicationController
       before_action :authorize_access_request!
-      before_action :set_user, only: [:show, :edit, :update]
+      before_action :set_user, only: [:posts, :show, :edit, :update]
 
       def me
         render json: current_user.as_json
@@ -26,6 +26,10 @@ module Api
       end
 
       def destroy
+      end
+
+      def posts
+        render json: @user.posts.as_json
       end
 
       private

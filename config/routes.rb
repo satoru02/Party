@@ -27,7 +27,7 @@ Rails.application.routes.draw do
       resources :users do
         collection do
           get :me
-          # get ':id', action: :edit, as: :edit
+          get ':id/posts', action: :posts
         end
       end
 
