@@ -34,6 +34,7 @@
   import Users from './components/user/users.vue';
   import User from './components/user/user.vue';
   import Setting from './components/user/setting.vue';
+  import PostEdit from './components/PostEdit.vue';
 
   Vue.use(VuePaginate)
   Vue.use(VueRouter)
@@ -145,6 +146,11 @@
         path: "/setting",
         name: "Setting",
         component: Setting
+      },
+      {
+        path: "/posts/edit/:id",
+        name: "PostEdit",
+        component: PostEdit
       }
     ]
   })

@@ -2,7 +2,7 @@ module Api
   module V1
     class PostsController < ApplicationController
       before_action :authorize_access_request!
-      before_action :set_post, only: [:show]
+      before_action :set_post, only: [:show, :edit, :update]
 
       def index
         @posts = Post.pager(page: params[:page], per: params[:per_page])
@@ -22,9 +22,13 @@ module Api
       end
 
       def edit
+        if @post.user_id === current_user.id
+          render json: response_fields(@post.to_json)
+        end
       end
 
       def update
+        @post.update_attributes(post_params)
       end
 
       def destroy

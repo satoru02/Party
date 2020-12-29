@@ -43,5 +43,6 @@ Rails.application.routes.draw do
 
   # fix
   get '/api/v1/users/:id/edit', to:'api/v1/users#edit'
+  get '/api/v1/posts/:id/edit', to:'api/v1/posts#edit'
   get '*path', to: 'home#index'
 end
