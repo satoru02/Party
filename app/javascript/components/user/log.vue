@@ -17,7 +17,7 @@
     <ul>
     </ul>
     <ul class="squares">
-      <cube ref="cube" v-for="year in years" :key="year.id" :date="year.date" :style="year.styleObject">
+      <cube v-for="year in years" :key="year.id" :date="year.date" :style="year.styleObject">
       </cube>
     </ul>
   </div>
@@ -39,7 +39,6 @@
     },
     data() {
       return {
-        isActive: true,
         years: '',
         active_logs: '',
       }
@@ -49,35 +48,31 @@
       this.getDate()
     },
     methods: {
+      getUsersPosts() {
+        simpleAxios.get(USERS_POSTS_URL + `/` + this.$route.params.id + `/posts`)
+          .then(response => this.getsPostSuccessful(response))
+          .catch(error => Failed(error))
+      },
+      getsPostSuccessful(response) {
+        this.active_logs = JSON.parse(JSON.stringify(response.data))
+      },
       getDate() {
         simpleAxios.get(DATE_URL)
           .then(response => this.getSuccessful(response))
           .catch(error => this.Failed(error))
       },
-      getUsersPosts() {
-        simpleAxios.get(USERS_POSTS_URL + `/` + this.$route.params.id + `/posts`)
-         .then(response => this.getsPostSuccessful(response))
-         .catch(error => Failed(error))
-      },
-      getsPostSuccessful(response) {
-        this.active_logs = JSON.parse(JSON.stringify(response.data))
-      },
       getSuccessful(response) {
         this.years = JSON.parse(JSON.stringify(response.data))
-        this.checkDate()
+
+        for (var i = 0; i < 365; i++) {
+          var colorDate = this.active_logs.filter(active_log => active_log.date === this.years[i].date)
+          if (colorDate.length === 1) {
+            this.years[i].styleObject.backgroundColor = 'blue'
+          }
+        }
       },
       Failed(error) {
         this.error = (error.response && error.response.data && error.response.data.error) || ""
-      },
-      checkDate() {
-        var i;
-        for (i = 0; i < 365; i++) {
-          var colorDate = this.active_logs.filter(active_log => active_log.date === this.years[i].date)
-          console.log(colorDate)
-          if (colorDate.length == 1) {
-            this.years[i].styleObject.backgroundColor = 'orange'
-          }
-        }
       }
     }
   }
