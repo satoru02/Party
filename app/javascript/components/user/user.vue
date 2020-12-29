@@ -10,10 +10,12 @@
     <p :facebook_url="user.facebook_url">{{ user.facebook_url }}</p>
     <p :instagram_url="user.instagram_url">{{ user.instagram_url }}</p>
     <p :filmarks_url="user.filmarks_url">{{ user.filmarks_url }}</p>
+    <log></log>
   </div>
 </template>
 
 <script>
+  import Log from './log.vue'
   import {
     simpleAxios,
     secureAxios
@@ -22,6 +24,9 @@
 
   export default {
     name: 'User',
+    components: {
+      'log': Log
+    },
     data () {
       return {
         user: '',

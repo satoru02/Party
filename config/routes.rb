@@ -31,6 +31,8 @@ Rails.application.routes.draw do
         end
       end
 
+      resources :years
+
       resources :posts do
         collection do
           get :search

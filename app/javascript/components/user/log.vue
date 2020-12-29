@@ -1,0 +1,195 @@
+<template>
+  <div class="graph">
+    <ul class="months">
+      <li>Jan</li>
+      <li>Feb</li>
+      <li>Mar</li>
+      <li>Apr</li>
+      <li>May</li>
+      <li>Jun</li>
+      <li>Jul</li>
+      <li>Aug</li>
+      <li>Sep</li>
+      <li>Oct</li>
+      <li>Nov</li>
+      <li>Dec</li>
+    </ul>
+    <ul>
+    </ul>
+    <cube></cube>
+    <ul class="squares">
+      <cube ref="cube" v-for="year in years" :key="year.id" :date="year.date" :style="year.styleObject">
+      </cube>
+    </ul>
+  </div>
+</template>
+
+<script>
+  import {
+    simpleAxios
+  } from '../../backend/axios.js'
+  import CUBE from '../cube.vue'
+  const DATE_URL = '/api/v1/years'
+
+  export default {
+    name: "Log",
+    components: {
+      'cube': CUBE
+    },
+    data() {
+      return {
+        isActive: true,
+        years: '',
+        user_log: [
+          {
+            id: 1,
+            date: "1/1/2021"
+          },
+          {
+            id: 1,
+            date: "1/11/2021"
+          },
+          {
+            id: 1,
+            date: "2/1/2021"
+          }
+        ]
+      }
+    },
+    created() {
+      this.getDate()
+    },
+    methods: {
+      applyStyle() {
+        this.styleObject.color = "orange"
+      },
+      getDate() {
+        simpleAxios.get(DATE_URL)
+          .then(response => this.getSuccessful(response))
+          .catch(error => this.getFailed(error))
+      },
+      getSuccessful(response) {
+        this.years = JSON.parse(JSON.stringify(response.data))
+        this.checkDate()
+      },
+      getFailed(error) {
+        this.error = (error.response && error.response.data && error.response.data.error) || ""
+      },
+      checkDate() {
+        var i;
+        for (i = 0; i < 365; i++) {
+          var colorDate = this.user_log.filter(user => user.date === this.years[i].date)
+          if (colorDate.length == 1) {
+            this.years[i].styleObject.color = 'orange'
+          }
+        }
+      }
+    }
+  }
+</script>
+
+<style>
+  :root {
+    --square-size: 9px;
+    --square-gap: 4px;
+    --week-width: calc(var(--square-size) + var(--square-gap));
+  }
+
+  ul,
+  li {
+    list-style-type: none;
+  }
+
+  .months {
+    grid-area: months;
+    font-size: 5px;
+  }
+
+  .days {
+    grid-area: days;
+  }
+
+  .squares {
+    grid-area: squares;
+  }
+
+  .graph {
+    display: inline-grid;
+    grid-template-areas: "empty months"
+      "days squares";
+    grid-template-columns: auto 1fr;
+    grid-gap: 10px;
+  }
+
+  .months {
+    display: grid;
+    grid-template-columns: calc(var(--week-width) * 4)
+      /* Jan */
+      calc(var(--week-width) * 4)
+      /* Feb */
+      calc(var(--week-width) * 4)
+      /* Mar */
+      calc(var(--week-width) * 5)
+      /* Apr */
+      calc(var(--week-width) * 4)
+      /* May */
+      calc(var(--week-width) * 4)
+      /* Jun */
+      calc(var(--week-width) * 5)
+      /* Jul */
+      calc(var(--week-width) * 4)
+      /* Aug */
+      calc(var(--week-width) * 4)
+      /* Sep */
+      calc(var(--week-width) * 5)
+      /* Oct */
+      calc(var(--week-width) * 4)
+      /* Nov */
+      calc(var(--week-width) * 5)
+      /* Dec */
+    ;
+  }
+
+  .days,
+  .squares {
+    display: grid;
+    grid-gap: var(--square-gap);
+    grid-template-rows: repeat(7, var(--square-size));
+  }
+
+  .squares {
+    grid-auto-flow: column;
+    grid-auto-columns: var(--square-size);
+  }
+
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+    font-size: 12px;
+  }
+
+  .graph {
+    padding: 20px;
+    border: 1px #d8d8d8;
+    margin: 20px;
+  }
+
+  .days li:nth-child(odd) {
+    visibility: hidden;
+  }
+
+  .squares li {
+    background-color: #c4c4c4;
+  }
+
+  .squares li[data-level="1"] {
+    background-color: #c6e48b;
+  }
+
+  .squares li[data-level="2"] {
+    background-color: #7bc96f;
+  }
+
+  .squares li[data-level="3"] {
+    background-color: #196127;
+  }
+</style>
