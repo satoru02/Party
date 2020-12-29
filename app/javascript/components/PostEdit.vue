@@ -10,6 +10,7 @@
       <input v-model="post.title" type="title" class="form-controll" id="title">
     </div>
     <button type="submit" class="btn btn-primary mb-3">Edit</button>
+    <!-- <button type="submit" class="btn btn-primary mb-3">Destroy</button> -->
   </form>
 </template>
 
@@ -55,6 +56,12 @@
             url: this.post.url,
             title: this.post.title
           })
+          .then(response => this.updateSuccessdul(response))
+          .catch(error => this.Failed(error))
+      },
+      destroyPost() {
+        secureAxios.defaults.headers.common['X-CSRF-TOKEN'] = this.$store.state.csrf
+        secureAxios.delete(POST_EDIT_URL + `${this.$route.params.id}`)
           .then(response => this.updateSuccessdul(response))
           .catch(error => this.Failed(error))
       },
