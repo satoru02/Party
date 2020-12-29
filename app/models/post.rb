@@ -9,15 +9,13 @@ class Post < ApplicationRecord
     limit(per).offset(per.to_i * num)
   }
 
-  # callback処理でなく、現在はhttpリクエスト時に使っている。
   def import_time
     self.update! date: customize_time
   end
 
-  # url判定ロジック
   def url_check
   end
 
   private
-    def customize_time; I18n.l self.created_at, format: :short end
+    def customize_time; self.created_at.strftime("%-m/%-d/%Y") end
 end

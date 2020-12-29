@@ -28,7 +28,9 @@
     simpleAxios
   } from '../../backend/axios.js'
   import CUBE from '../cube.vue'
+
   const DATE_URL = '/api/v1/years'
+  const USERS_POSTS_URL = '/api/v1/users'
 
   export default {
     name: "Log",
@@ -39,47 +41,41 @@
       return {
         isActive: true,
         years: '',
-        user_log: [
-          {
-            id: 1,
-            date: "1/1/2021"
-          },
-          {
-            id: 1,
-            date: "1/11/2021"
-          },
-          {
-            id: 1,
-            date: "2/1/2021"
-          }
-        ]
+        active_logs: '',
       }
     },
     created() {
+      this.getUsersPosts()
       this.getDate()
     },
     methods: {
-      applyStyle() {
-        this.styleObject.color = "orange"
-      },
       getDate() {
         simpleAxios.get(DATE_URL)
           .then(response => this.getSuccessful(response))
-          .catch(error => this.getFailed(error))
+          .catch(error => this.Failed(error))
+      },
+      getUsersPosts() {
+        simpleAxios.get(USERS_POSTS_URL + `/` + this.$route.params.id + `/posts`)
+         .then(response => this.getsPostSuccessful(response))
+         .catch(error => Failed(error))
+      },
+      getsPostSuccessful(response) {
+        this.active_logs = JSON.parse(JSON.stringify(response.data))
       },
       getSuccessful(response) {
         this.years = JSON.parse(JSON.stringify(response.data))
         this.checkDate()
       },
-      getFailed(error) {
+      Failed(error) {
         this.error = (error.response && error.response.data && error.response.data.error) || ""
       },
       checkDate() {
         var i;
         for (i = 0; i < 365; i++) {
-          var colorDate = this.user_log.filter(user => user.date === this.years[i].date)
+          var colorDate = this.active_logs.filter(active_log => active_log.date === this.years[i].date)
+          console.log(colorDate)
           if (colorDate.length == 1) {
-            this.years[i].styleObject.color = 'orange'
+            this.years[i].styleObject.backgroundColor = 'orange'
           }
         }
       }
@@ -180,7 +176,7 @@
     background-color: #c4c4c4;
   }
 
-  .squares li[data-level="1"] {
+  /* .squares li[data-level="1"] {
     background-color: #c6e48b;
   }
 
@@ -190,5 +186,5 @@
 
   .squares li[data-level="3"] {
     background-color: #196127;
-  }
+  } */
 </style>

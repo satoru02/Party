@@ -1104,7 +1104,7 @@ years = []
   date = {}
   date[:id] = i + 1
   date[:date] = values[i][0]
-  color = { color: 'gray' }
+  color = { backgroundColor: 'gray' }
   date[:styleObject] = color
   years.push(date)
 end
