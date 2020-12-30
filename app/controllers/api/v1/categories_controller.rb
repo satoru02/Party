@@ -10,11 +10,9 @@ module Api
       end
 
       def show
-        # binding.prys
         @category_posts = @category.posts.pager(page: params[:page], per: params[:per_page])
         render json: @category_posts.to_json
       end
-
       # ====================================================
       def drama
       end

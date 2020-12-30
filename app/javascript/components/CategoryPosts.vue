@@ -2,8 +2,8 @@
   <div>
     <v-container class="mt-8">
       <v-row no-gutters>
-        <v-col v-for="post in category_posts" :key="post.id" :title="post.title" :url="post.url" :time="post.date" :user_id="post.user_id"
-          class="mb-9 pr-7" cols="12" sm="4">
+        <v-col v-for="post in category_posts" :key="post.id" :title="post.title" :url="post.url" :time="post.date"
+          :user_id="post.user_id" class="mb-9 pr-7" cols="12" sm="4">
           <v-card class="rounded-xl" color="#010101" max-width="400">
             <v-card-title>
             </v-card-title>
@@ -87,17 +87,20 @@
               per_page: this.pageSize,
             },
           })
-          .then((res) => {
-            setTimeout(() => {
-              if (res.data.length) {
-                this.page += 1;
-                this.category_posts.push(...res.data);
-                $state.loaded();
-              } else {
-                $state.complete();
-              }
-            }, 1000)
-          })
+          .then(res => setTimeout(() => {
+            if (res.data.length) {
+              this.page += 1;
+              this.category_posts.push(...res.data);
+              $state.loaded();
+            } else {
+              $state.complete();
+            }
+          }, 1000))
+          .catch(error => this.failed(error))
+      },
+      failed(error) {
+        this.error = (error.response && error.response.data && error.response.data.error) || ""
+        this.$router.replace('/')
       }
     },
   }

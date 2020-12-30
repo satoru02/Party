@@ -32,7 +32,7 @@ Rails.application.routes.draw do
       end
 
       resources :years, only: [:index]
-      resources :categories, only: [:show]
+      resources :categories, only: [:index, :show]
 
       resources :posts do
         collection do
