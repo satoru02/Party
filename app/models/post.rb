@@ -1,9 +1,10 @@
 class Post < ApplicationRecord
+  include ActiveModel::Serializers::JSON
+
   validates :title, presence: true, length: { maximum: 100 }
   validates :url, presence: true
   belongs_to :user
   belongs_to :category
-  # before_validation :url_chack
 
   scope :pager, ->(page: 1, per: 10) {
     num = page.to_i.positive? ? page.to_i - 1 : 0

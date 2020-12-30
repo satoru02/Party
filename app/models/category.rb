@@ -1,4 +1,6 @@
 class Category < ApplicationRecord
+  include ActiveModel::Serializers::JSON
+
   has_many :posts
 
   scope :pager, ->(page: 1, per: 10) {

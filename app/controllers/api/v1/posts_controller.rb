@@ -35,6 +35,9 @@ module Api
       end
 
       def search
+        filter_posts(params[:q])
+        filter_users(params[:q])
+        render json: rapping_response(@filtered_users, @filtered_posts)
       end
 
       private
@@ -51,6 +54,10 @@ module Api
           post_parse = JSON.parse(post)
           response = post_parse.except('created_at', 'deleted_at', 'updated_at')
           JSON.pretty_generate(response)
+        end
+
+        def rapping_response(user, post)
+          rapping_response = { "Filtered_Users" => user, "Filtered_Posts" => post }
         end
     end
   end
