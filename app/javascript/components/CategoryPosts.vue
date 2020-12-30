@@ -2,7 +2,7 @@
   <div>
     <v-container class="mt-8">
       <v-row no-gutters>
-        <v-col v-for="post in posts" :key="post.id" :title="post.title" :url="post.url" :time="post.date" :user_id="post.user_id"
+        <v-col v-for="post in category_posts" :key="post.id" :title="post.title" :url="post.url" :time="post.date" :user_id="post.user_id"
           class="mb-9 pr-7" cols="12" sm="4">
           <v-card class="rounded-xl" color="#010101" max-width="400">
             <v-card-title>
@@ -38,10 +38,10 @@
   import Avatar from '../components/perpage/TheAvatar.vue';
   import InfiniteLoading from 'vue-infinite-loading';
 
-  const CONTENT_URL = '/api/v1/posts'
+  const CONTENT_URL = '/api/v1/categories/'
 
   export default {
-    name: 'Card',
+    name: 'Category-Posts',
     components: {
       'avatar': Avatar,
       'infinite-loading': InfiniteLoading,
@@ -76,12 +76,12 @@
       return {
         page: 1,
         pageSize: 9,
-        posts: [],
+        category_posts: [],
       }
     },
     methods: {
       infiniteHandler($state) {
-        simpleAxios.get(CONTENT_URL, {
+        simpleAxios.get(CONTENT_URL + `${this.$route.params.id}`, {
             params: {
               page: this.page,
               per_page: this.pageSize,
@@ -91,7 +91,7 @@
             setTimeout(() => {
               if (res.data.length) {
                 this.page += 1;
-                this.posts.push(...res.data);
+                this.category_posts.push(...res.data);
                 $state.loaded();
               } else {
                 $state.complete();

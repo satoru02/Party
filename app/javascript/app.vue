@@ -35,6 +35,7 @@
   import User from './components/user/user.vue';
   import Setting from './components/user/setting.vue';
   import PostEdit from './components/PostEdit.vue';
+  import Category from './components/Category.vue';
 
   Vue.use(VuePaginate)
   Vue.use(VueRouter)
@@ -151,6 +152,11 @@
         path: "/posts/edit/:id",
         name: "PostEdit",
         component: PostEdit
+      },
+      {
+        path: "/category/:id",
+        name: "Category",
+        component: Category
       }
     ]
   })
