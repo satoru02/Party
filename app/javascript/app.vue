@@ -36,6 +36,7 @@
   import Setting from './components/user/setting.vue';
   import PostEdit from './components/PostEdit.vue';
   import Category from './components/Category.vue';
+  import Search from './components/Search.vue';
 
   Vue.use(VuePaginate)
   Vue.use(VueRouter)
@@ -157,6 +158,11 @@
         path: "/category/:id",
         name: "Category",
         component: Category
+      },
+      {
+        path: "/search/:query",
+        name: "Search",
+        component: Search
       }
     ]
   })
