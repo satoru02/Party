@@ -1,7 +1,16 @@
 <template>
+  <div infinite-wrapper>
+    <filter-post></filter-post>
+  </div>
 </template>
 
 <script>
-</script>
+import FilterPosts from './FilterPosts.vue'
 
-<!-- infinite wrapper -> card　compponentを使う。？ -->
+export default {
+  name: "search",
+  components: {
+    'filter-post': FilterPosts
+  }
+}
+</script>

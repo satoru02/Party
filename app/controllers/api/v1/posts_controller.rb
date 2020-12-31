@@ -36,8 +36,9 @@ module Api
 
       def search
         filter_posts(params[:q])
-        filter_users(params[:q])
-        render json: rapping_response(@filtered_users, @filtered_posts)
+        # filter_users(params[:q])
+        @pager_filtered_posts = @filtered_posts.pager(page: params[:page], per: params[:per_page])
+        render json: @pager_filtered_posts
       end
 
       private
@@ -56,9 +57,10 @@ module Api
           JSON.pretty_generate(response)
         end
 
-        def rapping_response(user, post)
-          rapping_response = { "Filtered_Users" => user, "Filtered_Posts" => post }
-        end
+        # def rapping_response(user, post)
+        #   # rapping_response = { "Filtered_Users" => user, "Filtered_Posts" => post }
+        #   # rapping_response = { "Filtered_Data" => user, post  }
+        # end
     end
   end
 end
