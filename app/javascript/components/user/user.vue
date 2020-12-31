@@ -20,7 +20,7 @@
     simpleAxios,
     secureAxios
   } from '../../backend/axios.js'
-  const USER_INFO_URL = '/api/v1/users/me'
+  const USER_INFO_URL = '/api/v1/users/'
 
   export default {
     name: 'User',
@@ -37,7 +37,7 @@
     },
     methods: {
       fecthUserInformation() {
-        simpleAxios.get(USER_INFO_URL)
+        simpleAxios.get(USER_INFO_URL + `${this.$route.params.id}`)
           .then(response => this.Successful(response))
           .catch(error => this.Failed(error))
       },
@@ -46,6 +46,7 @@
       },
       Failed(error) {
         this.error = (error.response && error.response.data && error.response.data.error) || ""
+        this.$router.replace('/')
       }
    }
 }
