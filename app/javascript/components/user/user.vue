@@ -30,6 +30,7 @@
     data () {
       return {
         user: '',
+        error: ''
       }
     },
     created() {

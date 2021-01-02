@@ -33,6 +33,7 @@ Rails.application.routes.draw do
 
       resources :years, only: [:index]
       resources :categories, only: [:index, :show]
+      resources :rooms, only: [:index]
 
       resources :posts do
         collection do

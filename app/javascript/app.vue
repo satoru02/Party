@@ -37,6 +37,7 @@
   import PostEdit from './components/PostEdit.vue';
   import Category from './components/Category.vue';
   import Search from './components/Search.vue';
+  import Room from './components/Room.vue';
 
   Vue.use(VuePaginate)
   Vue.use(VueRouter)
@@ -163,6 +164,11 @@
         path: "/search/:query",
         name: "Search",
         component: Search
+      },
+      {
+        path: "/room",
+        name: "Room",
+        component: Room
       }
     ]
   })
