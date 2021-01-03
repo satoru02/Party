@@ -4,6 +4,12 @@
       <tr v-for="word in messages" :key="word.id" :word="word">
         <div id="word">
           <th>{{ word.content }}</th>
+          <!-- <message>
+            <template v-slot:message="slotProps">
+              {{ slotProps.message }}
+            </template>
+          </message> -->
+          <!-- <message message="message"></message> -->
         </div>
       </tr>
     </tbody>
@@ -21,19 +27,27 @@
     simpleAxios
   } from '../backend/axios.js';
   import consumer from '../channels/consumer.js';
+  import message from '../components/Message';
 
   const ROOM_URL = '/api/v1/rooms'
   const SUBSCRIBER = consumer.subscriptions.create({
     channel: "RoomChannel",
     room: "room1"
   })
+
   SUBSCRIBER.received = function (data) {
+    const html = `
+      <th>${data["message"].content}</th>
+    `
     const element = document.querySelector('#word')
-    element.insertAdjacentHTML('beforeend', data['message'])
+    element.insertAdjacentHTML('beforeend', html)
   }
 
   export default {
     name: "Room",
+    components: {
+      'message': message
+    },
     data() {
       return {
         messages: [],
@@ -61,6 +75,9 @@
         SUBSCRIBER.perform('speak', {
           message: message
         })
+      },
+      insertMessage(data) {
+        this.message = data['message']
       }
     }
   }
