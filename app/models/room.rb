@@ -13,6 +13,10 @@ class Room < ApplicationRecord
     end
   end
 
+  def authenticated? token
+    BCrypt::Password.new(resource_digest).is_password?(token)
+  end
+
     private
 
     def create_resource_digest

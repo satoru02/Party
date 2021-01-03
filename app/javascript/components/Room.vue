@@ -73,7 +73,9 @@
       },
       sendMessage(message) {
         SUBSCRIBER.perform('speak', {
-          message: message
+          message: message,
+          // user_id: `${this.$store.state.currentUser.id}`,
+          // room_token: `${this.$route.params.token}`,
         })
         this.message = ''
       },

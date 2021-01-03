@@ -13,8 +13,10 @@ module Api
       end
 
       def show
-        # @room = Room.find_by(token: params[:token])
-        # render json: @room.messages
+        # @room = Room.find_by(token: params[:resource_token])
+        # if @room.authenticated? params[:resource_token]
+          # render json: @room.messages
+        # end
       end
     end
   end
