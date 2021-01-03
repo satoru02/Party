@@ -2,8 +2,7 @@ class User < ApplicationRecord
   include ActiveModel::Serializers::JSON
 
   # has_many :rooms
-  # has_many :messages
-
+  has_many :messages
   has_many :posts
   has_secure_password
   enum role: %i[user manager admin].freeze
