@@ -19,7 +19,6 @@
   import Vuex from 'vuex';
   import createPersistedState from 'vuex-persistedstate';
   import InfiniteLoading from 'vue-infinite-loading';
-  import '@mdi/font/css/materialdesignicons.css';
   import Avatar from './components/perpage/TheAvatar.vue';
   import Header from './components/perpage/TheHeader.vue';
   import Home from './home.vue';
@@ -38,6 +37,8 @@
   import Category from './components/Category.vue';
   import Search from './components/Search.vue';
   import Room from './components/Room.vue';
+  import Rooms from './components/Rooms.vue';
+  import '@mdi/font/css/materialdesignicons.css';
 
   Vue.use(VuePaginate)
   Vue.use(VueRouter)
@@ -166,9 +167,15 @@
         component: Search
       },
       {
+        // path: "/room/:token",
         path: "/room",
         name: "Room",
         component: Room
+      },
+      {
+        path: "/rooms",
+        name: "Rooms",
+        component: Rooms
       }
     ]
   })

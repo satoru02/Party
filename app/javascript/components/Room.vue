@@ -75,6 +75,7 @@
         SUBSCRIBER.perform('speak', {
           message: message
         })
+        this.message = ''
       },
       insertMessage(data) {
         this.message = data['message']
