@@ -16,6 +16,7 @@ module Api
       def create
         @post = current_user.posts.build(post_params)
         if @post.save!
+          Room.create!(name: @post.title, host_id: current_user.id, post_id: @post.id)
           @post.import_time
           redirect_to root_url
         end
@@ -48,7 +49,7 @@ module Api
         end
 
         def post_params
-          params.require(:post).permit(:title, :url, :user_id)
+          params.require(:post).permit(:title, :url, :user_id, :category_id)
         end
 
         def response_fields(post)

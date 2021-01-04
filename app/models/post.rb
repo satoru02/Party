@@ -5,6 +5,7 @@ class Post < ApplicationRecord
   validates :url, presence: true
   belongs_to :user
   belongs_to :category
+  has_one :room
 
   scope :pager, ->(page: 1, per: 10) {
     num = page.to_i.positive? ? page.to_i - 1 : 0

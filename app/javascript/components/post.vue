@@ -12,7 +12,7 @@
           <v-spacer></v-spacer>
           <v-text-field v-model="title" label="Title"></v-text-field>
           <v-text-field v-model="url" label="URL"></v-text-field>
-          <v-text-field label="Category"></v-text-field>
+          <v-text-field v-model="category" label="Category"></v-text-field>
           <v-text-field label="Platform"></v-text-field>
           <v-text-field label="一言"></v-text-field>
         </v-card-text>
@@ -43,6 +43,7 @@
       return {
         title: '',
         url: '',
+        category: '',
         dialog: false,
       }
     },
@@ -54,7 +55,9 @@
         secureAxios.defaults.headers.common['X-CSRF-TOKEN'] = this.$store.state.csrf
         secureAxios.post(POST_URL, {
             title: title,
-            url: url
+            url: url,
+            // fix
+            category_id: 1,
           })
           .then(response => {
             this.$router.replace('/')

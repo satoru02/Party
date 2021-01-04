@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_01_04_032430) do
+ActiveRecord::Schema.define(version: 2021_01_04_050514) do
 
   create_table "categories", force: :cascade do |t|
     t.string "name"
@@ -48,6 +48,8 @@ ActiveRecord::Schema.define(version: 2021_01_04_032430) do
     t.string "resource_digest"
     t.string "name"
     t.integer "host_id"
+    t.integer "post_id"
+    t.index ["post_id"], name: "index_rooms_on_post_id", unique: true
   end
 
   create_table "rooms_users", force: :cascade do |t|
@@ -87,4 +89,5 @@ ActiveRecord::Schema.define(version: 2021_01_04_032430) do
   add_foreign_key "messages", "users"
   add_foreign_key "posts", "categories"
   add_foreign_key "posts", "users"
+  add_foreign_key "rooms", "posts"
 end
