@@ -38,6 +38,8 @@
   import Search from './components/Search.vue';
   import Room from './components/Room.vue';
   import Rooms from './components/Rooms.vue';
+  // import Appearance from './components/Appearance.vue';
+
   import '@mdi/font/css/materialdesignicons.css';
 
   Vue.use(VuePaginate)

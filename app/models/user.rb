@@ -4,6 +4,7 @@ class User < ApplicationRecord
   has_and_belongs_to_many :rooms
   has_many :messages
   has_many :posts
+  has_many :entries
   has_secure_password
   enum role: %i[user manager admin].freeze
   before_save :downcase_email
