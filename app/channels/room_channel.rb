@@ -15,6 +15,9 @@ class RoomChannel < ApplicationCable::Channel
         room_id: @room.id
       )
     end
-    ActionCable.server.broadcast("room_channel_#{params[:room]}", { message: message })
+
+    ActionCable.server.broadcast("room_channel_#{params[:room]}", {
+      message: message.content,
+      user: message.user.username})
   end
 end

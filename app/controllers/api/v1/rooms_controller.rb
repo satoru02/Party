@@ -12,6 +12,7 @@ module Api
         @room = Room.find_by(resource_token: params[:token])
         if @room.authenticated? params[:token]
           render json: @room.messages
+          # ユーザーの名前も返したい。
         end
       end
     end

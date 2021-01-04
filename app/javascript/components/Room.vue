@@ -31,7 +31,7 @@
 
   SUBSCRIBER.received = function (data) {
     const html = `
-      <th>${data["message"].content}</th>
+      <th>${data["user"]}:   ${data["message"]}</th>
     `
     const element = document.querySelector('#word')
     element.insertAdjacentHTML('beforeend', html)
