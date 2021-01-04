@@ -1,7 +1,7 @@
 class User < ApplicationRecord
   include ActiveModel::Serializers::JSON
 
-  # has_many :rooms
+  has_and_belongs_to_many :rooms
   has_many :messages
   has_many :posts
   has_secure_password

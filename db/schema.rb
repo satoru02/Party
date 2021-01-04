@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_01_03_130340) do
+ActiveRecord::Schema.define(version: 2021_01_04_014827) do
 
   create_table "categories", force: :cascade do |t|
     t.string "name"
@@ -46,6 +46,15 @@ ActiveRecord::Schema.define(version: 2021_01_03_130340) do
     t.datetime "updated_at", precision: 6, null: false
     t.string "resource_token"
     t.string "resource_digest"
+  end
+
+  create_table "rooms_users", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "room_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["room_id"], name: "index_rooms_users_on_room_id"
+    t.index ["user_id"], name: "index_rooms_users_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
