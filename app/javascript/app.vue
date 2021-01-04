@@ -167,8 +167,7 @@
         component: Search
       },
       {
-        // path: "/room/:token",
-        path: "/room",
+        path: "/room/:token",
         name: "Room",
         component: Room
       },

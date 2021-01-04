@@ -2,7 +2,10 @@
   <div>
     <tbody>
       <tr v-for="room in rooms" :key="room.id">
-        <th>{{ room.id }}</th>
+        <router-link :to="{ name: 'Room', params: {token: `${room.resource_token}`} }">
+          <th>{{ room.id }}</th>
+          <!-- <th>{{ room.name }}</th> -->
+        </router-link>
       </tr>
     </tbody>
   </div>

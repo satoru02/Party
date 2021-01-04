@@ -4,12 +4,6 @@
       <tr v-for="word in messages" :key="word.id" :word="word">
         <div id="word">
           <th>{{ word.content }}</th>
-          <!-- <message>
-            <template v-slot:message="slotProps">
-              {{ slotProps.message }}
-            </template>
-          </message> -->
-          <!-- <message message="message"></message> -->
         </div>
       </tr>
     </tbody>
@@ -61,7 +55,7 @@
     watched: {},
     methods: {
       getMessage() {
-        simpleAxios.get(ROOM_URL)
+        simpleAxios.get(ROOM_URL + `/` + `${this.$route.params.token}`)
           .then(response => this.Successful(response))
           .catch(error => this.Failed(error))
       },
@@ -74,8 +68,8 @@
       sendMessage(message) {
         SUBSCRIBER.perform('speak', {
           message: message,
-          // user_id: `${this.$store.state.currentUser.id}`,
-          // room_token: `${this.$route.params.token}`,
+          user_id: `${this.$store.state.currentUser.id}`,
+          room_token: `${this.$route.params.token}`,
         })
         this.message = ''
       },
