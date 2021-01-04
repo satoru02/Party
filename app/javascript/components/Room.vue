@@ -3,7 +3,7 @@
     <tbody>
       <tr v-for="word in messages" :key="word.id" :word="word">
         <div id="word">
-          <th>{{ word.content }}</th>
+            <th>{{word.user_id}} : {{ word.content }} By Host</th>
         </div>
       </tr>
     </tbody>
@@ -50,12 +50,13 @@
       }
     },
     created() {
+      this.checkSignedIn()
       this.getMessage()
     },
     watched: {},
     methods: {
       getMessage() {
-        simpleAxios.get(ROOM_URL + `/` + `${this.$route.params.token}`)
+        simpleAxios.get(ROOM_URL + `/` + `${this.$route.params.token}` + `/` + `${this.$store.state.currentUser.id}`)
           .then(response => this.Successful(response))
           .catch(error => this.Failed(error))
       },
@@ -75,6 +76,11 @@
       },
       insertMessage(data) {
         this.message = data['message']
+      },
+      checkSignedIn() {
+        if(!this.$store.state.signedIn) {
+          this.$router.replace('/login')
+        }
       }
     }
   }

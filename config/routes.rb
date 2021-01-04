@@ -35,7 +35,7 @@ Rails.application.routes.draw do
       resources :categories, only: [:index, :show]
       resources :rooms do
         collection do
-          get ':token', action: :show
+          get ':token/:user_id', action: :show
         end
       end
 

@@ -10,9 +10,9 @@ module Api
 
       def show
         @room = Room.find_by(resource_token: params[:token])
-        if @room.authenticated? params[:token]
+        @user = User.find_by(id: params[:user_id])
+        if @room.authenticated?(params[:token]) && @room.users.include?(@user)
           render json: @room.messages
-          # ユーザーの名前も返したい。
         end
       end
     end

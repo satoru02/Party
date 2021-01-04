@@ -8,7 +8,8 @@ class RoomChannel < ApplicationCable::Channel
 
   def speak(data)
     @room = Room.find_by(resource_token: data["room_token"])
-    if @room.authenticated?(data["room_token"])
+    @user = User.find_by(id: data["user_id"])
+    if @room.authenticated?(data["room_token"]) && @room.users.include?(@user)
       message = Message.create!(
         content: data["message"],
         user_id: data["user_id"],
