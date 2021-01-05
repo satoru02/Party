@@ -11,13 +11,12 @@
   } from '../../backend/axios.js'
   const NOTIFICATIONS_URL = '/api/v1/notifications'
 
-  const SUBSCRIBER = consumer.subscriptions.create({
-    channel: "NotificationsChannel",
-  })
-
-  SUBSCRIBER.received = function (data) {
-    console.log(data)
-  }
+  // const SUBSCRIBER = consumer.subscriptions.create({
+  //   channel: "NotificationsChannel",
+  // })
+  // SUBSCRIBER.received = function (data) {
+  //   console.log(data)
+  // }
 
   export default {
     name: 'Notifications',
@@ -25,6 +24,21 @@
       return {
         notifications: []
       }
+    },
+    channels: {
+      NotificationsChannel: {
+        connected() {},
+        rejected() {},
+        received(data) {
+          console.log(data);
+        },
+        disconnected() {}
+      }
+    },
+    mounted() {
+      this.$cable.subscribe({
+        channel: 'NotificationsChannel'
+      })
     },
     created() {
       this.getNotifications()
