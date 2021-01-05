@@ -1,6 +1,5 @@
 <template>
   <v-col id="icon" class="pa-2 mt-14 ml-n16" :notifications="this.notifications">
-    <v-icon>mdi-wifi</v-icon>
     <th>{{ notifications.length }}</th>
   </v-col>
 </template>
@@ -18,7 +17,6 @@
 
   SUBSCRIBER.received = function (data) {
     console.log(data)
-    // vueにアクセスしたい。
   }
 
   export default {
