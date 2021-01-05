@@ -45,7 +45,7 @@ Rails.application.routes.draw do
         end
       end
 
-      resources :entries, only: [:create]
+      resources :entries, only: [:index, :create]
     end
   end
 
