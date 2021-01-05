@@ -1,41 +1,36 @@
 <template>
-  <v-col id="icon" class="pa-2 mt-14 ml-n16" :notifications="this.notifications">
+  <v-col id="count" class="pa-2 mt-14 ml-n16" v-model="this.notifications.length">
     <th>{{ notifications.length }}</th>
   </v-col>
 </template>
 
 <script>
-  import consumer from '../../channels/consumer.js';
   import {
     simpleAxios
   } from '../../backend/axios.js'
   const NOTIFICATIONS_URL = '/api/v1/notifications'
 
-  // const SUBSCRIBER = consumer.subscriptions.create({
-  //   channel: "NotificationsChannel",
-  // })
-  // SUBSCRIBER.received = function (data) {
-  //   console.log(data)
-  // }
-
   export default {
     name: 'Notifications',
     data() {
       return {
-        notifications: []
+        notifications: [],
       }
     },
     channels: {
       NotificationsChannel: {
         connected() {},
         rejected() {},
+        // SUBSCRIBER receive
         received(data) {
-          console.log(data);
+          // fix beacause object type is defferent
+          this.notifications.push(data)
         },
         disconnected() {}
       }
     },
     mounted() {
+      // make SUBSCRIBER
       this.$cable.subscribe({
         channel: 'NotificationsChannel'
       })
