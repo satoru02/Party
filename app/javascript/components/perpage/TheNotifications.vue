@@ -13,6 +13,7 @@ const SUBSCRIBER = consumer.subscriptions.create({
 
 SUBSCRIBER.received = function(data) {
   console.log(data)
+  // console.log(`${this.$store.state.currentUser.id}`)
 }
 
 export default {
