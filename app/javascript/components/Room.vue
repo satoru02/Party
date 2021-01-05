@@ -1,10 +1,13 @@
 <template>
   <div>
     <tbody>
-      <tr v-for="word in messages" :key="word.id" :word="word">
-        <div id="word">
-            <th>{{word.user_id}} : {{ word.content }} By Host</th>
+      <tr v-for="(message, index) in realtime_messages" :key="index" :message="message">
+        <div>
+          <th>{{ message.user }} : {{ message.message }}</th>
         </div>
+      </tr>
+      <tr v-for="word in messages" :key="word.id" :word="word">
+        <th>{{word.user_id}} : {{ word.content }} By Host</th>
       </tr>
     </tbody>
     <form class="form-message" @submit.prevent="sendMessage(message)">
@@ -24,17 +27,6 @@
   import message from '../components/Message';
 
   const ROOM_URL = '/api/v1/rooms'
-  const SUBSCRIBER = consumer.subscriptions.create({
-    channel: "RoomChannel",
-    room: "room1"
-  })
-  SUBSCRIBER.received = function (data) {
-    const html = `
-      <th>${data["user"]}:   ${data["message"]}</th>
-    `
-    const element = document.querySelector('#word')
-    element.insertAdjacentHTML('beforeend', html)
-  }
 
   export default {
     name: "Room",
@@ -45,8 +37,25 @@
       return {
         messages: [],
         message: '',
+        realtime_messages: [],
         error: ''
       }
+    },
+    channels: {
+      RoomChannel: {
+        connected() {},
+        rejected() {},
+        received(data) {
+          this.realtime_messages.push(data)
+        },
+        disconnected() {}
+      }
+    },
+    mounted() {
+      this.$cable.subscribe({
+        channel: 'RoomChannel',
+        room: "room1"
+      })
     },
     created() {
       this.checkSignedIn()
@@ -65,10 +74,14 @@
         this.error = (error.response && error.response.data && error.response.data.error) || ""
       },
       sendMessage(message) {
-        SUBSCRIBER.perform('speak', {
-          message: message,
-          user_id: `${this.$store.state.currentUser.id}`,
-          room_token: `${this.$route.params.token}`,
+        this.$cable.perform({
+          channel: 'RoomChannel',
+          action: 'speak',
+          data: {
+            message: message,
+            user_id: `${this.$store.state.currentUser.id}`,
+            room_token: `${this.$route.params.token}`,
+          }
         })
         this.message = ''
       },
@@ -76,7 +89,7 @@
         this.message = data['message']
       },
       checkSignedIn() {
-        if(!this.$store.state.signedIn) {
+        if (!this.$store.state.signedIn) {
           this.$router.replace('/login')
         }
       }
