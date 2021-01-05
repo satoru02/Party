@@ -4,13 +4,16 @@ Rails.application.routes.draw do
 
   namespace 'api' do
     namespace 'v1' do
-      namespace :admin do
-        resources :users, only: [:index]
-      end
+
+      resources :years, only: [:index]
+      resources :categories, only: [:index, :show]
+      resources :notifications
+      resources :entries, only: [:index, :create]
 
       resources :signup, only: [:create]
       resources :login, only: [:create, :destroy]
       resources :refresh, only: [:create]
+
       resources :account_activations, only: [:create] do
         collection do
           post ':token', action: :create
@@ -31,8 +34,6 @@ Rails.application.routes.draw do
         end
       end
 
-      resources :years, only: [:index]
-      resources :categories, only: [:index, :show]
       resources :rooms do
         collection do
           get ':token/:user_id', action: :show
@@ -45,7 +46,9 @@ Rails.application.routes.draw do
         end
       end
 
-      resources :entries, only: [:index, :create]
+      namespace :admin do
+        resources :users, only: [:index]
+      end
     end
   end
 

@@ -3,28 +3,6 @@ module Api
     class EntriesController < ApplicationController
       before_action :authorize_access_request!
 
-      # ①vue header top call
-      # ②vue /notifications call
-      def index
-        # @entries = []
-        # current_user.posts.each do |v|
-        #   @entries << v.entries
-        # end
-
-        # if params[:top]
-        #   render json: @entries.where(confirmation: false)
-        # else
-        #   render json: @entries
-        # end
-        # render json: @entries.where(confirmation: false)
-      end
-
-      def show
-        # @entry = Entry.find_by(id: params[:id])
-        # @entry.checked
-        # render json: @entry
-      end
-
       def create
         @entry = Entry.new(user_id: current_user.id, post_id: params[:post])
 
@@ -36,6 +14,8 @@ module Api
             entry_post_id: @entry.post_id,
           })
         end
+
+        # メールも送信
       end
 
       private

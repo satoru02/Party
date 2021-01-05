@@ -38,8 +38,8 @@
   import Search from './components/Search.vue';
   import Room from './components/Room.vue';
   import Rooms from './components/Rooms.vue';
-  // import Appearance from './components/Appearance.vue';
-
+  import Notification from './components/Notification';
+  import Notifications from './components/Notifications';
   import '@mdi/font/css/materialdesignicons.css';
 
   Vue.use(VuePaginate)
@@ -177,6 +177,16 @@
         path: "/rooms",
         name: "Rooms",
         component: Rooms
+      },
+      {
+        path: "/notifications",
+        name: "Notifications",
+        component: Notifications
+      },
+      {
+        path: "/notification/:id",
+        name: "Notification",
+        component: Notification
       }
     ]
   })
