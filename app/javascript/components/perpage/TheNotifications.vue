@@ -23,8 +23,10 @@
         rejected() {},
         // SUBSCRIBER receive
         received(data) {
-          // fix beacause object type is defferent
-          this.notifications.push(data)
+          console.log(data)
+          if (this.$store.state.currentUser.id === data["target_user_id"]) {
+            this.notifications.push(data)
+          }
         },
         disconnected() {}
       }

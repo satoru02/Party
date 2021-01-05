@@ -41,17 +41,16 @@
   import Notification from './components/Notification';
   import Notifications from './components/Notifications';
   import '@mdi/font/css/materialdesignicons.css';
+  import ActionCableVue from 'actioncable-vue';
 
-  // # ActionCableVueSetting
-    import ActionCableVue from 'actioncable-vue';
-    const actionCableVueOptions = {
-      debug: true,
-      debugLevel: 'error',
-      connectionUrl: 'ws://localhost:5000/cable',
-      connectImmediately: true
-    };
-    Vue.use(ActionCableVue, actionCableVueOptions)
+  const actionCableVueOptions = {
+    debug: true,
+    debugLevel: 'error',
+    connectionUrl: 'ws://localhost:5000/cable',
+    connectImmediately: true
+  };
 
+  Vue.use(ActionCableVue, actionCableVueOptions)
   Vue.use(VuePaginate)
   Vue.use(VueRouter)
   Vue.use(Vuex)

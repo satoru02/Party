@@ -28,7 +28,6 @@
     channel: "RoomChannel",
     room: "room1"
   })
-
   SUBSCRIBER.received = function (data) {
     const html = `
       <th>${data["user"]}:   ${data["message"]}</th>
