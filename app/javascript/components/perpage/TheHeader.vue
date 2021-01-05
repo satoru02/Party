@@ -18,6 +18,7 @@
         <v-col class="pa-2 mt-14 ml-n16 ">
           <v-icon v-if="showAdminLink()">mdi-wifi</v-icon>
         </v-col>
+        <notifications></notifications>
         <v-col class="pa-2 mt-14 ml-n16 ">
           <v-icon @click="signOut">mdi-wifi</v-icon>
         </v-col>
@@ -33,6 +34,7 @@
 
 <script>
   import Avatar from './TheAvatar.vue';
+  import Notifications from './TheNotifications';
   import {
     simpleAxios,
     secureAxios
@@ -43,6 +45,7 @@
     name: 'top-header',
     components: {
       'avatar': Avatar,
+      'notifications': Notifications
     },
     methods: {
       setError(error, text) {

@@ -2,8 +2,8 @@
   <div>
     <v-container class="mt-8">
       <v-row no-gutters>
-        <v-col v-for="post in posts" :key="post.id" :title="post.title" :url="post.url" :time="post.date" :user_id="post.user_id"
-          class="mb-9 pr-7" cols="12" sm="4">
+        <v-col v-for="post in posts" :key="post.id" :title="post.title" :url="post.url" :time="post.date"
+          :user_id="post.user_id" class="mb-9 pr-7" cols="12" sm="4">
           <v-card class="rounded-xl" color="#010101" max-width="400">
             <v-card-title>
             </v-card-title>
@@ -21,6 +21,9 @@
                 <v-row align="center" justify="end">
                   <span class="subheading mr-2 mt-5" style="color:white">{{ post.date }}</span>
                 </v-row>
+                <v-btn text color="primary" @click="entryRequest(post.id, post.user_id)">
+                  Join
+                </v-btn>
               </v-list-item>
             </v-card-actions>
           </v-card>
@@ -33,12 +36,13 @@
 
 <script>
   import {
-    simpleAxios
+    simpleAxios, secureAxios
   } from '../backend/axios.js'
   import Avatar from '../components/perpage/TheAvatar.vue';
   import InfiniteLoading from 'vue-infinite-loading';
 
   const CONTENT_URL = '/api/v1/posts'
+  const ENTRY_URL = '/api/v1/entries'
 
   export default {
     name: 'Card',
@@ -80,6 +84,14 @@
       }
     },
     methods: {
+      entryRequest(post, user){
+        secureAxios.defaults.headers.common['X-CSRF-TOKEN'] = this.$store.state.csrf
+        secureAxios.post(ENTRY_URL, {
+          post: post,
+          user: user
+        })
+        .catch(error => this.setError(error, "Cannot post"))
+      },
       infiniteHandler($state) {
         simpleAxios.get(CONTENT_URL, {
             params: {

@@ -12,9 +12,5 @@ export default {
       message: ''
     }
   },
-  // render: function(createElement) {
-  //   var message = this.$slots.message
-  //   return createElement('div', createElement('message', message))
-  // }
 }
 </script>

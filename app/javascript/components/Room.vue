@@ -53,7 +53,6 @@
       this.checkSignedIn()
       this.getMessage()
     },
-    watched: {},
     methods: {
       getMessage() {
         simpleAxios.get(ROOM_URL + `/` + `${this.$route.params.token}` + `/` + `${this.$store.state.currentUser.id}`)

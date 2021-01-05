@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_01_04_060805) do
+ActiveRecord::Schema.define(version: 2021_01_04_131759) do
 
   create_table "categories", force: :cascade do |t|
     t.string "name"
@@ -24,6 +24,8 @@ ActiveRecord::Schema.define(version: 2021_01_04_060805) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.integer "user_id"
+    t.integer "post_id"
+    t.index ["post_id"], name: "index_entries_on_post_id"
     t.index ["user_id"], name: "index_entries_on_user_id"
   end
 
@@ -93,6 +95,7 @@ ActiveRecord::Schema.define(version: 2021_01_04_060805) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token"
   end
 
+  add_foreign_key "entries", "posts"
   add_foreign_key "entries", "users"
   add_foreign_key "messages", "rooms"
   add_foreign_key "messages", "users"
