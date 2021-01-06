@@ -1,10 +1,10 @@
 <template>
   <div>
     <tr id="post-content">
-      <th>{{ post_information.title }}</th>
+      <th>{{ requested_post_information.title }}</th>
     </tr>
     <tr id="user-content">
-      <th>{{ user_information.email }}</th>
+      <th>{{ requested_user_information.email }}</th>
     </tr>
     <v-btn text color="primary" @click="authorizeEntry()">
       Authorize
@@ -18,6 +18,7 @@
 <script>
   // 1. Entry request
   // 2. Entry approved
+
   // 3. Entry declined
 
   import {
@@ -31,8 +32,9 @@
     name: 'Notification',
     data() {
       return {
-        post_information: '',
-        user_information: '',
+        requested_entry_information: '',
+        requested_post_information: '',
+        requested_user_information: '',
       }
     },
     created() {
@@ -45,16 +47,21 @@
           .catch(error => this.Failed(error))
       },
       Successful(response) {
-        this.post_information = response.data[0].Filtered_Post
-        this.user_information = response.data[0].Filtered_User
+        this.requested_entry_information = response.data[0].Entry
+        this.requested_post_information = response.data[0].Post
+        this.requested_user_information = response.data[0].User
       },
       Failed() {
         this.error = (error.response && error.response.data && error.response.data.error) || ""
       },
       authorizeEntry() {
         secureAxios.defaults.headers.common['X-CSRF-TOKEN'] = this.$store.state.csrf
-        // secureAxios.post(ENTRY_AUTHORIZATION_URL,{
-        // })
+        secureAxios.post(ENTRY_AUTHORIZATION_URL,{
+          entry_id: this.requested_entry_information.id,
+          post_id: this.requested_post_information.id,
+          user_id: this.requested_user_information.id
+        })
+        .catch(error => this.Failed(error))
       },
       declineEntry() {
         secureAxios.defaults.headers.common['X-CSRF-TOKEN'] = this.$store.state.csrf

@@ -16,7 +16,10 @@ module Api
         @post = @entry.post
         @user = @entry.user
 
-        rapping_response = [{ "Filtered_Post" => @post, "Filtered_User" => @user }]
+        rapping_response = [{
+          "Entry" => @entry,
+          "Post" => @post,
+          "User" => @user }]
 
         render json: rapping_response
 
