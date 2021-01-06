@@ -38,7 +38,8 @@
         messages: [],
         message: '',
         realtime_messages: [],
-        error: ''
+        error: '',
+        room_users: [],
       }
     },
     channels: {

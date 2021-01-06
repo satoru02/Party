@@ -9,6 +9,7 @@ Rails.application.routes.draw do
       resources :categories, only: [:index, :show]
       resources :notifications
       resources :entries, only: [:index, :create]
+      resources :rooms_user, only: [:create]
 
       resources :signup, only: [:create]
       resources :login, only: [:create, :destroy]
