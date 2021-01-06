@@ -6,17 +6,20 @@
     <tr id="user-content">
       <th>{{ user_information.email }}</th>
     </tr>
-    <v-btn text color="primary" @click="declineEntry()">
-      cancel
-    </v-btn>
     <v-btn text color="primary" @click="authorizeEntry()">
-      submit
+      Authorize
+    </v-btn>
+    <v-btn text color="primary" @click="declineEntry()">
+      Decline
     </v-btn>
   </div>
 </template>
 
 <script>
-  // 現状はEntry type のnotificationに対応。
+  // 1. Entry request
+  // 2. Entry approved
+  // 3. Entry declined
+
   import {
     simpleAxios,
     secureAxios
@@ -52,6 +55,9 @@
         secureAxios.defaults.headers.common['X-CSRF-TOKEN'] = this.$store.state.csrf
         // secureAxios.post(ENTRY_AUTHORIZATION_URL,{
         // })
+      },
+      declineEntry() {
+        secureAxios.defaults.headers.common['X-CSRF-TOKEN'] = this.$store.state.csrf
       }
     }
   }
