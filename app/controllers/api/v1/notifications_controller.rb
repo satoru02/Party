@@ -4,14 +4,30 @@ module Api
       before_action :authorize_access_request!
 
       def index
-        @notifications = current_user.notifications.where(confirmation: false)
+        @notifications = current_user.notifications
         render json: @notifications
       end
 
       def show
         @notification = current_user.notifications.find_by(id: params[:id])
         @notification.checked
-        render json: @notification
+
+        @entry = Entry.find(@notification.entry_id)
+        @post = @entry.post
+        @user = @entry.user
+
+        rapping_response = [{ "Filtered_Post" => @post, "Filtered_User" => @user }]
+
+        render json: rapping_response
+
+        # Entry
+        # if @notification.type === 0
+        # entryの情報
+        # postの情報
+        # userの情報
+        # Follow
+        # elsif @notification.type === 1
+        # else
       end
     end
   end

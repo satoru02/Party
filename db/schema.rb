@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_01_06_010831) do
+ActiveRecord::Schema.define(version: 2021_01_06_014927) do
 
   create_table "categories", force: :cascade do |t|
     t.string "name"
@@ -46,6 +46,8 @@ ActiveRecord::Schema.define(version: 2021_01_06_010831) do
     t.integer "entry_id"
     t.integer "user_id"
     t.boolean "confirmation", default: false
+    t.string "title"
+    t.integer "type"
     t.index ["entry_id"], name: "index_notifications_on_entry_id", unique: true
     t.index ["user_id"], name: "index_notifications_on_user_id"
   end
