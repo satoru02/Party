@@ -8,6 +8,6 @@ class EntryResponse < ApplicationRecord
 
     def create_entry_response_notification
       @target_user_id = self.user_id
-      Notification.create!(entry_responses_id: self.id, user_id: @target_user_id)
+      Notification.create!(entry_response_id: self.id, user_id: @target_user_id, classification: 'entryResponse')
     end
 end

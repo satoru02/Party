@@ -14,6 +14,6 @@ class Entry < ApplicationRecord
 
     def create_entry_notification
       @target_user_id = self.post.user.id
-      Notification.create!(entry_id: self.id, user_id: @target_user_id)
+      Notification.create!(entry_id: self.id, user_id: @target_user_id, classification: 'entry')
     end
 end

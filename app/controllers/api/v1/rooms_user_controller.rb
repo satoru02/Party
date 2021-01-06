@@ -21,10 +21,10 @@ module Api
 
       private
 
-        def check_answer params
+        def check_answer(params)
           if params === "authorize"
             true
-          else
+          elsif params === "decline"
             false
           end
         end

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_01_06_104910) do
+ActiveRecord::Schema.define(version: 2021_01_06_144325) do
 
   create_table "categories", force: :cascade do |t|
     t.string "name"
@@ -66,10 +66,10 @@ ActiveRecord::Schema.define(version: 2021_01_06_104910) do
     t.integer "user_id"
     t.boolean "confirmation", default: false
     t.string "title"
-    t.integer "type"
-    t.integer "entry_responses_id"
+    t.string "classification"
+    t.integer "entry_response_id"
     t.index ["entry_id"], name: "index_notifications_on_entry_id", unique: true
-    t.index ["entry_responses_id"], name: "index_notifications_on_entry_responses_id", unique: true
+    t.index ["entry_response_id"], name: "index_notifications_on_entry_response_id", unique: true
     t.index ["user_id"], name: "index_notifications_on_user_id"
   end
 
@@ -134,7 +134,7 @@ ActiveRecord::Schema.define(version: 2021_01_06_104910) do
   add_foreign_key "messages", "rooms"
   add_foreign_key "messages", "users"
   add_foreign_key "notifications", "entries"
-  add_foreign_key "notifications", "entry_responses", column: "entry_responses_id"
+  add_foreign_key "notifications", "entry_responses"
   add_foreign_key "notifications", "users"
   add_foreign_key "posts", "categories"
   add_foreign_key "posts", "users"

@@ -12,25 +12,34 @@ module Api
         @notification = current_user.notifications.find_by(id: params[:id])
         @notification.checked
 
-        @entry = Entry.find(@notification.entry_id)
-        @post = @entry.post
-        @user = @entry.user
+        if @notification.classification === 'entry'
 
-        rapping_response = [{
-          "Entry" => @entry,
-          "Post" => @post,
-          "User" => @user }]
+          @entry = Entry.find(@notification.entry_id)
+          @post = @entry.post
+          @user = @entry.user
 
-        render json: rapping_response
+          rapping_response = [{
+            "Notification" => @notification,
+            "Entry" => @entry,
+            "Post" => @post,
+            "User" => @user }]
 
-        # Entry
-        # if @notification.type === 0
-        # entryの情報
-        # postの情報
-        # userの情報
-        # Follow
-        # elsif @notification.type === 1
-        # else
+          render json: rapping_response
+
+        elsif @notification.classification === 'entryResponse'
+
+          @entry_response = EntryResponse.find(@notification.entry_response_id)
+          @post = @entry_response.post
+          @user = @entry_response.user
+
+          rapping_response = [{
+            "Notification" => @notification,
+            "EntryResponse" => @entry_response,
+            "Post" => @post,
+            "User" => @user }]
+
+          render json: rapping_response
+        end
       end
     end
   end

@@ -7,9 +7,6 @@ class Notification < ApplicationRecord
   end
 end
 
-# 1.entry_request
-# 2.entry_approved
-# 3.entry_declined
-# 4.follow
-# 5.post
-# 6.web_info
+# type
+# entry
+# entry_response
