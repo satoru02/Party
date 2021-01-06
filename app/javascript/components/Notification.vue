@@ -16,17 +16,20 @@
 </template>
 
 <script>
-  // 1. Entry request
-  // 2. Entry approved
-
-  // 3. Entry declined
+  // 動的vue-routing
+  // // 1. Entry request
+  //    entry_notification_component
+  // // 2. Entry approved
+  //    entry_approved_component
+  // // 3. Entry declined
+  //    entry_declined_component
 
   import {
     simpleAxios,
     secureAxios
   } from "../backend/axios"
   const NOTIFICATION_URL = `/api/v1/notifications`
-  const ENTRY_AUTHORIZATION_URL = `/api/v1/rooms_user`
+  const ENTRY_URL = `/api/v1/rooms_user`
 
   export default {
     name: 'Notification',
@@ -56,15 +59,23 @@
       },
       authorizeEntry() {
         secureAxios.defaults.headers.common['X-CSRF-TOKEN'] = this.$store.state.csrf
-        secureAxios.post(ENTRY_AUTHORIZATION_URL,{
-          entry_id: this.requested_entry_information.id,
-          post_id: this.requested_post_information.id,
-          user_id: this.requested_user_information.id
-        })
-        .catch(error => this.Failed(error))
+        secureAxios.post(ENTRY_URL, {
+            answer: 'authorize',
+            entry_id: this.requested_entry_information.id,
+            post_id: this.requested_post_information.id,
+            user_id: this.requested_user_information.id
+          })
+          .catch(error => this.Failed(error))
       },
       declineEntry() {
         secureAxios.defaults.headers.common['X-CSRF-TOKEN'] = this.$store.state.csrf
+        secureAxios.post(ENTRY_URL, {
+            answer: 'decline',
+            entry_id: this.requested_entry_information.id,
+            post_id: this.requested_post_information.id,
+            user_id: this.requested_user_information.id
+          })
+          .catch(error => this.Failed(error))
       }
     }
   }

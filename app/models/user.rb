@@ -1,12 +1,11 @@
 class User < ApplicationRecord
   include ActiveModel::Serializers::JSON
-  # include JWTSessions::Token
 
   has_and_belongs_to_many :rooms
   has_many :messages
   has_many :posts
   has_many :entries
-  has_many :invitations
+  has_many :entry_responses
   has_many :notifications
 
   has_secure_password
@@ -69,29 +68,9 @@ class User < ApplicationRecord
     self.reset_password_token_expires_at = nil
   end
 
-  # class << self
-  #   def authorized_by_cookie(jwt)
-  #     # cookie_based_auth(jwt)
-  #     authorize_request(jwt)
-  #   end
-  # end
-
   private
 
     def downcase_email
       self.email = email.downcase
     end
-
-    # def cookie_based_auth(jwt)
-    #   @raw_token = token_from_cookies(jwt)
-    # end
-
-    # def token_from_cookies(jwt)
-    #   token = request_cookies[JWTSessions.cookie_by(jwt)]
-    #   token
-    # end
-
-    # def authorize_request(jwt)
-    #   @payload = Token.decode(jwt)
-    # end
 end

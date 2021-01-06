@@ -1,5 +1,5 @@
 FactoryBot.define do
-  factory :invitation do
+  factory :entry_response do
     
   end
 end
