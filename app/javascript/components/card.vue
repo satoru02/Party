@@ -2,13 +2,13 @@
   <div>
     <v-container class="mt-8">
       <v-row no-gutters>
-        <v-col v-for="post in posts" :key="post.id" :title="post.title" :url="post.url" :time="post.date"
+        <v-col v-for="post in posts" :key="post.id" :title="post.title" :time="post.date"
           :user_id="post.user_id" class="mb-9 pr-7" cols="12" sm="4">
           <v-card class="rounded-xl" color="#010101" max-width="400">
             <v-card-title>
             </v-card-title>
             <v-card-text class="mr-n14 mt-7">
-              <a v-bind:href="post.url">{{ post.title }}</a>
+              <a>{{ post.title }}</a>
             </v-card-text>
             <v-card-actions>
               <v-list-item class="grow">
@@ -21,7 +21,7 @@
                 <v-row align="center" justify="end">
                   <span class="subheading mr-2 mt-5" style="color:white">{{ post.date }}</span>
                 </v-row>
-                <v-btn text color="primary" @click="entryRequest(post.id, post.user_id)">
+                <v-btn v-if="$store.state.currentUser.id !== post.user_id" text color="primary" @click="entryRequest(post.id, post.user_id)">
                   Join
                 </v-btn>
               </v-list-item>
@@ -52,12 +52,6 @@
     },
     props: {
       title: {
-        status: {
-          type: String,
-          required: true,
-        }
-      },
-      url: {
         status: {
           type: String,
           required: true,

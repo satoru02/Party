@@ -2,7 +2,6 @@ class Post < ApplicationRecord
   include ActiveModel::Serializers::JSON
 
   validates :title, presence: true, length: { maximum: 100 }
-  validates :url, presence: true
   belongs_to :user
   belongs_to :category
   has_one :room

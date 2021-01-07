@@ -17,6 +17,7 @@ module Api
       end
 
       private
+
         def entry_params
           params.require(:entry).permit(:user_id, :post_id, :activated)
         end

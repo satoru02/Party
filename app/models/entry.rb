@@ -4,8 +4,6 @@ class Entry < ApplicationRecord
   has_one :notification
   after_create :create_entry_notification
 
-  # fix -> 1postに対して、ユーザーがもつEntryは一つ。何回でもJoinをおせてしまう。
-
   def activate
     update_columns(activated: true, activated_at: Time.zone.now)
   end

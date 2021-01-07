@@ -11,7 +11,6 @@
         <v-card-text>
           <v-spacer></v-spacer>
           <v-text-field v-model="title" label="Title"></v-text-field>
-          <v-text-field v-model="url" label="URL"></v-text-field>
           <v-text-field v-model="category" label="Category"></v-text-field>
           <v-text-field label="Platform"></v-text-field>
           <v-text-field label="一言"></v-text-field>
@@ -19,10 +18,10 @@
 
         <v-card-actions>
           <v-spacer></v-spacer>
-          <v-btn text color="primary" @click="postUrl(title,url), dialog = !dialog">
+          <v-btn text color="primary" @click="postUrl(title), dialog = !dialog">
             cancel
           </v-btn>
-          <v-btn text color="primary" @click="postUrl(title,url), dialog = !dialog">
+          <v-btn text color="primary" @click="postUrl(title), dialog = !dialog">
             submit
           </v-btn>
         </v-card-actions>
@@ -42,7 +41,6 @@
     data() {
       return {
         title: '',
-        url: '',
         category: '',
         dialog: false,
       }
@@ -51,11 +49,10 @@
       setError(error, text) {
         this.error = (error.response && error.response.data && error.response.data.error) || text
       },
-      postUrl(title, url) {
+      postUrl(title) {
         secureAxios.defaults.headers.common['X-CSRF-TOKEN'] = this.$store.state.csrf
         secureAxios.post(POST_URL, {
             title: title,
-            url: url,
             // fix
             category_id: 1,
           })
