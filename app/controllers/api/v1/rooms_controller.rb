@@ -12,7 +12,13 @@ module Api
         @room = Room.find_by(resource_token: params[:token])
         @user = User.find_by(id: params[:user_id])
         if @room.authenticated?(params[:token]) && @room.users.include?(@user)
-          render json: @room.messages
+          rapping_response = [
+            {
+              "members" => @room.users,
+              "messages" => @room.messages
+            }
+          ]
+          render json: rapping_response
         end
       end
     end

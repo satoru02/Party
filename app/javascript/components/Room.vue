@@ -1,5 +1,9 @@
 <template>
   <div>
+    <div id="member" v-for="member in room_users" :key="member.id" :member="member">
+      {{ member.name }}
+      <!-- {{ member.email }} -->
+    </div>
     <tbody>
       <tr v-for="(message, index) in realtime_messages" :key="index" :message="message">
         <div>
@@ -69,7 +73,8 @@
           .catch(error => this.Failed(error))
       },
       Successful(response) {
-        this.messages = response.data
+        this.messages = response.data[0].messages
+        this.room_users = response.data[0].members
       },
       Failed(error) {
         this.error = (error.response && error.response.data && error.response.data.error) || ""
