@@ -22,7 +22,7 @@ module Api
 
           @message = Message.find_by(room_id: @rooms_user.room_id, user_id: @rooms_user.user_id)
 
-          # ユーザー参加通知
+          # user join notification
           ActionCable.server.broadcast("room_channel_room1", {
             user: @message.user.username,
             time: @message.created_at
