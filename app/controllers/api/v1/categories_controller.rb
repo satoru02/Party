@@ -13,28 +13,6 @@ module Api
         @category_posts = @category.posts.pager(page: params[:page], per: params[:per_page])
         render json: @category_posts.to_json
       end
-      # ====================================================
-      def drama
-      end
-
-      def sf
-      end
-
-      def comedy
-      end
-
-      def romance
-      end
-
-      def documentary
-      end
-
-      def japan
-      end
-
-      def foreign
-      end
-      # ========================================================
 
       private
 

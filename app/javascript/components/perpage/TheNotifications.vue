@@ -21,21 +21,22 @@
       NotificationsChannel: {
         connected() {},
         rejected() {},
-        // SUBSCRIBER receive
         received(data) {
-          console.log(data)
           // 1.Entryがあった時
           // 2.Entry_Responseがあった時（承認/拒否）
           // 3.Messageを受け取った時
-          if (this.$store.state.currentUser.id === data["target_user_id"]) {
+          // 4.Notificationが読まれた時
+
+          if (this.$store.state.currentUser.id === data["target_user_id"] && data["condition"] !== "read") {
             this.notifications.push(data)
+          } else if(this.$store.state.currentUser.id === data["target_user_id"] && data["condition"] === "read") {
+            this.notifications.pop()
           }
         },
         disconnected() {}
       }
     },
     mounted() {
-      // make SUBSCRIBER
       this.$cable.subscribe({
         channel: 'NotificationsChannel'
       })
@@ -50,7 +51,14 @@
           .catch(error => this.Failed(error))
       },
       Successful(response) {
-        this.notifications = response.data
+        var i = 0;
+        var unchecked_notifications = [];
+        for (i; i < response.data.length; i++) {
+          if (response.data[i].confirmation !== true){
+            unchecked_notifications.push(response.data[i])
+          }
+        }
+        this.notifications = unchecked_notifications
       },
       Failed(error) {
         console.log(error)

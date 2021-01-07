@@ -10,6 +10,15 @@ module Api
 
       def show
         @notification = current_user.notifications.find_by(id: params[:id])
+
+        if @notification.confirmation === false
+          ActionCable.server.broadcast("Notifications", {
+            title: "Notification is readen.",
+            target_user_id: @notification.user_id,
+            condition: "read"
+          })
+        end
+
         @notification.checked
 
         if @notification.classification === 'entry'

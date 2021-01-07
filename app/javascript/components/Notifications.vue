@@ -3,11 +3,7 @@
   <tbody>
     <tr v-for="notification in notifications" :key="notification.id">
       <router-link :to="{ name: 'Notification', params: {id: `${notification.id }`}}">
-        <!-- v-id stylebinding - confimarion -->
-        <!-- modal -->
-        <!-- <th>{{ notification.title }}</th>
-        <th>{{ notification.type }}</th> -->
-        <th>{{ notification.confirmation }}</th>
+        <th>{{ notification.classification }}</th>
       </router-link>
     </tr>
   </tbody>
