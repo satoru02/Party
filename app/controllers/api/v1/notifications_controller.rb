@@ -19,10 +19,10 @@ module Api
           @user = @entry.user
 
           rapping_response = [{
-            "Notification" => @notification,
-            "Entry" => @entry,
-            "Post" => @post,
-            "User" => @user }]
+            "notification" => @notification,
+            "entry" => @entry,
+            "post" => @post,
+            "user" => @user }]
 
           render json: rapping_response
 
@@ -33,10 +33,10 @@ module Api
           @user = @entry_response.user
 
           rapping_response = [{
-            "Notification" => @notification,
-            "EntryResponse" => @entry_response,
-            "Post" => @post,
-            "User" => @user }]
+            "notification" => @notification,
+            "entry_response" => @entry_response,
+            "post" => @post,
+            "user" => @user }]
 
           render json: rapping_response
         end

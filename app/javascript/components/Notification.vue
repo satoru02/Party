@@ -42,11 +42,11 @@
           .catch(error => this.Failed(error))
       },
       Successful(response) {
-        this.notification = response.data[0].Notification
-        this.requested_entry_information = response.data[0].Entry
-        this.requested_entry_response_information = response.data[0].EntryResponse
-        this.requested_post_information = response.data[0].Post
-        this.requested_user_information = response.data[0].User
+        this.notification = response.data[0].notification
+        this.requested_entry_information = response.data[0].entry
+        this.requested_entry_response_information = response.data[0].entry_response
+        this.requested_post_information = response.data[0].post
+        this.requested_user_information = response.data[0].user
       },
       Failed(error) {
         this.error = (error.response && error.response.data && error.response.data.error) || ""
