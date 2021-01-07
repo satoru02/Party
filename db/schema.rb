@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_01_06_144325) do
+ActiveRecord::Schema.define(version: 2021_01_07_030051) do
 
   create_table "categories", force: :cascade do |t|
     t.string "name"
@@ -55,6 +55,7 @@ ActiveRecord::Schema.define(version: 2021_01_06_144325) do
     t.datetime "updated_at", precision: 6, null: false
     t.integer "room_id"
     t.integer "user_id"
+    t.string "classification"
     t.index ["room_id"], name: "index_messages_on_room_id"
     t.index ["user_id"], name: "index_messages_on_user_id"
   end

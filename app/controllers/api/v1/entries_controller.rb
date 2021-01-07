@@ -14,8 +14,6 @@ module Api
             entry_post_id: @entry.post_id,
           })
         end
-
-        # メールも送信
       end
 
       private

@@ -26,6 +26,9 @@
           console.log(data)
           if (this.$store.state.currentUser.id === data["target_user_id"]) {
             this.notifications.push(data)
+
+            // 1.Entryがあった時
+            // 2.Entry_Responseがあった時（承認/拒否）
           }
         },
         disconnected() {}

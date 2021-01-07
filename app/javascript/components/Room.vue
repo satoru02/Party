@@ -1,17 +1,18 @@
 <template>
   <div>
     <div id="member" v-for="member in room_users" :key="member.id" :member="member">
-      {{ member.name }}
-      <!-- {{ member.email }} -->
+      {{ member.email }}
     </div>
     <tbody>
+      <tr v-for="word in messages" :key="word.id" :word="word">
+        <th>{{word.user_id}} : {{ word.content }} By Host</th>
+        <th v-if="word.classification === 'join'">{{word.user_id}}が{{ word.created_at}}に参加しました。</th>
+      </tr>
       <tr v-for="(message, index) in realtime_messages" :key="index" :message="message">
         <div>
           <th>{{ message.user }} : {{ message.message }}</th>
+          <th v-if="message.classification === 'join'">{{ message.user }}が、{{ message.time}}参加しました。</th>
         </div>
-      </tr>
-      <tr v-for="word in messages" :key="word.id" :word="word">
-        <th>{{word.user_id}} : {{ word.content }} By Host</th>
       </tr>
     </tbody>
     <form class="form-message" @submit.prevent="sendMessage(message)">
