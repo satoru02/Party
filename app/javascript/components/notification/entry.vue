@@ -6,12 +6,14 @@
     <tr id="user-content">
       <th>{{ user.email }}</th>
     </tr>
-    <v-btn text color="primary" @click="authorizeEntry()">
-      Authorize
-    </v-btn>
-    <v-btn text color="primary" @click="declineEntry()">
-      Decline
-    </v-btn>
+    <div v-if="entry.activated !== true">
+      <v-btn text color="primary" @click="authorizeEntry()">
+        Authorize
+      </v-btn>
+      <v-btn text color="primary" @click="declineEntry()">
+        Decline
+      </v-btn>
+    </div>
   </div>
 </template>
 

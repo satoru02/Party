@@ -15,6 +15,9 @@ module Api
 
         if @answer === true
 
+          binding.pry
+          @entry = Entry.find_by(id: params[:entry_id])
+          @entry.activate
           @rooms_user.save!
           EntryResponse.create(user_id: params[:user_id], post_id: params[:post_id], answer: @answer)
           ActionCable.server.broadcast("Notifications", {
