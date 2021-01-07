@@ -24,11 +24,11 @@
         // SUBSCRIBER receive
         received(data) {
           console.log(data)
+          // 1.Entryがあった時
+          // 2.Entry_Responseがあった時（承認/拒否）
+          // 3.Messageを受け取った時
           if (this.$store.state.currentUser.id === data["target_user_id"]) {
             this.notifications.push(data)
-
-            // 1.Entryがあった時
-            // 2.Entry_Responseがあった時（承認/拒否）
           }
         },
         disconnected() {}

@@ -8,12 +8,16 @@
     <div v-if="notification.classification === 'entryResponse'">
       <entryResponse :entry_response_id='notification.entry_response_id'></entryResponse>
     </div>
+    <div v-if="notification.classification === 'message'">
+      <message :message_id='message.id'></message>
+    </div>
   </div>
 </template>
 
 <script>
   import Entry from '../components/notification/entry';
   import EntryResponse from '../components/notification/entryResponse';
+  import Message from '../components/notification/message';
   import { simpleAxios, secureAxios } from "../backend/axios"
   const NOTIFICATION_URL = `/api/v1/notifications`
 
@@ -21,11 +25,13 @@
     name: 'Notification',
     components: {
       'entry': Entry,
-      'entryResponse': EntryResponse
+      'entryResponse': EntryResponse,
+      'message': Message
     },
     data() {
       return {
         notification: '',
+        message: '',
         requested_entry_information: '',
         requested_entry_response_information: '',
         requested_post_information: '',
@@ -43,6 +49,7 @@
       },
       Successful(response) {
         this.notification = response.data[0].notification
+        this.message = response.data[0].message
         this.requested_entry_information = response.data[0].entry
         this.requested_entry_response_information = response.data[0].entry_response
         this.requested_post_information = response.data[0].post

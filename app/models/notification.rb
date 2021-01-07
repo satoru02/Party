@@ -5,8 +5,3 @@ class Notification < ApplicationRecord
     self.update!(confirmation: true)
   end
 end
-
-# [type]
-# entry
-# entry_response
-# room

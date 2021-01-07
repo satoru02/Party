@@ -11,6 +11,7 @@ Rails.application.routes.draw do
       resources :notifications
       resources :entries, only: [:index, :create]
       resources :entry_responses, only: [:show]
+      resources :messages, only: [:show]
       resources :rooms_user, only: [:create, :destroy]
 
       resources :signup, only: [:create]

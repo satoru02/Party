@@ -39,6 +39,17 @@ module Api
             "user" => @user }]
 
           render json: rapping_response
+
+        elsif @notification.classification === 'message'
+
+          @message = Message.find_by(id: @notification.message_id)
+
+          rapping_response = [{
+            "notification" => @notification,
+            "message" => @message
+          }]
+
+          render json: rapping_response
         end
       end
     end
