@@ -7,6 +7,7 @@ class Notification < ApplicationRecord
   end
 end
 
-# type
+# [type]
 # entry
 # entry_response
+# room
