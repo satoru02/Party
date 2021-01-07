@@ -1,10 +1,10 @@
 <template>
   <div>
     <tr id="post-content">
-      <th>{{ title }}</th>
+      <th>{{ post.title }}</th>
     </tr>
     <tr id="user-content">
-      <th>{{ email }}</th>
+      <th>{{ user.email }}</th>
     </tr>
     <v-btn text color="primary" @click="authorizeEntry()">
       Authorize
@@ -22,20 +22,18 @@
   export default {
     name: "Entry",
     props: {
-      title: String,
-      email: String,
-      entry_id: Number,
-      post_id: Number,
-      user_id: Number
+      entry: Object,
+      post: Object,
+      user: Object
     },
     methods: {
       authorizeEntry() {
         secureAxios.defaults.headers.common['X-CSRF-TOKEN'] = this.$store.state.csrf
         secureAxios.post(ENTRY_URL, {
             answer: 'authorize',
-            entry_id: this.entry_id,
-            post_id: this.post_id,
-            user_id: this.user_id
+            entry_id: this.entry.id,
+            post_id: this.post.id,
+            user_id: this.user.id
           })
           .catch(error => this.Failed(error))
       },
@@ -43,9 +41,9 @@
         secureAxios.defaults.headers.common['X-CSRF-TOKEN'] = this.$store.state.csrf
         secureAxios.post(ENTRY_URL, {
             answer: 'decline',
-            entry_id: this.entry_id,
-            post_id: this.post_id,
-            user_id: this.user_id
+            entry_id: this.entry.id,
+            post_id: this.post.id,
+            user_id: this.user.id
           })
           .catch(error => this.Failed(error))
       },

@@ -14,7 +14,7 @@ module Api
 
         if @notification.classification === 'entry'
 
-          @entry = Entry.find(@notification.entry_id)
+          @entry = Entry.find_by(id: @notification.entry_id)
           @post = @entry.post
           @user = @entry.user
 
@@ -28,15 +28,12 @@ module Api
 
         elsif @notification.classification === 'entryResponse'
 
-          @entry_response = EntryResponse.find(@notification.entry_response_id)
-          @post = @entry_response.post
-          @user = @entry_response.user
+          @entry_response = EntryResponse.find_by(id: @notification.entry_response_id)
 
           rapping_response = [{
             "notification" => @notification,
-            "entry_response" => @entry_response,
-            "post" => @post,
-            "user" => @user }]
+            "entry_response" => @entry_response
+          }]
 
           render json: rapping_response
 
@@ -50,6 +47,7 @@ module Api
           }]
 
           render json: rapping_response
+
         end
       end
     end

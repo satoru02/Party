@@ -1,15 +1,13 @@
 <template>
   <div>
     <div v-if="notification.classification === 'entry'">
-      <entry :title='requested_post_information.title' :email="requested_user_information.email"
-        :entry_id='requested_entry_information.id' :post_id="requested_post_information.id"
-        :user_id='requested_user_information.id'></entry>
+      <entry :entry='entry_information' :post='requested_post_information' :user="requested_user_information"></entry>
     </div>
     <div v-if="notification.classification === 'entryResponse'">
-      <entryResponse :entry_response_id='notification.entry_response_id'></entryResponse>
+      <entryResponse :entry_response='entry_response_information'></entryResponse>
     </div>
     <div v-if="notification.classification === 'message'">
-      <message :message_id='message.id'></message>
+      <message :message='message'></message>
     </div>
   </div>
 </template>
@@ -32,8 +30,8 @@
       return {
         notification: '',
         message: '',
-        requested_entry_information: '',
-        requested_entry_response_information: '',
+        entry_response_information: '',
+        entry_information: '',
         requested_post_information: '',
         requested_user_information: '',
       }
@@ -50,8 +48,8 @@
       Successful(response) {
         this.notification = response.data[0].notification
         this.message = response.data[0].message
-        this.requested_entry_information = response.data[0].entry
-        this.requested_entry_response_information = response.data[0].entry_response
+        this.entry_information = response.data[0].entry
+        this.entry_response_information = response.data[0].entry_response
         this.requested_post_information = response.data[0].post
         this.requested_user_information = response.data[0].user
       },
