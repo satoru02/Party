@@ -7,7 +7,10 @@ module Api
 
       def create
 
-        @rooms_user = RoomsUser.new(user_id: params[:user_id], room_id: @post.room.id)
+        @room_id = @post.room.id
+        @user_id = params[:user_id]
+        @validated_user_id = RoomsUser.check_duplicate_user(@room_id, @user_id)
+        @rooms_user = RoomsUser.new(user_id: @validated_user_id, room_id: @post.room.id)
         @answer = check_answer(params[:answer])
 
         if @answer === true
@@ -22,7 +25,6 @@ module Api
 
           @message = Message.find_by(room_id: @rooms_user.room_id, user_id: @rooms_user.user_id)
 
-          # user join notification
           ActionCable.server.broadcast("room_channel_room1", {
             user: @message.user.username,
             time: @message.created_at
