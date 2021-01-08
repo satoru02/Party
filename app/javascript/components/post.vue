@@ -1,33 +1,14 @@
 <template>
-  <div class="post-form">
-    <v-btn class="mx-1" fab dark small color="indigo" @click="dialog = !dialog">
-      <v-icon dark>
-        mdi-plus
-      </v-icon>
+  <form class="form-signup">
+    <div class="alert alert-danger" v-if="error">{{ error }}</div>
+    <div class="form-group">
+      <label for="title">Title</label>
+      <input v-model="title" type="title" class="form-controll" id="title">
+    </div>
+    <v-btn text color="primary" @click="postUrl(title)">
+      submit
     </v-btn>
-
-    <v-dialog v-model="dialog" max-width="600px" class="rounded">
-      <v-card>
-        <v-card-text>
-          <v-spacer></v-spacer>
-          <v-text-field v-model="title" label="Title"></v-text-field>
-          <v-text-field v-model="category" label="Category"></v-text-field>
-          <v-text-field label="Platform"></v-text-field>
-          <v-text-field label="一言"></v-text-field>
-        </v-card-text>
-
-        <v-card-actions>
-          <v-spacer></v-spacer>
-          <v-btn text color="primary" @click="postUrl(title), dialog = !dialog">
-            cancel
-          </v-btn>
-          <v-btn text color="primary" @click="postUrl(title), dialog = !dialog">
-            submit
-          </v-btn>
-        </v-card-actions>
-      </v-card>
-    </v-dialog>
-  </div>
+  </form>
 </template>
 
 <script>
@@ -37,12 +18,11 @@
   const POST_URL = '/api/v1/posts'
 
   export default {
-    name: 'post',
+    name: "post",
     data() {
       return {
         title: '',
-        category: '',
-        dialog: false,
+        category: ''
       }
     },
     methods: {
@@ -53,7 +33,6 @@
         secureAxios.defaults.headers.common['X-CSRF-TOKEN'] = this.$store.state.csrf
         secureAxios.post(POST_URL, {
             title: title,
-            // fix
             category_id: 1,
           })
           .then(response => {

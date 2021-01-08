@@ -16,6 +16,9 @@
           <v-icon>mdi-menu</v-icon>
         </v-col>
         <v-col class="pa-2 mt-14 ml-n16 ">
+          <postButton></postButton>
+        </v-col>
+        <v-col class="pa-2 mt-14 ml-n16 ">
           <v-icon v-if="showAdminLink()">mdi-wifi</v-icon>
         </v-col>
         <notifications></notifications>
@@ -35,6 +38,7 @@
 <script>
   import Avatar from './TheAvatar.vue';
   import Notifications from './TheNotifications';
+  import PostButton from '../postButton';
   import {
     simpleAxios,
     secureAxios
@@ -45,7 +49,8 @@
     name: 'top-header',
     components: {
       'avatar': Avatar,
-      'notifications': Notifications
+      'notifications': Notifications,
+      'postButton': PostButton
     },
     methods: {
       setError(error, text) {

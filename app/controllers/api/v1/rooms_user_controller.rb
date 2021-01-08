@@ -15,7 +15,6 @@ module Api
 
         if @answer === true
 
-          binding.pry
           @entry = Entry.find_by(id: params[:entry_id])
           @entry.activate
           @rooms_user.save!

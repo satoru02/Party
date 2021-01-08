@@ -1,20 +1,17 @@
 <template>
   <div class="homes" infinite-wrapper>
-    <post></post>
-    <about></about>
+    <!-- <about></about> -->
     <card></card>
   </div>
 </template>
 
 <script>
   import About from './components/perpage/TheAbout.vue';
-  import Post from './components/post.vue';
   import Card from './components/card.vue';
 
   export default {
     name: 'Home',
     components: {
-      'post': Post,
       'card': Card,
       'about': About,
     },

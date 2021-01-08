@@ -42,6 +42,7 @@
   import Notifications from './components/Notifications';
   import '@mdi/font/css/materialdesignicons.css';
   import ActionCableVue from 'actioncable-vue';
+  import Post from './components/Post';
 
   const actionCableVueOptions = {
     debug: true,
@@ -161,6 +162,11 @@
         path: "/setting",
         name: "Setting",
         component: Setting
+      },
+      {
+        path: "/posts/new",
+        name: "Post",
+        component: Post
       },
       {
         path: "/posts/edit/:id",
