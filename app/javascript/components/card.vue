@@ -1,14 +1,14 @@
 <template>
   <div>
-    <v-container class="mt-8">
+    <v-container class="mt-16">
       <v-row no-gutters>
         <v-col v-for="post in posts" :key="post.id" :title="post.title" :time="post.date"
           :user_id="post.user_id" class="mb-9 pr-7" cols="12" sm="4">
-          <v-card class="rounded-xl" color="#010101" max-width="400">
+          <v-card class="rounded-xl" color="#010101" max-width="400" elevation="10" outlined>
             <v-card-title>
             </v-card-title>
-            <v-card-text class="mr-n14 mt-7">
-              <a>{{ post.title }}</a>
+            <v-card-text class="mr-n14">
+              <h3 style="color:white">{{ post.title }}</h3>
             </v-card-text>
             <v-card-actions>
               <v-list-item class="grow">

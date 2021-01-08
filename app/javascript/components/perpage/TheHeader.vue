@@ -1,34 +1,31 @@
 <template>
-  <v-app-bar app color="black">
+  <v-app-bar app style="background-color:#0b090a">
     <v-container>
-      <v-row class="d-flex justify-space-around mb-6">
-        <v-col class="pa-2 mt-13">
+      <v-row class="d-flex justify-space-around">
+        <v-col>
           <router-link to="/">
-            <h3 style="color:white">VIDEOKIT</h3>
+            <h1 class="pa-3 mt-5" style="color:white">VIDEOKIT</h1>
           </router-link>
         </v-col>
         <v-spacer></v-spacer>
-        <v-col class="pa-2 mt-10">
-          <v-text-field></v-text-field>
+        <v-col cols="7">
+          <v-text-field class="mt-7 pr-4 pl-3" placeholder="Search" filled rounded dense></v-text-field>
         </v-col>
         <v-spacer></v-spacer>
-        <v-col class="pa-2 mt-14 ml-n16 ">
-          <v-icon>mdi-menu</v-icon>
+        <v-col class="pa-2 mt-10 mr-3">
+          <!-- <notifications></notifications> -->
+          <v-icon size=28>mdi-bell</v-icon>
         </v-col>
-        <v-col class="pa-2 mt-14 ml-n16 ">
+        <v-col class="pa-2 mt-10 mr-1">
+          <v-icon size=28>mdi-chat</v-icon>
+        </v-col>
+        <v-col>
+          <router-link :to="{ name: 'User', params: {id: `${this.$store.state.currentUser.id}`} }">
+            <avatar class="mt-8 mr-2"></avatar>
+          </router-link>
+        </v-col>
+        <v-col class="mt-8">
           <postButton></postButton>
-        </v-col>
-        <v-col class="pa-2 mt-14 ml-n16 ">
-          <v-icon v-if="showAdminLink()">mdi-wifi</v-icon>
-        </v-col>
-        <notifications></notifications>
-        <v-col class="pa-2 mt-14 ml-n16 ">
-          <v-icon @click="signOut">mdi-wifi</v-icon>
-        </v-col>
-        <v-col class="pa-2 mt-10">
-        <router-link :to="{ name: 'User', params: {id: `${this.$store.state.currentUser.id}`} }">
-          <avatar></avatar>
-        </router-link>
         </v-col>
       </v-row>
     </v-container>

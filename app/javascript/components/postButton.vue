@@ -1,11 +1,7 @@
 <template>
-    <router-link to="/posts/new">
-      <v-btn class="mx-1" fab dark small color="indigo">
-        <v-icon dark>
-          mdi-plus
-        </v-icon>
-      </v-btn>
-    </router-link>
+  <router-link to="/posts/new">
+    <v-btn style="background-color:#3A0CA3" elevation="6" rounded>Upload</v-btn>
+  </router-link>
 </template>
 
 <script>
