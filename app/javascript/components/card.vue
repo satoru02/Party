@@ -1,10 +1,10 @@
 <template>
-  <div>
-    <v-container class="mt-16">
+  <div class="card" style="grid-area:card" infinite-wrapper>
+    <v-container class="mt-16" >
       <v-row no-gutters>
         <v-col v-for="post in posts" :key="post.id" :title="post.title" :time="post.date" :user_id="post.user_id"
           class="mb-9 pr-10" cols="12" sm="16">
-          <v-card class="rounded-xl" elevation="8" color="#05070f" max-width="640" max-height="400">
+          <v-card class="rounded-xl" elevation="0" color="#05070f" max-width="680" max-height="400">
             <v-card-title>
               <v-list-item-avatar color="darken-3" size=25>
                 <v-icon style="color:white" size=22>mdi-bell</v-icon>

@@ -4,8 +4,6 @@
       <top-header></top-header>
       <v-spacer></v-spacer>
       <v-main>
-        <div class="center-content">
-        </div>
         <router-view></router-view>
       </v-main>
     </v-app>

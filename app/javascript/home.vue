@@ -1,16 +1,22 @@
 <template>
-  <div class="homes" infinite-wrapper>
+  <div class="homes">
+    <categoryHeader></categoryHeader>
     <card></card>
+    <div class="list">
+      <v-container></v-container>
+    </div>
   </div>
 </template>
 
 <script>
   import Card from './components/card.vue';
+  import CategoryHeader from './components/CategoryHeader';
 
   export default {
     name: 'Home',
     components: {
       'card': Card,
+      'categoryHeader': CategoryHeader
     },
     created() {
       this.checkSignedIn()
@@ -45,5 +51,11 @@
   span {
     font-family: 'Open Sans', sans-serif;
     font-size: 10;
+  }
+
+  .homes {
+    display: grid;
+    grid-template-columns: 334px auto 408px;
+    grid-template-areas: "category card list";
   }
 </style>
