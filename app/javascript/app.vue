@@ -1,6 +1,8 @@
 <template>
   <div id="app">
-    <v-app style="background-color:#202124">
+    <!-- <v-app style="background-color:#202124"> -->
+    <v-app style="background-color:#161a1d">
+
       <top-header></top-header>
       <v-spacer></v-spacer>
       <v-main>
