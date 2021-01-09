@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <v-app style="background-color:#0c0e17">
+    <v-app style="background-color:#202124">
       <top-header></top-header>
       <v-spacer></v-spacer>
       <v-main>

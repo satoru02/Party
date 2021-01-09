@@ -1,5 +1,5 @@
 <template>
-  <v-app-bar app style="background-color:#0b090a">
+  <v-app-bar app style="background-color:#000000">
     <v-container>
       <v-row class="d-flex justify-space-around">
         <v-col>
@@ -9,15 +9,15 @@
         </v-col>
         <v-spacer></v-spacer>
         <v-col cols="7">
-          <v-text-field class="mt-7 pr-4 pl-3" placeholder="Search" filled rounded dense></v-text-field>
+          <v-text-field dark class="mt-7 pr-4 pl-3" placeholder="Search" filled rounded dense></v-text-field>
         </v-col>
         <v-spacer></v-spacer>
         <v-col class="pa-2 mt-10 mr-3">
           <!-- <notifications></notifications> -->
-          <v-icon size=28>mdi-bell</v-icon>
+          <v-icon style="color:white" size=28>mdi-bell</v-icon>
         </v-col>
         <v-col class="pa-2 mt-10 mr-1">
-          <v-icon size=28>mdi-chat</v-icon>
+          <v-icon style="color:white" size=28>mdi-chat</v-icon>
         </v-col>
         <v-col>
           <router-link :to="{ name: 'User', params: {id: `${this.$store.state.currentUser.id}`} }">
