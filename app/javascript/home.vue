@@ -5,7 +5,7 @@
     <card></card>
         <v-divider dark vertical></v-divider>
     <div class="list">
-      <v-container></v-container>
+      <v-container ></v-container>
     </div>
   </div>
 </template>

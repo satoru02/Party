@@ -1,6 +1,6 @@
 <template>
   <router-link to="/posts/new">
-    <v-btn style="background-color:#2d00f7" class="rounded-lg">Upload</v-btn>
+    <v-btn style="background-color:#2d00f7; font-weight:bold;" dark class="rounded-lg">Upload</v-btn>
   </router-link>
 </template>
 

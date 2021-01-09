@@ -4,7 +4,7 @@
       <v-row class="d-flex justify-space-around">
         <v-col>
           <router-link to="/">
-            <h1 class="pa-3 mt-5 ml-n16" style="color:white">VIDEOKIT</h1>
+            <h1 class="pa-3 mt-5 ml-n16" style="color:white">KIT PAC</h1>
           </router-link>
         </v-col>
         <v-spacer></v-spacer>

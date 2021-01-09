@@ -1,8 +1,7 @@
 <template>
   <div class="card" style="grid-area:card" infinite-wrapper>
     <v-row no-gutters>
-      <v-col class="d-flex" md="4" offset-md="3">
-      </v-col>
+      <v-col class="d-flex" md="4" offset-md="3"></v-col>
       <v-col class="d-flex mt-5 mb-n7" md="2" offset-md="2">
         <v-select :items="items" label="Trend" dense outlined class="rounded-lg"></v-select>
       </v-col>
@@ -25,8 +24,7 @@
               </v-card-text>
               <v-card-text class="mr-n14 " align="center">
                 <p style="color:white; font-size: 15px;" class="font-weight-light">Sacriel is the premier strategic
-                  combat and survival specialist on Twitch, providing educational analysis seasoned with dry British
-                  humour. Started in 2012</p>
+                  combat and survival specialist on Twitch, providing</p>
               </v-card-text>
               <v-card-actions>
                 <v-list-item class="grow">
