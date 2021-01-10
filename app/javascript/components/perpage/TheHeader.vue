@@ -12,9 +12,8 @@
           <v-text-field dark class="mt-7 pl-n7" placeholder="Search" filled rounded dense></v-text-field>
         </v-col>
         <v-spacer></v-spacer>
-        <v-col class="pa-2 mt-11 mr-n16">
-          <!-- <notifications></notifications> -->
-          <v-icon size=23>mdi-bell-outline</v-icon>
+        <v-col class="pa-1 mt-8 mr-n9">
+          <notifications></notifications>
         </v-col>
         <v-col class="pa-2 mt-11 mr-n16">
           <v-icon size=23>mdi-chat-outline</v-icon>
@@ -47,7 +46,7 @@
     components: {
       'notifications': Notifications,
       'postButton': PostButton,
-      'userMenu': UserMenu
+      'userMenu': UserMenu,
     },
     methods: {
       setError(error, text) {
