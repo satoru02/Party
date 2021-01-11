@@ -1,15 +1,12 @@
 <template>
-  <!-- 未読通知のリアルタイムカウント -->
-  <!-- <v-col id="count" class="pa-2 mt-14 ml-n16" v-model="this.notifications.length">
-    <th>{{ notifications.length }}</th>
-  </v-col> -->
-
   <div class="text-center">
-    <!-- <v-icon v-model="this.notifications.length" class="mt-4 mr-16" size=3>{{ notifications.length }}</v-icon> -->
     <v-menu open-on-hover offset-y left nudge-height=600 nudge-width=130>
       <template v-slot:activator="{ on, attrs }">
         <div v-bind="attrs" v-on="on">
-          <v-icon class="mt-4 mr-16" size=23>mdi-bell-outline</v-icon>
+          <v-badge class="mt-4 mr-16" color="red" :content="notifications.length" offset-y="10" offset-x="7" v-if="notifications.length > 0">
+            <v-icon size=23>mdi-bell-outline</v-icon>
+          </v-badge>
+          <v-icon v-else class="mt-4 mr-16" size=23>mdi-bell-outline</v-icon>
         </div>
       </template>
       <v-list class="overflow-y-auto rounded-lg" max-height="400" style="background-color:#343a40;">

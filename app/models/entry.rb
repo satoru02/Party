@@ -8,6 +8,10 @@ class Entry < ApplicationRecord
     update_columns(activated: true, activated_at: Time.zone.now)
   end
 
+  def deactivate
+    update_columns(activated: false)
+  end
+
   private
 
     def create_entry_notification

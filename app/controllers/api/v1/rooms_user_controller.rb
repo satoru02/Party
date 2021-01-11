@@ -12,10 +12,10 @@ module Api
         @validated_user_id = RoomsUser.check_duplicate_user(@room_id, @user_id)
         @rooms_user = RoomsUser.new(user_id: @validated_user_id, room_id: @post.room.id)
         @answer = check_answer(params[:answer])
+        @entry = Entry.find_by(id: params[:entry_id])
 
         if @answer === true
 
-          @entry = Entry.find_by(id: params[:entry_id])
           @entry.activate
           @rooms_user.save!
           EntryResponse.create(user_id: params[:user_id], post_id: params[:post_id], answer: @answer)
@@ -32,6 +32,7 @@ module Api
 
         elsif @answer === false
 
+          @entry.deactivate
           EntryResponse.create(user_id: params[:user_id], post_id: params[:post_id], answer: @answer)
           ActionCable.server.broadcast("Notifications", {
             title: "Entry Declined by host",

@@ -1,5 +1,4 @@
 <template>
-<!-- 既読も未読も全て確認できる。Gメール的 -->
 <div>
   <tbody>
     <tr v-for="notification in notifications" :key="notification.id">
