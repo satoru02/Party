@@ -75,6 +75,6 @@
   }
 
   .tile:hover {
-    background: #2d00f7;
+    background: #6c757d;
   }
 </style>

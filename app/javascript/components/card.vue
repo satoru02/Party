@@ -127,6 +127,7 @@
       infiniteHandler($state) {
         simpleAxios.get(CONTENT_URL, {
             params: {
+              user: `${this.$store.state.currentUser.id}`,
               page: this.page,
               per_page: this.pageSize,
             },

@@ -37,7 +37,6 @@ module Api
 
       def search
         filter_posts(params[:q])
-        # filter_users(params[:q])
         @pager_filtered_posts = @filtered_posts.pager(page: params[:page], per: params[:per_page])
         render json: @pager_filtered_posts
       end
