@@ -1,6 +1,6 @@
 <template>
   <div class="tag">
-    <v-container class="mt-16 ml-15" >
+    <v-container class="mt-16 ml-10">
       <v-row no-gutters>
       <h2 class="mb-5 ml-8">Trend Tags</h2>
         <v-col v-for="(n,index) in categories" :key="index" class="mb-5 ml-8" cols="12" sm="16">

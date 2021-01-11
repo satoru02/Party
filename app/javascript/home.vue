@@ -63,7 +63,7 @@
 
   .homes {
     display: grid;
-    grid-template-columns: 334px auto 408px;
+    grid-template-columns: 364px auto 372px;
     grid-template-areas: "category card list""tag card list";
     grid-template-rows: 425px auto;
   }

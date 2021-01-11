@@ -29,7 +29,6 @@
               <v-card-actions>
                 <v-list-item class="grow">
                   <router-link :to="{ name: 'User', params: {id: `${post.user_id}` }}">
-                    <!-- <avatar></avatar> -->
                     <v-list-item-avatar color="white darken-3" size=30>
                       <v-img class="elevation-1" alt=""
                         src="https://avataaars.io/?avatarStyle=Transparent&topType=ShortHairShortCurly&accessoriesType=Prescription02&hairColor=Black&facialHairType=Blank&clotheType=Hoodie&clotheColor=White&eyeType=Default&eyebrowType=DefaultNatural&mouthType=Default&skinColor=Light">
@@ -43,7 +42,7 @@
                     <span class="subheading mr-2 mt-5 color:white" style="font-size: 13px">{{ post.date }}</span>
                   </v-row>
                   <v-btn v-if="$store.state.currentUser.id !== post.user_id" text color="primary"
-                    @click="entryRequest(post.id, post.user_id)">
+                    @click="entryRequest(post.id, post.user_id), dialog = true">
                     Join
                   </v-btn>
                 </v-list-item>
@@ -54,6 +53,20 @@
       </v-row>
     </v-container>
     <infinite-loading spinner="spiral" @infinite="infiniteHandler"></infinite-loading>
+    <div class="dialog">
+      <v-dialog light v-model="dialog" width="500">
+        <v-card>
+          <v-card-title>エントリー完了！</v-card-title>
+　　　　　　<v-card-text>エントリーが完了しました。オーガナイザーが承認すれば、イベントに参加出来ます。</v-card-text>
+          <v-card-actions>
+            <v-spacer></v-spacer>
+            <v-btn color="primary" text @click="dialog = false">
+              Close
+            </v-btn>
+          </v-card-actions>
+        </v-card>
+      </v-dialog>
+    </div>
   </div>
 </template>
 
@@ -99,6 +112,7 @@
         page: 1,
         pageSize: 9,
         posts: [],
+        dialog: false
       }
     },
     methods: {
