@@ -2,18 +2,16 @@ import Vue from 'vue';
 import App from '../app.vue';
 import Vuetify from 'vuetify';
 import 'vuetify/dist/vuetify.min.css';
-import colors from 'vuetify/lib/util/colors'
 
 Vue.use(Vuetify)
-
-export default new Vuetify({
-  theme: { dark: true },
-})
 
 document.addEventListener('DOMContentLoaded', () => {
   const app = new Vue({
     render: h => h(App),
-    vuetify: new Vuetify(),
+    vuetify: new Vuetify({
+      theme: { dark: true },
+      customVariables: ['../src/overrides.scss']
+    }),
   }).$mount()
   document.body.appendChild(app.$el)
 

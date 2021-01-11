@@ -6,6 +6,7 @@
       <v-main>
         <router-view></router-view>
       </v-main>
+      <!-- <info-footer></info-footer> -->
     </v-app>
   </div>
 </template>
@@ -41,6 +42,7 @@
   import '@mdi/font/css/materialdesignicons.css';
   import ActionCableVue from 'actioncable-vue';
   import Post from './components/post';
+  import InfoFooter from './components/perpage/TheFooter';
 
   const actionCableVueOptions = {
     debug: true,
@@ -210,6 +212,7 @@
     components: {
       'avatar': Avatar,
       'top-header': Header,
+      'info-footer': InfoFooter
     }
   }
 </script>

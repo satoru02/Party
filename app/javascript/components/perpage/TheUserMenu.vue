@@ -1,12 +1,12 @@
 <template>
   <div class="text-center">
-    <v-menu open-on-hover offset-y left nudge-height=600 nudge-width=130>
+    <v-menu open-on-hover offset-y left nudge-bottom="2" nudge-left=62 nudge-height=600 nudge-width=130>
       <template v-slot:activator="{ on, attrs }">
         <div v-bind="attrs" v-on="on">
           <avatar class="mt-9 mr-16"></avatar>
         </div>
       </template>
-      <v-list class="rounded-lg" style="background-color:#343a40;">
+      <v-list class="rounded-s" style="background-color:#343a40;">
         <v-list-item class="tile" v-for="(item, index) in items" :key="index" :to="item.link" :icon="item.icon" link>
           <v-list-item-icon>
             <v-icon v-text="item.icon"></v-icon>
