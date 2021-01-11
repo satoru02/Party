@@ -1,24 +1,24 @@
 <template>
   <div class="homes">
     <categoryHeader></categoryHeader>
-    <!-- <v-divider vertical></v-divider> -->
     <card></card>
-        <v-divider dark vertical></v-divider>
-    <div class="list">
-      <v-container ></v-container>
-    </div>
+    <v-divider dark vertical></v-divider>
+    <tagHeader></tagHeader>
+    <v-divider dark vertical></v-divider>
   </div>
 </template>
 
 <script>
   import Card from './components/card.vue';
   import CategoryHeader from './components/CategoryHeader';
+  import TagHeader from './components/TagHeader';
 
   export default {
     name: 'Home',
     components: {
       'card': Card,
-      'categoryHeader': CategoryHeader
+      'categoryHeader': CategoryHeader,
+      'tagHeader': TagHeader
     },
     created() {
       this.checkSignedIn()
@@ -64,6 +64,7 @@
   .homes {
     display: grid;
     grid-template-columns: 334px auto 408px;
-    grid-template-areas: "category card list";
+    grid-template-areas: "category card list""tag card list";
+    grid-template-rows: 425px auto;
   }
 </style>
