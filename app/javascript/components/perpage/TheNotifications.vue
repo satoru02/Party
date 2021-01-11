@@ -12,7 +12,9 @@
       <v-list class="overflow-y-auto rounded-lg" max-height="400" style="background-color:#343a40;">
         <v-list-item class="tile" v-for="(notification, index) in notifications" :key="index">
           <router-link :to="{ name: 'Notification', params: {id: `${notification.id }`}}">
-            <v-list-item-title style="color:#ced4da">{{ notification.id }}</v-list-item-title>
+            <v-badge dot left inline>
+              <v-list-item-title class="ml-10" style="color:#ced4da">{{ notification.classification }}</v-list-item-title>
+            </v-badge>
           </router-link>
         </v-list-item>
       </v-list>
