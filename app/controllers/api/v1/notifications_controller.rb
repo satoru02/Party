@@ -27,36 +27,20 @@ module Api
           @entry = Entry.find_by(id: @notification.entry_id)
           @post = @entry.post
           @user = @entry.user
-
-          rapping_response = [{
-            "notification" => @notification,
-            "entry" => @entry,
-            "post" => @post,
-            "user" => @user }]
-
-          render json: rapping_response
+          serializer = NotificationSerializer.new(@notification, { params: { entry: @entry, post: @post, user: @user } })
+          render json: serializer.serializable_hash.to_json
 
         elsif @notification.classification === 'entryResponse'
 
           @entry_response = EntryResponse.find_by(id: @notification.entry_response_id)
-
-          rapping_response = [{
-            "notification" => @notification,
-            "entry_response" => @entry_response
-          }]
-
-          render json: rapping_response
+          serializer = NotificationSerializer.new(@notification, { params: { entry_response: @entry_response } })
+          render json: serializer.serializable_hash.to_json
 
         elsif @notification.classification === 'message'
 
           @message = Message.find_by(id: @notification.message_id)
-
-          rapping_response = [{
-            "notification" => @notification,
-            "message" => @message
-          }]
-
-          render json: rapping_response
+          serializer = NotificationSerializer.new(@notification, { params: { message: @message } })
+          render json: serializer.serializable_hash.to_json
 
         end
       end

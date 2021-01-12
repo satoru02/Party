@@ -6,7 +6,8 @@
     <tr id="user-content">
       <th>{{ user.email }}</th>
     </tr>
-    <div v-if="entry.activated == nil">
+    <!-- fix -->
+    <div v-if="entry.activated === nil">
       <v-btn text color="primary" @click="authorizeEntry()">
         Authorize
       </v-btn>

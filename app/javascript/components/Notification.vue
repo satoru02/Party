@@ -46,12 +46,12 @@
           .catch(error => this.Failed(error))
       },
       Successful(response) {
-        this.notification = response.data[0].notification
-        this.message = response.data[0].message
-        this.entry_information = response.data[0].entry
-        this.entry_response_information = response.data[0].entry_response
-        this.requested_post_information = response.data[0].post
-        this.requested_user_information = response.data[0].user
+        this.notification = response.data.data.attributes
+        this.message = response.data.data.attributes.message_info
+        this.entry_information = response.data.data.attributes.entry_info
+        this.entry_response_information = response.data.data.attributes.entry_response_info
+        this.requested_post_information = response.data.data.attributes.post_info
+        this.requested_user_information = response.data.data.attributes.user_info
       },
       Failed(error) {
         this.error = (error.response && error.response.data && error.response.data.error) || ""
