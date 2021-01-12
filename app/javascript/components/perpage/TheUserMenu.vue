@@ -30,7 +30,7 @@
         items: [{
             icon: 'mdi-account-outline',
             title: 'Profile',
-            link: '/users/' + `${this.$store.state.currentUser.id}`
+            link: '/users/' + `${this.$store.state.currentUser.data.attributes.id}`,
           },
           {
             icon: 'mdi-account-multiple-outline',

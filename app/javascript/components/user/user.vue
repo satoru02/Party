@@ -43,7 +43,7 @@
           .catch(error => this.Failed(error))
       },
       Successful(response) {
-        this.user = response.data
+        this.user = response.data.data.attributes
       },
       Failed(error) {
         this.error = (error.response && error.response.data && error.response.data.error) || ""

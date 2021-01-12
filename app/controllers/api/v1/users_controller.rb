@@ -5,20 +5,24 @@ module Api
       before_action :set_user, only: [:posts, :show, :edit, :update]
 
       def me
-        render json: current_user.as_json
+        serializer = UserSerializer.new(current_user)
+        render json: serializer.serializable_hash.to_json
       end
 
       def index
         @users = User.all
-        render json: @users
+        serializer = UserSerializer.new(@users)
+        render json: serializer.serializable_hash.to_json
       end
 
       def show
-        render json: @user
+        serializer = UserSerializer.new(@user)
+        render json: serializer.serializable_hash.to_json
       end
 
       def edit
-        render json: @user
+        serializer = UserSerializer.new(@user)
+        render json: serializer.serializable_hash.to_json
       end
 
       def update
@@ -29,7 +33,8 @@ module Api
       end
 
       def posts
-        render json: @user.posts.as_json
+        serializer = UserSerializer.new(@user)
+        render json: serializer.serializable_hash.to_json
       end
 
       private

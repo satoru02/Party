@@ -21,7 +21,7 @@
                 <v-row align="center" justify="end">
                   <span class="subheading mr-2 mt-5" style="color:white">{{ post.attributes.date }}</span>
                 </v-row>
-                <v-btn v-if="$store.state.currentUser.id !== post.attributes.user_id" text color="primary" @click="entryRequest(post.attributes.id, post.attributes.user_id)">
+                <v-btn v-if="$store.state.currentUser.data.attributes.id !== post.attributes.user_id" text color="primary" @click="entryRequest(post.attributes.id, post.attributes.user_id)">
                   Join
                 </v-btn>
               </v-list-item>

@@ -41,7 +41,7 @@
                   <v-row align="center" justify="end">
                     <span class="subheading mr-2 mt-5 color:white" style="font-size: 13px">{{ post.attributes.date }}</span>
                   </v-row>
-                  <v-btn v-if="$store.state.currentUser.id !== post.attributes.user_id && post.attributes.can_request_entry === true" text color="primary"
+                  <v-btn v-if="$store.state.currentUser.data.attributes.id !== post.attributes.user_id && post.attributes.can_request_entry === true" text color="primary"
                     @click="entryRequest(post.attributes.id, post.attributes.user_id), dialog = true">
                     Join
                   </v-btn>
@@ -129,7 +129,7 @@
             params: {
               page: this.page,
               per_page: this.pageSize,
-              user_id: `${this.$store.state.currentUser.id}`,
+              user_id: `${this.$store.state.currentUser.data.attributes.id}`,
             },
           })
           .then((res) => {

@@ -78,7 +78,7 @@
         return state.currentUser.role == "manager"
       },
       currentUserId: state => {
-        return state.currentUser && state.currentUser.id
+        return state.currentUser && state.currentUser.data.attributes.id
       }
     },
     mutations: {

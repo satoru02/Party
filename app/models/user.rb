@@ -1,6 +1,5 @@
 class User < ApplicationRecord
-  include ActiveModel::Serializers::JSON
-
+  # include ActiveModel::Serializers::JSON
   has_and_belongs_to_many :rooms, :uniq => true
   has_many :messages
   has_many :posts
@@ -17,22 +16,22 @@ class User < ApplicationRecord
              uniqueness: { case_sensitive: false }
   validates :password, presence: true, length: { minimum: 6 }, allow_nil:true
 
-  def attributes
-    {
-      id: id,
-      email: email,
-      role: role,
-      about: about,
-      web_url: web_url,
-      name: name,
-      location: location,
-      username: username,
-      youtube_url: youtube_url,
-      facebook_url: facebook_url,
-      instagram_url: instagram_url,
-      filmarks_url: filmarks_url,
-    }
-  end
+  # def attributes
+  #   {
+  #     id: id,
+  #     email: email,
+  #     role: role,
+  #     about: about,
+  #     web_url: web_url,
+  #     name: name,
+  #     location: location,
+  #     username: username,
+  #     youtube_url: youtube_url,
+  #     facebook_url: facebook_url,
+  #     instagram_url: instagram_url,
+  #     filmarks_url: filmarks_url,
+  #   }
+  # end
 
   def authenticated?(attribute, token)
     token = send("#{attribute}_token")

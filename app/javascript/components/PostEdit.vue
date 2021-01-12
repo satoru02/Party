@@ -3,7 +3,7 @@
     <div class="alert alert-danger" v-if="error">{{ error }}</div>
     <div class="form-group">
       <label for="title">Title</label>
-      <input v-model="post.attributes.title" type="title" class="form-controll" id="title">
+      <input v-model="post.title" type="title" class="form-controll" id="title">
     </div>
     <button type="submit" class="btn btn-primary mb-3">Edit</button>
   </form>
@@ -39,7 +39,7 @@
           this.Failed(response)
           return
         }
-        this.post = response.data.data
+        this.post = response.data.data.attributes
       },
       Failed(error) {
         this.error = (error.response && error.response.data && error.response.data.error) || ""

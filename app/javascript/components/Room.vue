@@ -69,7 +69,7 @@
     },
     methods: {
       getMessage() {
-        simpleAxios.get(ROOM_URL + `/` + `${this.$route.params.token}` + `/` + `${this.$store.state.currentUser.id}`)
+        simpleAxios.get(ROOM_URL + `/` + `${this.$route.params.token}` + `/` + `${this.$store.state.currentUser.data.attributes.id}`)
           .then(response => this.Successful(response))
           .catch(error => this.Failed(error))
       },
@@ -86,7 +86,7 @@
           action: 'speak',
           data: {
             message: message,
-            user_id: `${this.$store.state.currentUser.id}`,
+            user_id: `${this.$store.state.currentUser.data.attributes.id}`,
             room_token: `${this.$route.params.token}`,
           }
         })

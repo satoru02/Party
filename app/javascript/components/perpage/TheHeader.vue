@@ -54,7 +54,7 @@
       },
       signOut() {
         secureAxios.defaults.headers.common['X-CSRF-TOKEN'] = this.$store.state.csrf
-        secureAxios.delete(LOGOUT_URL + `/` + `${this.$store.state.currentUser.id}`)
+        secureAxios.delete(LOGOUT_URL + `/` + `${this.$store.state.currentUser.data.attributes.id}`)
           .then(response => {
             this.$store.commit('unsetCurrentUser')
             this.$router.replace('/')

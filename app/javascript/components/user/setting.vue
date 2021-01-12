@@ -70,7 +70,7 @@
         this.getUserInformation()
       },
       getUserInformation() {
-        simpleAxios.get(USER_URL + `${this.$store.state.currentUser.id}` + `/edit`)
+        simpleAxios.get(USER_URL + `${this.$store.state.currentUser.data.attributes.id}` + `/edit`)
           .then(response => this.fetchSuccessful(response))
           .catch(error => this.Failed(error))
       },
@@ -79,14 +79,14 @@
           this.Failed(response)
           return
         }
-        this.user = response.data
+        this.user = response.data.data.attributes
       },
       Failed(error) {
         this.error = (error.response && error.response.data && error.response.data.error) || ""
       },
       saveProfile() {
         secureAxios.defaults.headers.common['X-CSRF-TOKEN'] = this.$store.state.csrf
-        secureAxios.patch(USER_URL + `${this.$store.state.currentUser.id}`, {
+        secureAxios.patch(USER_URL + `${this.$store.state.currentUser.data.attributes.id}`, {
             email: this.user.email,
             about: this.user.about,
             name: this.user.name,

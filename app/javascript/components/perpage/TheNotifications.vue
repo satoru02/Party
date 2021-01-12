@@ -47,9 +47,9 @@
           // 3.Messageを受け取った時
           // 4.Notificationが読まれた時
 
-          if (this.$store.state.currentUser.id === data["target_user_id"] && data["condition"] !== "read") {
+          if (this.$store.state.currentUser.data.attributes.id === data["target_user_id"] && data["condition"] !== "read") {
             this.notifications.push(data)
-          } else if(this.$store.state.currentUser.id === data["target_user_id"] && data["condition"] === "read") {
+          } else if(this.$store.state.currentUser.data.attributes.id === data["target_user_id"] && data["condition"] === "read") {
             this.notifications.pop()
           }
         },
