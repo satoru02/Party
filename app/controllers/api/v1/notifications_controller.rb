@@ -5,7 +5,8 @@ module Api
 
       def index
         @notifications = current_user.notifications
-        render json: @notifications
+        serializer = NotificationSerializer.new(@notifications)
+        render json: serializer.serializable_hash.to_json
       end
 
       def show

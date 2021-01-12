@@ -1,9 +1,9 @@
 <template>
 <div>
   <tbody>
-    <tr v-for="notification in notifications" :key="notification.id">
-      <router-link :to="{ name: 'Notification', params: {id: `${notification.id }`}}">
-        <th>{{ notification.classification }}</th>
+    <tr v-for="notification in notifications" :key="notification.attributes.id">
+      <router-link :to="{ name: 'Notification', params: {id: `${notification.attributes.id }`}}">
+        <th>{{ notification.attributes.classification }}</th>
       </router-link>
     </tr>
   </tbody>
@@ -31,7 +31,7 @@ export default {
       .catch(error => this.Failed(error))
     },
     Successful(response) {
-      this.notifications = response.data
+      this.notifications = response.data.data
     },
     Failed() {
       this.error = (error.response && error.response.data && error.response.data.error) || ""
