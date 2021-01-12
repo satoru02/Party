@@ -27,7 +27,7 @@
         </v-col>
       </v-row>
     </v-container>
-    <infinite-loading spinner="spiral" @infinite="infiniteHandler"></infinite-loading>
+    <!-- <infinite-loading spinner="spiral" @infinite="infiniteHandler"></infinite-loading> -->
   </div>
 </template>
 
@@ -79,29 +79,41 @@
         category_posts: [],
       }
     },
+    created(){
+      this.getCategoryPost()
+    },
     methods: {
-      infiniteHandler($state) {
-        simpleAxios.get(CONTENT_URL + `${this.$route.params.id}`, {
-            params: {
-              page: this.page,
-              per_page: this.pageSize,
-            },
-          })
-          .then(res => setTimeout(() => {
-            if (res.data.length) {
-              this.page += 1;
-              this.category_posts.push(...res.data);
-              $state.loaded();
-            } else {
-              $state.complete();
+      // infiniteHandler($state) {
+      //   simpleAxios.get(CONTENT_URL + `${this.$route.params.id}`, {
+      //       params: {
+      //         page: this.page,
+      //         per_page: this.pageSize,
+      //       },
+      //     })
+      //     .then(res => setTimeout(() => {
+      //       if (res.data.data) {
+      //         this.page += 1;
+      //         this.category_posts.push(...res.data.data.attributes.post_info);
+      //         $state.loaded();
+      //       } else {
+      //         $state.complete();
+      //       }
+      //     }, 1000))
+      //     .catch(error => this.failed(error))
+      // },
+      getCategoryPost() {
+        simpleAxios.get(CONTENT_URL + `${this.$route.params.id}`)
+          .then(res => {
+            if (res.data.data) {
+              this.category_posts.push(...res.data.data.attributes.post_info);
             }
-          }, 1000))
+          })
           .catch(error => this.failed(error))
-      },
-      failed(error) {
-        this.error = (error.response && error.response.data && error.response.data.error) || ""
-        this.$router.replace('/')
       }
+    },
+    failed(error) {
+      this.error = (error.response && error.response.data && error.response.data.error) || ""
+      this.$router.replace('/')
     },
   }
 </script>

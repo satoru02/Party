@@ -6,24 +6,19 @@ module Api
 
       def index
         @categories = Category.all
-        render json: @categories
+        serializer = CategorySerializer.new(@categories)
+        render json: serializer.serializable_hash.to_json
       end
 
       def show
-        @category_posts = @category.posts.pager(page: params[:page], per: params[:per_page])
-        render json: @category_posts.to_json
+        serializer = CategorySerializer.new(@category, { params: { post: @category.posts }})
+        render json: serializer.serializable_hash.to_json
       end
 
       private
 
         def set_category
           @category = Category.find_by(id: params[:id])
-        end
-
-        def response_fields(category)
-          parsed_category = JSON.parse(category)
-          response = parsed_category.except('created_at', 'deleted_at', 'updated_at')
-          JSON.pretty_generate(response)
         end
     end
   end
