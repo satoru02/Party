@@ -7,10 +7,10 @@ module Api
 
       def create
 
-        @room_id = @post.room.id
-        @user_id = params[:user_id]
-        @validated_user_id = RoomsUser.check_duplicate_user(@room_id, @user_id)
-        @rooms_user = RoomsUser.new(user_id: @validated_user_id, room_id: @post.room.id)
+        @room = @post.room
+        @validated_user_id = RoomsUser.check_duplicate_user(@room.id, params[:user_id])
+        @rooms_user = RoomsUser.new(user_id: @validated_user_id, room_id: @room.id)
+
         @answer = check_answer(params[:answer])
         @entry = Entry.find_by(id: params[:entry_id])
 
@@ -25,7 +25,7 @@ module Api
           })
 
           @message = Message.find_by(room_id: @rooms_user.room_id, user_id: @rooms_user.user_id)
-          ActionCable.server.broadcast("room_channel_room1", {
+          ActionCable.server.broadcast("room_channel_#{@room.resource_token}", {
             user: @message.user.username,
             time: @message.created_at
           })
