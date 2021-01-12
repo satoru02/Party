@@ -18,10 +18,11 @@ class RoomChannel < ApplicationCable::Channel
     end
 
     # 1.Inside room broadcast
-    ActionCable.server.broadcast("room_channel_#{params[:room]}", {
+    ActionCable.server.broadcast("room_channel_#{data["room_token"]}", {
       message: message.content,
       user: message.user.username,
-      time: message.created_at})
+      time: message.created_at,
+      token: data["room_token"] })
 
     # 2.Header notification broadcst
     ActionCable.server.broadcast("Notifications", {

@@ -52,7 +52,9 @@
         connected() {},
         rejected() {},
         received(data) {
-          this.realtime_messages.push(data)
+          if (data.token === `${this.$route.params.token}`){
+            this.realtime_messages.push(data)
+          }
         },
         disconnected() {}
       }
@@ -60,7 +62,7 @@
     mounted() {
       this.$cable.subscribe({
         channel: 'RoomChannel',
-        room: "room1"
+        room: `${this.$route.params.token}`
       })
     },
     created() {
@@ -91,9 +93,6 @@
           }
         })
         this.message = ''
-      },
-      insertMessage(data) {
-        this.message = data['message']
       },
       checkSignedIn() {
         if (!this.$store.state.signedIn) {
