@@ -74,8 +74,8 @@
           .catch(error => this.Failed(error))
       },
       Successful(response) {
-        this.messages = response.data[0].messages
-        this.room_users = response.data[0].members
+        this.messages = response.data.data.attributes.message_info
+        this.room_users = response.data.data.attributes.user_info
       },
       Failed(error) {
         this.error = (error.response && error.response.data && error.response.data.error) || ""

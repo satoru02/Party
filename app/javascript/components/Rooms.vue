@@ -2,9 +2,8 @@
   <div>
     <tbody>
       <tr v-for="room in rooms" :key="room.id">
-        <router-link :to="{ name: 'Room', params: {token: `${room.resource_token}`} }">
-          <th>{{ room.id }}</th>
-          <!-- <th>{{ room.name }}</th> -->
+        <router-link :to="{ name: 'Room', params: {token: `${room.attributes.resource_token}`} }">
+          <th>{{ room.attributes.id }}</th>
         </router-link>
       </tr>
     </tbody>
@@ -34,7 +33,7 @@
           .catch(error => this.Failed(error))
       },
       Successful(response) {
-        this.rooms = response.data
+        this.rooms = response.data.data
       },
       Failed(error) {
         console.log(error)
