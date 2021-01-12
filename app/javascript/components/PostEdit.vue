@@ -3,10 +3,9 @@
     <div class="alert alert-danger" v-if="error">{{ error }}</div>
     <div class="form-group">
       <label for="title">Title</label>
-      <input v-model="post.title" type="title" class="form-controll" id="title">
+      <input v-model="post.attributes.title" type="title" class="form-controll" id="title">
     </div>
     <button type="submit" class="btn btn-primary mb-3">Edit</button>
-    <!-- <button type="submit" class="btn btn-primary mb-3">Destroy</button> -->
   </form>
 </template>
 
@@ -40,7 +39,7 @@
           this.Failed(response)
           return
         }
-        this.post = response.data
+        this.post = response.data.data
       },
       Failed(error) {
         this.error = (error.response && error.response.data && error.response.data.error) || ""
@@ -49,7 +48,7 @@
       updatePost() {
         secureAxios.defaults.headers.common['X-CSRF-TOKEN'] = this.$store.state.csrf
         secureAxios.patch(POST_EDIT_URL + `${this.$route.params.id}`, {
-            title: this.post.title
+            title: this.post.attributes.title
           })
           .then(response => this.updateSuccessdul(response))
           .catch(error => this.Failed(error))

@@ -1,7 +1,7 @@
 module FilterHelper
 
   def filter_posts(query)
-    @filtered_posts = Post.where("title like ? OR url like ?", "%#{query}%", "%#{query}%" )
+    @filtered_posts = Post.where("title like ?", "%#{query}%")
   end
 
   # def filter_users(query)

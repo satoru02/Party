@@ -11,7 +11,8 @@ module Api
       end
 
       def show
-        render json: response_fields(@post.to_json)
+        serializer = PostSerializer.new(@post)
+        render json: serializer.serializable_hash.to_json
       end
 
       def create
@@ -25,7 +26,8 @@ module Api
 
       def edit
         if @post.user_id === current_user.id
-          render json: response_fields(@post.to_json)
+          serializer = PostSerializer.new(@post)
+          render json: serializer.serializable_hash.to_json
         end
       end
 
@@ -39,7 +41,8 @@ module Api
       def search
         filter_posts(params[:q])
         @pager_filtered_posts = @filtered_posts.pager(page: params[:page], per: params[:per_page])
-        render json: @pager_filtered_posts
+        serializer = PostSerializer.new(@pager_filtered_posts)
+        render json: serializer.serializable_hash.to_json
       end
 
       private
@@ -51,17 +54,6 @@ module Api
         def post_params
           params.require(:post).permit(:title, :user_id, :category_id)
         end
-
-        def response_fields(post)
-          post_parse = JSON.parse(post)
-          response = post_parse.except('created_at', 'deleted_at', 'updated_at')
-          JSON.pretty_generate(response)
-        end
-
-        # def rapping_response(user, post)
-        #   # rapping_response = { "Filtered_Users" => user, "Filtered_Posts" => post }
-        #   # rapping_response = { "Filtered_Data" => user, post  }
-        # end
     end
   end
 end
