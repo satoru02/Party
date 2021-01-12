@@ -6,7 +6,8 @@ module Api
 
       def index
         @posts = Post.pager(page: params[:page], per: params[:per_page])
-        render json: @posts
+        serializer = PostSerializer.new(@posts, { params: { user_id: params[:user_id] }})
+        render json: serializer.serializable_hash.to_json
       end
 
       def show

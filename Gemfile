@@ -13,7 +13,6 @@ gem 'puma', '~> 4.1'
 gem 'pundit'
 gem 'rack-attack'
 gem 'rails', '~> 6.0.3', '>= 6.0.3.4'
-gem 'ransack'
 gem 'refile', require: 'refile/rails'
 gem 'rspec', '~> 3.10'
 gem 'sass-rails', '>= 6'
@@ -29,6 +28,7 @@ gem 'jwt_sessions'
 gem 'bcrypt'
 gem 'jwt'
 gem 'ransack'
+gem 'jsonapi-serializer'
 
 group :development, :test do
   gem 'byebug', platforms: %i[mri mingw x64_mingw]
