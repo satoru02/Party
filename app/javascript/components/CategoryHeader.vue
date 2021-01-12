@@ -5,7 +5,9 @@
         <h2 class="mb-5 ml-8 mt-n3">Category</h2>
         <v-col v-for="(category, index) in categories" :key="index" class="mb-4 ml-8" cols="12" sm="16">
           <router-link :to="{name: 'Category', params: {id: `${ category.id }`}}">
-            <div class="category_item" style="color:#d3d3d3; font-size: 15px;">{{ category.attributes.name }}</div>
+            <!-- <v-btn text min-width=150 style="background-color:#11151c;"> -->
+              <div class="category_item" style="color:#d3d3d3; font-size: 15px;">{{ category.attributes.name }}</div>
+            <!-- </v-btn> -->
           </router-link>
         </v-col>
       </v-row>
