@@ -39,10 +39,11 @@
   import Rooms from './components/Rooms.vue';
   import Notification from './components/Notification';
   import Notifications from './components/Notifications';
-  import '@mdi/font/css/materialdesignicons.css';
   import ActionCableVue from 'actioncable-vue';
   import Post from './components/post';
   import InfoFooter from './components/perpage/TheFooter';
+  import Tag from './components/Tag';
+  import '@mdi/font/css/materialdesignicons.css';
 
   const actionCableVueOptions = {
     debug: true,
@@ -202,6 +203,11 @@
         path: "/notification/:id",
         name: "Notification",
         component: Notification
+      },
+      {
+        path: "/tag/:id",
+        name: "Tag",
+        component: Tag
       }
     ]
   })

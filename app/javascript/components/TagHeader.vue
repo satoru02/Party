@@ -4,7 +4,7 @@
       <v-row no-gutters>
         <h2 class="mb-5 ml-8 mt-n3">Trend Tags</h2>
         <v-col v-for="(tag, index) in tags" :key="index" class="mb-4 ml-8" cols="12" sm="16">
-          <router-link :to="{name: 'tag', params: {id: `${ tag.id }`}}">
+          <router-link :to="{name: 'Tag', params: {id: `${ tag.attributes.id }`}}">
             <div class="tag_item" style="color:#d3d3d3; font-size: 15px;">#{{ tag.attributes.name }}</div>
           </router-link>
         </v-col>
