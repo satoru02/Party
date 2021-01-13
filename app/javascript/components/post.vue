@@ -3,9 +3,21 @@
     <div class="alert alert-danger" v-if="error">{{ error }}</div>
     <div class="form-group">
       <label for="title">Title</label>
-      <input v-model="title" type="title" class="form-controll" id="title">
+      <input v-model="title" type="text" class="form-controll" id="title">
     </div>
-    <v-btn text color="primary" @click="postUrl(title)">
+    <div class="form-group">
+      <label for="content">Content</label>
+      <input v-model="content" type="text" class="form-controll" id="content">
+    </div>
+    <div class="form-group">
+      <label for="category">Category</label>
+      <input v-model="category" type="text" class="form-controll" id="category">
+    </div>
+    <div class="form-group">
+      <label for="tag">Tags</label>
+      <input v-model="tag_list" type="text" class="form-controll" id="tag">
+    </div>
+    <v-btn text color="primary" @click="postUrl(title, content, tag_list)">
       submit
     </v-btn>
   </form>
@@ -22,18 +34,22 @@
     data() {
       return {
         title: '',
-        category: ''
+        content: '',
+        category: '',
+        tag_list: ''
       }
     },
     methods: {
       setError(error, text) {
         this.error = (error.response && error.response.data && error.response.data.error) || text
       },
-      postUrl(title) {
+      postUrl(title, content, tag_list) {
         secureAxios.defaults.headers.common['X-CSRF-TOKEN'] = this.$store.state.csrf
         secureAxios.post(POST_URL, {
             title: title,
             category_id: 1,
+            content: content,
+            tag_list: tag_list
           })
           .then(response => {
             this.$router.replace('/')
