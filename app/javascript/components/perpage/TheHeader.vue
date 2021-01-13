@@ -9,7 +9,7 @@
         </v-col>
         <v-spacer></v-spacer>
         <v-col cols="6">
-          <v-text-field dark class="mt-7 ml-9 mr-n14" placeholder="Search" filled rounded dense></v-text-field>
+          <v-text-field append-icon v-model="query" @keydown.enter="searchPost(query)" dark class="mt-7 ml-9 mr-n14" placeholder="Search" filled rounded dense></v-text-field>
         </v-col>
         <v-spacer></v-spacer>
         <v-col class="pa-1 mt-8 mr-n9">
@@ -48,7 +48,15 @@
       'postButton': PostButton,
       'userMenu': UserMenu,
     },
+    data() {
+      return {
+        query: ''
+      }
+    },
     methods: {
+      searchPost(query){
+        this.$router.push({name: "Search", params: { query: query } }).catch(err => {})
+      },
       setError(error, text) {
         this.error = (error.response && error.response.data && error.response.data.error) || text
       },

@@ -2,8 +2,8 @@
   <div>
     <v-container class="mt-8">
       <v-row no-gutters>
-        <v-col v-for="post in posts" :key="post.attributes.id" :title="post.attributes.title" :url="post.attributes.url" :time="post.attributes.date"
-          :user_id="post.attributes.user_id" class="mb-9 pr-7" cols="12" sm="4">
+        <v-col v-for="post in posts" :key="post.attributes.id" :title="post.attributes.title" :url="post.attributes.url"
+          :time="post.attributes.date" :user_id="post.attributes.user_id" class="mb-9 pr-7" cols="12" sm="4">
           <v-card class="rounded-xl" color="#010101" max-width="400">
             <v-card-title>
             </v-card-title>
@@ -27,7 +27,6 @@
         </v-col>
       </v-row>
     </v-container>
-    <infinite-loading spinner="spiral" @infinite="infiniteHandler"></infinite-loading>
   </div>
 </template>
 
@@ -41,7 +40,7 @@
   const CONTENT_URL = '/api/v1/posts/search'
 
   export default {
-    name: 'Category-Posts',
+    name: 'FilterPosts',
     components: {
       'avatar': Avatar,
       'infinite-loading': InfiniteLoading,
@@ -79,30 +78,31 @@
         posts: [],
       }
     },
+    watch: {
+      $route(to, from) {
+        this.getFilterPost()
+      }
+    },
+    created() {
+      this.getFilterPost()
+    },
     methods: {
-      infiniteHandler($state) {
+      getFilterPost() {
         simpleAxios.get(CONTENT_URL, {
-            params: {
-              page: this.page,
-              per_page: this.pageSize,
-              q: this.$route.params.query,
-            },
-          })
-          .then(res => setTimeout(() => {
-            if (res.data.data.length) {
-              this.page += 1;
+          params: {
+            q: this.$route.params.query,
+          }})
+          .then(res => {
+            if (res.data.data) {
               this.posts.push(...res.data.data);
-              $state.loaded();
-            } else {
-              $state.complete();
             }
-          }, 1000))
+          })
           .catch(error => this.failed(error))
       },
       failed(error) {
         this.error = (error.response && error.response.data && error.response.data.error) || ""
         this.$router.replace('/')
       }
-    },
+    }
   }
 </script>
