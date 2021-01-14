@@ -1,6 +1,7 @@
 <template>
   <div>
     <div id="member" v-for="member in room_users" :key="member.id" :member="member">
+       <appearance></appearance>
       {{ member.email }}
     </div>
     <tbody>
@@ -30,13 +31,15 @@
   } from '../backend/axios.js';
   import consumer from '../channels/consumer.js';
   import message from '../components/Message';
+  import Appearance from '../components/Appearance';
 
   const ROOM_URL = '/api/v1/rooms'
 
   export default {
     name: "Room",
     components: {
-      'message': message
+      'message': message,
+      'appearance': Appearance
     },
     data() {
       return {
