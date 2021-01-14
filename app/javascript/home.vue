@@ -40,24 +40,19 @@
 
   p {
     color: white;
-    /* font-family: 'Open Sans', sans-serif; */
     font-family: 'Roboto', sans-serif;
-
     font-size: 20;
     font-weight: bold;
   }
 
   a {
-    /* font-family: 'Open Sans', sans-serif; */
     font-family: 'Roboto', sans-serif;
     font-weight: bold;
     text-decoration: none;
   }
 
   span {
-    /* font-family: 'Open Sans', sans-serif; */
     font-family: 'Roboto', sans-serif;
-
     font-size: 10;
   }
 

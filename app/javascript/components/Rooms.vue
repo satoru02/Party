@@ -1,12 +1,40 @@
 <template>
-  <div>
-    <tbody>
-      <tr v-for="room in rooms" :key="room.id">
-        <router-link :to="{ name: 'Room', params: {token: `${room.attributes.resource_token}`} }">
-          <th>{{ room.attributes.id }}</th>
-        </router-link>
-      </tr>
-    </tbody>
+  <div class="rooms">
+    <div class="group">
+      <v-list color="#161a1d">
+        <v-list-item class="tile" v-for="room in rooms" :key="room.id">
+          <v-list-item-icon>
+            <avatar class="mt-n1"></avatar>
+          </v-list-item-icon>
+          <v-list-item-content class="ml-n9">
+            <router-link :to="{ name: 'Room', params: {token: `${room.attributes.resource_token}`} }">
+              <v-row no-gutters>
+                <v-col class="d-flex" md="9" offset-md="n1">
+                  <v-list-item-subtitle>{{ room.attributes.name }}</v-list-item-subtitle>
+                </v-col>
+                <v-col class="d-flex mb-n6 mr-n8" md="1" offset-md="2">
+                  <p class="room_lasttime">12m</p>
+                </v-col>
+              </v-row>
+              <v-row no-gutters>
+                <v-col class="d-flex" md="9" offset-md="n1">
+                  <p class="room_message">片目のダースが映画評論家の町山智浩さんを迎えて、議場乱入事件とその後のアメリカを現地からリポートしてもらいます！</p>
+                </v-col>
+                <v-col class="d-flex mt-7" md="1" offset-md="2">
+                  <v-badge dot left inline color="#2176ff"></v-badge>
+                </v-col>
+              </v-row>
+            </router-link>
+          </v-list-item-content>
+        </v-list-item>
+      </v-list>
+    </div>
+    <!-- <v-divider vertical></v-divider> -->
+    <div class="room">
+    </div>
+    <!-- <v-divider vertical></v-divider> -->
+    <div class="host">
+    </div>
   </div>
 </template>
 
@@ -14,10 +42,15 @@
   import {
     simpleAxios
   } from '../backend/axios';
+  import Avatar from '../components/perpage/TheAvatar';
+
   const ROOMS_URL = `/api/v1/rooms`;
 
   export default {
     name: "Rooms",
+    components: {
+      'avatar': Avatar
+    },
     data() {
       return {
         rooms: []
@@ -42,3 +75,32 @@
     }
   }
 </script>
+
+<style>
+  .rooms {
+    display: grid;
+    grid-template-columns: 364px auto 372px;
+    grid-template-areas: "group room host";
+  }
+
+  .room_message {
+    font-size: 11px;
+    color: gray;
+    margin-top: 15px;
+  }
+
+  .room_lasttime {
+    font-size: 11px;
+    color: gray;
+    margin-top: 4px;
+  }
+
+  .tile {
+    margin: 6px;
+    border-radius: 7px;
+  }
+
+  .tile:hover {
+    background: #212529;
+  }
+</style>
