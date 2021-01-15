@@ -19,8 +19,9 @@ class RoomChannel < ApplicationCable::Channel
 
     # 1.Inside room broadcast
     ActionCable.server.broadcast("room_channel_#{data["room_token"]}", {
-      message: message.content,
+      content: message.content,
       user: message.user.username,
+      user_id: message.user.id,
       time: message.created_at,
       token: data["room_token"] })
 
