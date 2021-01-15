@@ -5,7 +5,7 @@ class User < ApplicationRecord
   has_many :entries
   has_many :entry_responses
   has_many :notifications
-
+  mount_uploader :avatar, AvatarUploader
   has_secure_password
   enum role: %i[user manager admin].freeze
   before_save :downcase_email
