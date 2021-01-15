@@ -40,7 +40,7 @@ module Api
       private
 
         def user_params
-          params.require(:user).permit(:email, :about, :web_url, :name, :username, :youtube_url, :facebook_url, :instagram_url, :filmarks_url, :location)
+          params.require(:user).permit(:email, :about, :web_url, :name, :username, :youtube_url, :facebook_url, :instagram_url, :filmarks_url, :location, :avatar)
         end
 
         def set_user
