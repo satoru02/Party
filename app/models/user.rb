@@ -1,4 +1,6 @@
 class User < ApplicationRecord
+  include Rails.application.routes.url_helpers
+
   has_and_belongs_to_many :rooms, :uniq => true
   has_many :messages
   has_many :posts
@@ -7,6 +9,7 @@ class User < ApplicationRecord
   has_many :notifications
   has_one_attached :avatar
   has_secure_password
+
   enum role: %i[user manager admin].freeze
   before_save :downcase_email
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
@@ -15,11 +18,6 @@ class User < ApplicationRecord
              uniqueness: { case_sensitive: false }
   validates :password, presence: true, length: { minimum: 6 }, allow_nil:true
   attr_accessor :online_status
-
-  def check_online
-    self.online_status = true
-    ActionCable.server.broadcast("AppearanceChannel", { event: 'appear', user_id: self.id, status: self.online_status})
-  end
 
   def authenticated?(attribute, token)
     token = send("#{attribute}_token")
@@ -53,6 +51,15 @@ class User < ApplicationRecord
   def clear_password_token!
     self.reset_password_token = nil
     self.reset_password_token_expires_at = nil
+  end
+
+  def check_online
+    self.online_status = true
+    ActionCable.server.broadcast("AppearanceChannel", { event: 'appear', user_id: self.id, status: self.online_status})
+  end
+
+  def avatar_url(object)
+    rails_representation_url(object, only_path: true)
   end
 
   private
