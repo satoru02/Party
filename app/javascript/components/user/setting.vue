@@ -1,7 +1,7 @@
 <template>
-  <form class="form-signup" @submit.prevent="saveProfile">
+  <form enctype="multipart/form-data" class="form-signup" @submit.prevent="saveProfile">
     <!-- <div class="alert alert-danger" v-if="error">{{ error }}</div> -->
-    <div class="form-group">
+    <!-- <div class="form-group">
       <label for="email">Email address</label>
       <input v-model="user.email" type="email" class="form-controll" id="email">
     </div>
@@ -40,9 +40,13 @@
     <div class="form-group">
       <label for="filmarks_url">filmarks_url</label>
       <input v-model="user.filmarks_url" type="filmarks_url" class="form-controll" id="filmarks_url">
-    </div>
+    </div> -->
+    <p>Picture :</p><input type="file" ref="inputFile" @change="uploadFile()">
 
-    <div class="example-avatar">
+    <v-img src="http://localhost:5000/rails/active_storage/blobs/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBDQT09IiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--3c9feaa3986b30d1a78535c5f2ffdaef9cd6a9a8/40885517.png"
+      class="rounded-circle" />
+
+    <!-- <div class="example-avatar">
       <div v-show="$refs.upload && $refs.upload.dropActive" class="drop-active">
         <h3>Drop files to upload</h3>
       </div>
@@ -78,7 +82,8 @@
           <button type="submit" class="btn btn-primary" @click.prevent="editSave">Save</button>
         </div>
       </div>
-    </div>
+    </div> -->
+
     <button type="submit" class="btn btn-primary mb-3">Save profile</button>
   </form>
 </template>
@@ -89,8 +94,8 @@
     secureAxios
   } from '../../backend/axios.js'
 
-  import FileUpload from 'vue-upload-component';
-  import Cropper from 'cropperjs';
+  // import FileUpload from 'vue-upload-component';
+  // import Cropper from 'cropperjs';
 
   const USER_URL = '/api/v1/users/'
 
@@ -99,39 +104,40 @@
     data() {
       return {
         user: '',
-        files: [],
-        avatar: '',
-        edit: false,
-        cropper: false,
+        picture: null
+        // files: [],
+        // avatar: files,
+        // edit: false,
+        // cropper: false,
       }
     },
-    components: {
-      'file-upload': FileUpload
-    },
+    // components: {
+    //   'file-upload': FileUpload
+    // },
     created() {
       this.checkSignedIn()
     },
-    watch: {
-      edit(value) {
-        if (value) {
-          this.$nextTick(function () {
-            if (!this.$refs.editImage) {
-              return
-            }
-            let cropper = new Cropper(this.$refs.editImage, {
-              aspectRatio: 1 / 1,
-              viewMode: 1,
-            })
-            this.cropper = cropper
-          })
-        } else {
-          if (this.cropper) {
-            this.cropper.destroy()
-            this.cropper = false
-          }
-        }
-      }
-    },
+    // watch: {
+    //   edit(value) {
+    //     if (value) {
+    //       this.$nextTick(function () {
+    //         if (!this.$refs.editImage) {
+    //           return
+    //         }
+    //         let cropper = new Cropper(this.$refs.editImage, {
+    //           aspectRatio: 1 / 1,
+    //           viewMode: 1,
+    //         })
+    //         this.cropper = cropper
+    //       })
+    //     } else {
+    //       if (this.cropper) {
+    //         this.cropper.destroy()
+    //         this.cropper = false
+    //       }
+    //     }
+    //   }
+    // },
     methods: {
       checkSignedIn() {
         if (this.$store.state.checkSignedIn) {
@@ -153,19 +159,27 @@
       },
       saveProfile() {
         secureAxios.defaults.headers.common['X-CSRF-TOKEN'] = this.$store.state.csrf
-        secureAxios.patch(USER_URL + `${this.$store.state.currentUser.data.attributes.id}`, {
-            email: this.user.email,
-            about: this.user.about,
-            name: this.user.name,
-            username: this.user.username,
-            location: this.user.location,
-            web_url: this.user.web_url,
-            youtube_url: this.user.youtube_url,
-            facebook_url: this.user.facebook_url,
-            instagram_url: this.user.instagram_url,
-            filmarks_url: this.user.filmarks_url,
-            avatar: this.avatar
-          })
+        const params = {
+          email: this.user.email,
+          about: this.user.about,
+          name: this.user.name,
+          username: this.user.username,
+          location: this.user.location,
+          web_url: this.user.web_url,
+          youtube_url: this.user.youtube_url,
+          facebook_url: this.user.facebook_url,
+          instagram_url: this.user.instagram_url,
+          filmarks_url: this.user.filmarks_url,
+          avatar: this.picture
+        }
+
+        let formData = new FormData()
+
+        Object.entries(params).forEach(
+          ([key, value]) => formData.append(key, value)
+        )
+
+        secureAxios.patch(USER_URL + `${this.$store.state.currentUser.data.attributes.id}`, formData)
           .then(response => this.updateSuccessdul(response))
           .catch(error => this.Failed(error))
       },
@@ -179,54 +193,56 @@
         }
         this.$router.replace('/setting')
       },
-      editSave() {
-        this.edit = false
-        let oldFile = this.files[0]
-        this.avatar = oldFile.url
-        let binStr = atob(this.cropper.getCroppedCanvas().toDataURL(oldFile.type).split(',')[1])
-        let arr = new Uint8Array(binStr.length)
-        for (let i = 0; i < binStr.length; i++) {
-          arr[i] = binStr.charCodeAt(i)
-        }
-        let file = new File([arr], oldFile.name, {
-          type: oldFile.type
-        })
+      uploadFile() {
+        this.picture = this.$refs.inputFile.files[0];
+      },
+      // editSave() {
+      //   this.edit = false
+      //   let oldFile = this.files[0]
+      //   let binStr = atob(this.cropper.getCroppedCanvas().toDataURL(oldFile.type).split(',')[1])
+      //   let arr = new Uint8Array(binStr.length)
+      //   for (let i = 0; i < binStr.length; i++) {
+      //     arr[i] = binStr.charCodeAt(i)
+      //   }
+      //   let file = new File([arr], oldFile.name, {
+      //     type: oldFile.type
+      //   })
 
-        this.$refs.upload.update(oldFile.id, {
-          file,
-          type: file.type,
-          size: file.size,
-          active: true,
-        })
-      },
-      inputFile(newFile, oldFile, pervent) {
-        if (newFile && !oldFile) {
-          this.$nextTick(function () {
-            this.edit = true
-          })
-        }
-        if (!newFile && oldFile) {
-          this.edit = false
-        }
-      },
-      inputFilter(newFile, oldFile, prevent) {
-        if (newFile && !oldFile) {
-          if (!/\.(gif|jpg|jpeg|png|webp)$/i.test(newFile.name)) {
-            this.alert('Your choice is not a picture')
-            return prevent()
-          }
-        }
-        if (newFile && (!oldFile || newFile.file !== oldFile.file)) {
-          newFile.url = ''
-          let URL = window.URL || window.webkitURL
-          if (URL && URL.createObjectURL) {
-            newFile.url = URL.createObjectURL(newFile.file)
-          }
-        }
-      },
-      alert(message) {
-        alert(message)
-      },
+      //   this.$refs.upload.update(oldFile.id, {
+      //     file,
+      //     type: file.type,
+      //     size: file.size,
+      //     active: true,
+      //   })
+      // },
+      // inputFile(newFile, oldFile, pervent) {
+      //   if (newFile && !oldFile) {
+      //     this.$nextTick(function () {
+      //       this.edit = true
+      //     })
+      //   }
+      //   if (!newFile && oldFile) {
+      //     this.edit = false
+      //   }
+      // },
+      // inputFilter(newFile, oldFile, prevent) {
+      //   if (newFile && !oldFile) {
+      //     if (!/\.(gif|jpg|jpeg|png|webp)$/i.test(newFile.name)) {
+      //       this.alert('Your choice is not a picture')
+      //       return prevent()
+      //     }
+      //   }
+      //   if (newFile && (!oldFile || newFile.file !== oldFile.file)) {
+      //     newFile.url = ''
+      //     let URL = window.URL || window.webkitURL
+      //     if (URL && URL.createObjectURL) {
+      //       newFile.url = URL.createObjectURL(newFile.file)
+      //     }
+      //   }
+      // },
+      // alert(message) {
+      //   alert(message)
+      // },
     }
   }
 </script>
@@ -239,7 +255,7 @@
     font-weight: bold;
   }
 
-  .example-avatar .avatar-upload .rounded-circle {
+  /* .example-avatar .avatar-upload .rounded-circle {
     width: 200px;
     height: 200px;
   }
@@ -276,5 +292,5 @@
     font-size: 40px;
     color: #fff;
     padding: 0;
-  }
+  } */
 </style>

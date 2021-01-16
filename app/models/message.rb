@@ -1,6 +1,6 @@
 class Message < ApplicationRecord
-  belongs_to :room
-  belongs_to :user
+  belongs_to :room, dependent: :destroy
+  belongs_to :user, dependent: :destroy
   has_one :notification
   after_create :create_message_notification
 

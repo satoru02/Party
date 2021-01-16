@@ -26,7 +26,8 @@ module Api
       end
 
       def update
-        @user.update_attributes(user_params)
+        @user.avatar.attach(params[:avatar])
+        # @user.update_attributes(user_params)
       end
 
       def destroy
