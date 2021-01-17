@@ -7,7 +7,8 @@
             <template v-for="word in messages" :word="word">
               <div :key="word.id"
                 :class="[ word.user_id === $store.state.currentUser.data.attributes.id ? 'd-flex flex-row-reverse': 'd-flex flex-row']">
-                <avatar class="mt-n2" v-if="word.user_id !== $store.state.currentUser.data.attributes.id"></avatar>
+                <avatar class="mt-n2" v-if="word.user_id !== $store.state.currentUser.data.attributes.id"
+                  :avatar_url="checkAvatar(word.user_id)"></avatar>
                 <v-menu offset-y>
                   <template v-slot:activator="{ on }">
                     <v-hover v-slot:default="{ hover }">
@@ -117,7 +118,7 @@
       Successful(response) {
         this.messages = response.data.data.attributes.message_info
         this.room_users = response.data.data.attributes.user_info
-        this.avatar_info = response.data.data.attributes.avatar_info
+        this.avatar = response.data.data.attributes.avatar_info
       },
       Failed(error) {
         this.error = (error.response && error.response.data && error.response.data.error) || ""
@@ -137,6 +138,13 @@
       checkSignedIn() {
         if (!this.$store.state.signedIn) {
           this.$router.replace('/login')
+        }
+      },
+      checkAvatar(user_id) {
+        for (let i = 0; this.avatar.length > i; i++) {
+          if (this.avatar[i]["user_id"] === user_id) {
+            return this.avatar[i].avatar
+          }
         }
       }
     }

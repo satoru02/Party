@@ -11,7 +11,7 @@ class RoomSerializer
     if params[:avatar]
       params[:avatar].each do |user|
         ActiveStorage::Current.host = "http://localhost:5000"
-        @avatar.push([user_id: user.id, avatar: user.avatar.blob.service_url])
+        @avatar.push(user_id: user.id, avatar: user.avatar.blob.service_url)
       end
       @avatar
     end
