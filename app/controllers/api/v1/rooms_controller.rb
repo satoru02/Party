@@ -13,7 +13,7 @@ module Api
         @room = Room.find_by(resource_token: params[:token])
         @user = User.find_by(id: params[:user_id])
         if @room.authenticated?(params[:token]) && @room.users.include?(@user)
-          serializer = RoomSerializer.new(@room, { params: { messages: @room.messages, users: @room.users} })
+          serializer = RoomSerializer.new(@room, { params: { messages: @room.messages, users: @room.users, avatar: @room.users} })
           render json: serializer.serializable_hash.to_json
         end
       end

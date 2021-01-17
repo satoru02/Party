@@ -1,8 +1,5 @@
 <template>
   <v-container class="fill-height pa-1" style="margin-left: 300px;">
-    <!-- <div id="member" v-for="member in room_users" :key="member.id" :member="member">
-        {{ member.email }}
-      </div> -->
     <v-col cols="2" style="max-width: 70%;" class="flex-grow-1 flex-shrink-0 mt-7">
       <v-responsive class="overflow-y-auto fill-height" height="550">
         <v-card color="#161a1d" flat class="fill-height">
@@ -85,8 +82,7 @@
         realtime_messages: [],
         error: '',
         room_users: [],
-        // 相手のアイコン
-        avatar: this.$store.state.currentUser.data.attributes.avatar_url
+        avatar: []
       }
     },
     channels: {
@@ -121,6 +117,7 @@
       Successful(response) {
         this.messages = response.data.data.attributes.message_info
         this.room_users = response.data.data.attributes.user_info
+        this.avatar_info = response.data.data.attributes.avatar_info
       },
       Failed(error) {
         this.error = (error.response && error.response.data && error.response.data.error) || ""
