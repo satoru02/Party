@@ -6,7 +6,7 @@
 </template>
 
 <script>
-import URLloader from 'url-loader';
+
 export default {
   name: 'avatar',
   props:{

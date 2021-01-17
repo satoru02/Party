@@ -85,6 +85,8 @@
         realtime_messages: [],
         error: '',
         room_users: [],
+        // 相手のアイコン
+        avatar: this.$store.state.currentUser.data.attributes.avatar_url
       }
     },
     channels: {

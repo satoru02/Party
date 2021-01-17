@@ -3,7 +3,7 @@
     <v-menu open-on-hover offset-y left nudge-bottom="2" nudge-left=62 nudge-height=600 nudge-width=130>
       <template v-slot:activator="{ on, attrs }">
         <div v-bind="attrs" v-on="on">
-          <avatar class="mt-9 mr-16"></avatar>
+          <avatar :avatar_url="avatar" class="mt-9 mr-16"></avatar>
         </div>
       </template>
       <v-list class="rounded-s" style="background-color:#343a40;">
@@ -27,6 +27,7 @@
     },
     data() {
       return {
+        avatar: this.$store.state.currentUser.data.attributes.avatar_url,
         items: [{
             icon: 'mdi-account-outline',
             title: 'Profile',
