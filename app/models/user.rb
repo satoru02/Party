@@ -59,7 +59,7 @@ class User < ApplicationRecord
   end
 
   def avatar_url(object)
-    rails_representation_url(object, only_path: true)
+    object.service_url
   end
 
   private

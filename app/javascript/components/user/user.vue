@@ -1,5 +1,6 @@
 <template>
   <div v-bind="user" :key="user.id">
+    <avatar :avatar_url="user.avatar_url"></avatar>
     <p :name="user.name">{{ user.name }}</p>
     <p :username="user.username">{{ user.username }}</p>
     <p :email="user.email">{{ user.email }}</p>
@@ -16,6 +17,7 @@
 
 <script>
   import Log from './log.vue'
+  import Avatar from '../perpage/TheAvatar'
   import {
     simpleAxios,
     secureAxios
@@ -25,7 +27,8 @@
   export default {
     name: 'User',
     components: {
-      'log': Log
+      'log': Log,
+      'avatar': Avatar
     },
     data () {
       return {

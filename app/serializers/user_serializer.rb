@@ -7,7 +7,7 @@ class UserSerializer
   has_many :posts, if: Proc.new { |record| record.posts.any? }
 
   attribute :avatar_url do|object|
-    variant = object.avatar.variant(resize: "100x100")
-    object.avatar_url(variant)
+    variant = object.avatar.variant(resize: "454x454")
+    object.avatar_url(variant.blob)
   end
 end

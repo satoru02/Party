@@ -11,6 +11,7 @@
     "axios": "^0.21.0",
     "cropperjs": "^1.5.9",
     "turbolinks": "^5.2.0",
+    "url-loader": "^4.1.1",
     "vue": "^2.6.12",
     "vue-infinite-loading": "https://github.com/DomcaSuzi/vue-infinite-loading",
     "vue-loader": "^15.9.5",
