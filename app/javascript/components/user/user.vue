@@ -1,6 +1,6 @@
 <template>
   <div v-bind="user" :key="user.id">
-    <avatar :avatar_url="user.avatar_url"></avatar>
+    <avatar :size="27" :avatar_url="user.avatar_url"></avatar>
     <p :name="user.name">{{ user.name }}</p>
     <p :username="user.username">{{ user.username }}</p>
     <p :email="user.email">{{ user.email }}</p>
