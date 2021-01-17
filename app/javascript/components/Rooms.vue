@@ -4,7 +4,7 @@
       <v-list color="#161a1d">
         <v-list-item class="tile" v-for="room in rooms" :key="room.id">
           <v-list-item-icon>
-            <avatar class="mt-n1"></avatar>
+            <avatar :avatar_url="checkAvatar(room.attributes.host_id, room.attributes.avatar_info)" class="mt-n1"></avatar>
           </v-list-item-icon>
           <v-list-item-content class="ml-n9">
             <router-link :to="{ name: 'Room', params: {token: `${room.attributes.resource_token}`} }">
@@ -53,7 +53,7 @@
     },
     data() {
       return {
-        rooms: []
+        rooms: [],
       }
     },
     created() {
@@ -72,6 +72,13 @@
         console.log(error)
         this.error = (error.response && error.response.data && error.response.data.error) || ""
       },
+      checkAvatar(host_id, room_avatar) {
+        for (let i = 0; room_avatar.length > i; i++) {
+          if (room_avatar[i]["user_id"] === host_id) {
+            return room_avatar[i].avatar
+          }
+        }
+      }
     }
   }
 </script>

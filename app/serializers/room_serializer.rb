@@ -6,15 +6,13 @@ class RoomSerializer
   has_many :users
   has_many :messages
 
-  attribute :avatar_info do |message, params|
-    @avatar = []
-    if params[:avatar]
-      params[:avatar].each do |user|
-        ActiveStorage::Current.host = "http://localhost:5000"
-        @avatar.push(user_id: user.id, avatar: user.avatar.blob.service_url)
-      end
-      @avatar
+  attribute :avatar_info do |object|
+    @index_avatar = []
+    object.users.each do |user|
+      ActiveStorage::Current.host = "http://localhost:5000"
+      @index_avatar.push(user_id: user.id, avatar: user.avatar.blob.service_url)
     end
+    @index_avatar
   end
 
   attribute :message_info do |message, params|
