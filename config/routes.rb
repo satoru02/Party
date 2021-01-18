@@ -5,7 +5,6 @@ Rails.application.routes.draw do
   namespace 'api' do
     namespace 'v1' do
       resources :years, only: [:index]
-      resources :categories, only: [:index, :show]
       resources :tags, only: [:index, :show]
       resources :notifications
       resources :entries, only: [:index, :create]
@@ -44,6 +43,12 @@ Rails.application.routes.draw do
       resources :posts do
         collection do
           get :search
+        end
+      end
+
+      resources :categories, only: [:index, :show] do
+        collection do
+          get ':slug', action: :show, as: :show
         end
       end
 

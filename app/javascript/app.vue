@@ -174,7 +174,7 @@
         component: PostEdit
       },
       {
-        path: "/category/:id",
+        path: "/category/:slug",
         name: "Category",
         component: Category
       },

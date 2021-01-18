@@ -18,7 +18,7 @@ module Api
       private
 
         def set_category
-          @category = Category.find_by(id: params[:id])
+          @category = Category.find_by(slug: params[:slug])
         end
     end
   end

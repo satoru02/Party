@@ -102,7 +102,7 @@
       //     .catch(error => this.failed(error))
       // },
       getCategoryPost() {
-        simpleAxios.get(CONTENT_URL + `${this.$route.params.id}`)
+        simpleAxios.get(CONTENT_URL + `${this.$route.params.slug}`)
           .then(res => {
             if (res.data.data) {
               this.category_posts.push(...res.data.data.attributes.post_info);
