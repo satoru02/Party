@@ -29,12 +29,8 @@
         </v-list-item>
       </v-list>
     </div>
-    <!-- <v-divider vertical></v-divider> -->
-    <div class="room">
-    </div>
-    <!-- <v-divider vertical></v-divider> -->
-    <div class="host">
-    </div>
+    <router-view></router-view>
+    <!-- <room></room> -->
   </div>
 </template>
 
@@ -43,13 +39,15 @@
     simpleAxios
   } from '../backend/axios';
   import Avatar from '../components/perpage/TheAvatar';
+  import Room from '../components/Room';
 
   const ROOMS_URL = `/api/v1/rooms`;
 
   export default {
     name: "Rooms",
     components: {
-      'avatar': Avatar
+      'avatar': Avatar,
+      'room': Room
     },
     data() {
       return {
@@ -86,8 +84,14 @@
 <style>
   .rooms {
     display: grid;
-    grid-template-columns: 364px auto 372px;
-    grid-template-areas: "group room host";
+    grid-template-columns: 364px auto;
+    grid-template-areas: "group room";
+  }
+
+  .room {
+    position: sticky;
+    top: 0;
+    height: 100vh;
   }
 
   .room_message {

@@ -42,6 +42,7 @@
   import Post from './components/post';
   import InfoFooter from './components/perpage/TheFooter';
   import Tag from './components/Tag';
+  import Chat from './components/chat';
   import '@mdi/font/css/materialdesignicons.css';
 
   const actionCableVueOptions = {
@@ -82,7 +83,10 @@
       }
     },
     mutations: {
-      setCurrentUser(state, {currentUser, csrf}) {
+      setCurrentUser(state, {
+        currentUser,
+        csrf
+      }) {
         state.currentUser = currentUser
         state.signedIn = true
         state.csrf = csrf
@@ -92,7 +96,7 @@
         state.signedIn = false
         state.csrf = null
       },
-      refresh (state, csrf) {
+      refresh(state, csrf) {
         state.signedIn = true
         state.csrf = csrf
       }
@@ -102,8 +106,7 @@
 
   const router = new VueRouter({
     mode: 'history',
-    routes: [
-      {
+    routes: [{
         path: "/",
         name: "home",
         component: Home
@@ -183,15 +186,43 @@
         name: "Search",
         component: Search
       },
-      {
-        path: "/room/:token",
-        name: "Room",
-        component: Room
-      },
+      // {
+      //   path: "/chat",
+      //   name: "Chat",
+      //   component: Chat,
+      //   children: [{
+      //     path: "rooms",
+      //     name: "Rooms",
+      //     component: Rooms,
+      //     children: [{
+      //         path: ":token",
+      //         name: "Room",
+      //         component: Room
+      //       },
+      //     ]
+      //   },
+      //   ]
+      // },
+      // {
+      //   path: "/rooms",
+      //   name: "Rooms",
+      //   component: Rooms
+      // },
+      // {
+      //   path: "/room/:token",
+      //   name: "Room",
+      //   component: Room
+      // },
       {
         path: "/rooms",
         name: "Rooms",
-        component: Rooms
+        component: Rooms,
+        children: [{
+          path: ":token",
+          name: "Room",
+          component: Room
+        },
+        ]
       },
       {
         path: "/notifications",
