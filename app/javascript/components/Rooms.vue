@@ -30,7 +30,6 @@
       </v-list>
     </div>
     <router-view></router-view>
-    <!-- <room></room> -->
   </div>
 </template>
 

@@ -1,8 +1,8 @@
 <template>
   <div class="room">
-    <v-container class="pa-1">
-      <v-col cols="2" style="max-width: 100%;" class="flex-grow-1 flex-shrink-0 mt-7">
-        <v-responsive class="overflow-y-auto fill-height" height="550">
+      <v-container class="pa-1">
+        <v-col cols="2" style="max-width: 100%;" class="flex-grow-1 flex-shrink-0 mt-4">
+          <v-responsive class="overflow-y-auto" height="550">
           <v-card color="#161a1d" flat class="fill-height">
             <v-card-text class="flex-grow-1 fill-height">
               <template v-for="word in messages" :word="word">
@@ -30,11 +30,11 @@
               </template>
             </v-card-text>
           </v-card>
-        </v-responsive>
-        <v-text-field v-model="message" @click:append-outer="sendMessage(message)" append-outer-icon="mdi-send" rounded
-          class="mt-16" label="type_a_message" type="text" no-details outlined />
-      </v-col>
-    </v-container>
+          </v-responsive>
+          <v-text-field v-model="message" @click:append-outer="sendMessage(message)" append-outer-icon="mdi-send" rounded
+          class="mt-16" label="Type a message" type="text" no-details outlined />
+        </v-col>
+      </v-container>
   </div>
 </template>
 
@@ -72,7 +72,7 @@
     watch: {
       '$route.query': {
         immediate: true,
-        handler(){
+        handler() {
           this.createCable()
           this.getMessage()
         }
