@@ -1,5 +1,5 @@
 <template>
-  <div class="rooms">
+  <div class="rooms" >
     <div class="group">
       <v-list color="#161a1d">
         <v-list-item class="tile" v-for="room in rooms" :key="room.id">
