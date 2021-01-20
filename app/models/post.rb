@@ -1,5 +1,5 @@
 class Post < ApplicationRecord
-  include Scooper
+  include Pager
 
   validates :title, presence: true, length: { maximum: 100 }
   belongs_to :user

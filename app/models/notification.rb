@@ -1,6 +1,6 @@
 class Notification < ApplicationRecord
   belongs_to :user
-  include Scooper
+  include Pager
 
   def checked
     self.update!(confirmation: true)

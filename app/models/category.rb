@@ -1,6 +1,6 @@
 class Category < ApplicationRecord
   include ActiveModel::Serializers::JSON
-  include Scooper
+  include Pager
   extend FriendlyId
 
   friendly_id :name, use: :slugged

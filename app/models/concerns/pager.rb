@@ -1,4 +1,4 @@
-module Scooper
+module Pager
   extend ActiveSupport::Concern
 
   included do
