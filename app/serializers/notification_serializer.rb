@@ -2,7 +2,7 @@ class NotificationSerializer
   include JSONAPI::Serializer
 
   set_type :notification
-  attributes :id, :entry_id, :user_id, :confirmation, :title, :classification, :entry_response_id, :message_id
+  attributes :id, :entry_id, :user_id, :confirmation, :title, :classification, :entry_response_id, :message_id, :created_at
 
   attribute :entry_info do |notification, params|
     params[:entry]
