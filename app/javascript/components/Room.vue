@@ -1,40 +1,25 @@
 <template>
   <div class="room">
-      <v-container class="pa-1">
-        <v-col cols="2" style="max-width: 100%;" class="flex-grow-1 flex-shrink-0 mt-4">
-          <v-responsive class="overflow-y-auto" height="550">
-          <v-card color="#161a1d" flat class="fill-height">
-            <v-card-text class="flex-grow-1 fill-height">
-              <template v-for="word in messages" :word="word">
-                <div :key="word.id"
-                  :class="[ word.user_id === $store.state.currentUser.data.attributes.id ? 'd-flex flex-row-reverse': 'd-flex flex-row']">
-                  <avatar class="mt-n2" v-if="word.user_id !== $store.state.currentUser.data.attributes.id"
-                    :avatar_url="checkAvatar(word.user_id)"></avatar>
-                  <v-menu offset-y>
-                    <template v-slot:activator="{ on }">
-                      <v-hover v-slot:default="{ hover }">
-                        <v-chip
-                          :color="word.user_id === $store.state.currentUser.data.attributes.id ? '#3a36ff': '#212530'"
-                          :text-color="word.user_id === $store.state.currentUser.data.attributes.id ? '#ffffff': '#000000'"
-                          style="height:auto; min-width:300px; max-width:500px; max-height:1000px; white-space: normal;"
-                          class="pa-3 mb-5 mr-5" v-on="on">
-                          <p class="ml-2 mt-4" style="font-size: 0.8rem;">{{ word.content }}</p>
-                          <p v-if="word.classification === 'join'" class="ml-2 mt-4" style="font-size: 1rem;">
-                            {{ word.user }}が、{{ word.created_at }}に参加しました。</p>
-                          <v-icon v-if="hover" small></v-icon>
-                        </v-chip>
-                      </v-hover>
-                    </template>
-                  </v-menu>
-                </div>
-              </template>
-            </v-card-text>
-          </v-card>
-          </v-responsive>
-          <v-text-field v-model="message" @click:append-outer="sendMessage(message)" append-outer-icon="mdi-send" rounded
-          class="mt-16" label="Type a message" type="text" no-details outlined />
-        </v-col>
-      </v-container>
+    <v-responsive class="overflow-y-auto flex-grow-1 flex-shrink-0 mt-10" style="max-width: 93%;" height="550">
+        <v-container v-for="word in messages" :word="word" :key="word.id"
+          :class="[ word.user_id === $store.state.currentUser.data.attributes.id ? 'd-flex flex-row-reverse': 'd-flex flex-row']">
+          <avatar class="mt-1 ml-12" v-if="word.user_id !== $store.state.currentUser.data.attributes.id"
+            :avatar_url="checkAvatar(word.user_id)"></avatar>
+          <v-chip :color="word.user_id === $store.state.currentUser.data.attributes.id ? '#3a36ff': '#212530'"
+            :text-color="word.user_id === $store.state.currentUser.data.attributes.id ? '#ffffff': '#000000'"
+            style="height:auto; min-width:300px; max-width:500px; max-height:3000px; white-space: normal;"
+            class="mr-5">
+            <p class="ml-2 mt-4" style="font-size: 0.8rem;">{{ word.content }}</p>
+            <p v-if="word.classification === 'join'" class="ml-2 mt-4" style="font-size: 1rem;">
+              {{ word.user }}が、{{ word.created_at }}に参加しました。</p>
+          </v-chip>
+          <div class="mr-3 mt-16 fill-height" style="max-height:1000px; height:auto; font-size: 0.2rem; color:#6c757d;">
+            {{ postedTime(word.created_at) }}
+          </div>
+        </v-container>
+    </v-responsive>
+    <v-text-field v-model="message" @click:append-outer="sendMessage(message)" append-outer-icon="mdi-send" rounded
+      class="ml-13 mt-16 bottom" label="Type a message" type="text" no-details outlined />
   </div>
 </template>
 
@@ -46,6 +31,7 @@
   import message from '../components/Message';
   import Appearance from '../components/Appearance';
   import Avatar from './perpage/TheAvatar';
+  import moment from 'moment';
 
   const ROOM_URL = '/api/v1/rooms'
 
@@ -135,10 +121,18 @@
             return this.avatar[i].avatar
           }
         }
+      },
+      postedTime(message){
+        moment.locale('ja')
+        return moment(message).format("MMMDo(dd) h:mm")
       }
     }
   }
 </script>
 
 <style>
+  .bottom {
+    width: 90%;
+    text-align: center;
+  }
 </style>

@@ -10,6 +10,7 @@
     "actioncable-vue": "^2.4.0",
     "axios": "^0.21.0",
     "cropperjs": "^1.5.9",
+    "moment": "^2.29.1",
     "turbolinks": "^5.2.0",
     "url-loader": "^4.1.1",
     "vue": "^2.6.12",

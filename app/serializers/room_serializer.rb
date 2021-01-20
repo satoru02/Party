@@ -15,11 +15,11 @@ class RoomSerializer
     @index_avatar
   end
 
-  attribute :message_info do |message, params|
+  attribute :message_info do |room, params|
     params[:messages]
   end
 
-  attribute :user_info do |message, params|
+  attribute :user_info do |room, params|
     params[:users]
   end
 end
