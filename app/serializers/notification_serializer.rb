@@ -23,4 +23,11 @@ class NotificationSerializer
   attribute :message_info do |notification, params|
     params[:message]
   end
+
+  attribute :index_user_info do |object|
+    @index_user_info = []
+    user = User.find_by(id: object.user_id)
+    ActiveStorage::Current.host = "http://localhost:5000"
+    @index_user_info.push(user: user, avatar: user.avatar.blob.service_url)
+  end
 end

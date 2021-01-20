@@ -5,7 +5,7 @@ module Api
 
       def index
         @notifications = current_user.notifications.pager(page: params[:page], per: params[:per_page])
-        serializer = NotificationSerializer.new(@notifications)
+        serializer = NotificationSerializer.new(@notifications.reverse_order)
         render json: serializer.serializable_hash.to_json
       end
 
