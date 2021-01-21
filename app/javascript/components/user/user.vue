@@ -12,12 +12,14 @@
     <p :instagram_url="user.instagram_url">{{ user.instagram_url }}</p>
     <p :filmarks_url="user.filmarks_url">{{ user.filmarks_url }}</p>
     <log></log>
+    <!-- <myfooter></myfooter> -->
   </div>
 </template>
 
 <script>
   import Log from './log.vue'
   import Avatar from '../perpage/TheAvatar'
+  import Footer from '../perpage/TheFooter';
   import {
     simpleAxios,
     secureAxios
@@ -28,7 +30,8 @@
     name: 'User',
     components: {
       'log': Log,
-      'avatar': Avatar
+      'avatar': Avatar,
+      'myfooter': Footer
     },
     data () {
       return {
