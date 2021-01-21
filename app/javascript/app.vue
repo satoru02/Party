@@ -186,33 +186,6 @@
         name: "Search",
         component: Search
       },
-      // {
-      //   path: "/chat",
-      //   name: "Chat",
-      //   component: Chat,
-      //   children: [{
-      //     path: "rooms",
-      //     name: "Rooms",
-      //     component: Rooms,
-      //     children: [{
-      //         path: ":token",
-      //         name: "Room",
-      //         component: Room
-      //       },
-      //     ]
-      //   },
-      //   ]
-      // },
-      // {
-      //   path: "/rooms",
-      //   name: "Rooms",
-      //   component: Rooms
-      // },
-      // {
-      //   path: "/room/:token",
-      //   name: "Room",
-      //   component: Room
-      // },
       {
         path: "/rooms",
         name: "Rooms",

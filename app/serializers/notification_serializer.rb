@@ -24,6 +24,10 @@ class NotificationSerializer
     params[:message]
   end
 
+  attribute :room_info do |notification, params|
+    params[:room]
+  end
+
   attribute :index_user_info do |object|
     @index_user_info = []
     user = User.find_by(id: object.user_id)

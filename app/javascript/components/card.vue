@@ -57,7 +57,7 @@
       <v-dialog light v-model="dialog" width="500">
         <v-card>
           <v-card-title>エントリー完了！</v-card-title>
-　　　　　　<v-card-text>エントリーが完了しました。オーガナイザーが承認すれば、イベントに参加出来ます。</v-card-text>
+          <v-card-text>エントリーが完了しました。オーガナイザーが承認すれば、イベントに参加出来ます。</v-card-text>
           <v-card-actions>
             <v-spacer></v-spacer>
             <v-btn color="primary" text @click="dialog = false">

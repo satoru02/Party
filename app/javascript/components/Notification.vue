@@ -16,7 +16,10 @@
   import Entry from '../components/notification/entry';
   import EntryResponse from '../components/notification/entryResponse';
   import Message from '../components/notification/message';
-  import { simpleAxios, secureAxios } from "../backend/axios"
+  import {
+    simpleAxios,
+    secureAxios
+  } from "../backend/axios"
   const NOTIFICATION_URL = `/api/v1/notifications`
 
   export default {
@@ -47,9 +50,9 @@
       },
       Successful(response) {
         this.notification = response.data.data.attributes
-        this.message = response.data.data.attributes.message_info
+        this.message = response.data.data.attributes
         this.entry_information = response.data.data.attributes.entry_info
-        this.entry_response_information = response.data.data.attributes.entry_response_info
+        this.entry_response_information = response.data.data.attributes
         this.requested_post_information = response.data.data.attributes.post_info
         this.requested_user_information = response.data.data.attributes.user_info
       },

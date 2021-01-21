@@ -1,29 +1,113 @@
 <template>
-  <div>
-    <tr id="post-content">
-      <th>{{ post.title }}</th>
-    </tr>
-    <tr id="user-content">
-      <th>{{ user.email }}</th>
-    </tr>
-    <!-- fix -->
-    <div v-if="entry.activated === nil">
-      <v-btn text color="primary" @click="authorizeEntry()">
-        Authorize
-      </v-btn>
-      <v-btn text color="primary" @click="declineEntry()">
-        Decline
-      </v-btn>
+  <div justify="center" align="center">
+    <v-sheet color="#eaf4f4" height="550" class="rounded-xl" width="650">
+      <v-row>
+        <v-col cols="12" md="12" class="mt-12">
+          <h1 style="color:black;">New Entry</h1>
+        </v-col>
+      </v-row>
+      <v-row>
+        <v-col cols="12" md="2">
+          <avatar></avatar>
+        </v-col>
+        <v-col cols="12" md="2" class="mt-4">
+          <router-link :to="{name: 'User', params: { id: user.id }}">
+            <h3 style="color:black;">{{ user.name }}</h3>
+          </router-link>
+        </v-col>
+        <v-col cols="12" md="5">
+        </v-col>
+      </v-row>
+      <v-row>
+        <v-col cols="12" md="1">
+        </v-col>
+        <v-col cols="12" md="10" class="mt-5">
+          <p style="color:black; font-size: 1.0rem;">
+            あなたが主催するイベント「{{ post.title }}」に、{{ user.name }}さんからエントリーが届きました。このユーザーを招待しますか？</p>
+        </v-col>
+      </v-row>
+      <v-row v-if="entry.activated === null && response_action === ''">
+        <v-col cols=12 md=3 class="mt-16">
+        </v-col>
+        <v-col cols=12 md=3 class="mt-16">
+          <v-btn rounded large text color="primary" @click="authorizeEntry(), authorizeDialog = true">
+            <div style="font-size: 1.0rem;">招待する</div>
+          </v-btn>
+        </v-col>
+        <v-col cols=12 md=3 class="mt-16">
+          <v-btn rounded large text color="primary" @click="declineEntry(), declineDialog = true">
+            <div style="font-size: 1.0rem;">お断りする</div>
+          </v-btn>
+        </v-col>
+        <v-col cols=12 md=3 class="mt-16">
+        </v-col>
+      </v-row>
+      <v-row>
+        <v-col style="color:black; font-size: 1.0rem;" v-if="entry.activated == true || response_action === 'authorize'"
+          cols=12 md=12 class="mt-16">招待ずみ
+        </v-col>
+        <v-col style="color:black; font-size: 1.0rem;" v-if="entry.activated == false || response_action === 'decline'"
+          cols=12 md=12 class="mt-16">断り済み
+        </v-col>
+      </v-row>
+      <v-row>
+        <v-col cols=12 md=9>
+        </v-col>
+        <v-col cols=12 md=3 class="mt-16">
+          <h3 style="color:#6c757d; font-size: 0.5rem">{{ catchedTime(entry.created_at)}}</h3>
+        </v-col>
+      </v-row>
+    </v-sheet>
+    <div class="dialog">
+      <v-dialog light v-model="authorizeDialog" width="500">
+        <v-card>
+          <v-card-title>招待完了！</v-card-title>
+          <v-card-text>{{user.name}}さんを、{{ post.title }}に招待しました！</v-card-text>
+          <v-card-actions>
+            <v-spacer></v-spacer>
+            <v-btn color="primary" text @click="authorizeDialog = false">
+              Close
+            </v-btn>
+          </v-card-actions>
+        </v-card>
+      </v-dialog>
+      <v-dialog light v-model="declineDialog" width="500">
+        <v-card>
+          <v-card-title>お見送り完了！</v-card-title>
+          <v-card-text>今回は{{user.name}}さんの{{ post.title }}へのエントリーをお断りしました。</v-card-text>
+          <v-card-actions>
+            <v-spacer></v-spacer>
+            <v-btn color="primary" text @click="declineDialog = false">
+              Close
+            </v-btn>
+          </v-card-actions>
+        </v-card>
+      </v-dialog>
     </div>
   </div>
 </template>
 
 <script>
-  import { simpleAxios, secureAxios } from "../../backend/axios"
+  import {
+    simpleAxios,
+    secureAxios
+  } from "../../backend/axios"
+  import Avatar from '../perpage/TheAvatar';
+  import moment from 'moment';
   const ENTRY_URL = `/api/v1/rooms_user`
 
   export default {
     name: "Entry",
+    components: {
+      'avatar': Avatar
+    },
+    data() {
+      return {
+        authorizeDialog: false,
+        declineDialog: false,
+        response_action: ""
+      }
+    },
     props: {
       entry: Object,
       post: Object,
@@ -33,29 +117,28 @@
       authorizeEntry() {
         secureAxios.defaults.headers.common['X-CSRF-TOKEN'] = this.$store.state.csrf
         secureAxios.post(ENTRY_URL, {
-            answer: 'authorize',
-            entry_id: this.entry.id,
-            post_id: this.post.id,
-            user_id: this.user.id
-          })
-          // モーダル表示
-          this.$router.replace('/')
-          .catch(error => this.Failed(error))
+          answer: 'authorize',
+          entry_id: this.entry.id,
+          post_id: this.post.id,
+          user_id: this.user.id
+        })
+        this.response_action = "authorize"
       },
       declineEntry() {
         secureAxios.defaults.headers.common['X-CSRF-TOKEN'] = this.$store.state.csrf
         secureAxios.post(ENTRY_URL, {
-            answer: 'decline',
-            entry_id: this.entry.id,
-            post_id: this.post.id,
-            user_id: this.user.id
-          })
-          // モーダル表示
-          this.$router.replace('/')
-          .catch(error => this.Failed(error))
+          answer: 'decline',
+          entry_id: this.entry.id,
+          post_id: this.post.id,
+          user_id: this.user.id
+        })
+        this.response_action = "decline"
       },
       Failed(error) {
         this.error = (error.response && error.response.data && error.response.data.error) || ""
+      },
+      catchedTime(time) {
+        return moment(time).format("YYYY/MM/DD hh:mm")
       }
     }
   }
