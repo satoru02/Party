@@ -30,8 +30,19 @@ class NotificationSerializer
 
   attribute :index_user_info do |object|
     @index_user_info = []
-    user = User.find_by(id: object.user_id)
+
+    if object.classification === "entry"
+      @entry = Entry.find_by(id: object.entry_id)
+      @user = User.find_by(id: @entry.user.id)
+    elsif object.classification === "entryResponse"
+      @entryResponse = EntryResponse.find_by(id: object.entry_response_id)
+      @user = User.find_by(id: @entryResponse.user.id)
+    elsif object.classification === "message"
+      @message = Message.find_by(id: object.message_id)
+      @user = User.find_by(id: @message.user.id)
+    end
+
     ActiveStorage::Current.host = "http://localhost:5000"
-    @index_user_info.push(user: user, avatar: user.avatar.blob.service_url)
+    @index_user_info.push(user: @user, avatar: @user.avatar.blob.service_url)
   end
 end
