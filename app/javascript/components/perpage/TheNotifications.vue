@@ -3,13 +3,15 @@
     <v-menu open-on-hover offset-y left nudge-height=800 nudge-bottom="6" nudge-width=150 nudge-left=62>
       <template v-slot:activator="{ on, attrs }">
         <div v-bind="attrs" v-on="on">
-          <v-badge class="mt-4 mr-16" color="red" :content="notifications.length" offset-y="10" offset-x="7"
-            v-if="notifications.length > 0">
+          <v-badge v-if="notifications.length > 0" class="mt-4 mr-16" color="red" :content="notifications.length"
+            offset-y="10" offset-x="7">
             <router-link to="/notifications">
               <v-icon class="icon" size=23>mdi-bell-outline</v-icon>
             </router-link>
           </v-badge>
-          <v-icon v-else class="mt-4 mr-16" size=23>mdi-bell-outline</v-icon>
+          <router-link to="/notifications">
+            <v-icon v-if="notifications.length === 0" class="mt-4 mr-16 icon" size=23>mdi-bell-outline</v-icon>
+          </router-link>
         </div>
       </template>
       <v-list class="overflow-y-auto rounded-s" max-height="650" style="background-color:#343a40;">
