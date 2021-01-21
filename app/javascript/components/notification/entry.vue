@@ -3,14 +3,14 @@
     <v-sheet color="#eaf4f4" height="550" class="rounded-xl" width="650">
       <v-row>
         <v-col cols="12" md="12" class="mt-12">
-          <h1 style="color:black;">New Entry</h1>
+          <h1 class="title" style="color:black;"><span class="underline">New Entry</span></h1>
         </v-col>
       </v-row>
       <v-row>
         <v-col cols="12" md="2">
           <avatar></avatar>
         </v-col>
-        <v-col cols="12" md="2" class="mt-4">
+        <v-col cols="12" md="3" class="mt-4 ml-n15">
           <router-link :to="{name: 'User', params: { id: user.id }}">
             <h3 style="color:black;">{{ user.name }}</h3>
           </router-link>
@@ -44,10 +44,12 @@
       </v-row>
       <v-row>
         <v-col style="color:black; font-size: 1.0rem;" v-if="entry.activated == true || response_action === 'authorize'"
-          cols=12 md=12 class="mt-16">招待ずみ
+          cols=12 md=12 class="mt-16">
+          <p class="output" style="color:black;">招待通知を送りました。</p>
         </v-col>
         <v-col style="color:black; font-size: 1.0rem;" v-if="entry.activated == false || response_action === 'decline'"
-          cols=12 md=12 class="mt-16">断り済み
+          cols=12 md=12 class="mt-16">
+          <p class="output" style="color:black;">エントリーを今回は見送りました。</p>
         </v-col>
       </v-row>
       <v-row>
@@ -143,3 +145,26 @@
     }
   }
 </script>
+
+<style>
+  .underline {
+    background-image: linear-gradient(120deg, #f8fa84 0%, #8fd3f4 100%);
+    background-repeat: no-repeat;
+    background-size: 100% 0.2em;
+    background-position: 0 88%;
+  }
+
+  .title span {
+    font-size: 30px;
+  }
+
+  /* .outputline {
+    background-image: linear-gradient(120deg, #f8fa84 0%, #8fd3f4 100%);
+    background-repeat: no-repeat;
+    background-size: 100% 1em;
+    background-position: 0 92%;
+  }
+  .output span {
+    font-size: 15px;
+  } */
+</style>

@@ -1,16 +1,16 @@
 <template>
-  <div justify="center" align="center">
+  <div class="card-tile" justify="center" align="center">
     <v-sheet color="#eaf4f4" height="550" class="rounded-xl" width="650">
       <v-row>
         <v-col cols="12" md="12" class="mt-12">
-          <h1 style="color:black;">New Message</h1>
+          <h1 class="title" style="color:black;"><span class="underline">New Message</span></h1>
         </v-col>
       </v-row>
       <v-row>
         <v-col cols="12" md="2">
           <avatar></avatar>
         </v-col>
-        <v-col cols="12" md="2" class="mt-4 ml-n13">
+        <v-col cols="12" md="3" class="mt-4 ml-n15">
           <router-link :to="{name: 'User', params: { id: message.user_id }}">
             <h3 style="color:black;">{{ message.user_info.name }}</h3>
           </router-link>
@@ -20,7 +20,8 @@
         <v-col cols="12" md="1">
         </v-col>
         <v-col cols="12" md="10" class="mt-5">
-          <p style="color:black; font-size: 1.0rem;">あなたが主催する{{message.room_info.name}}に、メッセージが届きました。早速返信してみましょう！</p>
+          <p style="color:black; font-size: 1.0rem;">あなたが主催するイベントのParty
+            room「{{ message.room_info.name }}」に、メッセージが届きました。早速返信してみましょう！</p>
         </v-col>
       </v-row>
       <v-row>
@@ -60,3 +61,16 @@
     }
   }
 </script>
+
+<style>
+  .underline {
+    background-image: linear-gradient(120deg, #84fab0 0%, #8fd3f4 100%);
+    background-repeat: no-repeat;
+    background-size: 100% 0.2em;
+    background-position: 0 88%;
+  }
+
+  .title span {
+    font-size: 30px;
+  }
+</style>
