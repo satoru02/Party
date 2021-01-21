@@ -3,7 +3,8 @@
     <v-menu open-on-hover offset-y left nudge-height=800 nudge-bottom="6" nudge-width=150 nudge-left=62>
       <template v-slot:activator="{ on, attrs }">
         <div v-bind="attrs" v-on="on">
-          <v-badge class="mt-4 mr-16" color="red" :content="notifications.length" offset-y="10" offset-x="7" v-if="notifications.length > 0">
+          <v-badge class="mt-4 mr-16" color="red" :content="notifications.length" offset-y="10" offset-x="7"
+            v-if="notifications.length > 0">
             <router-link to="/notifications">
               <v-icon class="icon" size=23>mdi-bell-outline</v-icon>
             </router-link>
@@ -11,11 +12,21 @@
           <v-icon v-else class="mt-4 mr-16" size=23>mdi-bell-outline</v-icon>
         </div>
       </template>
-      <v-list class="overflow-y-auto rounded-s" max-height="400" style="background-color:#343a40;">
+      <v-list class="overflow-y-auto rounded-s" max-height="650" style="background-color:#343a40;">
+        <v-list-item v-if="notifications.length === 0" class="tile">
+          <v-list-item-title class="ml-10 mr-10" style="color:#ced4da">現在、新着のお知らせはありません。</v-list-item-title>
+        </v-list-item>
         <v-list-item class="tile" v-for="(notification, index) in notifications" :key="index">
           <router-link :to="{ name: 'Notification', params: {id: `${notification.attributes.id }`}}">
             <v-badge dot left inline color="#2176ff">
-              <v-list-item-title class="ml-10" style="color:#ced4da">{{ notification.attributes.classification }}</v-list-item-title>
+              <v-list-item-title v-if="notification.attributes.classification === 'message'" class="ml-10 mr-10"
+                style="color:#ced4da">新着のメッセージがあります。</v-list-item-title>
+              <v-list-item-title v-if="notification.attributes.classification === 'entry'" class="ml-10 mr-10"
+                style="color:#ced4da">あなたのイベントへのエントリーが届きました！</v-list-item-title>
+              <v-list-item-title v-if="notification.attributes.classification === 'entryResponse'" class="ml-10 mr-10"
+                style="color:#ced4da">応募したエントリーの結果が届きました！</v-list-item-title>
+              <v-list-item-action style="color:#6c757d;" v-text="catchedTime(notification.attributes.created_at)">
+              </v-list-item-action>
             </v-badge>
           </router-link>
         </v-list-item>
@@ -28,6 +39,7 @@
   import {
     simpleAxios
   } from '../../backend/axios.js'
+  import moment from 'moment';
   const NOTIFICATIONS_URL = '/api/v1/notifications'
 
   export default {
@@ -47,9 +59,11 @@
           // 3.Messageを受け取った時
           // 4.Notificationが読まれた時
 
-          if (this.$store.state.currentUser.data.attributes.id === data["target_user_id"] && data["condition"] !== "read") {
+          if (this.$store.state.currentUser.data.attributes.id === data["target_user_id"] && data["condition"] !==
+            "read") {
             this.notifications.push(data)
-          } else if(this.$store.state.currentUser.data.attributes.id === data["target_user_id"] && data["condition"] === "read") {
+          } else if (this.$store.state.currentUser.data.attributes.id === data["target_user_id"] && data[
+              "condition"] === "read") {
             this.notifications.pop()
           }
         },
@@ -74,7 +88,7 @@
         var i = 0;
         var unchecked_notifications = [];
         for (i; i < response.data.data.length; i++) {
-          if (response.data.data[i].attributes.confirmation !== true){
+          if (response.data.data[i].attributes.confirmation !== true) {
             unchecked_notifications.push(response.data.data[i])
           }
         }
@@ -83,13 +97,15 @@
       Failed(error) {
         console.log(error)
         this.error = (error.response && error.response.data && error.response.data.error) || ""
-      }
+      },
+      catchedTime(time) {
+        return moment(time).format("YYYY/MM/DD hh:mm")
+      },
     }
   }
 </script>
 
 <style scoped>
-
   .tile {
     margin: 10px;
     border-radius: 7px;
