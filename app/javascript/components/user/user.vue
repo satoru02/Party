@@ -5,11 +5,10 @@
         <v-col cols=12></v-col>
       </v-row>
       <v-row>
-        <v-col cols=12 md=1></v-col>
-        <v-col cols=12 md=2>
+        <v-col cols=12 md=3 class="ml-16">
           <avatar :size="140" :avatar_url="user.avatar_url"></avatar>
         </v-col>
-        <v-col cols=12 md=auto class="ml-9">
+        <v-col cols=12 md=auto class="ml-n6">
           <v-btn v-for="(n, index) in items" :key="index" color="#efeff1" text rounded class="my-2 mt-8">
             {{ n }}
           </v-btn>
@@ -17,9 +16,34 @@
         </v-col>
       </v-row>
       <v-row>
-        <v-col cols=12 md=3 class="ml-10">
+        <v-col cols=12 md=3 class="ml-n2 mt-2">
+          <v-sheet color="#121212" class="rounded-lg" height="200"
+            style="border: 1px solid hsla(0,0%,100%,.1); height:auto; min-height: 270px; max-width: 100%; max-height:1000px;">
+            <h1 class="ml-3 mb-2 mt-2">@{{ user.name }}</h1>
+            <v-divider></v-divider>
+            <v-list-item>
+              <h3 style="color:#efeff1">Follow on:</h3>
+              <v-col cols=5 md=1 v-for="(n, index) in 2" :key="index">
+                <v-list-title class="pl-1">
+                  <v-icon small>mdi-twitter</v-icon>
+                </v-list-title>
+              </v-col>
+            </v-list-item>
+            <v-list-item class="mt-n4">
+              <h3 style="color:#efeff1">Location:</h3>
+              <h3 class="ml-5" style="color:#efeff1; font-size:0.7rem">{{ user.location }}</h3>
+            </v-list-item>
+            <v-list-item class="mt-n4">
+              <h3 style="color:#efeff1">Joined:</h3>
+              <h3 class="ml-9" style="color:#efeff1; font-size:0.7rem">2021/02/21</h3>
+            </v-list-item>
+            <v-list-item class="mt-n4">
+              <h3 style="color:#efeff1">About:</h3>
+              <h3 class="ml-9" style="color:#efeff1; font-size:0.7rem">{{ user.about }}</h3>
+            </v-list-item>
+          </v-sheet>
         </v-col>
-        <v-col cols=12 md=auto class="mt-n16">
+        <v-col cols=12 md=8 class="mt-n16 ml-12">
           <event-card :posts="$store.state.currentUser.data.relationships.posts.data"></event-card>
         </v-col>
       </v-row>
@@ -56,7 +80,7 @@
           Monthly: "Recommend",
           Followers: "Followers",
           Following: "Following",
-          Setting: "Setting"
+          Settings: "Settings"
         }
       }
     },
