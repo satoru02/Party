@@ -3,7 +3,7 @@
     <v-row justify="center" no-gutters>
       <v-col cols=12 md=6></v-col>
       <v-col cols=12 md=6 class="mr-n14">
-      <v-btn v-for="(n, index) in items" :key="index" color="#6c757d" text rounded class="my-2">
+      <v-btn v-for="(n, index) in items" :key="index" color="#979dac" text rounded class="my-2">
         {{ n }}
       </v-btn>
       </v-col>

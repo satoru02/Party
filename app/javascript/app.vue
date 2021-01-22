@@ -2,7 +2,6 @@
   <div id="app">
     <v-app style="background-color:#161a1d">
       <top-header></top-header>
-      <v-spacer></v-spacer>
       <v-main>
         <router-view></router-view>
       </v-main>

@@ -1,25 +1,37 @@
 <template>
-  <div v-bind="user" :key="user.id">
-    <avatar :size="27" :avatar_url="user.avatar_url"></avatar>
-    <p :name="user.name">{{ user.name }}</p>
-    <p :username="user.username">{{ user.username }}</p>
-    <p :email="user.email">{{ user.email }}</p>
-    <p :about="user.about">{{ user.about }}</p>
-    <p :location="user.location">{{ user.location }}</p>
-    <p :web_url="user.web_url">{{ user.web_url }}</p>
-    <p :youtube_url="user.youtube_url">{{ user.youtube_url }}</p>
-    <p :facebook_url="user.facebook_url">{{ user.facebook_url }}</p>
-    <p :instagram_url="user.instagram_url">{{ user.instagram_url }}</p>
-    <p :filmarks_url="user.filmarks_url">{{ user.filmarks_url }}</p>
-    <log></log>
-    <!-- <myfooter></myfooter> -->
+  <div>
+    <v-container>
+      <v-row>
+        <v-col cols=12></v-col>
+      </v-row>
+      <v-row>
+        <v-col cols=12 md=1></v-col>
+        <v-col cols=12 md=2>
+          <avatar :size="140" :avatar_url="user.avatar_url"></avatar>
+        </v-col>
+        <v-col cols=12 md=auto class="ml-9">
+          <v-btn v-for="(n, index) in items" :key="index" color="#efeff1" text rounded class="my-2 mt-8">
+            {{ n }}
+          </v-btn>
+          <v-divider dark></v-divider>
+        </v-col>
+      </v-row>
+      <v-row>
+        <v-col cols=12 md=3 class="ml-10 mt-4">
+        </v-col>
+        <v-col cols=12 md=auto class="mt-n16">
+          <event-card :posts="$store.state.currentUser.data.relationships.posts.data"></event-card>
+        </v-col>
+      </v-row>
+    </v-container>
   </div>
 </template>
 
 <script>
   import Log from './log.vue'
   import Avatar from '../perpage/TheAvatar'
-  import Footer from '../perpage/TheFooter';
+  import EventCard from '../user/EventCard';
+
   import {
     simpleAxios,
     secureAxios
@@ -31,12 +43,21 @@
     components: {
       'log': Log,
       'avatar': Avatar,
-      'myfooter': Footer
+      'event-card': EventCard,
     },
-    data () {
+    data() {
       return {
         user: '',
-        error: ''
+        error: '',
+        items: {
+          Events: "My Events 6",
+          JoinedEvents: "Joined Events 100",
+          Activity: "Activity",
+          Monthly: "Recommend",
+          Followers: "Followers",
+          Following: "Following",
+          About: "About"
+        }
       }
     },
     created() {
@@ -55,6 +76,6 @@
         this.error = (error.response && error.response.data && error.response.data.error) || ""
         this.$router.replace('/')
       }
-   }
-}
+    }
+  }
 </script>
