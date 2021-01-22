@@ -13,11 +13,11 @@
           <v-btn v-for="(n, index) in items" :key="index" color="#efeff1" text rounded class="my-2 mt-8">
             {{ n }}
           </v-btn>
-          <v-divider dark></v-divider>
+          <v-divider dark class="mt-n1"></v-divider>
         </v-col>
       </v-row>
       <v-row>
-        <v-col cols=12 md=3 class="ml-10 mt-4">
+        <v-col cols=12 md=3 class="ml-10">
         </v-col>
         <v-col cols=12 md=auto class="mt-n16">
           <event-card :posts="$store.state.currentUser.data.relationships.posts.data"></event-card>
@@ -56,7 +56,7 @@
           Monthly: "Recommend",
           Followers: "Followers",
           Following: "Following",
-          About: "About"
+          Setting: "Setting"
         }
       }
     },
