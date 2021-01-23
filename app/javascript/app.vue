@@ -31,7 +31,7 @@
   import UserEdit from './components/Edit.vue';
   import Users from './components/user/users.vue';
   import User from './components/user/user.vue';
-  import Setting from './components/user/setting.vue';
+  import Settings from './components/user/settings.vue';
   import PostEdit from './components/PostEdit.vue';
   import Category from './components/Category.vue';
   import Search from './components/Search.vue';
@@ -155,11 +155,6 @@
         component: Activation
       },
       {
-        path: "/setting",
-        name: "Setting",
-        component: Setting
-      },
-      {
         path: "/posts/new",
         name: "Post",
         component: Post
@@ -209,6 +204,11 @@
             props: (route) => ({
               query: route.query.status
             })
+          },
+          {
+            path: "settings",
+            name: "Settings",
+            component: Settings
           }
         ]
       },

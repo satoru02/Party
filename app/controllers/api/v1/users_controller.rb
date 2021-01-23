@@ -30,7 +30,7 @@ module Api
 
       def update
         # @user.update_attributes(user_params)
-        @user.avatar.attach(params[:avatar])
+        # @user.avatar.attach(params[:avatar])
       end
 
       def destroy

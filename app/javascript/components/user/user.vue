@@ -87,7 +87,7 @@
         error: '',
         items: {
           Events: {
-            title: "My Events",
+            title: "Host Events",
             name: 'MyEvents',
             link: ''
           },
@@ -116,9 +116,9 @@
             name: '',
             link: ''
           },
-          Settings: {
-            title: "Settings",
-            name: '',
+          About: {
+            title: "About",
+            name: 'About',
             link: ''
           }
         }

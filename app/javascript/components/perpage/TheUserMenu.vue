@@ -51,7 +51,7 @@
           {
             icon:  'mdi-wrench-outline',
             title: 'Settings',
-            link: '/setting'
+            link: '/users/' + `${this.$store.state.currentUser.data.attributes.id}` + '/settings'
           },
           {
             icon:  'mdi-help',
