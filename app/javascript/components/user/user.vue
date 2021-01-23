@@ -24,14 +24,14 @@
             <h1 class="ml-3 mb-2 mt-2">@{{ user.name }}</h1>
             <v-divider></v-divider>
             <v-list-item>
-              <h3 style="color:#efeff1">Follow on:</h3>
-              <v-col cols=5 md=1 v-for="(n, index) in 2" :key="index">
-                <v-list-item class="pl-1">
-                  <v-icon small>mdi-twitter</v-icon>
-                </v-list-item>
-              </v-col>
+              <h3 style="color:#efeff1">Organize:</h3>
+              <h3 class="ml-5" style="color:#efeff1; font-size:0.9rem">{{ users_post.length }}</h3>
             </v-list-item>
-            <v-list-item class="mt-n7">
+            <v-list-item class="mt-n4">
+              <h3 style="color:#efeff1">Joined:</h3>
+              <h3 class="ml-9" style="color:#efeff1; font-size:0.9rem">{{ users_joined_events.length }}</h3>
+            </v-list-item>
+            <v-list-item class="mt-n4">
               <h3 style="color:#efeff1">Location:</h3>
               <h3 class="ml-5" style="color:#efeff1; font-size:0.7rem">{{ user.location }}</h3>
             </v-list-item>
@@ -43,13 +43,23 @@
               <h3 style="color:#efeff1">About:</h3>
               <h3 class="ml-9" style="color:#efeff1; font-size:0.7rem">{{ user.about }}</h3>
             </v-list-item>
-            <v-list-item class="mt-n4">
-              <h3 style="color:#efeff1">Organize:</h3>
-              <h3 class="ml-5" style="color:#efeff1; font-size:0.9rem">{{ users_post.length }}</h3>
-            </v-list-item>
-            <v-list-item class="mt-n4">
-              <h3 style="color:#efeff1">Joined:</h3>
-              <h3 class="ml-10" style="color:#efeff1; font-size:0.9rem">{{ users_joined_events.length }}</h3>
+            <v-list-item class="mt-n7">
+              <h3 style="color:#efeff1">Follow on:</h3>
+              <v-col cols=5 md=1>
+                <v-list-item class="pl-1">
+                  <v-icon v-if="user.facebook_url" small>mdi-facebook</v-icon>
+                </v-list-item>
+              </v-col>
+              <v-col cols=5 md=1>
+                <v-list-item class="pl-1">
+                  <v-icon v-if="user.youtube_url" small>mdi-youtube</v-icon>
+                </v-list-item>
+              </v-col>
+              <v-col cols=5 md=1>
+                <v-list-item class="pl-1">
+                  <v-icon v-if="user.instagram_url" small>mdi-instagram</v-icon>
+                </v-list-item>
+              </v-col>
             </v-list-item>
           </v-sheet>
         </v-col>
@@ -65,6 +75,7 @@
   import Log from './log.vue'
   import Avatar from '../perpage/TheAvatar'
   import moment from 'moment';
+  // import InstagramLogo from '../public/instagram.svg';
 
   import {
     simpleAxios,
@@ -78,6 +89,7 @@
     components: {
       'log': Log,
       'avatar': Avatar,
+      // InstagramLogo
     },
     data() {
       return {
@@ -144,7 +156,7 @@
       Failed(error) {
         this.error = (error.response && error.response.data && error.response.data.error) || ""
         this.$router.replace('/')
-      }
+      },
     }
   }
 </script>
