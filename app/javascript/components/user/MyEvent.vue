@@ -86,26 +86,14 @@
   import moment from 'moment';
 
   export default {
-    name: "eventCard",
+    name: "MyEvent",
     props: {
-      posts: Array
-    },
-    data() {
-      return {
-        items: [
-          "#Game",
-          "#素敵な春",
-          "#Action",
-          "#over 12",
-          "#clush",
-        ]
-      }
+      posts: Array,
     },
     methods: {
       postTime(time) {
         return moment(time).format("YYYY/MM/DD hh:mm")
       }
-
     }
   }
 </script>

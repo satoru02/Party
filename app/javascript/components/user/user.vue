@@ -8,9 +8,11 @@
         <v-col cols=12 md=3 class="ml-16">
           <avatar :size="140" :avatar_url="user.avatar_url"></avatar>
         </v-col>
-        <v-col cols=12 md=auto class="ml-n6">
+        <v-col cols=12 md=auto class="ml-n2">
           <v-btn v-for="(n, index) in items" :key="index" color="#efeff1" text rounded class="my-2 mt-8">
-            {{ n }}
+            <router-link :to="{ name: n.name }">
+              <div style="color:#efeff1">{{ n.title }}</div>
+            </router-link>
           </v-btn>
           <v-divider dark class="mt-n1"></v-divider>
         </v-col>
@@ -35,16 +37,24 @@
             </v-list-item>
             <v-list-item class="mt-n4">
               <h3 style="color:#efeff1">Joined:</h3>
-              <h3 class="ml-9" style="color:#efeff1; font-size:0.7rem">2021/02/21</h3>
+              <h3 class="ml-9" style="color:#efeff1; font-size:0.8rem">{{ joinedTime(user.activated_at) }}</h3>
             </v-list-item>
             <v-list-item class="mt-n4">
               <h3 style="color:#efeff1">About:</h3>
               <h3 class="ml-9" style="color:#efeff1; font-size:0.7rem">{{ user.about }}</h3>
             </v-list-item>
+            <v-list-item class="mt-n4">
+              <h3 style="color:#efeff1">Organize:</h3>
+              <h3 class="ml-5" style="color:#efeff1; font-size:0.9rem">{{ users_post.length }}</h3>
+            </v-list-item>
+            <v-list-item class="mt-n4">
+              <h3 style="color:#efeff1">Joined:</h3>
+              <h3 class="ml-10" style="color:#efeff1; font-size:0.9rem">{{ users_joined_events.length }}</h3>
+            </v-list-item>
           </v-sheet>
         </v-col>
         <v-col cols=12 md=8 class="mt-n16 ml-12">
-          <event-card :posts="users_post"></event-card>
+          <router-view :posts="users_post" :rooms="users_joined_events"></router-view>
         </v-col>
       </v-row>
     </v-container>
@@ -54,12 +64,13 @@
 <script>
   import Log from './log.vue'
   import Avatar from '../perpage/TheAvatar'
-  import EventCard from '../user/EventCard';
+  import moment from 'moment';
 
   import {
     simpleAxios,
     secureAxios
   } from '../../backend/axios.js'
+
   const USER_INFO_URL = '/api/v1/users/'
 
   export default {
@@ -67,21 +78,49 @@
     components: {
       'log': Log,
       'avatar': Avatar,
-      'event-card': EventCard,
     },
     data() {
       return {
         user: '',
         users_post: [],
+        users_joined_events: [],
         error: '',
         items: {
-          Events: "My Events 6",
-          JoinedEvents: "Joined Events 100",
-          Activity: "Activity",
-          Monthly: "Recommend",
-          Followers: "Followers",
-          Following: "Following",
-          Settings: "Settings"
+          Events: {
+            title: "My Events",
+            name: 'MyEvents',
+            link: ''
+          },
+          JoinedEvents: {
+            title: "Joined Events",
+            name: 'JoinedEvents',
+            link: ''
+          },
+          Activity: {
+            title: "Activity",
+            name: '',
+            link: ''
+          },
+          Monthly: {
+            title: "Recommend",
+            name: '',
+            link: '',
+          },
+          Followers: {
+            title: "Followers",
+            name: '',
+            link: ''
+          },
+          Following: {
+            title: "Following",
+            name: '',
+            link: ''
+          },
+          Settings: {
+            title: "Settings",
+            name: '',
+            link: ''
+          }
         }
       }
     },
@@ -89,6 +128,9 @@
       this.fecthUserInformation()
     },
     methods: {
+      joinedTime(time) {
+        return moment(time).format("YYYY/MM/DD")
+      },
       fecthUserInformation() {
         simpleAxios.get(USER_INFO_URL + `${this.$route.params.id}`)
           .then(response => this.Successful(response))
@@ -97,6 +139,7 @@
       Successful(response) {
         this.user = response.data.data.attributes
         this.users_post = response.data.included.reverse()
+        this.users_joined_events = response.data.data.attributes.joined_event.reverse()
       },
       Failed(error) {
         this.error = (error.response && error.response.data && error.response.data.error) || ""

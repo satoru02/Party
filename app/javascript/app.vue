@@ -5,7 +5,7 @@
       <v-main>
         <router-view></router-view>
       </v-main>
-       <v-divider></v-divider>
+      <v-divider></v-divider>
       <info-footer></info-footer>
     </v-app>
   </div>
@@ -44,6 +44,8 @@
   import InfoFooter from './components/perpage/TheFooter';
   import Tag from './components/Tag';
   import Chat from './components/chat';
+  import MyEvent from './components/user/MyEvent';
+  import JoinedEvent from './components/user/JoinedEvent';
   import '@mdi/font/css/materialdesignicons.css';
 
   const actionCableVueOptions = {
@@ -153,16 +155,6 @@
         component: Activation
       },
       {
-        path: "/users",
-        name: "Users",
-        component: Users
-      },
-      {
-        path: "/users/:id",
-        name: "User",
-        component: User
-      },
-      {
         path: "/setting",
         name: "Setting",
         component: Setting
@@ -195,7 +187,29 @@
           path: ":token",
           name: "Room",
           component: Room
-        },
+        }, ]
+      },
+      {
+        path: "/users/:id",
+        name: "User",
+        component: User,
+        children: [
+          {
+            path: "events",
+            name: "MyEvents",
+            component: MyEvent,
+            props: (route) => ({
+              query: route.query.status
+            })
+          },
+          {
+            path: "joined-events",
+            name: "JoinedEvents",
+            component: JoinedEvent,
+            props: (route) => ({
+              query: route.query.status
+            })
+          }
         ]
       },
       {
