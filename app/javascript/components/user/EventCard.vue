@@ -7,27 +7,20 @@
           <v-col cols=12 md=2 class="ml-7 mt-1" color="#efeff1">
             <v-btn small color="#2d00f7">イベント</v-btn>
           </v-col>
-          <!-- <v-col cols=12 md=3 class="ml-n13 mt-1" color="#efeff1">{{ post.title }}</v-col> -->
-          <v-col cols=12 md=3 class="ml-n10 mt-2" color="#efeff1">
-            <h3>ワンダビジョン鑑賞会</h3>
+          <v-col cols=12 md=4 class="ml-n10 mt-2" color="#efeff1">
+            <h3>{{ post.attributes.title }}</h3>
           </v-col>
           <v-col cols=12 md=2 class="mt-1" color="#efeff1">
             <v-btn small color="#2d00f7">開催日</v-btn>
           </v-col>
-          <!-- <v-col cols=12 md=2 class="ml-n16 mt-1" color="#efeff1">{{ postTime() }}</v-col> -->
-          <v-col cols=12 md=5 class="ml-n13 mt-2" color="#efeff1">
-            <h3>2021年12月24日（火）13:00〜14:30</h3>
+          <v-col cols=12 md=4 class="ml-n13 mt-2" color="#efeff1">
+            <h3>{{ postTime(post.attributes.created_at) }}</h3>
           </v-col>
         </v-row>
         <v-divider></v-divider>
         <v-row>
           <v-col cols=12 md=11 class="ml-7 mt-3">
-            <p style="color:#efeff1; font-size:0.8rem;">
-              1979年イスラム革命前夜、西欧文化を否定する暴徒による。参加人数参加人数
-              1979年イスラム革命前夜、西欧文化を否定する暴徒による。参加人数参加人数
-              1979年イスラム革命前夜、西欧文化を否定する暴徒による。参加人数参加人数
-              1979年イスラム革命前夜、西欧文化を否定する暴徒による。参加人数参加人数
-            </p>
+            <p style="color:#efeff1; font-size:0.8rem;">{{ post.attributes.content }}</p>
           </v-col>
           <v-col cols=12 md=1></v-col>
         </v-row>
@@ -48,7 +41,8 @@
             </p>
           </v-col>
           <v-col cols=12 md="3" class="mt-n6">
-            <p style="color:#efeff1; font-size:0.8rem;">Movie</p>
+            <p style="color:#efeff1; font-size:0.8rem;">{{ post.attributes.category.name }}</p>
+            <!-- <p v-if="post.attributes.category === null" style="color:#efeff1; font-size:0.8rem;">未登録</p> -->
           </v-col>
         </v-row>
         <v-row>
@@ -72,12 +66,12 @@
             </p>
           </v-col>
         </v-row>
-        <v-row class="tag mt-n3 ml-n9">
+        <v-row class="tag mt-n5 ml-n9">
           <v-col cols=12 md=1></v-col>
-          <div v-for="(n,index) in items" :key="index">
+          <div v-for="(n,index) in post.attributes.tags" :key="index">
             <v-col cols=12 md=1 class="ml-n4">
               <v-btn depressed class="rounded-s" x-small color="#46494c">
-                {{ n }}
+                {{ n.name }}
               </v-btn>
             </v-col>
           </div>
@@ -86,7 +80,6 @@
       <p></p>
     </div>
   </v-responsive>
-
 </template>
 
 <script>
@@ -108,8 +101,11 @@
         ]
       }
     },
-    postTime(time) {
-      return moment(time).format("YYYY/MM/DD hh:mm")
+    methods: {
+      postTime(time) {
+        return moment(time).format("YYYY/MM/DD hh:mm")
+      }
+
     }
   }
 </script>

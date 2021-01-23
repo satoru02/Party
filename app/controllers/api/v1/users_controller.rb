@@ -17,7 +17,9 @@ module Api
       end
 
       def show
-        serializer = UserSerializer.new(@user)
+        options={}
+        options[:include] = [:posts]
+        serializer = UserSerializer.new(@user, options)
         render json: serializer.serializable_hash.to_json
       end
 

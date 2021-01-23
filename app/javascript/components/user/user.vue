@@ -24,12 +24,12 @@
             <v-list-item>
               <h3 style="color:#efeff1">Follow on:</h3>
               <v-col cols=5 md=1 v-for="(n, index) in 2" :key="index">
-                <v-list-title class="pl-1">
+                <v-list-item class="pl-1">
                   <v-icon small>mdi-twitter</v-icon>
-                </v-list-title>
+                </v-list-item>
               </v-col>
             </v-list-item>
-            <v-list-item class="mt-n4">
+            <v-list-item class="mt-n7">
               <h3 style="color:#efeff1">Location:</h3>
               <h3 class="ml-5" style="color:#efeff1; font-size:0.7rem">{{ user.location }}</h3>
             </v-list-item>
@@ -44,7 +44,7 @@
           </v-sheet>
         </v-col>
         <v-col cols=12 md=8 class="mt-n16 ml-12">
-          <event-card :posts="$store.state.currentUser.data.relationships.posts.data"></event-card>
+          <event-card :posts="users_post"></event-card>
         </v-col>
       </v-row>
     </v-container>
@@ -72,6 +72,7 @@
     data() {
       return {
         user: '',
+        users_post: [],
         error: '',
         items: {
           Events: "My Events 6",
@@ -95,6 +96,7 @@
       },
       Successful(response) {
         this.user = response.data.data.attributes
+        this.users_post = response.data.included.reverse()
       },
       Failed(error) {
         this.error = (error.response && error.response.data && error.response.data.error) || ""
@@ -103,3 +105,6 @@
     }
   }
 </script>
+
+<style>
+</style>
