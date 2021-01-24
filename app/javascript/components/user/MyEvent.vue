@@ -1,5 +1,5 @@
 <template>
-  <v-responsive :posts="posts" class="overflow-y-auto flex-grow-1 flex-shrink-0" style="max-width: 100%;" height="600">
+  <v-responsive class="overflow-y-auto flex-grow-1 flex-shrink-0" style="max-width: 100%;" height="600">
     <div v-for="(post, index) in posts" :key="index">
       <v-sheet color="#11151c" class="rounded-lg" width="740"
         style="border: 1px solid hsla(0,0%,100%,.1); height:auto; min-height: 150px; max-width: 100%; max-height:1000px;">
@@ -42,7 +42,6 @@
           </v-col>
           <v-col cols=12 md="3" class="mt-n6">
             <p style="color:#efeff1; font-size:0.8rem;">{{ post.attributes.category.name }}</p>
-            <!-- <p v-if="post.attributes.category === null" style="color:#efeff1; font-size:0.8rem;">未登録</p> -->
           </v-col>
         </v-row>
         <v-row>
@@ -84,16 +83,45 @@
 
 <script>
   import moment from 'moment';
+  import {
+    simpleAxios,
+    secureAxios
+  } from '../../backend/axios.js'
+
+  const USERS_POST_INFO_URL = '/api/v1/posts/'
 
   export default {
     name: "MyEvent",
-    props: {
-      posts: Array,
+    data() {
+      return {
+        posts: []
+      }
+    },
+    created() {
+      this.fetchUsersPost()
     },
     methods: {
       postTime(time) {
         return moment(time).format("YYYY/MM/DD hh:mm")
-      }
+      },
+      fetchUsersPost() {
+        simpleAxios.get(USERS_POST_INFO_URL, {
+            params: {
+              user_id: `${this.$store.state.currentUser.data.attributes.id}`,
+              position: 'my_events'
+            }
+          })
+          .then(response => this.Successful(response))
+          .catch(error => this.Failed(error))
+      },
+      Successful(response) {
+        console.log(response.data.data)
+        this.posts = response.data.data
+      },
+      Failed(error) {
+        this.error = (error.response && error.response.data && error.response.data.error) || ""
+        this.$router.replace('/')
+      },
     }
   }
 </script>

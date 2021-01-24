@@ -127,6 +127,7 @@
       infiniteHandler($state) {
         simpleAxios.get(CONTENT_URL, {
             params: {
+              position: 'top',
               page: this.page,
               per_page: this.pageSize,
               user_id: `${this.$store.state.currentUser.data.attributes.id}`,

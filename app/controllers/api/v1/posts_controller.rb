@@ -5,9 +5,20 @@ module Api
       before_action :set_post, only: [:show, :edit, :update]
 
       def index
-        @posts = Post.all.includes(:entries).pager(page: params[:page], per: params[:per_page])
-        serializer = PostSerializer.new(@posts.reverse_order, { params: { user_id: params[:user_id] }})
-        render json: serializer.serializable_hash.to_json
+        if params[:position] === 'top'
+          @posts = Post.all.includes(:entries).pager(page: params[:page], per: params[:per_page])
+          serializer = PostSerializer.new(@posts.reverse_order, { params: { user_id: params[:user_id] }})
+          render json: serializer.serializable_hash.to_json
+        elsif params[:position] === 'my_events'
+          @posts = Post.all.includes(:entries).where(user_id: params[:user_id])
+          serializer = UsersPostSerializer.new(@posts.reverse_order)
+          render json: serializer.serializable_hash.to_json
+        elsif params[:position] === 'joined_events'
+          @user = User.find_by(id: params[:user_id])
+          @joined_events = @user.rooms
+          serializer = JoinedPostSerializer.new(@joined_events.reverse_order)
+          render json: serializer.serializable_hash.to_json
+        end
       end
 
       def show

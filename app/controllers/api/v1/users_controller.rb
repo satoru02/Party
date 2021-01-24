@@ -48,7 +48,7 @@ module Api
         end
 
         def set_user
-          @user = User.find(params[:id])
+          @user = User.includes(:posts).find(params[:id])
         end
 
         def set_host_for_local_storage
