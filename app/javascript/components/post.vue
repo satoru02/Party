@@ -20,10 +20,10 @@
           <v-text-field v-model="date" outlined dark filled dense></v-text-field>
         </v-col>
         <v-col cols=12 md=2 class="mt-4">
-          <h3>カテゴリー</h3>
+          <h3>時間</h3>
         </v-col>
         <v-col cols=12 md=3 class="mt-1">
-          <v-text-field v-model="category" outlined dark filled dense></v-text-field>
+          <v-text-field v-model="time" outlined dark filled dense></v-text-field>
         </v-col>
       </v-row>
 
@@ -33,23 +33,29 @@
           <h3>参加人数</h3>
         </v-col>
         <v-col cols=12 md=3 class="mt-1">
-          <v-text-field v-model="numbers" outlined dark filled dense></v-text-field>
+          <v-select dense filled outlined v-model="numbers"></v-select>
         </v-col>
         <v-col cols=12 md=2 class="mt-4">
           <h3>使用ツール</h3>
         </v-col>
         <v-col cols=12 md=3 class="mt-1">
-          <v-text-field v-model="tools" outlined dark filled dense></v-text-field>
+          <v-select dense filled outlined multiple persistent-hint v-model="tools"></v-select>
         </v-col>
       </v-row>
       <v-divider class="mt-n5"></v-divider>
 
       <v-row>
         <v-col cols=12 md=3 class="mt-4">
+          <h3>カテゴリー</h3>
+        </v-col>
+        <v-col cols=12 md=3 class="mt-1">
+          <v-select dense filled outlined v-model="category"></v-select>
+        </v-col>
+        <v-col cols=12 md=2 class="mt-4">
           <h3>タグ</h3>
         </v-col>
-        <v-col cols=12 md=8 class="mt-1">
-          <v-text-field v-model="tag_list" outlined filled dense></v-text-field>
+        <v-col cols=12 md=3 class="mt-1">
+          <v-text-field v-model="tag_list" outlined dark filled dense></v-text-field>
         </v-col>
       </v-row>
       <v-divider class="mt-n5"></v-divider>
@@ -92,6 +98,7 @@
       return {
         title: '',
         date: '',
+        time: '',
         content: '',
         category: '',
         numbers: '',
