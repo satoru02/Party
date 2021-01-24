@@ -33,13 +33,13 @@
           <h3>参加人数</h3>
         </v-col>
         <v-col cols=12 md=3 class="mt-1">
-          <v-select dense filled outlined v-model="numbers"></v-select>
+          <v-select :items="numbers" dense filled outlined v-model="limit"></v-select>
         </v-col>
         <v-col cols=12 md=2 class="mt-4">
           <h3>使用ツール</h3>
         </v-col>
         <v-col cols=12 md=3 class="mt-1">
-          <v-select dense filled outlined multiple persistent-hint v-model="tools"></v-select>
+          <v-select dense :items="tools" filled outlined multiple persistent-hint v-model="tool"></v-select>
         </v-col>
       </v-row>
       <v-divider class="mt-n5"></v-divider>
@@ -49,7 +49,7 @@
           <h3>カテゴリー</h3>
         </v-col>
         <v-col cols=12 md=3 class="mt-1">
-          <v-select dense filled outlined v-model="category"></v-select>
+          <v-select :items="categories" dense filled outlined v-model="category"></v-select>
         </v-col>
         <v-col cols=12 md=2 class="mt-4">
           <h3>タグ</h3>
@@ -101,8 +101,27 @@
         time: '',
         content: '',
         category: '',
-        numbers: '',
-        tools: '',
+        categories: [
+          "シェアウォッチ",
+          "プライベートタイムライン",
+          "お笑い",
+          "Netflix",
+          "Amazon Prime"
+        ],
+        limit: '',
+        numbers: [
+          1, 2, 3, 4, 5, 6, 7, 8, 9, 10,
+          11, 12, 13, 14, 15, 16, 17, 18, 19, 20, "No limit"
+        ],
+        tool: '',
+        tools: [
+          "Youtube",
+          "Zoom",
+          "KIT PARTY Chat",
+          "LINE",
+          "Twitter",
+          "Free"
+        ],
         tag_list: '',
         rule: ''
       }
