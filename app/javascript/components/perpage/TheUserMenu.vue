@@ -34,18 +34,18 @@
             link: '/users/' + `${this.$store.state.currentUser.data.attributes.id}` + `/events`,
           },
           {
-            icon: 'mdi-account-multiple-outline',
-            title: 'Friends',
-            link: '/posts/new'
-          },
-          {
             icon:  'mdi-garage-open',
             title: 'Rooms',
             link: '/rooms'
           },
           {
             icon:  'mdi-post-outline',
-            title: 'Edit Post',
+            title: 'Upload',
+            link: '/upload'
+          },
+          {
+            icon:  'mdi-pencil-outline',
+            title: 'Edit',
             link: '/posts/new'
           },
           {
