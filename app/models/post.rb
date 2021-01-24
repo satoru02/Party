@@ -13,9 +13,6 @@ class Post < ApplicationRecord
     self.update! date: customize_time
   end
 
-  def url_check
-  end
-
   private
     def customize_time; self.created_at.strftime("%-m/%-d/%Y") end
 end

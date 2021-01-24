@@ -32,6 +32,7 @@ gem 'jsonapi-serializer'
 gem 'acts-as-taggable-on', '~> 7.0'
 gem 'image_processing', '~> 1.2'
 gem 'friendly_id', '~> 5.4.0'
+gem 'skylight'
 
 group :development, :test do
   gem 'byebug', platforms: %i[mri mingw x64_mingw]

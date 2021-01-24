@@ -1,9 +1,9 @@
 <template>
   <div class="homes">
-    <categoryHeader></categoryHeader>
+    <!-- <categoryHeader></categoryHeader> -->
     <card></card>
     <v-divider dark vertical></v-divider>
-    <tagHeader></tagHeader>
+    <!-- <tagHeader></tagHeader> -->
     <v-divider dark vertical></v-divider>
   </div>
 </template>

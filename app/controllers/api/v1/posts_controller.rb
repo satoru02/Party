@@ -5,7 +5,7 @@ module Api
       before_action :set_post, only: [:show, :edit, :update]
 
       def index
-        @posts = Post.pager(page: params[:page], per: params[:per_page])
+        @posts = Post.all.includes(:entries).pager(page: params[:page], per: params[:per_page])
         serializer = PostSerializer.new(@posts.reverse_order, { params: { user_id: params[:user_id] }})
         render json: serializer.serializable_hash.to_json
       end
