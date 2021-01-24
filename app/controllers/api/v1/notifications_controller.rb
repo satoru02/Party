@@ -4,9 +4,19 @@ module Api
       before_action :authorize_access_request!
 
       def index
-        @notifications = current_user.notifications.pager(page: params[:page], per: params[:per_page])
-        serializer = NotificationSerializer.new(@notifications.reverse_order)
-        render json: serializer.serializable_hash.to_json
+
+        if params[:position] === 'top'
+          @notifications = current_user.notifications.where(confirmation: false)
+          @notifications.pager(page: params[:page], per: params[:per_page])
+          serializer = TopNotificationSerializer.new(@notifications.reverse_order)
+          render json: serializer.serializable_hash.to_json
+
+        else params[:position] === 'index'
+          @notifications = current_user.notifications.where(confirmation: true)
+          @notifications.pager(page: params[:page], per: params[:per_page])
+          serializer = NotificationSerializer.new(@notifications.reverse_order)
+          render json: serializer.serializable_hash.to_json
+        end
       end
 
       def show

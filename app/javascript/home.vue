@@ -1,7 +1,7 @@
 <template>
   <div class="homes">
     <!-- <categoryHeader></categoryHeader> -->
-    <card></card>
+    <!-- <card></card> -->
     <v-divider dark vertical></v-divider>
     <!-- <tagHeader></tagHeader> -->
     <v-divider dark vertical></v-divider>

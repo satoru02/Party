@@ -5,7 +5,7 @@ module Api
       before_action :set_category, only: [:show]
 
       def index
-        @categories = Category.all
+        @categories = Category.all.includes(:posts)
         serializer = CategorySerializer.new(@categories)
         render json: serializer.serializable_hash.to_json
       end

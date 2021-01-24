@@ -82,7 +82,11 @@
     },
     methods: {
       getNotifications() {
-        simpleAxios.get(NOTIFICATIONS_URL)
+        simpleAxios.get(NOTIFICATIONS_URL, {
+          params: {
+            position: 'top'
+          }
+        })
           .then(response => this.Successful(response))
           .catch(error => this.Failed(error))
       },

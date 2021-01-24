@@ -74,6 +74,7 @@
       infiniteHandler($state) {
         simpleAxios.get(NOTIFICATIONS_URL, {
           params: {
+            position: 'index',
             page: this.page,
             per_page: this.pageSize,
           },
