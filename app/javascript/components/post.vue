@@ -1,26 +1,83 @@
 <template>
-  <form class="form-signup">
-    <div class="alert alert-danger" v-if="error">{{ error }}</div>
-    <div class="form-group">
-      <label for="title">Title</label>
-      <input v-model="title" type="text" class="form-controll" id="title">
-    </div>
-    <div class="form-group">
-      <label for="content">Content</label>
-      <input v-model="content" type="text" class="form-controll" id="content">
-    </div>
-    <div class="form-group">
-      <label for="category">Category</label>
-      <input v-model="category" type="text" class="form-controll" id="category">
-    </div>
-    <div class="form-group">
-      <label for="tag">Tags</label>
-      <input v-model="tag_list" type="text" class="form-controll" id="tag">
-    </div>
-    <v-btn text color="primary" @click="postUrl(title, content, tag_list)">
-      submit
-    </v-btn>
-  </form>
+  <div justify="center" align="center">
+    <v-sheet style="border: 1px solid hsla(0,0%,100%,.1);" color="#212529" height="550" class="rounded-lg mt-16"
+      width="850">
+      <v-row>
+        <v-col cols=12 md=3 class="mt-4">
+          <h3>イベント名</h3>
+        </v-col>
+        <v-col cols=12 md=8 class="mt-1">
+          <v-text-field v-model="title" outlined dark filled dense></v-text-field>
+        </v-col>
+      </v-row>
+      <v-divider class="mt-n5"></v-divider>
+
+      <v-row>
+        <v-col cols=12 md=3 class="mt-4">
+          <h3>開催日</h3>
+        </v-col>
+        <v-col cols=12 md=3 class="mt-1">
+          <v-text-field v-model="date" outlined dark filled dense></v-text-field>
+        </v-col>
+        <v-col cols=12 md=2 class="mt-4">
+          <h3>カテゴリー</h3>
+        </v-col>
+        <v-col cols=12 md=3 class="mt-1">
+          <v-text-field v-model="category" outlined dark filled dense></v-text-field>
+        </v-col>
+      </v-row>
+
+      <v-divider class="mt-n5"></v-divider>
+      <v-row>
+        <v-col cols=12 md=3 class="mt-4">
+          <h3>参加人数</h3>
+        </v-col>
+        <v-col cols=12 md=3 class="mt-1">
+          <v-text-field v-model="numbers" outlined dark filled dense></v-text-field>
+        </v-col>
+        <v-col cols=12 md=2 class="mt-4">
+          <h3>使用ツール</h3>
+        </v-col>
+        <v-col cols=12 md=3 class="mt-1">
+          <v-text-field v-model="tools" outlined dark filled dense></v-text-field>
+        </v-col>
+      </v-row>
+      <v-divider class="mt-n5"></v-divider>
+
+      <v-row>
+        <v-col cols=12 md=3 class="mt-4">
+          <h3>タグ</h3>
+        </v-col>
+        <v-col cols=12 md=8 class="mt-1">
+          <v-text-field v-model="tag_list" outlined filled dense></v-text-field>
+        </v-col>
+      </v-row>
+      <v-divider class="mt-n5"></v-divider>
+
+      <v-row>
+        <v-col cols=12 md=3 class="mt-4">
+          <h3>イベント内容</h3>
+        </v-col>
+        <v-col cols=12 md=8 class="mt-5">
+          <v-textarea outlined filled label=""></v-textarea>
+        </v-col>
+      </v-row>
+
+    </v-sheet>
+    <v-row class="mt-4">
+      <v-col cols=12 md=2></v-col>
+      <v-col cols=12 md=1>
+        <v-btn style="background-color:#2d00f7; font-weight:bold;" large dark class="rounded-lg ml-13">Upload</v-btn>
+      </v-col>
+      <v-col cols=12 md=1>
+        <v-btn style="background-color:#6c757d; color:#000000; font-weight:bold;" large dark class="rounded-lg ml-7">
+          cancel</v-btn>
+      </v-col>
+    </v-row>
+    <v-row class="mt-8">
+      <v-col cols=12 md=12></v-col>
+    </v-row>
+  </div>
 </template>
 
 <script>
@@ -34,9 +91,13 @@
     data() {
       return {
         title: '',
+        date: '',
         content: '',
         category: '',
-        tag_list: ''
+        numbers: '',
+        tools: '',
+        tag_list: '',
+        rule: ''
       }
     },
     methods: {

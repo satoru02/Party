@@ -155,7 +155,7 @@
         component: Activation
       },
       {
-        path: "/posts/new",
+        path: "/upload",
         name: "Post",
         component: Post
       },
