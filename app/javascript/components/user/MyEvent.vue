@@ -13,8 +13,27 @@
           <v-col cols=12 md=2 class="mt-1" color="#efeff1">
             <v-btn small color="#2d00f7">開催日</v-btn>
           </v-col>
-          <v-col cols=12 md=4 class="ml-n13 mt-2" color="#efeff1">
+          <v-col cols=12 md=3 class="ml-n13 mt-2" color="#efeff1">
             <h3>{{ postTime(post.attributes.created_at) }}</h3>
+          </v-col>
+          <v-col cols=12 md=1 class="mt-2 ml-16">
+            <v-menu left offset-y nudge-width="140" nudge-height="100">
+              <template v-slot:activator="{ on, attrs}">
+                <v-icon color="#edf6f9" v-bind="attrs" v-on="on">mdi-dots-horizontal</v-icon>
+              </template>
+              <v-list class="rounded-s" style="background-color:#343a40;">
+                <router-link :to="{ name: 'PostEdit', params: {id: `${post.attributes.id }`}}">
+                  <v-list-item>
+                    <v-list-item-title class="ml-5">編集する</v-list-item-title>
+                  </v-list-item>
+                </router-link>
+                <v-list-item>
+                  <!-- <router-link :to="{ name: 'PostEdit', params: {id: `${post.attributes.id }`}}"> -->
+                  <v-list-item-title class="ml-5">削除する</v-list-item-title>
+                  <!-- </router-link> -->
+                </v-list-item>
+              </v-list>
+            </v-menu>
           </v-col>
         </v-row>
         <v-divider></v-divider>

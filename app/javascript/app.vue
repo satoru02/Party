@@ -172,7 +172,7 @@
         component: Post
       },
       {
-        path: "/posts/edit/:id",
+        path: "/events/edit/:id",
         name: "PostEdit",
         component: PostEdit
       },

@@ -7,7 +7,7 @@
         <v-col cols=12 md=3 class="mt-7">
           <h3>ユーザーネーム</h3>
         </v-col>
-        <v-col cols=12 md=7 class="mt-4">
+        <v-col cols=12 md=7 class="mt-5">
           <v-text-field v-model="user.username" :placeholder="user.username" outlined dark filled dense></v-text-field>
         </v-col>
         <v-col cols=12 md=1></v-col>
@@ -22,25 +22,20 @@
         <v-col cols=12 md=1></v-col>
       </v-row>
 
-      <v-row>
+      <v-row class="mt-3">
         <v-col cols=12 md=1></v-col>
         <v-col cols=12 md=3>
           <h3>アイコン</h3>
         </v-col>
-        <v-col cols=12 md=7>
-          <form enctype="multipart/form-data">
-            <input type="file" ref="inputFile" @change="uploadFile()">
-          </form>
+        <v-col cols=12 md=7 class="ml-n2 mt-n2">
+            <v-file-input dense type="file" ref="inputFile" @change="uploadFile()">
+            </v-file-input>
         </v-col>
-        <v-col cols=12 md=1></v-col>
       </v-row>
-      <v-row>
-        <v-col cols=12 md=4></v-col>
-        <v-col cols=12 md=7 class="mt-n12">
-          <div></div>
-        </v-col>
-        <v-col cols=12 md=1></v-col>
-      </v-row>
+              <v-row>
+          <v-col cols=12 md=12></v-col>
+        </v-row>
+
       <v-divider></v-divider>
       <v-row>
         <v-col cols=12 md=4></v-col>
@@ -52,10 +47,10 @@
 
       <v-row>
         <v-col cols=12 md=1></v-col>
-        <v-col cols=12 md=3 class="mt-1">
+        <v-col cols=12 md=3 class="mt-2">
           <h3>自己紹介</h3>
         </v-col>
-        <v-col cols=12 md=7 class=mt-n2>
+        <v-col cols=12 md=7>
           <v-text-field v-model="user.about" :placeholder="user.about" outlined dark filled dense></v-text-field>
         </v-col>
         <v-col cols=12 md=1></v-col>
@@ -71,10 +66,10 @@
 
       <v-row>
         <v-col cols=12 md=1></v-col>
-        <v-col cols=12 md=3 class="mt-1">
+        <v-col cols=12 md=3 class="mt-2">
           <h3>居住地</h3>
         </v-col>
-        <v-col cols=12 md=7 class="mt-n2">
+        <v-col cols=12 md=7>
           <v-text-field v-model="user.location" :placeholder="user.location" outlined dark filled dense></v-text-field>
         </v-col>
         <v-col cols=12 md=1></v-col>
