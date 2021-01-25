@@ -58,7 +58,7 @@
             <v-row>
               <v-col cols=12 md=5></v-col>
               <v-col cols=12 md=2>
-                <p class="mt-4" style="font-size:0.8rem;">Sign up</p>
+                <p class="mt-4" style="font-size:1rem;">Sign up</p>
               </v-col>
             </v-row>
           </v-btn>
@@ -114,22 +114,7 @@
           .catch(error => this.signupFailed(error))
       },
       signupSuccessful(response) {
-        this.$router.replace({name: "check", params: {query: this.email}})
-
-        // if (!response.data.csrf) {
-        //   this.signnupFailed(response)
-        //   return
-        // }
-        // simpleAxios.get(USER_INFO_URL)
-        //   .then(me_response => {
-        //     this.$store.commit('setCurrentUser', {
-        //       currentUser: me_response.data,
-        //       csrf: response.data.csrf
-        //     })
-        //     this.error = ''
-        //     this.$router.replace('/')
-        //   })
-        //   .catch(error => this.signupFailed(error))
+        this.$router.replace({name: "check", params: {email: this.email}})
       },
       signupFailed(error) {
         this.error = (error.response && error.response.data && error.response.data.error) || ""

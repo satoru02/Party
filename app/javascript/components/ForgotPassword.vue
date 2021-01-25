@@ -1,17 +1,61 @@
 <template>
-  <form class="form-app form-forgot-password" @submit.prevent="submit">
-    <div class="alert alert-info" v-if="notice">{{ notice }}</div>
-    <div class="alert alert-danger" v-if="error">{{ error }}</div>
-    <div class="form-group">
-      <label for="email">Email address</label>
-      <input type="email" v-model="email" class="form-control" id="email">
-    </div>
-    <button type="submit" class="btn btn-primary mb-3">Reset Password</button>
-    <div>
-      <router-link to="/login">Sign in</router-link>
-      <router-link to="/signup">Sign up</router-link>
-    </div>
-  </form>
+  <div justify="center" align="center">
+    <v-sheet elevation=10 style="border: 1px solid hsla(0,0%,100%,.1);" color="#212529" height="330"
+      class="rounded-lg mt-16" width="650">
+      <v-row>
+        <v-col cols=12 md=2></v-col>
+        <v-col cols=12 md=8 class="mt-8">
+          <h1>Reset Password</h1>
+        </v-col>
+      </v-row>
+
+      <v-row>
+        <v-col cols=12 md=1></v-col>
+        <v-col cols=12 md=1>
+          <h3 style="color:#edf2f4;">EMAIL</h3>
+        </v-col>
+      </v-row>
+      <v-row class="mt-n4">
+        <v-col cols=12 md=1></v-col>
+        <v-col cols=12 md=10>
+          <v-text-field v-model="email" outlined filled dense></v-text-field>
+        </v-col>
+      </v-row>
+
+      <v-row>
+        <v-col cols=12 md=1></v-col>
+        <v-col cols=12 md=10>
+          <v-btn @click="resetPassword()" large depressed block color="#2d00f7">
+            <v-row>
+              <v-col cols=12 md=4></v-col>
+              <v-col cols=12 md=1>
+                <p class="mt-4 ml-5" style="font-size:1rem;">Send Email</p>
+              </v-col>
+            </v-row>
+          </v-btn>
+        </v-col>
+      </v-row>
+      <v-row>
+        <v-col cols=12 md=1></v-col>
+        <v-col cols=12 md=1 class="mt-n4">
+          <router-link :to="{name: 'login'}">
+            <p style="font-size:0.7rem; color:#6c757d;">Login</p>
+          </router-link>
+        </v-col>
+        <v-col cols=12 md=2 class="mt-n4 ml-n10">
+          <router-link :to="{name: 'signup'}">
+            <p style="font-size:0.7rem; color:#6c757d;">Sign up</p>
+          </router-link>
+        </v-col>
+      </v-row>
+
+    </v-sheet>
+    <v-row class="mt-8">
+      <v-col cols=12 md=12></v-col>
+    </v-row>
+  </div>
+
+
 </template>
 
 <script>
@@ -30,7 +74,7 @@
       }
     },
     methods: {
-      submit() {
+      resetPassword() {
         simpleAxios.post(PASSWORD_RESET_URL, {
             email: this.email
           })
@@ -40,7 +84,7 @@
       submitSuccessful() {
         this.notice = 'Email with reset password istructions had been sent.'
         this.error = ''
-        this.email = ''
+        this.$router.replace({name: "check", params: {email: this.email}})
       },
       submitFailed(error) {
         this.error = (error.response && error.response.data && error.response.data.error) || ''

@@ -127,7 +127,7 @@
         component: Signup
       },
       {
-        path: "/verify-email",
+        path: "/verify-email/:email",
         name: "check",
         component: Check
       },
