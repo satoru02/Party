@@ -108,7 +108,7 @@
       <v-row>
         <v-col cols=12 md=1></v-col>
         <v-col cols=12 md=10>
-          <v-btn :click="signin()" large depressed block color="#2d00f7">
+          <v-btn @click="signin()" large depressed block color="#2d00f7">
             <v-row>
               <v-col cols=12 md=5></v-col>
               <v-col cols=12 md=2>

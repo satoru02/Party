@@ -46,6 +46,7 @@
   import Chat from './components/chat';
   import MyEvent from './components/user/MyEvent';
   import JoinedEvent from './components/user/JoinedEvent';
+  import Check from './Check';
   import '@mdi/font/css/materialdesignicons.css';
 
   const actionCableVueOptions = {
@@ -123,6 +124,11 @@
         path: "/signup",
         name: "signup",
         component: Signup
+      },
+      {
+        path: "/verify-email",
+        name: "check",
+        component: Check
       },
       {
         path: "/admin/users",
