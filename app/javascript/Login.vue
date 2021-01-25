@@ -170,7 +170,11 @@
           this.signinFailed(response)
           return
         }
-        simpleAxios.get(USER_INFO_URL)
+        simpleAxios.get(USER_INFO_URL, {
+          params: {
+            position: 'login'
+          }
+        })
           .then(me_response => {
             this.$store.commit('setCurrentUser', {
               currentUser: me_response.data,

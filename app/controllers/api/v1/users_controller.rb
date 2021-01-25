@@ -6,8 +6,13 @@ module Api
       before_action :set_host_for_local_storage
 
       def me
-        serializer = UserSerializer.new(current_user)
-        render json: serializer.serializable_hash.to_json
+        if params[:position] === 'activation'
+          serializer = InitialUserSerializer.new(current_user)
+          render json: serializer.serializable_hash.to_json
+        elsif params[:position] === 'login'
+          serializer = UserSerializer.new(current_user)
+          render json: serializer.serializable_hash.to_json
+        end
       end
 
       def index

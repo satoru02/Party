@@ -58,7 +58,7 @@
             <v-row>
               <v-col cols=12 md=5></v-col>
               <v-col cols=12 md=2>
-                <p class="mt-4" style="font-size:0.8rem;">Login</p>
+                <p class="mt-4" style="font-size:0.8rem;">Sign up</p>
               </v-col>
             </v-row>
           </v-btn>

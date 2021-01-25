@@ -23,14 +23,19 @@ export default {
         this.Failed(response)
         return
       }
-      simpleAxios.get(USER_INFO_URL)
+      simpleAxios.get(USER_INFO_URL,{
+        params: {
+          position: 'activation'
+        }
+      })
         .then(me_response => {
           this.$store.commit('setCurrentUser', {
             currentUser: me_response.data,
             csrf: response.data.csrf
           })
           this.error = ''
-          this.$router.replace('/')
+          // # -> initial-setting
+          this.$router.replace('/initial-settings')
         })
       .catch(error => this.signupFailed(error))
      },

@@ -8,7 +8,6 @@
           <h1>Check your email</h1>
         </v-col>
       </v-row>
-
     </v-sheet>
     <v-row class="mt-8">
       <v-col cols=12 md=12></v-col>

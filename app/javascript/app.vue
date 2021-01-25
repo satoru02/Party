@@ -47,6 +47,7 @@
   import MyEvent from './components/user/MyEvent';
   import JoinedEvent from './components/user/JoinedEvent';
   import Check from './Check';
+  import InitialSettings from './components/user/InitialSetting';
   import '@mdi/font/css/materialdesignicons.css';
 
   const actionCableVueOptions = {
@@ -129,6 +130,11 @@
         path: "/verify-email",
         name: "check",
         component: Check
+      },
+      {
+        path: "/initial-settings",
+        name: "InitialSettings",
+        component: InitialSettings
       },
       {
         path: "/admin/users",
