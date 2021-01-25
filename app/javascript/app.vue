@@ -48,6 +48,9 @@
   import JoinedEvent from './components/user/JoinedEvent';
   import Check from './Check';
   import InitialSettings from './components/user/InitialSettings';
+  import TopFilter from './components/TopFilter';
+  import Top from './components/Top';
+  import EventCard from './components/EventCard';
   import '@mdi/font/css/materialdesignicons.css';
 
   const actionCableVueOptions = {
@@ -113,8 +116,18 @@
     mode: 'history',
     routes: [{
         path: "/",
-        name: "home",
-        component: Home
+        component: Top,
+        children: [{
+            path: '',
+            name: "EventCard",
+            component: EventCard
+          },
+          {
+            path: '/:query',
+            name: "TopFilter",
+            component: TopFilter
+          }
+        ]
       },
       {
         path: "/login",
@@ -200,8 +213,7 @@
         path: "/users/:id",
         name: "User",
         component: User,
-        children: [
-          {
+        children: [{
             path: "events",
             name: "MyEvents",
             component: MyEvent,
@@ -238,7 +250,7 @@
         path: "/tag/:id",
         name: "Tag",
         component: Tag
-      }
+      },
     ]
   })
 
