@@ -55,7 +55,6 @@
     </v-row>
   </div>
 
-
 </template>
 
 <script>
@@ -84,7 +83,12 @@
       submitSuccessful() {
         this.notice = 'Email with reset password istructions had been sent.'
         this.error = ''
-        this.$router.replace({name: "check", params: {email: this.email}})
+        this.$router.replace({
+          name: "check",
+          params: {
+            email: this.email
+          }
+        })
       },
       submitFailed(error) {
         this.error = (error.response && error.response.data && error.response.data.error) || ''
