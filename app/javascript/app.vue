@@ -47,7 +47,7 @@
   import MyEvent from './components/user/MyEvent';
   import JoinedEvent from './components/user/JoinedEvent';
   import Check from './Check';
-  import InitialSettings from './components/user/InitialSetting';
+  import InitialSettings from './components/user/InitialSettings';
   import '@mdi/font/css/materialdesignicons.css';
 
   const actionCableVueOptions = {

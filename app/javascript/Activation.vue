@@ -34,7 +34,6 @@ export default {
             csrf: response.data.csrf
           })
           this.error = ''
-          // # -> initial-setting
           this.$router.replace('/initial-settings')
         })
       .catch(error => this.signupFailed(error))

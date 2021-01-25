@@ -190,11 +190,7 @@
 </template>
 
 <script>
-  import {
-    simpleAxios,
-    secureAxios
-  } from '../../backend/axios.js'
-
+  import { secureAxios } from '../../backend/axios.js'
   const USER_URL = '/api/v1/users/'
 
   export default {
@@ -219,19 +215,7 @@
         if (this.$store.state.checkSignedIn) {
           this.$router.replace('/')
         }
-        this.getUserInformation()
-      },
-      getUserInformation() {
-        simpleAxios.get(USER_URL + `${this.$store.state.currentUser.data.attributes.id}` + `/edit`)
-          .then(response => this.fetchSuccessful(response))
-          .catch(error => this.Failed(error))
-      },
-      fetchSuccessful(response) {
-        if (!response.data) {
-          this.Failed(response)
-          return
-        }
-        this.user = response.data.data.attributes
+        this.user = this.$store.state.currentUser.data.attributes
       },
       saveProfile() {
         secureAxios.defaults.headers.common['X-CSRF-TOKEN'] = this.$store.state.csrf
@@ -266,7 +250,7 @@
           this.Failed(response)
           return
         }
-        this.$router.replace('/setting')
+        this.$router.replace('/settings')
       },
       uploadFile() {
         this.picture = this.$refs.inputFile.files[0];

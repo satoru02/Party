@@ -1,6 +1,6 @@
 <template>
   <div justify="center" align="center">
-        <!-- <v-sheet class="name rounded-lg ml-5" color="#212529" width="700"
+    <v-sheet class="name rounded-lg ml-5 mt-16 mb-16" color="#212529" width="700"
       style="border: 1px solid hsla(0,0%,100%,.1); height:auto; min-height: 600px; max-width: 100%; max-height:2000px;">
       <v-row>
         <v-col cols=12 md=1></v-col>
@@ -16,7 +16,7 @@
       <v-row>
         <v-col cols=12 md=4></v-col>
         <v-col cols=12 md=7 class="mt-n11">
-          <div>Customize your username.</div>
+          <div>Your username.</div>
         </v-col>
         <v-col cols=12 md=1></v-col>
       </v-row>
@@ -185,17 +185,64 @@
             Changes</v-btn>
         </v-col>
       </v-row>
-    </v-sheet> -->
-    </div>
+    </v-sheet>
+  </div>
 </template>
 
 <script>
-export default {
-  name: 'IniitalSettings',
-  data(){
-    return {
+  import { secureAxios } from '../../backend/axios.js'
+  const USER_URL = '/api/v1/users/'
 
+  export default {
+    name: 'InitialSettings',
+    data() {
+      return {
+        user: '',
+        picture: ''
+      }
+    },
+    created() {
+      this.user = this.$store.state.currentUser.data.attributes
+    },
+    methods: {
+      saveProfile() {
+        secureAxios.defaults.headers.common['X-CSRF-TOKEN'] = this.$store.state.csrf
+        const params = {
+          email: this.user.email,
+          about: this.user.about,
+          name: this.user.name,
+          username: this.user.username,
+          location: this.user.location,
+          web_url: this.user.web_url,
+          youtube_url: this.user.youtube_url,
+          facebook_url: this.user.facebook_url,
+          instagram_url: this.user.instagram_url,
+          filmarks_url: this.user.filmarks_url,
+          avatar: this.picture
+        }
+
+        let formData = new FormData()
+        Object.entries(params).forEach(
+          ([key, value]) => formData.append(key, value)
+        )
+
+        secureAxios.patch(USER_URL + `${this.$store.state.currentUser.data.attributes.id}`, formData)
+          .then(response => this.updateSuccessdul(response))
+          .catch(error => this.Failed(error))
+      },
+      Failed(error) {
+        this.error = (error.response && error.response.data && error.response.data.error) || ""
+      },
+      updateSuccessdul(response) {
+        if (!response.data) {
+          this.Failed(response)
+          return
+        }
+        this.$router.replace('/')
+      },
+      uploadFile() {
+        this.picture = this.$refs.inputFile.files[0];
+      }
     }
   }
-}
 </script>
