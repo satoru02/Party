@@ -19,7 +19,7 @@
         </v-container>
     </v-responsive>
     <v-text-field v-model="message" @click:append-outer="sendMessage(message)" append-outer-icon="mdi-send" rounded
-      class="ml-13 mt-16 bottom" label="Type a message" type="text" no-details outlined />
+      class="ml-13 mt-16 bottom" label="メッセージを送信する" type="text" no-details outlined />
   </div>
 </template>
 

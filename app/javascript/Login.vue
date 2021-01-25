@@ -1,26 +1,26 @@
 <template>
   <div justify="center" align="center">
-    <v-sheet elevation=10 style="border: 1px solid hsla(0,0%,100%,.1);" color="#212529" height="630" class="rounded-lg mt-16"
+    <v-sheet elevation=10 style="border: 1px solid hsla(0,0%,100%,.1);" color="#212529" height="650" class="rounded-lg mt-14"
       width="650">
       <v-row>
         <v-col cols=12 md=2></v-col>
         <v-col cols=12 md=8 class="mt-8">
-          <h1>Welcome back to KITPAC community!</h1>
-          <h2 style="color:#6c757d;">Let's have a party</h2>
+          <h1>VIDEOKITコミュニティへようこそ！</h1>
+          <h2 style="color:#6c757d;">好きな友達とパーティしよう。</h2>
         </v-col>
       </v-row>
 
-      <v-row>
+      <v-row class="mt-5">
         <v-col cols=12 md=1></v-col>
         <v-col cols=12 md=10>
           <v-btn large depressed block color="#0a0908">
             <v-row>
               <v-col cols=12 md=3></v-col>
               <v-col cols=12 md=1>
-                <v-icon class="ml-4 mt-2">mdi-apple</v-icon>
+                <v-icon class="ml-7 mt-3">mdi-apple</v-icon>
               </v-col>
               <v-col cols=12 md=3>
-                <p class="ml-4 mt-4" style="font-size:0.7rem;">Login with Apple</p>
+                <p class="ml-7 mt-4" style="font-size:0.8rem;">Appleでログイン</p>
               </v-col>
               <v-col cols=12 md=3></v-col>
             </v-row>
@@ -36,10 +36,10 @@
             <v-row>
               <v-col cols=12 md=3></v-col>
               <v-col cols=12 md=1>
-                <v-icon class="ml-4 mt-2">mdi-google</v-icon>
+                <v-icon class="ml-7 mt-3">mdi-google</v-icon>
               </v-col>
               <v-col cols=12 md=3>
-                <p class="ml-4 mt-4" style="font-size:0.7rem;">Login with Google</p>
+                <p class="ml-7 mt-4" style="font-size:0.8rem;">Googleでログイン</p>
               </v-col>
               <v-col cols=12 md=3></v-col>
             </v-row>
@@ -72,8 +72,8 @@
       </v-row>
       <v-row class="mt-n10">
         <v-col cols=12 md=1></v-col>
-        <v-col cols=12 md=1>
-          <h3 style="color:#edf2f4;">EMAIL</h3>
+        <v-col cols=12 md=2 class="ml-n4">
+          <h3 style="color:#edf2f4;">Eメール</h3>
         </v-col>
       </v-row>
       <v-row class="mt-n4">
@@ -83,10 +83,10 @@
         </v-col>
       </v-row>
 
-      <v-row class="mt-n8">
+      <v-row class="mt-n5">
         <v-col cols=12 md=1></v-col>
-        <v-col cols=12 md=1>
-          <h3 style="color:#edf2f4;">PASSWORD</h3>
+        <v-col cols=12 md=2 class="ml-n2">
+          <h3 style="color:#edf2f4;">パスワード</h3>
         </v-col>
       </v-row>
       <v-row class="mt-n4">
@@ -97,10 +97,10 @@
       </v-row>
       <v-row>
         <v-col cols=12 md=1></v-col>
-        <v-col cols=12 md=3 class="mt-n11 ml-n4">
+        <v-col cols=12 md=3 class="mt-n11 ml-n6">
           <router-link :to="{name: 'ForgotPassword'}">
             <div>
-              <p style="font-size:0.7rem; color:#6c757d;">I forgot my password</p>
+              <p style="font-size:0.7rem; color:#6c757d;">パスワードを忘れた</p>
             </div>
           </router-link>
         </v-col>
@@ -112,7 +112,7 @@
             <v-row>
               <v-col cols=12 md=5></v-col>
               <v-col cols=12 md=2>
-                <p class="mt-4" style="font-size:1rem;">Login</p>
+                <p class="mt-4" style="font-size:1rem;">ログイン</p>
               </v-col>
             </v-row>
           </v-btn>
@@ -120,9 +120,9 @@
       </v-row>
       <v-row>
         <v-col cols=12 md=1></v-col>
-        <v-col cols=12 md=3 class="ml-n3 mt-n4">
+        <v-col cols=12 md=3 class="ml-n8 mt-n4">
           <router-link :to="{name: 'signup'}">
-            <p style="font-size:0.7rem; color:#6c757d;">I dont have an account</p>
+            <p style="font-size:0.7rem; color:#6c757d;">アカウント作成</p>
           </router-link>
         </v-col>
       </v-row>

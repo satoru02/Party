@@ -5,14 +5,14 @@
       <v-row>
         <v-col cols=12 md=2></v-col>
         <v-col cols=12 md=8 class="mt-8">
-          <h1>Reset Password</h1>
+          <h1>パスワードをリセットする</h1>
         </v-col>
       </v-row>
 
       <v-row>
         <v-col cols=12 md=1></v-col>
-        <v-col cols=12 md=1>
-          <h3 style="color:#edf2f4;">EMAIL</h3>
+        <v-col cols=12 md=2 class="ml-n4">
+          <h3 style="color:#edf2f4;">Eメール</h3>
         </v-col>
       </v-row>
       <v-row class="mt-n4">
@@ -29,7 +29,7 @@
             <v-row>
               <v-col cols=12 md=4></v-col>
               <v-col cols=12 md=1>
-                <p class="mt-4 ml-5" style="font-size:1rem;">Send Email</p>
+                <p class="mt-4 ml-1" style="font-size:1rem;">Eメールを送信する</p>
               </v-col>
             </v-row>
           </v-btn>
@@ -37,14 +37,14 @@
       </v-row>
       <v-row>
         <v-col cols=12 md=1></v-col>
-        <v-col cols=12 md=1 class="mt-n4">
+        <v-col cols=12 md=2 class="mt-n4 ml-n6">
           <router-link :to="{name: 'login'}">
-            <p style="font-size:0.7rem; color:#6c757d;">Login</p>
+            <p style="font-size:0.7rem; color:#6c757d;">ログイン</p>
           </router-link>
         </v-col>
         <v-col cols=12 md=2 class="mt-n4 ml-n10">
           <router-link :to="{name: 'signup'}">
-            <p style="font-size:0.7rem; color:#6c757d;">Sign up</p>
+            <p style="font-size:0.7rem; color:#6c757d;">アカウント登録</p>
           </router-link>
         </v-col>
       </v-row>

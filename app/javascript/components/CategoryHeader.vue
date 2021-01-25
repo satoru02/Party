@@ -2,7 +2,7 @@
   <div class="category">
     <v-container class="mt-16 ml-16">
       <v-row no-gutters>
-        <h2 class="mb-5 ml-8 mt-n3">Category</h2>
+        <h2 class="mb-5 ml-8 mt-n3">カテゴリー</h2>
         <v-col v-for="(category, index) in categories" :key="index" class="mb-4 ml-8" cols="12" sm="16">
           <router-link :to="{name: 'Category', params: {slug: `${ category.attributes.slug }`}}">
             <div class="category_item" style="color:#d3d3d3; font-size: 15px;">{{ category.attributes.name }}</div>

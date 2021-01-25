@@ -30,37 +30,37 @@
         avatar: this.$store.state.currentUser.data.attributes.avatar_url,
         items: [{
             icon: 'mdi-account-outline',
-            title: 'Profile',
+            title: 'プロフィール',
             link: '/users/' + `${this.$store.state.currentUser.data.attributes.id}` + `/events`,
           },
           {
             icon:  'mdi-garage-open',
-            title: 'Rooms',
+            title: 'ルーム',
             link: '/rooms'
           },
           {
             icon:  'mdi-post-outline',
-            title: 'Upload',
+            title: 'アップロード',
             link: '/upload'
           },
           {
             icon:  'mdi-pencil-outline',
-            title: 'Edit',
+            title: '編集',
             link: '/posts/new'
           },
           {
             icon:  'mdi-wrench-outline',
-            title: 'Settings',
+            title: '設定',
             link: '/users/' + `${this.$store.state.currentUser.data.attributes.id}` + '/settings'
           },
           {
             icon:  'mdi-help',
-            title: 'Help',
+            title: 'ヘルプ',
             link: '/posts/new'
           },
           {
             icon:  'mdi-exit-run',
-            title: 'Sign out',
+            title: 'ログアウト',
             link: '/posts/new'
           }
         ],

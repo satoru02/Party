@@ -1,6 +1,12 @@
 <template>
   <div justify="center" align="center">
-    <v-sheet style="border: 1px solid hsla(0,0%,100%,.1);" color="#212529" height="550" class="rounded-lg mt-16"
+    <v-row class="mt-14">
+      <v-col cols=12 md=1></v-col>
+      <v-col cols=12 md=5 class=ml-n10>
+        <h2>イベントを作ろう</h2>
+      </v-col>
+    </v-row>
+    <v-sheet style="border: 1px solid hsla(0,0%,100%,.1);" color="#212529" height="510" class="rounded mt-3"
       width="850">
       <v-row>
         <v-col cols=12 md=3 class="mt-4">
@@ -73,11 +79,11 @@
     <v-row class="mt-4">
       <v-col cols=12 md=2></v-col>
       <v-col cols=12 md=1>
-        <v-btn style="background-color:#2d00f7; font-weight:bold;" large dark class="rounded-lg ml-13">Upload</v-btn>
+        <v-btn style="background-color:#2d00f7; font-weight:bold;" large dark class="rounded ml-13">アップロード</v-btn>
       </v-col>
       <v-col cols=12 md=1>
-        <v-btn style="background-color:#6c757d; color:#000000; font-weight:bold;" large dark class="rounded-lg ml-7">
-          cancel</v-btn>
+        <v-btn style="background-color:#6c757d; color:#000000; font-weight:bold;" large dark class="rounded ml-15">
+          キャンセル</v-btn>
       </v-col>
     </v-row>
     <v-row class="mt-8">

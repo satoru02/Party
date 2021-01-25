@@ -3,7 +3,7 @@
     <v-row no-gutters>
       <v-col class="d-flex" md="4" offset-md="3"></v-col>
       <v-col class="d-flex mt-5 mb-n7" md="2" offset-md="2">
-        <v-select label="Trend" dense outlined class="rounded-lg"></v-select>
+        <v-select label="トレンド" dense outlined class="rounded-lg"></v-select>
       </v-col>
     </v-row>
     <v-container>

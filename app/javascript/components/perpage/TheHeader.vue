@@ -9,7 +9,7 @@
         </v-col>
         <v-spacer></v-spacer>
         <v-col cols="6">
-          <v-text-field append-icon v-model="query" @keydown.enter="searchPost(query)" dark class="mt-7 ml-9 mr-n14" placeholder="Search" filled rounded dense></v-text-field>
+          <v-text-field append-icon v-model="query" @keydown.enter="searchPost(query)" dark class="mt-7 ml-9 mr-n14" placeholder="検索する" filled rounded dense></v-text-field>
         </v-col>
         <v-spacer></v-spacer>
         <v-col class="pa-1 mt-8 mr-n9">

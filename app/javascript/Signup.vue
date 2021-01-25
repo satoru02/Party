@@ -1,18 +1,18 @@
 <template>
   <div justify="center" align="center">
-    <v-sheet elevation=10 style="border: 1px solid hsla(0,0%,100%,.1);" color="#212529" height="630" class="rounded-lg mt-16"
+    <v-sheet elevation=10 style="border: 1px solid hsla(0,0%,100%,.1);" color="#212529" height="600" class="rounded-lg mt-16"
       width="650">
       <v-row>
         <v-col cols=12 md=2></v-col>
         <v-col cols=12 md=8 class="mt-8">
-          <h1>Create an account</h1>
+          <h1>アカウント作成</h1>
         </v-col>
       </v-row>
 
       <v-row>
         <v-col cols=12 md=1></v-col>
-        <v-col cols=12 md=1>
-          <h3 style="color:#edf2f4;">EMAIL</h3>
+        <v-col cols=12 md=2 class="ml-n4">
+          <h3 style="color:#edf2f4;">Eメール</h3>
         </v-col>
       </v-row>
       <v-row class="mt-n4">
@@ -24,8 +24,8 @@
 
       <v-row class="mt-n4">
         <v-col cols=12 md=1></v-col>
-        <v-col cols=12 md=1>
-          <h3 style="color:#edf2f4;">PASSWORD</h3>
+        <v-col cols=12 md=2 class="ml-n2">
+          <h3 style="color:#edf2f4;">パスワード</h3>
         </v-col>
       </v-row>
       <v-row class="mt-n4">
@@ -36,9 +36,9 @@
       </v-row>
 
       <v-row class="mt-n4">
-        <v-col cols=12 md=1></v-col>
-        <v-col cols=12 md=4>
-          <h3 style="color:#edf2f4;">PASSWORD CONFIRMATION</h3>
+        <!-- <v-col cols=12 md=2></v-col> -->
+        <v-col cols=12 md=5 class="ml-n4">
+          <h3 style="color:#edf2f4;">パスワードの確認</h3>
         </v-col>
       </v-row>
       <v-row class="mt-n4">
@@ -58,7 +58,7 @@
             <v-row>
               <v-col cols=12 md=5></v-col>
               <v-col cols=12 md=2>
-                <p class="mt-4" style="font-size:1rem;">Sign up</p>
+                <p class="mt-4" style="font-size:1rem;">登録</p>
               </v-col>
             </v-row>
           </v-btn>
@@ -66,9 +66,9 @@
       </v-row>
       <v-row>
         <v-col cols=12 md=1></v-col>
-        <v-col cols=12 md=3 class="ml-n2 mt-n4">
+        <v-col cols=12 md=4 class="ml-n5 mt-n4">
           <router-link :to="{name: 'login'}">
-            <p style="font-size:0.7rem; color:#6c757d;">I already have an account</p>
+            <p style="font-size:0.7rem; color:#6c757d;">アカウントを作成した事がある</p>
           </router-link>
         </v-col>
       </v-row>
