@@ -44,11 +44,6 @@
             link: '/upload'
           },
           {
-            icon:  'mdi-pencil-outline',
-            title: '編集',
-            link: '/posts/new'
-          },
-          {
             icon:  'mdi-wrench-outline',
             title: '設定',
             link: '/users/' + `${this.$store.state.currentUser.data.attributes.id}` + '/settings'

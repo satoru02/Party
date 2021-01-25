@@ -4,6 +4,10 @@ class JoinedPostSerializer
   set_type :room
   attributes :id, :name, :host_id, :post_id
 
+  attribute :host_user do |object|
+    object.host_user
+  end
+
   #fix
   attribute :joined_event do |object|
     @posts = []

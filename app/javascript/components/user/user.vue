@@ -8,10 +8,10 @@
         <v-col cols=12 md=3 class="ml-16">
           <avatar :size="140" :avatar_url="$store.state.currentUser.data.attributes.avatar_url"></avatar>
         </v-col>
-        <v-col cols=12 md=auto class="ml-3">
+        <v-col cols=12 md=auto class="ml-n3">
           <v-btn v-for="(n, index) in items" :key="index" color="#efeff1" text rounded class="my-2 mt-8">
             <router-link :to="{ name: n.name }">
-              <div style="color:#efeff1">{{ n.title }}</div>
+              <div style="color:#efeff1; font-size:0.7rem;">{{ n.title }}</div>
             </router-link>
           </v-btn>
           <v-divider dark class="mt-n1"></v-divider>

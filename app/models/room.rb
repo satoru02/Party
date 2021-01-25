@@ -19,6 +19,11 @@ class Room < ApplicationRecord
     BCrypt::Password.new(resource_digest).is_password?(token)
   end
 
+  def host_user
+    @user = User.find_by(id: self.host_id)
+    @user.name
+  end
+
     private
 
     def create_resource_digest

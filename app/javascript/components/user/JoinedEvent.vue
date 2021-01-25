@@ -27,6 +27,16 @@
         <v-row class="mt-n3">
           <v-col cols=12 md="3" class="ml-7 mt-n6">
             <p style="color:#efeff1; font-size:0.8rem;">
+              <v-icon small>mdi-account</v-icon> 主催者
+            </p>
+          </v-col>
+          <v-col cols=12 md="3" class="mt-n6">
+            <p style="color:#efeff1; font-size:0.8rem;">{{ event.attributes.host_user }}</p>
+          </v-col>
+        </v-row>
+        <v-row>
+          <v-col cols=12 md="3" class="ml-7 mt-n6">
+            <p style="color:#efeff1; font-size:0.8rem;">
               <v-icon small>mdi-account-multiple-outline</v-icon> 参加人数
             </p>
           </v-col>
