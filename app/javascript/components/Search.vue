@@ -84,6 +84,7 @@
       getFilterPost() {
         simpleAxios.get(CONTENT_URL, {
             params: {
+              filter_category: 'title',
               q: this.$route.params.query,
             }
           })

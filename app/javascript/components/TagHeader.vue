@@ -1,6 +1,6 @@
 <template>
   <div class="tag">
-    <v-container class="mt-16 ml-16">
+    <v-container class="mt-3 ml-16">
       <v-row no-gutters>
         <h2 class="mb-5 ml-8 mt-n3">ピックアップ</h2>
         <v-col v-for="(tag, index) in tags" :key="index" class="mb-4 ml-8" cols="12" sm="16">

@@ -1,6 +1,6 @@
 <template>
   <div infinite-wrapper>
-    <v-container class="mt-n2">
+    <v-container>
       <v-row no-gutters>
         <v-col v-for="post in posts" :key="post.attributes.id" :title="post.attributes.title"
           :time="post.attributes.date" :user_id="post.attributes.user_id" class="mb-9 pr-10" cols="12" sm="16">
@@ -68,20 +68,20 @@
 </template>
 
 <script>
-  import EventCard from '../components/EventCard';
-  import CategoryHeader from '../components/CategoryHeader';
-  import TagHeader from '../components/TagHeader';
   import {
-    simpleAxios
+    simpleAxios,
+    secureAxios
   } from '../backend/axios.js'
+  import Avatar from '../components/perpage/TheAvatar.vue';
+  import InfiniteLoading from 'vue-infinite-loading';
+  const ENTRY_URL = '/api/v1/entries'
   const SEARCH_POST_URL = '/api/v1/posts/search'
 
   export default {
     name: "TopFilter",
     components: {
-      'event-card': EventCard,
-      'categoryHeader': CategoryHeader,
-      'tagHeader': TagHeader
+      'avatar': Avatar,
+      'infinite-loading': InfiniteLoading,
     },
     data() {
       return {
@@ -91,17 +91,32 @@
         dialog: false
       }
     },
+    watch: {
+      '$route.params.query': {
+        immediate: true,
+        handler() {
+          this.initialize()
+          this.infiniteHandler()
+        }
+      }
+    },
     methods: {
+      initialize() {
+        this.page = 1
+        this.posts = []
+      },
       infiniteHandler($state) {
         simpleAxios.get(SEARCH_POST_URL, {
             params: {
               q: this.$route.params.query,
+              filter_category: 'date',
               page: this.page,
               per_page: this.pageSize,
             }
           })
           .then((res) => {
             setTimeout(() => {
+              console.log(res.data.data)
               if (res.data.data.length) {
                 this.page += 1;
                 this.posts.push(...res.data.data);
@@ -109,7 +124,7 @@
               } else {
                 $state.complete();
               }
-            }, 1000)
+            }, 10)
           })
       },
       entryRequest(post, user) {
@@ -123,3 +138,13 @@
     }
   }
 </script>
+
+<style scoped>
+  .v-card {
+    transition: opacity .4s ease-in-out;
+  }
+
+  .v-card:not(.on-hover) {
+    opacity: 1;
+  }
+</style>

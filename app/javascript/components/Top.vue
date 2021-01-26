@@ -2,26 +2,37 @@
   <div class="homes">
     <categoryHeader></categoryHeader>
     <div class="card" style="grid-area:card">
+      <v-row>
+        <v-col cols=12 md=12></v-col>
+      </v-row>
+      <v-row>
+        <v-col cols=12 md=12></v-col>
+      </v-row>
       <v-row class="mt-2">
-        <v-col cols=12 md=6></v-col>
-        <v-col cols=12 md=1 class="ml-n4">
-          <v-btn @click="filterSearch()" color="#efeff1" text rounded>
-            <div style="color:#efeff1; font-size:0.8rem;">Trend</div>
+        <v-col v-model="date" cols=12 md=4 class="ml-5">
+          <h1>{{date}}のイベント</h1>
+        </v-col>
+        <v-col cols=12 md=1></v-col>
+        <v-col cols=12 md=1 class="ml-10 mt-1">
+          <router-link :to="{name: 'Top'}">
+            <v-btn color="#343a40" rounded-s small>
+              <h3 style="color:#e9ecef; font-size:1rem;">最新</h3>
+            </v-btn>
+          </router-link>
+        </v-col>
+        <v-col cols=12 md=1 class="ml-3 mt-1">
+          <v-btn @click="filterSearch(today)" color="#343a40" rounded-s small>
+            <h3 style="color:#e9ecef; font-size:1rem;">今日</h3>
           </v-btn>
         </v-col>
-        <v-col cols=12 md=1 class=ml-3>
-          <v-btn @click="filterSearch()" color="#efeff1" text rounded>
-            <div style="color:#efeff1; font-size:0.8rem;">Today</div>
+        <v-col cols=12 md=1 class="ml-3 mt-1">
+          <v-btn @click="filterSearch(week)" color="#343a40" small rounded-s>
+            <h3 style="color:#e9ecef; font-size:1rem;">今週</h3>
           </v-btn>
         </v-col>
-        <v-col cols=12 md=1 class=ml-3>
-          <v-btn @click="filterSearch()" color="#efeff1" text rounded>
-            <div style="color:#efeff1; font-size:0.8rem;">Week</div>
-          </v-btn>
-        </v-col>
-        <v-col cols=12 md=1 class=ml-2>
-          <v-btn @click="filterSearch()" color="#efeff1" text rounded>
-            <div style="color:#efeff1; font-size:0.8rem;">Month</div>
+        <v-col cols=12 md=1 class="ml-3 mt-1">
+          <v-btn @click="filterSearch(month)" color="#343a40" small rounded-s>
+            <h3 style="color:#e9ecef; font-size:1rem;">今月</h3>
           </v-btn>
         </v-col>
       </v-row>
@@ -34,24 +45,38 @@
 </template>
 
 <script>
-  import Avatar from '../components/perpage/TheAvatar.vue';
-  import EventCard from '../components/EventCard';
   import CategoryHeader from '../components/CategoryHeader';
   import TagHeader from '../components/TagHeader';
 
   export default {
     name: 'Top',
     components: {
-      'avatar': Avatar,
-      'event-card': EventCard,
       'categoryHeader': CategoryHeader,
       'tagHeader': TagHeader
     },
     data() {
       return {
-        page: 1,
-        pageSize: 9,
-        posts: [],
+        today: {
+          identifier: 'today',
+          date: ''
+        },
+        week: {
+          identifier: 'week',
+          date: ''
+        },
+        month: {
+          identifier: 'month',
+          date: ''
+        },
+        date: '最新'
+      }
+    },
+    watch: {
+      '$route.params.query': {
+        immediate: true,
+        handler() {
+          this.dateChange()
+        }
       }
     },
     created() {
@@ -63,14 +88,28 @@
           this.$router.replace('/login')
         }
       },
-      filterSearch() {
+      filterSearch(value) {
         this.$router.replace({
           name: "TopFilter",
           params: {
-            query: "today"
+            query: value.identifier
           }
         })
-      }
+      },
+      dateChange() {
+        this.date = this.setDateName(this.$route.params.query)
+      },
+      setDateName(date) {
+        if (date === 'today') {
+          return '今日';
+        } else if (date === 'week') {
+          return '今週';
+        } else if (date === 'month') {
+          return '今月';
+        } else {
+          return '最新';
+        }
+      },
     },
   }
 </script>

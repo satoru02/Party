@@ -20,7 +20,6 @@
   import InfiniteLoading from 'vue-infinite-loading';
   import Avatar from './components/perpage/TheAvatar.vue';
   import Header from './components/perpage/TheHeader.vue';
-  import Home from './home.vue';
   import Login from './Login.vue';
   import Signup from './Signup.vue';
   import Activation from './Activation.vue';
@@ -29,7 +28,6 @@
   import ForgotPassword from './components/ForgotPassword.vue';
   import ResetPassword from './components/ResetPassword.vue';
   import UserEdit from './components/Edit.vue';
-  import Users from './components/user/users.vue';
   import User from './components/user/user.vue';
   import Settings from './components/user/settings.vue';
   import PostEdit from './components/PostEdit.vue';
@@ -43,7 +41,6 @@
   import Post from './components/post';
   import InfoFooter from './components/perpage/TheFooter';
   import Tag from './components/Tag';
-  import Chat from './components/chat';
   import MyEvent from './components/user/MyEvent';
   import JoinedEvent from './components/user/JoinedEvent';
   import Check from './Check';
@@ -119,15 +116,52 @@
         component: Top,
         children: [{
             path: '',
-            name: "EventCard",
+            name: "Top",
             component: EventCard
           },
           {
-            path: '/:query',
+            path: '/results/:query',
             name: "TopFilter",
             component: TopFilter
           }
         ]
+      },
+      {
+        path: "/users/:id",
+        name: "User",
+        component: User,
+        children: [{
+            path: "events",
+            name: "MyEvents",
+            component: MyEvent,
+            props: (route) => ({
+              query: route.query.status
+            })
+          },
+          {
+            path: "joined-events",
+            name: "JoinedEvents",
+            component: JoinedEvent,
+            props: (route) => ({
+              query: route.query.status
+            })
+          },
+          {
+            path: "settings",
+            name: "Settings",
+            component: Settings
+          }
+        ]
+      },
+      {
+        path: "/rooms",
+        name: "Rooms",
+        component: Rooms,
+        children: [{
+          path: ":token",
+          name: "Room",
+          component: Room
+        }, ]
       },
       {
         path: "/login",
@@ -198,43 +232,6 @@
         path: "/search/:query",
         name: "Search",
         component: Search
-      },
-      {
-        path: "/rooms",
-        name: "Rooms",
-        component: Rooms,
-        children: [{
-          path: ":token",
-          name: "Room",
-          component: Room
-        }, ]
-      },
-      {
-        path: "/users/:id",
-        name: "User",
-        component: User,
-        children: [{
-            path: "events",
-            name: "MyEvents",
-            component: MyEvent,
-            props: (route) => ({
-              query: route.query.status
-            })
-          },
-          {
-            path: "joined-events",
-            name: "JoinedEvents",
-            component: JoinedEvent,
-            props: (route) => ({
-              query: route.query.status
-            })
-          },
-          {
-            path: "settings",
-            name: "Settings",
-            component: Settings
-          }
-        ]
       },
       {
         path: "/notifications",

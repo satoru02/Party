@@ -1,6 +1,6 @@
 <template>
   <div infinite-wrapper>
-    <v-container class="mt-n2">
+    <v-container>
       <v-row no-gutters>
         <v-col v-for="post in posts" :key="post.attributes.id" :title="post.attributes.title"
           :time="post.attributes.date" :user_id="post.attributes.user_id" class="mb-9 pr-10" cols="12" sm="16">
@@ -110,7 +110,7 @@
               } else {
                 $state.complete();
               }
-            }, 1000)
+            }, 100)
           })
       },
       entryRequest(post, user) {

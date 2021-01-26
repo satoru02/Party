@@ -1,6 +1,9 @@
 <template>
   <div class="category">
-    <v-container class="mt-16 ml-16">
+    <v-container class="mt-13 ml-16">
+      <v-row>
+        <v-col cols=12 md=12></v-col>
+      </v-row>
       <v-row no-gutters>
         <h2 class="mb-5 ml-8 mt-n3">カテゴリー</h2>
         <v-col v-for="(category, index) in categories" :key="index" class="mb-4 ml-8" cols="12" sm="16">

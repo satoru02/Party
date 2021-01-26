@@ -50,7 +50,14 @@ module Api
       end
 
       def search
-        filter_posts(params[:q])
+        if params[:filter_category] === 'date'
+          @filtered_posts = filter_by_date(params[:q])
+        end
+
+        if params[:filter_category] === 'title'
+          @filterd_posts = filter_by_title(params[:q])
+        end
+
         @pager_filtered_posts = @filtered_posts.pager(page: params[:page], per: params[:per_page])
         serializer = PostSerializer.new(@pager_filtered_posts)
         render json: serializer.serializable_hash.to_json
