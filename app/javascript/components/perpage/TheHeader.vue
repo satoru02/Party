@@ -1,31 +1,24 @@
 <template>
-  <v-app-bar app style="background-color:#161a1d">
-    <v-container>
-      <v-row class="d-flex justify-space-around">
-        <v-col>
-          <router-link to="/">
-            <h1 class="pa-3 mt-5 ml-n16" style="color:white">KIT PAC</h1>
-          </router-link>
-        </v-col>
-        <v-spacer></v-spacer>
-        <v-col cols="6">
-          <v-text-field append-icon v-model="query" @keydown.enter="searchPost(query)" dark class="mt-7 ml-9 mr-n14" placeholder="検索する" filled rounded dense></v-text-field>
-        </v-col>
-        <v-spacer></v-spacer>
-        <v-col class="pa-1 mt-8 mr-n9">
-          <notifications></notifications>
-        </v-col>
-        <!-- <v-col class="pa-2 mt-11 mr-n16">
-          <v-icon size=23>mdi-chat-outline</v-icon>
-        </v-col> -->
-        <v-col>
-          <userMenu></userMenu>
-        </v-col>
-        <v-col class="mt-8 mr-n16 ml-n16">
-          <postButton></postButton>
-        </v-col>
-      </v-row>
-    </v-container>
+  <v-app-bar absolute app style="background-color:#161a1d">
+    <router-link to="/">
+    <v-toolbar-title>TITLE</v-toolbar-title>
+    </router-link>
+    <v-row>
+      <v-col cols=12 md=3></v-col>
+      <v-col cols=12 md=5 class="mt-7">
+        <v-text-field append-icon v-model="query" @keydown.enter="searchPost(query)" dark placeholder="検索する" filled rounded dense></v-text-field>
+      </v-col>
+      <v-col cols=12 md=1></v-col>
+      <v-col cols=12 md=1 class="mt-6">
+        <notifications></notifications>
+      </v-col>
+      <v-col cols=12 md=1 class="ml-n5 mt-6">
+        <userMenu></userMenu>
+      </v-col>
+      <v-col cols=12 md=1 class="ml-n6 mt-7">
+        <postButton></postButton>
+      </v-col>
+    </v-row>
   </v-app-bar>
 </template>
 

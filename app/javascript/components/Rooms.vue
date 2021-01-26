@@ -66,7 +66,6 @@
         this.rooms = response.data.data
       },
       Failed(error) {
-        console.log(error)
         this.error = (error.response && error.response.data && error.response.data.error) || ""
       },
       checkAvatar(host_id, room_avatar) {
