@@ -118,6 +118,9 @@
     created() {
       this.fetchUsersPost()
     },
+    watch: {
+      '$route': 'fetchUsersPost'
+    },
     methods: {
       fetchUsersPost() {
         simpleAxios.get(USERS_POST_INFO_URL, {

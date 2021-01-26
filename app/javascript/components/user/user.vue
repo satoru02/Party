@@ -132,6 +132,9 @@
     created(){
       this.fetchUserInformation()
     },
+    watch: {
+      '$route': 'fetchUserInformation'
+    },
     methods: {
       fetchUserInformation() {
         simpleAxios.get(USER_INFO_URL + `${this.$route.params.id}`)
@@ -148,7 +151,7 @@
       },
       joinedTime(time) {
         return moment(time).format("YYYY/MM/DD")
-      },
+      }
     }
   }
 </script>

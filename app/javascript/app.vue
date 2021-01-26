@@ -128,10 +128,11 @@
       },
       {
         path: "/users/:id",
+        // name: "User",
         component: User,
         children: [
           {
-            path: "",
+            path: '',
             name: "MyEvents",
             component: MyEvent,
             props: (route) => ({

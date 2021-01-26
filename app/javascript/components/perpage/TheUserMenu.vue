@@ -31,34 +31,35 @@
         items: [{
             icon: 'mdi-account-outline',
             title: 'プロフィール',
+            name: 'MyEvents',
             link: '/users/' + `${this.$store.state.currentUser.data.attributes.id}`,
           },
           {
-            icon:  'mdi-garage-open',
+            icon: 'mdi-garage-open',
             title: 'ルーム',
             link: '/rooms'
           },
           {
-            icon:  'mdi-post-outline',
+            icon: 'mdi-post-outline',
             title: 'アップロード',
             link: '/upload'
           },
           {
-            icon:  'mdi-wrench-outline',
+            icon: 'mdi-wrench-outline',
             title: '設定',
             link: '/users/' + `${this.$store.state.currentUser.data.attributes.id}` + '/settings'
           },
           {
-            icon:  'mdi-help',
+            icon: 'mdi-help',
             title: 'ヘルプ',
             link: '/posts/new'
           },
           {
-            icon:  'mdi-exit-run',
+            icon: 'mdi-exit-run',
             title: 'ログアウト',
             link: '/posts/new'
           }
-        ],
+        ]
       }
     }
   }
