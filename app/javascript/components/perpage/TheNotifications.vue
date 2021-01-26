@@ -9,6 +9,12 @@
               <v-icon class="icon" size=23>mdi-bell-outline</v-icon>
             </router-link>
           </v-badge>
+
+          <v-badge v-if="notifications.length > 0">
+            <v-icon class="icon" size=23>mdi-chat-outline</v-icon>
+          </v-badge>
+          <v-icon v-if="notifications.length === 0" class="icon" size=23>mdi-bell-outline</v-icon>
+
           <router-link to="/notifications">
             <v-icon v-if="notifications.length === 0" class="mt-4 mr-16 icon" size=23>mdi-bell-outline</v-icon>
           </router-link>
@@ -34,6 +40,10 @@
         </v-list-item>
       </v-list>
     </v-menu>
+    <!-- <v-badge v-if="notifications.length > 0" :content="notifications.length">
+        <v-icon class="icon" size=23>mdi-chat-outline</v-icon>
+    </v-badge>
+      <v-icon v-if="notifications.length === 0" class="icon" size=23>mdi-bell-outline</v-icon> -->
   </div>
 </template>
 
@@ -83,10 +93,10 @@
     methods: {
       getNotifications() {
         simpleAxios.get(NOTIFICATIONS_URL, {
-          params: {
-            position: 'top'
-          }
-        })
+            params: {
+              position: 'top'
+            }
+          })
           .then(response => this.Successful(response))
           .catch(error => this.Failed(error))
       },

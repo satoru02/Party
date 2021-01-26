@@ -7,10 +7,10 @@
             <v-list-item-group>
               <h1 class="mb-5">Notifications</h1>
               <v-divider dark></v-divider>
-              <template v-for="(notification, index) in notifications">
+              <template v-for="(notification) in notifications">
                 <router-link :key="notification.attributes.id"
                   :to="{ name: 'Notification', params: {id: `${notification.attributes.id }`}}">
-                  <v-list-item class="mt-3" :key="index">
+                  <v-list-item class="mt-3">
                     <v-list-item-action>
                       <v-badge v-if="notification.attributes.confirmation === false" dot left inline color="#2176ff">
                       </v-badge>
@@ -57,6 +57,27 @@
       }
     },
     methods: {
+      infiniteHandler($state) {
+        simpleAxios.get(NOTIFICATIONS_URL, {
+          params: {
+            position: 'index',
+            page: this.page,
+            per_page: this.pageSize,
+          },
+        }).then((res) => {
+          setTimeout(() => {
+            console.log(res.data.data.length)
+            if (res.data.data.length) {
+              this.page += 1;
+              this.notifications.push(...res.data.data);
+              console.log($state)
+              $state.loaded();
+            } else {
+              $state.complete();
+            }
+          }, 1000)
+        })
+      },
       catchedTime(time) {
         return moment(time).format("YYYY/MM/DD hh:mm")
       },
@@ -71,26 +92,6 @@
           return "今週、注目のイベントをチェックしよう！"
         }
       },
-      infiniteHandler($state) {
-        simpleAxios.get(NOTIFICATIONS_URL, {
-          params: {
-            position: 'index',
-            page: this.page,
-            per_page: this.pageSize,
-          },
-        }).then((res) => {
-          setTimeout(() => {
-            if (res.data.data.length) {
-              this.page += 1;
-              this.notifications.push(...res.data.data);
-              $state.loaded();
-            } else {
-              $state.complete();
-            }
-          }, 1000)
-        })
-
-      }
     }
   }
 </script>

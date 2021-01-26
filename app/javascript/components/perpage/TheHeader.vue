@@ -15,9 +15,9 @@
         <v-col class="pa-1 mt-8 mr-n9">
           <notifications></notifications>
         </v-col>
-        <v-col class="pa-2 mt-11 mr-n16">
+        <!-- <v-col class="pa-2 mt-11 mr-n16">
           <v-icon size=23>mdi-chat-outline</v-icon>
-        </v-col>
+        </v-col> -->
         <v-col>
           <userMenu></userMenu>
         </v-col>

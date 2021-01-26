@@ -2,7 +2,7 @@
   <div infinite-wrapper>
     <v-container>
       <v-row no-gutters>
-        <v-col v-for="post in posts" :key="post.attributes.id" :title="post.attributes.title"
+        <v-col v-for="post in posts" :key="post.attributes.id + Math.random()" :title="post.attributes.title"
           :time="post.attributes.date" :user_id="post.attributes.user_id" class="mb-9 pr-10" cols="12" sm="16">
           <v-hover v-slot="{ hover }">
             <v-card :class="{ 'on-hover': hover }" :elevation="hover ? 16 : 0" class="rounded-xl" color="#05070f"
@@ -116,7 +116,6 @@
           })
           .then((res) => {
             setTimeout(() => {
-              console.log(res.data.data)
               if (res.data.data.length) {
                 this.page += 1;
                 this.posts.push(...res.data.data);
@@ -124,7 +123,7 @@
               } else {
                 $state.complete();
               }
-            }, 10)
+            }, 1000)
           })
       },
       entryRequest(post, user) {
