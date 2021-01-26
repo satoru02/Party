@@ -23,7 +23,7 @@
               </template>
               <v-list class="rounded-s" style="background-color:#343a40;">
                 <router-link :to="{ name: 'PostEdit', params: {id: `${post.attributes.id }`}}">
-                  <v-list-item>
+                  <v-list-item v-if="$store.state.currentUser.data.attributes.id === post.attributes.user_id">
                     <v-list-item-title class="ml-5">編集する</v-list-item-title>
                   </v-list-item>
                 </router-link>
@@ -106,7 +106,6 @@
     simpleAxios,
     secureAxios
   } from '../../backend/axios.js'
-
   const USERS_POST_INFO_URL = '/api/v1/posts/'
 
   export default {
@@ -120,13 +119,10 @@
       this.fetchUsersPost()
     },
     methods: {
-      postTime(time) {
-        return moment(time).format("YYYY/MM/DD hh:mm")
-      },
       fetchUsersPost() {
         simpleAxios.get(USERS_POST_INFO_URL, {
             params: {
-              user_id: `${this.$store.state.currentUser.data.attributes.id}`,
+              user_id: `${this.$route.params.id}`,
               position: 'my_events'
             }
           })
@@ -134,13 +130,15 @@
           .catch(error => this.Failed(error))
       },
       Successful(response) {
-        console.log(response.data.data)
         this.posts = response.data.data
       },
       Failed(error) {
         this.error = (error.response && error.response.data && error.response.data.error) || ""
         this.$router.replace('/')
       },
+      postTime(time) {
+        return moment(time).format("YYYY/MM/DD hh:mm")
+      }
     }
   }
 </script>

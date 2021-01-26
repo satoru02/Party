@@ -94,11 +94,7 @@
 
 <script>
   import moment from 'moment';
-  import {
-    simpleAxios,
-    secureAxios
-  } from '../../backend/axios.js'
-
+  import { simpleAxios, secureAxios } from '../../backend/axios.js'
   const USERS_POST_INFO_URL = '/api/v1/posts/'
 
   export default {
@@ -112,13 +108,10 @@
       this.fetchJoinedPost()
     },
     methods: {
-      postTime(time) {
-        return moment(time).format("YYYY/MM/DD hh:mm")
-      },
       fetchJoinedPost() {
         simpleAxios.get(USERS_POST_INFO_URL, {
             params: {
-              user_id: `${this.$store.state.currentUser.data.attributes.id}`,
+              user_id: `${this.$route.params.id}`,
               position: 'joined_events'
             }
           })
@@ -126,12 +119,14 @@
           .catch(error => this.Failed(error))
       },
       Successful(response) {
-        console.log(response.data.data)
         this.rooms = response.data.data
       },
       Failed(error) {
         this.error = (error.response && error.response.data && error.response.data.error) || ""
         this.$router.replace('/')
+      },
+      postTime(time) {
+        return moment(time).format("YYYY/MM/DD hh:mm")
       }
     }
   }

@@ -11,7 +11,7 @@
           <avatar></avatar>
         </v-col>
         <v-col cols="12" md="3" class="mt-4 ml-n15">
-          <router-link :to="{name: 'User', params: { id: user.id }}">
+          <router-link :to="{name: 'MyEvents', params: { id: user.id }}">
             <h3 style="color:black;">{{ user.name }}</h3>
           </router-link>
         </v-col>
