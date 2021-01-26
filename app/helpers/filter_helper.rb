@@ -16,22 +16,14 @@ module FilterHelper
 
   def gap_days
     day = Date.today.strftime("%A")
-    if day === "Monday"
-      0
-    elsif day === "Tuesday"
-      1
-    elsif day === "Wednesday"
-      2
-    elsif day === "Wednesday"
-      3
-    elsif day === "Thursday"
-      4
-    elsif day === "Friday"
-      5
-    elsif day === "Saturday"
-      6
-    elsif day === "Sunday"
-      7
+    if day      === "Monday";    0
+      elsif day === "Tuesday";   1
+      elsif day === "Wednesday"; 2
+      elsif day === "Wednesday"; 3
+      elsif day === "Thursday";  4
+      elsif day === "Friday";    5
+      elsif day === "Saturday";  6
+      elsif day === "Sunday";    7
     end
   end
 
@@ -40,5 +32,3 @@ module FilterHelper
     first_day = Date.new(today.year, today.month, 1)
   end
 end
-
-# @filtered_posts = Post.where("date = :specified_time", {specified_time: "1/21/2021"})

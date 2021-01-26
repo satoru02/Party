@@ -11,7 +11,7 @@
           </v-card-text>
           <v-card-actions>
             <v-list-item class="grow">
-              <router-link :to="{ name: 'User', params: {id: `${post.attributes.user_id}` }}">
+              <router-link :to="{ name: 'MyEvents', params: {id: `${post.attributes.user_id}` }}">
                 <avatar></avatar>
               </router-link>
               <v-list-item-content>
