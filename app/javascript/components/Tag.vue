@@ -84,7 +84,6 @@
         simpleAxios.get(TAG_URL + `${this.$route.params.id}`)
           .then(res => {
             if (res.data.data) {
-              console.log(res.data.data)
               this.posts.push(...res.data.data);
             }
           })

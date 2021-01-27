@@ -5,8 +5,8 @@
         <v-menu open-on-hover offset-y left nudge-height=800 nudge-bottom="6" nudge-width=150>
           <template v-slot:activator="{ on, attrs }">
             <div v-bind="attrs" v-on="on">
-              <v-badge v-if="notifications.length > 0" color="red" :content="notifications.length"
-                offset-y="10" offset-x="7">
+              <v-badge v-if="notifications.length > 0" color="red" :content="notifications.length" offset-y="10"
+                offset-x="7">
                 <router-link to="/notifications">
                   <v-icon class="icon" size=24>mdi-bell-outline</v-icon>
                 </router-link>
@@ -42,13 +42,14 @@
         <v-menu>
           <template v-slot:activator="{on, attrs}">
             <div v-bind="attrs" v-on="on">
-              <v-badge color="red" offset-y="10" offset-x="7" v-if="notifications.length > 0" :content="messageCount()">
+              <v-badge color="red" offset-y="10" offset-x="7" v-if="messageCount(notifications) > 0"
+                :content="messageCount(notifications)">
                 <router-link to="/rooms">
                   <v-icon class="icon mt-1" size=24>mdi-chat-outline</v-icon>
                 </router-link>
               </v-badge>
               <router-link to="/rooms">
-                <v-icon v-if="notifications.length === 0" class="icon" size=24>mdi-chat-outline</v-icon>
+                <v-icon v-if="messageCount(notifications) === 0" class="icon" size=24>mdi-chat-outline</v-icon>
               </router-link>
             </div>
           </template>
@@ -81,12 +82,11 @@
           // 2.Entry_Responseがあった時（承認/拒否）
           // 3.Messageを受け取った時
           // 4.Notificationが読まれた時
-
           if (this.$store.state.currentUser.data.attributes.id === data["target_user_id"] && data["condition"] !==
             "read") {
             this.notifications.push(data)
           } else if (this.$store.state.currentUser.data.attributes.id === data["target_user_id"] && data[
-              "condition"] === "read") {
+            "condition"] === "read") {
             this.notifications.pop()
           }
         },
@@ -122,14 +122,13 @@
         this.notifications = unchecked_notifications
       },
       Failed(error) {
-        console.log(error)
         this.error = (error.response && error.response.data && error.response.data.error) || ""
       },
       catchedTime(time) {
         return moment(time).format("YYYY/MM/DD hh:mm")
       },
-      messageCount(){
-        var filterd_notifications = this.notifications.filter(notification => notification.attributes.classification === "message")
+      messageCount(notifications) {
+        var filterd_notifications = notifications.filter(notification => notification.attributes.classification === "message")
         return filterd_notifications.length
       }
     }

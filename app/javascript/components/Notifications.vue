@@ -66,11 +66,9 @@
           },
         }).then((res) => {
           setTimeout(() => {
-            console.log(res.data.data.length)
             if (res.data.data.length) {
               this.page += 1;
               this.notifications.push(...res.data.data);
-              console.log($state)
               $state.loaded();
             } else {
               $state.complete();
