@@ -12,6 +12,7 @@ module Api
             target_user_id: params[:user],
             entry_user_id: @entry.user_id,
             entry_post_id: @entry.post_id,
+            attributes: @entry.notification
           })
         end
       end

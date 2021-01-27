@@ -18,10 +18,11 @@ module Api
 
           @entry.activate
           @rooms_user.save!
-          EntryResponse.create(user_id: params[:user_id], post_id: params[:post_id], answer: @answer)
+          @entry_response = EntryResponse.create(user_id: params[:user_id], post_id: params[:post_id], answer: @answer)
           ActionCable.server.broadcast("Notifications", {
             title: "Entry Approved by host",
             target_user_id: params[:user_id],
+            attributes: @entry_response.notification
           })
 
           @message = Message.find_by(room_id: @rooms_user.room_id, user_id: @rooms_user.user_id)
@@ -33,10 +34,11 @@ module Api
         elsif @answer === false
 
           @entry.deactivate
-          EntryResponse.create(user_id: params[:user_id], post_id: params[:post_id], answer: @answer)
+          @entry_response = EntryResponse.create(user_id: params[:user_id], post_id: params[:post_id], answer: @answer)
           ActionCable.server.broadcast("Notifications", {
             title: "Entry Declined by host",
             target_user_id: params[:user_id],
+            attributes: @entry_response.notification
           })
         end
       end

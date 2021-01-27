@@ -80,9 +80,7 @@
         return moment(time).format("YYYY/MM/DD hh:mm")
       },
       displayText(notification) {
-        if (notification.attributes.classification === "message") {
-          return `${notification.attributes.index_user_info[0].user.name}さん` + "から、新しいメッセージが届いています！"
-        } else if (notification.attributes.classification === "entry") {
+        if (notification.attributes.classification === "entry") {
           return `${notification.attributes.index_user_info[0].user.name}さん` + "から、新しいエントリーが届いています！"
         } else if (notification.attributes.classification === "entryResponse") {
           return "イベントオーガナイザーの" + `${notification.attributes.index_user_info[0].user.name}さん` + "からメッセージが届きました！"

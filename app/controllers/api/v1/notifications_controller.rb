@@ -11,7 +11,7 @@ module Api
           serializer = TopNotificationSerializer.new(@notifications_part.reverse_order)
 
         else params[:position] === 'index'
-          @notifications = current_user.notifications
+          @notifications = current_user.notifications.where(classification: ["entry", "entryResponse"])
           @notifications_part = @notifications.pager(page: params[:page], per: params[:per_page])
           serializer = NotificationSerializer.new(@notifications_part.reverse_order)
         end
@@ -26,7 +26,8 @@ module Api
           ActionCable.server.broadcast("Notifications", {
             title: "Notification is readen.",
             target_user_id: @notification.user_id,
-            condition: "read"
+            condition: "read",
+            attributes: @notification
           })
         end
 
