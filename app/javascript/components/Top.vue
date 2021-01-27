@@ -6,14 +6,11 @@
         <v-col cols=12 md=12></v-col>
       </v-row>
       <v-row>
-        <v-col cols=12 md=12></v-col>
-      </v-row>
-      <v-row class="mt-2">
         <v-col v-model="date" cols=12 md=4 class="ml-5">
           <h1>{{date}}のイベント</h1>
         </v-col>
-        <v-col cols=12 md=1></v-col>
-        <v-col cols=12 md=1 class="ml-10 mt-1">
+        <v-col cols=12 md=2></v-col>
+        <v-col cols=12 md=1 class="ml-2 mt-1">
           <router-link :to="{name: 'Top'}">
             <v-btn color="#343a40" rounded-s small>
               <h3 style="color:#e9ecef; font-size:1rem;">最新</h3>
@@ -139,7 +136,7 @@
 
   .homes {
     display: grid;
-    grid-template-columns: 364px auto 372px;
+    grid-template-columns: 340px 810px 333px;
     grid-template-areas: "category card list""tag card list";
     grid-template-rows: 425px auto;
   }

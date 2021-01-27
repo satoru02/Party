@@ -1,16 +1,16 @@
 <template>
   <div justify="center" align="center">
-    <v-sheet color="#eaf4f4" height="550" class="rounded-xl" width="650">
+    <v-sheet elevation=5 color="#eaf4f4" height="550" class="rounded-lg" width="650">
       <v-row>
         <v-col cols="12" md="12" class="mt-12">
           <h1 class="title" style="color:black;"><span class="underline">New Entry</span></h1>
         </v-col>
       </v-row>
       <v-row>
-        <v-col cols="12" md="2">
+        <v-col cols="12" md="1" class="ml-15">
           <avatar></avatar>
         </v-col>
-        <v-col cols="12" md="3" class="mt-4 ml-n15">
+        <v-col cols="12" md="3" class="mt-4 ml-n7" align-self="baseline">
           <router-link :to="{name: 'MyEvents', params: { id: user.id }}">
             <h3 style="color:black;">{{ user.name }}</h3>
           </router-link>

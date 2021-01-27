@@ -5,46 +5,121 @@
         <v-col v-for="post in posts" :key="post.attributes.id + Math.random()" :title="post.attributes.title"
           :time="post.attributes.date" :user_id="post.attributes.user_id" class="mb-9 pr-10" cols="12" sm="16">
           <v-hover v-slot="{ hover }">
-            <v-card :class="{ 'on-hover': hover }" :elevation="hover ? 16 : 0" class="rounded-xl" color="#05070f"
-              max-width="680" max-height="400">
-              <v-card-title>
-                <v-list-item-avatar color="darken-3" size=25>
-                  <v-icon style="color:white" size=22>🎬</v-icon>
-                </v-list-item-avatar>
-                <div class="mr-12" style="color:white; font-size: 13px;">Movie</div>
-              </v-card-title>
-              <v-card-text class="mt-1" align="center">
-                <h2 style="color:white;">{{ post.attributes.title }}</h2>
-              </v-card-text>
-              <v-card-text class="mr-n14 " align="center">
-                <p style="color:white; font-size: 15px;" class="font-weight-light">Sacriel is the premier strategic
-                  combat and survival specialist on Twitch, providing</p>
-              </v-card-text>
-              <v-card-actions>
-                <v-list-item class="grow">
-                  <router-link :to="{ name: 'MyEvents', params: {id: `${post.attributes.user_id}` }}">
-                    <v-list-item-avatar color="white darken-3" size=30>
-                      <v-img class="elevation-1" alt=""
-                        src="https://avataaars.io/?avatarStyle=Transparent&topType=ShortHairShortCurly&accessoriesType=Prescription02&hairColor=Black&facialHairType=Blank&clotheType=Hoodie&clotheColor=White&eyeType=Default&eyebrowType=DefaultNatural&mouthType=Default&skinColor=Light">
-                      </v-img>
-                    </v-list-item-avatar>
-                  </router-link>
-                  <v-list-item-content>
-                    <v-list-item-subtitle class="mr-16" style="color:white">John Smith</v-list-item-subtitle>
-                  </v-list-item-content>
-                  <v-row align="center" justify="end">
-                    <span class="subheading mr-2 mt-5 color:white"
-                      style="font-size: 13px">{{ post.attributes.date }}</span>
-                  </v-row>
-                  <v-btn
-                    v-if="$store.state.currentUser.data.attributes.id !== post.attributes.user_id && post.attributes.can_request_entry === true"
-                    text color="primary"
+            <v-sheet :class="{ 'on-hover': hover }" :elevation="hover ? 16 : 0" class="rounded-lg" color="#11151c"
+              width="740"
+              style="border: 1px solid hsla(0,0%,100%,.1); height:auto; min-height: 150px; max-width: 100%; max-height:1000px;">
+              <v-row>
+                <v-col cols=12 md=2 class="ml-7 mt-1" color="#efeff1">
+                  <v-btn small color="#2d00f7">イベント</v-btn>
+                </v-col>
+                <v-col cols=12 md=4 class="ml-n10 mt-2" color="#efeff1">
+                  <h3>{{ post.attributes.title }}</h3>
+                </v-col>
+                <v-col cols=12 md=2 class="mt-1" color="#efeff1">
+                  <v-btn small color="#2d00f7">開催日</v-btn>
+                </v-col>
+                <v-col cols=12 md=3 class="ml-n13 mt-2" color="#efeff1">
+                  <h3>{{ postTime(post.attributes.created_at) }}</h3>
+                </v-col>
+                <v-col cols=12 md=1 class="mt-2 ml-16"
+                  v-if="$store.state.currentUser.data.attributes.id === post.attributes.user_id">
+                  <v-menu left offset-y nudge-width="140" nudge-height="100">
+                    <template v-slot:activator="{ on, attrs}">
+                      <v-icon color="#edf6f9" v-bind="attrs" v-on="on">mdi-dots-horizontal</v-icon>
+                    </template>
+                    <v-list class="rounded-s" style="background-color:#343a40;">
+                      <router-link :to="{ name: 'PostEdit', params: {id: `${post.attributes.id }`}}">
+                        <v-list-item>
+                          <v-list-item-title class="ml-5">編集する</v-list-item-title>
+                        </v-list-item>
+                      </router-link>
+                      <v-list-item>
+                        <!-- <router-link :to="{ name: 'PostEdit', params: {id: `${post.attributes.id }`}}"> -->
+                        <v-list-item-title class="ml-5">削除する</v-list-item-title>
+                        <!-- </router-link> -->
+                      </v-list-item>
+                    </v-list>
+                  </v-menu>
+                </v-col>
+              </v-row>
+              <v-divider></v-divider>
+              <v-row>
+                <v-col cols=12 md=11 class="ml-7 mt-3">
+                  <p style="color:#efeff1; font-size:0.8rem;">{{ post.attributes.content }}</p>
+                </v-col>
+                <v-col cols=12 md=1></v-col>
+              </v-row>
+              <v-row class="mt-n3">
+                <v-col cols=12 md="3" class="ml-7 mt-n6">
+                  <p style="color:#efeff1; font-size:0.8rem;">
+                    <v-icon small>mdi-account-multiple-outline</v-icon> 参加人数
+                  </p>
+                </v-col>
+                <v-col cols=12 md="3" class="mt-n6">
+                  <p style="color:#efeff1; font-size:0.8rem;">15人</p>
+                </v-col>
+              </v-row>
+              <v-row>
+                <v-col cols=12 md="3" class="ml-7 mt-n6">
+                  <p style="color:#efeff1; font-size:0.8rem;">
+                    <v-icon small>mdi-door-open</v-icon> カテゴリー
+                  </p>
+                </v-col>
+                <v-col cols=12 md="3" class="mt-n6">
+                  <p style="color:#efeff1; font-size:0.8rem;">{{ post.attributes.category.name }}</p>
+                </v-col>
+              </v-row>
+              <v-row>
+                <v-col cols=12 md="3" class="ml-7 mt-n6">
+                  <p style="color:#efeff1; font-size:0.8rem;">
+                    <v-icon small>mdi-laptop</v-icon> 使用ツール
+                  </p>
+                </v-col>
+                <v-col cols=12 md="5" class="mt-n6">
+                  <p style="color:#efeff1; font-size:0.8rem;">Zoom Youtube Twitch Twitter ChatRoom</p>
+                </v-col>
+              </v-row>
+              <v-row>
+                <v-col cols=12 md="3" class="ml-7 mt-n6">
+                  <p style="color:#efeff1; font-size:0.8rem;">
+                    <v-icon small>mdi-comment-outline</v-icon> 主催者からのコメント
+                  </p>
+                </v-col>
+                <v-col cols=12 md="6" class="mt-n6">
+                  <p style="color:#efeff1; font-size:0.8rem;">悪口禁止
+                  </p>
+                </v-col>
+              </v-row>
+              <v-row class="tag mt-n5 ml-n9">
+                <v-col cols=12 md=1></v-col>
+                <div v-for="(n,index) in post.attributes.tag_list" :key="index">
+                  <v-col cols=12 md=1 class="ml-n4">
+                    <v-btn depressed class="rounded-s" x-small color="#46494c">
+                      {{ n }}
+                    </v-btn>
+                  </v-col>
+                </div>
+                <v-col cols=12 md=8></v-col>
+              </v-row>
+                <v-row>
+                <v-col cols=12 md=9></v-col>
+                <v-col cols=12 md=3 class="ml-n5 mb-1"
+                  v-if="($store.state.currentUser.data.attributes.id !== post.attributes.user_id) && (post.attributes.can_request_entry === true) && (post_action === false)">
+                  <v-btn color="#e36414"
                     @click="entryRequest(post.attributes.id, post.attributes.user_id), dialog = true">
-                    Join
+                    <v-icon>mdi-hail</v-icon>
+                    <h3 style="font-size: 0.7rem">イベントに申し込む</h3>
                   </v-btn>
-                </v-list-item>
-              </v-card-actions>
-            </v-card>
+                </v-col>
+                  <v-col cols=12 md=2 class="mb-1"
+                    v-if="$store.state.currentUser.data.attributes.id !== post.attributes.user_id && (post.attributes.can_request_entry === false || post_action === true)">
+                    <v-btn disabled>
+                      <v-icon>mdi-hail</v-icon>
+                      <h3 style="font-size: 0.7rem">申し込み済み</h3>
+                    </v-btn>
+                  </v-col>
+              </v-row>
+            </v-sheet>
           </v-hover>
         </v-col>
       </v-row>
@@ -74,6 +149,7 @@
   } from '../backend/axios.js'
   import Avatar from '../components/perpage/TheAvatar.vue';
   import InfiniteLoading from 'vue-infinite-loading';
+  import moment from 'moment';
   const ENTRY_URL = '/api/v1/entries'
   const SEARCH_POST_URL = '/api/v1/posts/search'
 
@@ -88,7 +164,8 @@
         posts: [],
         page: 1,
         pageSize: 9,
-        dialog: false
+        dialog: false,
+        post_action: false
       }
     },
     watch: {
@@ -132,8 +209,11 @@
             post: post,
             user: user
           })
-          .catch(error => this.setError(error, "Cannot post"))
+          this.post_action = true
       },
+      postTime(time) {
+        return moment(time).format("YYYY/MM/DD hh:mm")
+      }
     }
   }
 </script>

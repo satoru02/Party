@@ -1,12 +1,12 @@
 <template>
-  <v-app-bar absolute app style="background-color:#161a1d">
+  <v-app-bar fixed app style="background-color:#161a1d">
     <router-link to="/">
     <v-toolbar-title>TITLE</v-toolbar-title>
     </router-link>
     <v-row>
       <v-col cols=12 md=3></v-col>
-      <v-col cols=12 md=5 class="mt-7">
-        <v-text-field append-icon v-model="query" @keydown.enter="searchPost(query)" dark placeholder="検索する" filled rounded dense></v-text-field>
+      <v-col cols=12 md=5 class="mt-7 ml-8" >
+        <v-text-field color="#00b4d8" background-color="#0d1117" v-model="query" @keydown.enter="searchPost(query)" placeholder="検索" outlined dense></v-text-field>
       </v-col>
       <v-col cols=12 md=1></v-col>
       <v-col cols=12 md=1 class="mt-6">

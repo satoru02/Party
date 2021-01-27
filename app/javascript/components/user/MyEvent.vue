@@ -86,10 +86,10 @@
         </v-row>
         <v-row class="tag mt-n5 ml-n9">
           <v-col cols=12 md=1></v-col>
-          <div v-for="(n,index) in post.attributes.tags" :key="index">
+          <div v-for="(n,index) in post.attributes.tag_list" :key="index">
             <v-col cols=12 md=1 class="ml-n4">
               <v-btn depressed class="rounded-s" x-small color="#46494c">
-                {{ n.name }}
+                {{ n }}
               </v-btn>
             </v-col>
           </div>

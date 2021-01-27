@@ -1,6 +1,6 @@
 <template>
   <div class="category">
-    <v-container class="mt-13 ml-16">
+    <v-container class="mt-4 ml-16">
       <v-row>
         <v-col cols=12 md=12></v-col>
       </v-row>

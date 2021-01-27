@@ -1,16 +1,16 @@
 <template>
   <div justify="center" align="center">
-    <v-sheet color="#eaf4f4" height="550" class="rounded-xl" width="650">
+    <v-sheet elevation=5 color="#eaf4f4" height="550" class="rounded-lg" width="650">
       <v-row>
         <v-col cols="12" md="12" class="mt-12">
           <h1 class="title" style="color:black;"><span class="underline">Entry Notification</span></h1>
         </v-col>
       </v-row>
       <v-row>
-        <v-col cols="12" md="2">
+        <v-col cols="12" md="1" class="ml-15">
           <avatar></avatar>
         </v-col>
-        <v-col cols="12" md="3" class="mt-4 ml-n15">
+        <v-col cols="12" md="3" class="mt-4 ml-n7">
           <router-link :to="{name: 'MyEvents', params: { id: entry_response.user_info.id }}">
             <h3 style="color:black;">{{ entry_response.user_info.name }}</h3>
           </router-link>
@@ -26,6 +26,10 @@
           <p v-if="entry_response.entry_response_info.answer === true" style="color:black; font-size: 1.0rem;">
             おめでとうございます！{{ entry_response.user_info.name }}さんから、「{{ entry_response.room_info.name }}」へ招待されています！
           </p>
+          <v-row class="mt-10">
+            <v-col cols=12 md=12>
+            </v-col>
+          </v-row>
           <p v-if="entry_response.entry_response_info.answer === false" style="color:black; font-size: 1.0rem;">
             [理由]今回のイベントは定員に達したため
           </p>

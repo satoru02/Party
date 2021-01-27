@@ -1,5 +1,9 @@
 <template>
   <div>
+    <v-row class="mt-15">
+      <v-col cols=12 md=12>
+      </v-col>
+    </v-row>
     <div v-if="notification.classification === 'entry'">
       <entry :entry='entry_information' :post='requested_post_information' :user="requested_user_information"></entry>
     </div>

@@ -1,6 +1,6 @@
 <template>
   <div class="card-tile" justify="center" align="center">
-    <v-sheet color="#eaf4f4" height="550" class="rounded-xl" width="650">
+    <v-sheet color="#eaf4f4" height="550" class="rounded-s" width="650">
       <v-row>
         <v-col cols="12" md="12" class="mt-12">
           <h1 class="title" style="color:black;"><span class="underline">New Message</span></h1>
