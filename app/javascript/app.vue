@@ -48,6 +48,7 @@
   import TopFilter from './components/TopFilter';
   import Top from './components/Top';
   import EventCard from './components/EventCard';
+  import RoomTop from './components/RoomTop';
   import '@mdi/font/css/materialdesignicons.css';
 
   const actionCableVueOptions = {
@@ -128,7 +129,6 @@
       },
       {
         path: "/users/:id",
-        // name: "User",
         component: User,
         children: [
           {
@@ -156,9 +156,14 @@
       },
       {
         path: "/rooms",
-        name: "Rooms",
         component: Rooms,
-        children: [{
+        children: [
+        {
+          path:'',
+          name: "Rooms",
+          component: RoomTop
+        },
+        {
           path: ":token",
           name: "Room",
           component: Room
