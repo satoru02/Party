@@ -104,15 +104,15 @@
                 <v-row>
                 <v-col cols=12 md=9></v-col>
                 <v-col cols=12 md=3 class="ml-n5 mb-1"
-                  v-if="($store.state.currentUser.data.attributes.id !== post.attributes.user_id) && (post.attributes.can_request_entry === true) && (post_action === false)">
+                  v-if="($store.state.currentUser.data.attributes.id !== post.attributes.user_id) && (post.attributes.can_request_entry === true)">
                   <v-btn color="#e36414"
-                    @click="entryRequest(post.attributes.id, post.attributes.user_id), dialog = true">
+                    @click="entryRequest(post), dialog = true">
                     <v-icon>mdi-hail</v-icon>
                     <h3 style="font-size: 0.7rem">イベントに申し込む</h3>
                   </v-btn>
                 </v-col>
                   <v-col cols=12 md=2 class="mb-1"
-                    v-if="$store.state.currentUser.data.attributes.id !== post.attributes.user_id && (post.attributes.can_request_entry === false || post_action === true)">
+                    v-if="$store.state.currentUser.data.attributes.id !== post.attributes.user_id && (post.attributes.can_request_entry === false)">
                     <v-btn disabled>
                       <v-icon>mdi-hail</v-icon>
                       <h3 style="font-size: 0.7rem">申し込み済み</h3>
@@ -203,13 +203,13 @@
             }, 1000)
           })
       },
-      entryRequest(post, user) {
+      entryRequest(post) {
         secureAxios.defaults.headers.common['X-CSRF-TOKEN'] = this.$store.state.csrf
         secureAxios.post(ENTRY_URL, {
-            post: post,
-            user: user
+            post: post.attributes.id,
+            user: post.attributes.user_id
           })
-          this.post_action = true
+          post.attributes.can_request_entry = false
       },
       postTime(time) {
         return moment(time).format("YYYY/MM/DD hh:mm")

@@ -80,6 +80,7 @@
           // 2.Entry_Responseがあった時（承認/拒否）
           // 3.Messageを受け取った時 -> chat_icon
           // 4.Notificationが読まれた時
+          console.log(data)
           if (this.$store.state.currentUser.data.attributes.id === data["target_user_id"] && data["condition"] !== "read") {
             this.notifications.push(data)
           } else if (this.$store.state.currentUser.data.attributes.id === data["target_user_id"] && data["condition"] === "read") {
