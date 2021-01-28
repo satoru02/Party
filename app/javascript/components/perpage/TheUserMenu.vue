@@ -1,6 +1,6 @@
 <template>
   <div class="text-center">
-    <v-menu open-on-hover offset-y left nudge-bottom="2" nudge-left=62 nudge-height=600 nudge-width=130>
+    <v-menu open-on-hover offset-y left nudge-left=32 nudge-height=600 nudge-width=130>
       <template v-slot:activator="{ on, attrs }">
         <div v-bind="attrs" v-on="on">
           <avatar :size="32" :avatar_url="avatar"></avatar>

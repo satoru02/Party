@@ -4,8 +4,7 @@
       <v-row no-gutters>
         <v-col v-for="post in posts" :key="post.attributes.id + Math.random()" :title="post.attributes.title"
           :time="post.attributes.date" :user_id="post.attributes.user_id" class="mb-9 pr-10" cols="12" sm="16">
-          <v-hover v-slot="{ hover }">
-            <v-sheet :class="{ 'on-hover': hover }" :elevation="hover ? 16 : 0" class="rounded-lg" color="#11151c"
+            <v-sheet class="rounded-lg" color="#11151c"
               width="740"
               style="border: 1px solid hsla(0,0%,100%,.1); height:auto; min-height: 150px; max-width: 100%; max-height:1000px;">
               <v-row>
@@ -23,7 +22,7 @@
                 </v-col>
                 <v-col cols=12 md=1 class="mt-2 ml-16"
                   v-if="$store.state.currentUser.data.attributes.id === post.attributes.user_id">
-                  <v-menu left offset-y nudge-width="140" nudge-height="100">
+                  <v-menu left offset-y nudge-width="140" nudge-height="100" nudge-bottom="10">
                     <template v-slot:activator="{ on, attrs}">
                       <v-icon color="#edf6f9" v-bind="attrs" v-on="on">mdi-dots-horizontal</v-icon>
                     </template>
@@ -34,9 +33,9 @@
                         </v-list-item>
                       </router-link>
                       <v-list-item>
-                        <!-- <router-link :to="{ name: 'PostEdit', params: {id: `${post.attributes.id }`}}"> -->
+                        <router-link :to="{ name: 'PostEdit', params: {id: `${post.attributes.id }`}}">
                         <v-list-item-title class="ml-5">削除する</v-list-item-title>
-                        <!-- </router-link> -->
+                        </router-link>
                       </v-list-item>
                     </v-list>
                   </v-menu>
@@ -120,7 +119,6 @@
                   </v-col>
               </v-row>
             </v-sheet>
-          </v-hover>
         </v-col>
       </v-row>
     </v-container>
@@ -165,7 +163,6 @@
         page: 1,
         pageSize: 9,
         dialog: false,
-        post_action: false
       }
     },
     watch: {
@@ -217,13 +214,3 @@
     }
   }
 </script>
-
-<style scoped>
-  .v-card {
-    transition: opacity .4s ease-in-out;
-  }
-
-  .v-card:not(.on-hover) {
-    opacity: 1;
-  }
-</style>

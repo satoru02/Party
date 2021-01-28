@@ -1,12 +1,4 @@
 <template>
-  <!-- <form class="form-signup" @submit.prevent="updatePost">
-    <div class="alert alert-danger" v-if="error">{{ error }}</div>
-    <div class="form-group">
-      <label for="title">Title</label>
-      <input v-model="post.title" type="title" class="form-controll" id="title">
-    </div>
-    <button type="submit" class="btn btn-primary mb-3">Edit</button>
-  </form> -->
   <div justify="center" align="center">
     <v-row class="mt-14">
       <v-col cols=12 md=1></v-col>
@@ -19,7 +11,7 @@
       <v-row>
         <v-col cols=12 md=3 class="mt-4">
           <h3>イベント名</h3>
-          <div style="color:#ff006e">（※必須）</div>
+          <div style="color:#ff006e; font-size:0.6rem;">（※必須）</div>
         </v-col>
         <v-col cols=12 md=8 class="mt-1">
           <v-text-field v-model="post.title" :placeholder="post.title" outlined dark filled dense></v-text-field>
@@ -30,14 +22,14 @@
       <v-row>
         <v-col cols=12 md=3 class="mt-4">
           <h3>開催日</h3>
-          <div style="color:#ff006e">（※必須）</div>
+          <div style="color:#ff006e; font-size:0.6rem;">（※必須）</div>
         </v-col>
         <v-col cols=12 md=3 class="mt-1">
           <v-text-field v-model="post.date" :placeholder="post.date" outlined dark filled dense></v-text-field>
         </v-col>
         <v-col cols=12 md=2 class="mt-4">
           <h3>時間</h3>
-          <div style="color:#ff006e">（※必須）</div>
+          <div style="color:#ff006e; font-size:0.6rem;">（※必須）</div>
         </v-col>
         <v-col cols=12 md=3 class="mt-1">
           <v-text-field v-model="time" outlined dark filled dense></v-text-field>
@@ -48,14 +40,14 @@
       <v-row>
         <v-col cols=12 md=3 class="mt-4">
           <h3>参加人数</h3>
-          <div style="color:#ff006e">（※必須）</div>
+          <div style="color:#ff006e; font-size:0.6rem;">（※必須）</div>
         </v-col>
         <v-col cols=12 md=3 class="mt-1">
           <v-select :items="numbers" :placeholder="post.limit" dense filled outlined v-model="limit"></v-select>
         </v-col>
         <v-col cols=12 md=2 class="mt-4">
           <h3>使用ツール</h3>
-          <div style="color:#ff006e">（※必須）</div>
+          <div style="color:#ff006e; font-size:0.6rem;">（※必須）</div>
         </v-col>
         <v-col cols=12 md=3 class="mt-1">
           <v-select dense :items="tools" :placeholder="post.tools" filled outlined multiple persistent-hint
@@ -67,7 +59,7 @@
       <v-row>
         <v-col cols=12 md=3 class="mt-4">
           <h3>カテゴリー</h3>
-          <div style="color:#ff006e">（※必須）</div>
+          <div style="color:#ff006e; font-size:0.6rem;">（※必須）</div>
         </v-col>
         <v-col cols=12 md=3 class="mt-1">
           <v-select :items="categories" dense filled outlined v-model="category"></v-select>

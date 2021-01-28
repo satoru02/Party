@@ -2,7 +2,7 @@
   <div class="text-center">
     <v-row>
       <v-col cols=8 md=2>
-        <v-menu open-on-hover offset-y left nudge-height=800 nudge-bottom="6" nudge-width=150>
+        <v-menu open-on-hover offset-y left nudge-height=800 nudge-right="60" nudge-width=150>
           <template v-slot:activator="{ on, attrs }">
             <div v-bind="attrs" v-on="on">
               <v-badge v-if="entryCount(notifications) > 0" color="red" :content="entryCount(notifications)" offset-y="10"

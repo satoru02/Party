@@ -19,14 +19,14 @@
       </v-row>
       <v-row>
         <v-col cols=12 md=3 class="ml-n2 mt-2">
-          <v-sheet color="#121212" class="rounded-lg" height="200"
-            style="border: 1px solid hsla(0,0%,100%,.1); height:auto; min-height: 270px; max-width: 100%; max-height:1000px;">
+          <v-sheet color="#121212" class="rounded-lg"
+            style="border: 1px solid hsla(0,0%,100%,.1); height:auto; min-height: 180px; max-width: 100%; max-height:1000px;">
             <h1 class="ml-3 mb-2 mt-2">@{{ user.name }}</h1>
             <v-divider></v-divider>
             <v-list-item>
               <h3 style="color:#efeff1">主催回数：</h3>
-              <h3 class="ml-5" style="color:#efeff1; font-size:0.9rem">
-                {{ events.length }}</h3>
+              <h3 class="ml-4" style="color:#efeff1; font-size:0.8rem">
+                {{ events.length }}回</h3>
             </v-list-item>
             <v-list-item class="mt-n4">
               <h3 style="color:#efeff1">参加回数：</h3>
@@ -34,15 +34,7 @@
             </v-list-item>
             <v-list-item class="mt-n4">
               <h3 style="color:#efeff1">場所：</h3>
-              <h3 class="ml-5" style="color:#efeff1; font-size:0.7rem">{{ user.location }}</h3>
-            </v-list-item>
-            <v-list-item class="mt-n4">
-              <h3 style="color:#efeff1">登録日：</h3>
-              <h3 class="ml-9" style="color:#efeff1; font-size:0.8rem">{{ joinedTime(user.activated_at) }}</h3>
-            </v-list-item>
-            <v-list-item class="mt-n4">
-              <h3 style="color:#efeff1">自己紹介：</h3>
-              <h3 class="ml-9" style="color:#efeff1; font-size:0.7rem">{{ user.about }}</h3>
+              <h3 class="ml-11" style="color:#efeff1; font-size:0.8rem">{{ user.location }}</h3>
             </v-list-item>
             <v-list-item class="mt-n7">
               <h3 style="color:#efeff1">フォロー：</h3>
@@ -62,6 +54,10 @@
                 </v-list-item>
               </v-col>
             </v-list-item>
+             <v-list-item class="mt-n6">
+              <h3 style="color:#efeff1">登録日：</h3>
+              <h3 class="ml-7" style="color:#efeff1; font-size:0.8rem">{{ joinedTime(user.activated_at) }}</h3>
+            </v-list-item>
           </v-sheet>
         </v-col>
         <v-col cols=12 md=8 class="mt-n16 ml-12">
@@ -78,7 +74,6 @@
   import moment from 'moment';
   import { simpleAxios, secureAxios } from '../../backend/axios.js'
   const USER_INFO_URL = '/api/v1/users/'
-
   export default {
     name: 'User',
     components: {

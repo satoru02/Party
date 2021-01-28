@@ -11,7 +11,7 @@
       <v-row>
         <v-col cols=12 md=3 class="mt-4">
           <h3>イベント名</h3>
-          <div style="color:#ff006e">（※必須）</div>
+          <div style="color:#ff006e; font-size:0.6rem;">（※必須）</div>
         </v-col>
         <v-col cols=12 md=8 class="mt-1">
           <v-text-field v-model="title" placeholder="イベント名を入力" outlined dark filled dense></v-text-field>
@@ -22,14 +22,14 @@
       <v-row>
         <v-col cols=12 md=3 class="mt-4">
           <h3>開催日</h3>
-          <div style="color:#ff006e">（※必須）</div>
+          <div style="color:#ff006e; font-size:0.6rem;">（※必須）</div>
         </v-col>
         <v-col cols=12 md=3 class="mt-1">
           <v-text-field placeholder="開催日を入力" v-model="date" outlined dark filled dense></v-text-field>
         </v-col>
         <v-col cols=12 md=2 class="mt-4">
           <h3>時間</h3>
-          <div style="color:#ff006e">（※必須）</div>
+          <div style="color:#ff006e; font-size:0.6rem;">（※必須）</div>
         </v-col>
         <v-col cols=12 md=3 class="mt-1">
           <v-text-field v-model="time" placeholder="予定時間を入力" outlined dark filled dense></v-text-field>
@@ -40,14 +40,14 @@
       <v-row>
         <v-col cols=12 md=3 class="mt-4">
           <h3>参加人数</h3>
-          <div style="color:#ff006e">（※必須）</div>
+          <div style="color:#ff006e; font-size:0.6rem;">（※必須）</div>
         </v-col>
         <v-col cols=12 md=3 class="mt-1">
           <v-select placeholder="参加人数を選択" :items="numbers" dense filled outlined v-model="limit"></v-select>
         </v-col>
         <v-col cols=12 md=2 class="mt-4">
           <h3>使用ツール</h3>
-          <div style="color:#ff006e">（※必須）</div>
+          <div style="color:#ff006e; font-size:0.6rem;">（※必須）</div>
         </v-col>
         <v-col cols=12 md=3 class="mt-1">
           <v-select placeholder="使用ツールを選択" dense :items="tools" filled outlined multiple persistent-hint v-model="tool"></v-select>
@@ -58,7 +58,7 @@
       <v-row>
         <v-col cols=12 md=3 class="mt-4">
           <h3>カテゴリー</h3>
-          <div style="color:#ff006e">（※必須）</div>
+          <div style="color:#ff006e; font-size:0.6rem;">（※必須）</div>
         </v-col>
         <v-col cols=12 md=3 class="mt-1">
           <v-select placeholder="カテゴリーを選択" :items="categories" dense filled outlined v-model="category"></v-select>
