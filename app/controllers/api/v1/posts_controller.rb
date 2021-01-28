@@ -59,7 +59,7 @@ module Api
         end
 
         @pager_filtered_posts = @filtered_posts.pager(page: params[:page], per: params[:per_page])
-        serializer = PostSerializer.new(@pager_filtered_posts)
+        serializer = PostSerializer.new(@pager_filtered_posts.reverse_order)
         render json: serializer.serializable_hash.to_json
       end
 

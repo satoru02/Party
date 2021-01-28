@@ -6,7 +6,7 @@ module FilterHelper
 
   def filter_by_date(query)
     if query === 'today'
-      @filtered_posts = Post.where("created_at >= :start_date AND created_at <= :end_date", { start_date: Date.today, end_date: Date.today })
+      @filtered_posts = Post.where(created_at: Date.today.all_day)
     elsif query === 'week'
       @filtered_posts = Post.where("created_at >= :start_date AND created_at <= :end_date", { start_date: Date.today - gap_days, end_date: Date.today })
     elsif query === 'month'
