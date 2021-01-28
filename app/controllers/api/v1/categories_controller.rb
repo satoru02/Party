@@ -11,7 +11,8 @@ module Api
       end
 
       def show
-        serializer = CategorySerializer.new(@category, { params: { post: @category.posts }})
+        @category_posts = @category.posts.pager(page: params[:page], per: params[:per_page])
+        serializer = PostSerializer.new(@category_posts.reverse_order)
         render json: serializer.serializable_hash.to_json
       end
 

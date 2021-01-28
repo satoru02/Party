@@ -1,5 +1,5 @@
 <template>
-  <div infinite-wrapper>
+  <div>
     <category-post></category-post>
   </div>
 </template>

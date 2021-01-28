@@ -5,7 +5,6 @@
       <v-main>
         <router-view></router-view>
       </v-main>
-      <v-divider></v-divider>
       <!-- <info-footer></info-footer> -->
     </v-app>
   </div>
@@ -124,6 +123,11 @@
             path: '/results/:query',
             name: "TopFilter",
             component: TopFilter
+          },
+          {
+            path: "/category/:slug",
+            name: "Category",
+            component: Category
           }
         ]
       },
@@ -230,14 +234,14 @@
         component: PostEdit
       },
       {
-        path: "/category/:slug",
-        name: "Category",
-        component: Category
-      },
-      {
         path: "/search/:query",
         name: "Search",
         component: Search
+      },
+      {
+        path: "/tag/:id",
+        name: "Tag",
+        component: Tag
       },
       {
         path: "/notifications",
@@ -248,11 +252,6 @@
         path: "/notification/:id",
         name: "Notification",
         component: Notification
-      },
-      {
-        path: "/tag/:id",
-        name: "Tag",
-        component: Tag
       },
     ]
   })
