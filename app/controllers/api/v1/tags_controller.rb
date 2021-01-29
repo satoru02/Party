@@ -12,7 +12,8 @@ module Api
       def show
         @tag = ActsAsTaggableOn::Tag.find_by(id: params[:id])
         @post = Post.tagged_with(@tag.name)
-        serializer = PostSerializer.new(@post)
+        @paged_post = @post.pager(page: params[:page], per: params[:per_page])
+        serializer = PostSerializer.new(@paged_post.reverse_order)
         render json: serializer.serializable_hash.to_json
       end
     end

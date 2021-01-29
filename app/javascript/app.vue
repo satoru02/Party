@@ -134,6 +134,11 @@
             name: "Search",
             component: Search
           },
+          {
+            path: "/tag/:id",
+            name: "Tag",
+            component: Tag
+          },
         ]
       },
       {
@@ -237,11 +242,6 @@
         path: "/events/edit/:id",
         name: "PostEdit",
         component: PostEdit
-      },
-      {
-        path: "/tag/:id",
-        name: "Tag",
-        component: Tag
       },
       {
         path: "/notifications",
