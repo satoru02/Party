@@ -1,6 +1,6 @@
 <template>
   <div justify="center" align="center">
-    <v-sheet elevation=10 style="border: 1px solid hsla(0,0%,100%,.1);" color="#212529" height="650" class="rounded-lg mt-14"
+    <v-sheet elevation=10 style="border: 1px solid hsla(0,0%,100%,.1);" color="#212529" height="650" class="rounded-lg mt-12"
       width="650">
       <v-row>
         <v-col cols=12 md=2></v-col>
@@ -32,7 +32,7 @@
       <v-row class="mt-n3">
         <v-col cols=12 md=1></v-col>
         <v-col cols=12 md=10>
-          <v-btn large depressed block color="#002642">
+          <v-btn large depressed block color="#4285f4">
             <v-row>
               <v-col cols=12 md=3></v-col>
               <v-col cols=12 md=1>
@@ -97,7 +97,7 @@
       </v-row>
       <v-row>
         <v-col cols=12 md=1></v-col>
-        <v-col cols=12 md=3 class="mt-n11 ml-n6">
+        <v-col cols=12 md=3 class="mt-n11 ml-n5">
           <router-link :to="{name: 'ForgotPassword'}">
             <div>
               <p style="font-size:0.7rem; color:#6c757d;">パスワードを忘れた</p>

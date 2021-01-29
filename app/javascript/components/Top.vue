@@ -6,8 +6,14 @@
         <v-col cols=12 md=12></v-col>
       </v-row>
       <v-row>
-        <v-col v-model="date" cols=12 md=4 class="ml-5">
+        <v-col v-if="$route.name === 'Top'" v-model="date" cols=12 md=4 class="ml-5">
+          <h1>最新のイベント</h1>
+        </v-col>
+        <v-col v-if="$route.name === 'TopFilter'" v-model="date" cols=12 md=4 class="ml-5">
           <h1>{{date}}のイベント</h1>
+        </v-col>
+        <v-col v-if="$route.name === 'Category'" cols=12 md=4 class="ml-5">
+          <h1>{{this.$route.params.slug}}</h1>
         </v-col>
         <v-col cols=12 md=2></v-col>
         <v-col cols=12 md=1 class="ml-2 mt-1">

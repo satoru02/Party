@@ -37,7 +37,7 @@
       </v-row>
       <v-row>
         <v-col cols=12 md=1></v-col>
-        <v-col cols=12 md=2 class="mt-n4 ml-n6">
+        <v-col cols=12 md=2 class="mt-n4 ml-n5">
           <router-link :to="{name: 'login'}">
             <p style="font-size:0.7rem; color:#6c757d;">ログイン</p>
           </router-link>
