@@ -54,9 +54,15 @@
       }
     },
     created() {
+      this.checkSignedIn()
       this.getRooms()
     },
     methods: {
+      checkSignedIn() {
+        if (!this.$store.state.signedIn) {
+          this.$router.replace('/login')
+        }
+      },
       getRooms() {
         simpleAxios.get(ROOMS_URL)
           .then(response => this.Successful(response))

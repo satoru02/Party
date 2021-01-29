@@ -125,12 +125,18 @@
       }
     },
     created(){
+      this.checkSignedIn()
       this.fetchUserInformation()
     },
     watch: {
       '$route': 'fetchUserInformation'
     },
     methods: {
+      checkSignedIn() {
+        if (!this.$store.state.signedIn) {
+          this.$router.replace('/login')
+        }
+      },
       fetchUserInformation() {
         simpleAxios.get(USER_INFO_URL + `${this.$route.params.id}`)
           .then(response => this.Successful(response))

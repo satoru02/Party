@@ -134,10 +134,16 @@
       }
     },
     created() {
+      this.checkSignedIn()
       this.checkUsersPost()
       this.getPost()
     },
     methods: {
+      checkSignedIn() {
+        if (!this.$store.state.signedIn) {
+          this.$router.replace('/login')
+        }
+      },
       getPost() {
         simpleAxios.get(POST_EDIT_URL + `${this.$route.params.id}` + `/edit`)
           .then(response => this.Successful(response))

@@ -56,7 +56,15 @@
         pageSize: 9,
       }
     },
+    created() {
+      this.checkSignedIn()
+    },
     methods: {
+      checkSignedIn() {
+        if (!this.$store.state.signedIn) {
+          this.$router.replace('/login')
+        }
+      },
       infiniteHandler($state) {
         simpleAxios.get(NOTIFICATIONS_URL, {
           params: {

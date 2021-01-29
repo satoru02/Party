@@ -138,7 +138,15 @@
         rule: ''
       }
     },
+    created(){
+       this.checkSignedIn()
+    },
     methods: {
+      checkSignedIn() {
+        if (!this.$store.state.signedIn) {
+          this.$router.replace('/login')
+        }
+      },
       setError(error, text) {
         this.error = (error.response && error.response.data && error.response.data.error) || text
       },

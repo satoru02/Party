@@ -44,9 +44,15 @@
       }
     },
     created() {
+      this.checkSignedIn()
       this.getNotification()
     },
     methods: {
+      checkSignedIn() {
+        if (!this.$store.state.signedIn) {
+          this.$router.replace('/login')
+        }
+      },
       getNotification() {
         simpleAxios.get(NOTIFICATION_URL + `/` + `${this.$route.params.id}`)
           .then(response => this.Successful(response))
