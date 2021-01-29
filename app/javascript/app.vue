@@ -128,7 +128,12 @@
             path: "/category/:slug",
             name: "Category",
             component: Category
-          }
+          },
+          {
+            path: "/search/:query",
+            name: "Search",
+            component: Search
+          },
         ]
       },
       {
@@ -232,11 +237,6 @@
         path: "/events/edit/:id",
         name: "PostEdit",
         component: PostEdit
-      },
-      {
-        path: "/search/:query",
-        name: "Search",
-        component: Search
       },
       {
         path: "/tag/:id",

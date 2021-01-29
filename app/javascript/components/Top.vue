@@ -15,6 +15,9 @@
         <v-col v-if="$route.name === 'Category'" cols=12 md=4 class="ml-5">
           <h1>{{this.$route.params.slug}}</h1>
         </v-col>
+        <v-col v-if="$route.name === 'Search'" cols=12 md=4 class="ml-5">
+          <h1>検索結果：{{this.$route.params.query}}</h1>
+        </v-col>
         <v-col cols=12 md=2></v-col>
         <v-col cols=12 md=1 class="ml-2 mt-1">
           <router-link :to="{name: 'Top'}">
