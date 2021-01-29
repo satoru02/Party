@@ -12,13 +12,13 @@
                 <v-col class="d-flex" md="9" offset-md="n1">
                   <v-list-item-subtitle>{{ room.attributes.name }}</v-list-item-subtitle>
                 </v-col>
-                <v-col class="d-flex mb-n6 mr-n8" md="1" offset-md="2">
-                  <p class="room_lasttime">12m</p>
+                <v-col class="d-flex mb-n6 mr-n8" md="1" offset-md="2" v-if="room.attributes.latest_message">
+                  <p class="room_lasttime">{{ postTime(room.attributes.latest_message.created_at) }}</p>
                 </v-col>
               </v-row>
               <v-row no-gutters>
-                <v-col class="d-flex" md="9" offset-md="n1">
-                  <p class="room_message">片目のダースが映画評論家の町山智浩さんを迎えて、議場乱入事件とその後のアメリカを現地からリポートしてもらいます！</p>
+                <v-col class="d-flex" md="9" offset-md="n1" v-if="room.attributes.latest_message">
+                  <p class="room_message">{{ room.attributes.latest_message.content }}</p>
                 </v-col>
                 <v-col class="d-flex mt-7" md="1" offset-md="2">
                   <v-badge dot left inline color="#2176ff"></v-badge>
@@ -39,6 +39,7 @@
   } from '../backend/axios';
   import Avatar from '../components/perpage/TheAvatar';
   import Room from '../components/Room';
+  import moment from 'moment';
 
   const ROOMS_URL = `/api/v1/rooms`;
 
@@ -56,6 +57,24 @@
     created() {
       this.checkSignedIn()
       this.getRooms()
+    },
+    channels: {
+      RoomsChannel: {
+        connected(){},
+        rejected(){},
+        received(data){
+          var filtered_room = this.rooms.filter(room => room.attributes.resource_token === data["token"])
+          filtered_room[0].attributes.latest_message.content = data["content"]
+          filtered_room[0].attributes.latest_message.created_at = data["time"]
+          console.log(filtered_room)
+        },
+        disconnected(){}
+      }
+    },
+    mounted(){
+      this.$cable.subscribe({
+        channel: 'RoomsChannel',
+      })
     },
     methods: {
       checkSignedIn() {
@@ -80,6 +99,9 @@
             return room_avatar[i].avatar
           }
         }
+      },
+      postTime(time) {
+        return moment(time).format("YYYY/MM/DD hh:mm")
       },
     }
   }

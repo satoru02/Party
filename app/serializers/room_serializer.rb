@@ -3,8 +3,9 @@ class RoomSerializer
 
   set_type :room
   attributes :id, :name, :host_id, :post_id, :resource_token
-  has_many :users
-  has_many :messages
+  attribute :latest_message do |object|
+    object.messages.last
+  end
 
   attribute :avatar_info do |object|
     @index_avatar = []

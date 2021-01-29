@@ -4,7 +4,7 @@ module Api
       before_action :authorize_access_request!
 
       def index
-        @rooms = current_user.rooms
+        @rooms = current_user.rooms.includes(:messages, :users)
         serializer = RoomSerializer.new(@rooms)
         render json: serializer.serializable_hash.to_json
       end

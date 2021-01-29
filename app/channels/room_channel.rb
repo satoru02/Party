@@ -31,5 +31,14 @@ class RoomChannel < ApplicationCable::Channel
       target_user_id: @room.host_id,
       attributes: message.notification
     })
+
+    # 3.Rooms broadcast
+    ActionCable.server.broadcast("RoomsChannel", {
+      content: message.content,
+      user: message.user.username,
+      user_id: message.user.id,
+      time: message.created_at,
+      token: data["room_token"]
+    })
   end
 end
