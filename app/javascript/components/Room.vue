@@ -1,6 +1,24 @@
 <template>
   <div class="room">
-    <v-responsive class="overflow-y-auto flex-grow-1 flex-shrink-0 mt-10" style="max-width: 93%;" height="550">
+    <v-row>
+      <v-col cols=12 md=12 class="ml-10 mt-3">
+        <h2>{{ this.$route.params.name }}</h2>
+      </v-col>
+      </v-row>
+    <v-row class="mt-2">
+      <v-col cols=12 md=12 class="mt-n7">
+        <v-sheet max-width="1000" max-height="30" style="background-color:#161a1d;" class="ml-11">
+        <v-slide-group multiple show-arrows>
+          <v-slide-item v-for="n in 5" :key="n">
+            <div>
+              <avatar :size="30"></avatar>
+            </div>
+          </v-slide-item>
+        </v-slide-group>
+        </v-sheet>
+      </v-col>
+    </v-row>
+    <v-responsive class="overflow-y-auto flex-grow-1 flex-shrink-0 mt-5" style="max-width: 93%;" height="550">
         <v-container v-for="word in messages" :word="word" :key="word.id"
           :class="[ word.user_id === $store.state.currentUser.data.attributes.id ? 'd-flex flex-row-reverse': 'd-flex flex-row']">
           <avatar class="mt-1 ml-12" v-if="word.user_id !== $store.state.currentUser.data.attributes.id"
@@ -18,8 +36,8 @@
           </div>
         </v-container>
     </v-responsive>
-    <v-text-field v-model="message" @click:append-outer="sendMessage(message)" append-outer-icon="mdi-send" rounded
-      class="ml-13 mt-16 bottom" label="メッセージを送信する" type="text" no-details outlined />
+    <v-text-field background-color="#0b090a" v-model="message" @click:append-outer="sendMessage(message)" append-outer-icon="mdi-send" dense
+      class="ml-10 mt-7 bottom" placeholder="メッセージを送信する" type="text" no-details outlined />
   </div>
 </template>
 
@@ -27,7 +45,6 @@
   import {
     simpleAxios
   } from '../backend/axios.js';
-  import consumer from '../channels/consumer.js';
   import message from '../components/Message';
   import Appearance from '../components/Appearance';
   import Avatar from './perpage/TheAvatar';

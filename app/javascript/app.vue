@@ -178,9 +178,10 @@
           component: RoomTop
         },
         {
-          path: ":token",
+          // path: ":token",
+          path: "/:name/:token",
           name: "Room",
-          component: Room
+          component: Room,
         }, ]
       },
       {

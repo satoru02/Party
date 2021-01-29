@@ -7,7 +7,7 @@
             <avatar :avatar_url="checkAvatar(room.attributes.host_id, room.attributes.avatar_info)" class="mt-n1"></avatar>
           </v-list-item-icon>
           <v-list-item-content class="ml-n9">
-            <router-link :to="{ name: 'Room', params: {token: `${room.attributes.resource_token}`} }">
+            <router-link :to="{ name: 'Room', params: {name: `${room.attributes.name}`, token: `${room.attributes.resource_token}`} }">
               <v-row no-gutters>
                 <v-col class="d-flex" md="9" offset-md="n1">
                   <v-list-item-subtitle>{{ room.attributes.name }}</v-list-item-subtitle>
@@ -80,7 +80,7 @@
             return room_avatar[i].avatar
           }
         }
-      }
+      },
     }
   }
 </script>
