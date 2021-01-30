@@ -121,7 +121,8 @@
         this.error = (error.response && error.response.data && error.response.data.error) || ""
       },
       sendMessage(message) {
-        this.$cable.perform({
+        if(message) {
+                  this.$cable.perform({
           channel: 'RoomChannel',
           action: 'speak',
           data: {
@@ -130,6 +131,8 @@
             room_token: `${this.$route.params.token}`,
           }
         })
+
+        }
         this.message = ''
       },
       checkAvatar(user_id) {
