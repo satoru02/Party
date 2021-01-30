@@ -4,7 +4,7 @@
       <v-list color="#161a1d">
         <v-list-item class="tile" v-for="room in rooms" :key="room.id">
           <v-list-item-icon>
-            <avatar :avatar_url="checkAvatar(room.attributes.host_id, room.attributes.avatar_info)" class="mt-n1"></avatar>
+            <!-- <avatar :avatar_url="checkAvatar(room.attributes.host_id, room.attributes.avatar_info)" class="mt-n1"></avatar> -->
           </v-list-item-icon>
           <v-list-item-content class="ml-n9">
             <router-link @click.native="checkConfirmation(room)" :to="{ name: 'Room', params: {name: `${room.attributes.name}`, token: `${room.attributes.resource_token}`} }">

@@ -178,10 +178,11 @@
           component: RoomTop
         },
         {
-          path: "/:name/:token",
+          path: "/room/:name/:token",
           name: "Room",
           component: Room,
-        }, ]
+        },
+      ]
       },
       {
         path: "/login",
@@ -197,6 +198,11 @@
         path: "/verify-email/:email",
         name: "check",
         component: Check
+      },
+      {
+        path: "/account_activations/:token",
+        name: "AccountActivations",
+        component: Activation
       },
       {
         path: "/initial-settings",
@@ -227,11 +233,6 @@
         path: "/admin/users/:id",
         name: "UserEdit",
         component: UserEdit
-      },
-      {
-        path: "/account_activations/:token",
-        name: "AccountActivations",
-        component: Activation
       },
       {
         path: "/upload",
