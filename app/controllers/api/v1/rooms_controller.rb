@@ -11,6 +11,7 @@ module Api
 
       def show
         @room = Room.find_by(resource_token: params[:token])
+        @room.messages.includes(:user).all.update(confirmation: true)
         @user = User.find_by(id: params[:user_id])
         if @room.authenticated?(params[:token]) && @room.users.include?(@user)
           serializer = RoomSerializer.new(@room, { params: { messages: @room.messages, users: @room.users, avatar: @room.users} })
