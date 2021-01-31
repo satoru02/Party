@@ -28,11 +28,11 @@
                     </template>
                     <v-list class="rounded-s" style="background-color:#343a40;">
                       <router-link :to="{ name: 'PostEdit', params: {id: `${post.attributes.id }`}}">
-                        <v-list-item>
+                        <v-list-item class="tile">
                           <v-list-item-title class="ml-5">編集する</v-list-item-title>
                         </v-list-item>
                       </router-link>
-                      <v-list-item>
+                      <v-list-item class="tile">
                         <router-link :to="{ name: 'PostEdit', params: {id: `${post.attributes.id }`}}">
                         <v-list-item-title class="ml-5">削除する</v-list-item-title>
                         </router-link>
@@ -214,3 +214,14 @@
     }
   }
 </script>
+
+<style scoped>
+  .tile {
+    margin: 10px;
+    border-radius: 7px;
+  }
+
+  .tile:hover {
+    background: #6c757d;
+  }
+</style>
