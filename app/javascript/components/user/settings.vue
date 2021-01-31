@@ -214,7 +214,25 @@
       },
       saveProfile() {
         secureAxios.defaults.headers.common['X-CSRF-TOKEN'] = this.$store.state.csrf
-        const params = {
+        // const params = {
+        //   email: this.user.email,
+        //   about: this.user.about,
+        //   name: this.user.name,
+        //   username: this.user.username,
+        //   location: this.user.location,
+        //   web_url: this.user.web_url,
+        //   youtube_url: this.user.youtube_url,
+        //   facebook_url: this.user.facebook_url,
+        //   instagram_url: this.user.instagram_url,
+        //   filmarks_url: this.user.filmarks_url,
+        //   avatar: this.picture
+        // }
+        // let formData = new FormData()
+        // Object.entries(params).forEach(
+        //   ([key, value]) => formData.append(key, value)
+        // )
+
+        secureAxios.patch(USER_URL + `${this.$store.state.currentUser.data.attributes.id}`, {
           email: this.user.email,
           about: this.user.about,
           name: this.user.name,
@@ -226,14 +244,7 @@
           instagram_url: this.user.instagram_url,
           filmarks_url: this.user.filmarks_url,
           avatar: this.picture
-        }
-
-        let formData = new FormData()
-        Object.entries(params).forEach(
-          ([key, value]) => formData.append(key, value)
-        )
-
-        secureAxios.patch(USER_URL + `${this.$store.state.currentUser.data.attributes.id}`, formData)
+        })
           .then(response => this.updateSuccessdul(response))
           .catch(error => this.Failed(error))
       },

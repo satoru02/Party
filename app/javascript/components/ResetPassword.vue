@@ -90,7 +90,7 @@
       this.checkPasswordToken()
     },
     methods: {
-      reset() {
+      resetPassword() {
         secureAxios.patch(PASSWORD_RESET_URL + `/` + `${this.$route.params.token}`, {
             password: this.password,
             password_confirmation: this.password_confirmation

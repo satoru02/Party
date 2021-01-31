@@ -181,8 +181,7 @@
       <v-row>
         <v-col cols=12 md=9 class="mt-n16"></v-col>
         <v-col cols=12 md=2 class="ml-n6 mt-n7">
-          <v-btn :click="saveProfile()" style="background-color:#2d00f7; font-weight:bold;" dark class="rounded-lg">Save
-            Changes</v-btn>
+          <v-btn :click="saveProfile()" style="background-color:#2d00f7; font-weight:bold;" dark class="rounded-lg">保存</v-btn>
         </v-col>
       </v-row>
     </v-sheet>
@@ -207,7 +206,26 @@
     methods: {
       saveProfile() {
         secureAxios.defaults.headers.common['X-CSRF-TOKEN'] = this.$store.state.csrf
-        const params = {
+
+        // const params = {
+        //   email: this.user.email,
+        //   about: this.user.about,
+        //   name: this.user.name,
+        //   username: this.user.username,
+        //   location: this.user.location,
+        //   web_url: this.user.web_url,
+        //   youtube_url: this.user.youtube_url,
+        //   facebook_url: this.user.facebook_url,
+        //   instagram_url: this.user.instagram_url,
+        //   filmarks_url: this.user.filmarks_url,
+        //   avatar: this.picture
+        // }
+        // let formData = new FormData()
+        // Object.entries(params).forEach(
+        //   ([key, value]) => formData.append(key, value)
+        // )
+
+        secureAxios.patch(USER_URL + `${this.$store.state.currentUser.data.attributes.id}`, {
           email: this.user.email,
           about: this.user.about,
           name: this.user.name,
@@ -219,14 +237,7 @@
           instagram_url: this.user.instagram_url,
           filmarks_url: this.user.filmarks_url,
           avatar: this.picture
-        }
-
-        let formData = new FormData()
-        Object.entries(params).forEach(
-          ([key, value]) => formData.append(key, value)
-        )
-
-        secureAxios.patch(USER_URL + `${this.$store.state.currentUser.data.attributes.id}`, formData)
+        })
           .then(response => this.updateSuccessdul(response))
           .catch(error => this.Failed(error))
       },

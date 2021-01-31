@@ -21,7 +21,7 @@
         <v-col cols=12 md=3 class="ml-n2 mt-2">
           <v-sheet color="#121212" class="rounded-lg"
             style="border: 1px solid hsla(0,0%,100%,.1); height:auto; min-height: 180px; max-width: 100%; max-height:1000px;">
-            <h1 class="ml-3 mb-2 mt-2">@{{ user.name }}</h1>
+            <h1 class="ml-3 mb-2 mt-2">@{{ user.username }}</h1>
             <v-divider></v-divider>
             <v-list-item>
               <h3 style="color:#efeff1">主催回数：</h3>
