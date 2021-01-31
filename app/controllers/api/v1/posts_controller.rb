@@ -43,7 +43,7 @@ module Api
       end
 
       def update
-        @post.update_attributes(post_params)
+        @post.update(post_params)
       end
 
       def destroy
@@ -70,7 +70,7 @@ module Api
         end
 
         def post_params
-          params.require(:post).permit(:title, :content, :user_id, :category_id, :tag_list)
+          params.require(:post).permit(:title, :content, :category_id, :tag_list, :tools => [])
         end
     end
   end

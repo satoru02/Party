@@ -50,7 +50,7 @@
           <div style="color:#ff006e; font-size:0.6rem;">（※必須）</div>
         </v-col>
         <v-col cols=12 md=3 class="mt-1">
-          <v-select placeholder="使用ツールを選択" dense :items="tools" filled outlined multiple persistent-hint v-model="tool"></v-select>
+          <v-select placeholder="使用ツールを選択" dense :items="tools" filled outlined multiple persistent-hint v-model="selected_tools"></v-select>
         </v-col>
       </v-row>
       <v-divider class="mt-n5"></v-divider>
@@ -85,7 +85,7 @@
     <v-row class="mt-4">
       <v-col cols=12 md=2></v-col>
       <v-col cols=12 md=1>
-        <v-btn @click="postUrl(title, content, tag_list)" style="background-color:#2d00f7; font-weight:bold;" large dark class="rounded ml-13">アップロード</v-btn>
+        <v-btn @click="postUrl(title, content, tag_list, selected_tools)" style="background-color:#2d00f7; font-weight:bold;" large dark class="rounded ml-13">アップロード</v-btn>
       </v-col>
       <v-col cols=12 md=1>
         <v-btn style="background-color:#6c757d; color:#000000; font-weight:bold;" large dark class="rounded ml-15">
@@ -125,7 +125,7 @@
           1, 2, 3, 4, 5, 6, 7, 8, 9, 10,
           11, 12, 13, 14, 15, 16, 17, 18, 19, 20, "No limit"
         ],
-        tool: '',
+        selected_tools: [],
         tools: [
           "Youtube",
           "Zoom",
@@ -150,12 +150,13 @@
       setError(error, text) {
         this.error = (error.response && error.response.data && error.response.data.error) || text
       },
-      postUrl(title, content, tag_list) {
+      postUrl(title, content, tag_list, selected_tools) {
         secureAxios.defaults.headers.common['X-CSRF-TOKEN'] = this.$store.state.csrf
         secureAxios.post(POST_URL, {
             title: title,
             category_id: 1,
             content: content,
+            tools: selected_tools,
             tag_list: tag_list
           })
           .then(response => {
