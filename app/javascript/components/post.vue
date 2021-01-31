@@ -85,10 +85,10 @@
     <v-row class="mt-4">
       <v-col cols=12 md=2></v-col>
       <v-col cols=12 md=1>
-        <v-btn @click="postUrl(title, content, tag_list, selected_tools)" style="background-color:#2d00f7; font-weight:bold;" large dark class="rounded ml-13">アップロード</v-btn>
+        <v-btn @click="postUrl()" style="background-color:#2d00f7; font-weight:bold;" large dark class="rounded ml-13">アップロード</v-btn>
       </v-col>
       <v-col cols=12 md=1>
-        <v-btn style="background-color:#6c757d; color:#000000; font-weight:bold;" large dark class="rounded ml-15">
+        <v-btn @click="backTop()" style="background-color:#6c757d; color:#000000; font-weight:bold;" large dark class="rounded ml-15">
           キャンセル</v-btn>
       </v-col>
     </v-row>
@@ -150,19 +150,22 @@
       setError(error, text) {
         this.error = (error.response && error.response.data && error.response.data.error) || text
       },
-      postUrl(title, content, tag_list, selected_tools) {
+      postUrl() {
         secureAxios.defaults.headers.common['X-CSRF-TOKEN'] = this.$store.state.csrf
         secureAxios.post(POST_URL, {
-            title: title,
+            title: this.title,
             category_id: 1,
-            content: content,
-            tools: selected_tools,
-            tag_list: tag_list
+            content: this.content,
+            tools: this.selected_tools,
+            tag_list: this.tag_list
           })
           .then(response => {
             this.$router.replace('/')
           })
           .catch(error => this.setError(error, "Cannot post"))
+      },
+      backTop(){
+        this.$router.replace('/')
       }
     }
   }

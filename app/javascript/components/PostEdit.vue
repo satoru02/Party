@@ -51,7 +51,7 @@
         </v-col>
         <v-col cols=12 md=3 class="mt-1">
           <v-select dense :items="tools" :placeholder="post.tools" filled outlined multiple persistent-hint
-            v-model="tool"></v-select>
+            v-model="post.tools"></v-select>
         </v-col>
       </v-row>
       <v-divider class="mt-n5"></v-divider>
@@ -68,7 +68,7 @@
           <h3>タグ</h3>
         </v-col>
         <v-col cols=12 md=3 class="mt-1">
-          <v-text-field v-model="tag_list" outlined dark filled dense></v-text-field>
+          <v-text-field v-model="post.tag_list" outlined dark filled dense></v-text-field>
         </v-col>
       </v-row>
       <v-divider class="mt-n5"></v-divider>
@@ -86,10 +86,10 @@
     <v-row class="mt-4">
       <v-col cols=12 md=2></v-col>
       <v-col cols=12 md=1>
-        <v-btn style="background-color:#2d00f7; font-weight:bold;" large dark class="rounded ml-13">カスタマイズ</v-btn>
+        <v-btn @click="updatePost()" style="background-color:#2d00f7; font-weight:bold;" large dark class="rounded ml-13">カスタマイズ</v-btn>
       </v-col>
       <v-col cols=12 md=1>
-        <v-btn style="background-color:#6c757d; color:#000000; font-weight:bold;" large dark class="rounded ml-15">
+        <v-btn @click="backTop()" style="background-color:#6c757d; color:#000000; font-weight:bold;" large dark class="rounded ml-15">
           キャンセル</v-btn>
       </v-col>
     </v-row>
@@ -163,7 +163,11 @@
       updatePost() {
         secureAxios.defaults.headers.common['X-CSRF-TOKEN'] = this.$store.state.csrf
         secureAxios.patch(POST_EDIT_URL + `${this.$route.params.id}`, {
-            title: this.post.attributes.title
+            title: this.post.title,
+            category_id: 1,
+            content: this.post.content,
+            tools: this.post.tools,
+            tag_list: this.post.tag_list
           })
           .then(response => this.updateSuccessdul(response))
           .catch(error => this.Failed(error))
@@ -185,6 +189,9 @@
         if (!(this.$store.state.signedIn && this.$store.getters.currentUserId)) {
           this.$router.replace('/')
         }
+      },
+      backTop(){
+        this.$router.replace('/')
       }
     }
   }
