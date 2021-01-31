@@ -181,7 +181,7 @@
       <v-row>
         <v-col cols=12 md=9 class="mt-n16"></v-col>
         <v-col cols=12 md=2 class="ml-n6 mt-n7">
-          <v-btn :click="saveProfile()" style="background-color:#2d00f7; font-weight:bold;" dark class="rounded-lg">保存</v-btn>
+          <v-btn @click="saveProfile()" style="background-color:#2d00f7; font-weight:bold;" dark class="rounded-lg">保存</v-btn>
         </v-col>
       </v-row>
     </v-sheet>
@@ -238,17 +238,13 @@
           filmarks_url: this.user.filmarks_url,
           avatar: this.picture
         })
-          .then(response => this.updateSuccessdul(response))
+          .then(response => this.updateSuccessful(response))
           .catch(error => this.Failed(error))
       },
       Failed(error) {
         this.error = (error.response && error.response.data && error.response.data.error) || ""
       },
-      updateSuccessdul(response) {
-        if (!response.data) {
-          this.Failed(response)
-          return
-        }
+      updateSuccessful(response) {
         this.$router.replace('/')
       },
       uploadFile() {

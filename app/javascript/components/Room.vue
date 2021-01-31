@@ -21,8 +21,8 @@
     <v-responsive class="overflow-y-auto flex-grow-1 flex-shrink-0 mt-5" style="max-width: 93%;" height="550">
         <v-container v-for="word in messages" :word="word" :key="word.id"
           :class="[ word.user_id === $store.state.currentUser.data.attributes.id ? 'd-flex flex-row-reverse': 'd-flex flex-row']">
-          <avatar class="mt-1 ml-12" v-if="word.user_id !== $store.state.currentUser.data.attributes.id"
-            :avatar_url="checkAvatar(word.user_id)"></avatar>
+          <!-- <avatar class="mt-1 ml-12" v-if="word.user_id !== $store.state.currentUser.data.attributes.id"
+            :avatar_url="checkAvatar(word.user_id)"></avatar> -->
           <v-chip :color="word.user_id === $store.state.currentUser.data.attributes.id ? '#3a36ff': '#212530'"
             :text-color="word.user_id === $store.state.currentUser.data.attributes.id ? '#ffffff': '#000000'"
             style="height:auto; min-width:300px; max-width:500px; max-height:3000px; white-space: normal;"
@@ -135,13 +135,13 @@
         }
         this.message = ''
       },
-      checkAvatar(user_id) {
-        for (let i = 0; this.avatar.length > i; i++) {
-          if (this.avatar[i]["user_id"] === user_id) {
-            return this.avatar[i].avatar
-          }
-        }
-      },
+      // checkAvatar(user_id) {
+      //   for (let i = 0; this.avatar.length > i; i++) {
+      //     if (this.avatar[i]["user_id"] === user_id) {
+      //       return this.avatar[i].avatar
+      //     }
+      //   }
+      // },
       postedTime(message){
         moment.locale('ja')
         return moment(message).format("MMMDo(dd) h:mm")
