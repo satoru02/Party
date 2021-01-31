@@ -73,8 +73,8 @@
                   <v-icon small>mdi-laptop</v-icon> 使用ツール
                 </p>
               </v-col>
-              <v-col cols=12 md="5" class="mt-n6">
-                <p style="color:#efeff1; font-size:0.8rem;">Zoom Youtube Twitch Twitter ChatRoom</p>
+              <v-col cols=12 md="1" class="mt-n6" v-for="(tool, index) in post.attributes.tools" :key="index">
+                <p style="color:#efeff1; font-size:0.8rem;">{{ tool }}</p>
               </v-col>
             </v-row>
             <v-row>
