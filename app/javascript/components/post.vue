@@ -65,6 +65,7 @@
         </v-col>
         <v-col cols=12 md=2 class="mt-4">
           <h3>タグ</h3>
+          <div style="color:#ff006e; font-size:0.4rem;">（例）映画,ドラマ,Zoom</div>
         </v-col>
         <v-col cols=12 md=3 class="mt-1">
           <v-text-field placeholder="タグを入力" v-model="tag_list" outlined dark filled dense></v-text-field>
