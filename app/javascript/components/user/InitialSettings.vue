@@ -5,7 +5,7 @@
       <v-row>
         <v-col cols=12 md=1></v-col>
         <v-col cols=12 md=3 class="mt-7">
-          <h3>Username</h3>
+          <h3>ユーザーネーム</h3>
         </v-col>
         <v-col cols=12 md=7 class="mt-4">
           <v-text-field v-model="user.username" :placeholder="user.username" outlined dark filled dense></v-text-field>
@@ -14,9 +14,9 @@
       </v-row>
       <v-divider></v-divider>
       <v-row>
-        <v-col cols=12 md=4></v-col>
-        <v-col cols=12 md=7 class="mt-n11">
-          <div>Your username.</div>
+        <v-col cols=12 md=2></v-col>
+        <v-col cols=12 md=7 class="mt-n11 ml-9">
+          <div>サービスで使用するユーザーネームを入力</div>
         </v-col>
         <v-col cols=12 md=1></v-col>
       </v-row>
@@ -24,9 +24,9 @@
       <v-row>
         <v-col cols=12 md=1></v-col>
         <v-col cols=12 md=3>
-          <h3>Picture</h3>
+          <h3>アイコン</h3>
         </v-col>
-        <v-col cols=12 md=7>
+        <v-col cols=12 md=2>
           <form enctype="multipart/form-data">
             <input type="file" ref="inputFile" @change="uploadFile()">
           </form>
@@ -52,7 +52,7 @@
       <v-row>
         <v-col cols=12 md=1></v-col>
         <v-col cols=12 md=3 class="mt-1">
-          <h3>About</h3>
+          <h3>自己紹介</h3>
         </v-col>
         <v-col cols=12 md=7 class=mt-n2>
           <v-text-field v-model="user.about" :placeholder="user.about" outlined dark filled dense></v-text-field>
@@ -61,9 +61,9 @@
       </v-row>
       <v-divider></v-divider>
       <v-row>
-        <v-col cols=12 md=4></v-col>
-        <v-col cols=12 md=7 class="mt-n11">
-          <div>Who you are in fewer than 300 characters.</div>
+        <v-col cols=12 md=2></v-col>
+        <v-col cols=12 md=7 class="mt-n11 ml-2">
+          <div>300字以内でプロフィールを入力</div>
         </v-col>
         <v-col cols=12 md=1></v-col>
       </v-row>
@@ -71,7 +71,7 @@
       <v-row>
         <v-col cols=12 md=1></v-col>
         <v-col cols=12 md=3 class="mt-1">
-          <h3>Location</h3>
+          <h3>居住地</h3>
         </v-col>
         <v-col cols=12 md=7 class="mt-n2">
           <v-text-field v-model="user.location" :placeholder="user.location" outlined dark filled dense></v-text-field>
@@ -82,7 +82,7 @@
       <v-row>
         <v-col cols=12 md=4></v-col>
         <v-col cols=12 md=7 class="mt-n11">
-          <div>Where you live in.</div>
+          <div></div>
         </v-col>
         <v-col cols=12 md=1></v-col>
       </v-row>
@@ -90,7 +90,7 @@
       <v-row>
         <v-col cols=12 md=1></v-col>
         <v-col cols=12 md=3 class="mt-1">
-          <h3>Email</h3>
+          <h3>Eメール</h3>
         </v-col>
         <v-col cols=12 md=7 class="mt-n1">
           <v-text-field v-model="user.email" :placeholder="user.email" outlined dark filled dense></v-text-field>
@@ -99,9 +99,9 @@
       </v-row>
       <v-divider></v-divider>
       <v-row>
-        <v-col cols=12 md=4></v-col>
-        <v-col cols=12 md=7 class="mt-n11">
-          <div>Email you use here.</div>
+        <v-col cols=12 md=2></v-col>
+        <v-col cols=12 md=7 class="mt-n11 ml-4">
+          <div>サービスで使用するEメールを入力</div>
         </v-col>
         <v-col cols=12 md=1></v-col>
       </v-row>
@@ -179,8 +179,8 @@
       </v-row>
 
       <v-row>
-        <v-col cols=12 md=9 class="mt-n16"></v-col>
-        <v-col cols=12 md=2 class="ml-n6 mt-n7">
+        <v-col cols=12 md=10 class="mt-n16"></v-col>
+        <v-col cols=12 md=2 class="ml-n11 mt-n7">
           <v-btn @click="saveProfile()" style="background-color:#2d00f7; font-weight:bold;" dark class="rounded-lg">保存</v-btn>
         </v-col>
       </v-row>
