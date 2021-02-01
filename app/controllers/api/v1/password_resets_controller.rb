@@ -10,8 +10,10 @@ module Api
         if user
           user.generate_password_token!
           UserMailer.reset_password(user).deliver_now
+          render json: :ok
+        else
+          not_found
         end
-        render json: :ok
       end
 
       # 2. mail link
@@ -35,8 +37,11 @@ module Api
 
         def set_user
           @user = User.find_by(reset_password_token: params[:token])
-          # @user = User.find_by(email: params[:email])
           raise ResetPasswordError unless @user&.reset_password_token_expires_at && @user.reset_password_token_expires_at > Time.now
+        end
+
+        def not_found
+          render json: { error: "Cannot find such email user" }, status: :not_found
         end
     end
   end

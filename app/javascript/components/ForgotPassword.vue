@@ -53,6 +53,14 @@
     <v-row class="mt-8">
       <v-col cols=12 md=12></v-col>
     </v-row>
+    <v-snackbar top v-model="snackbar" color="pink">
+      {{ text }}
+      <template v-slot:action="{ attrs }">
+        <v-btn color="white" text v-bind="attrs" @click="snackbar = false">
+          閉じる
+        </v-btn>
+      </template>
+    </v-snackbar>
   </div>
 
 </template>
@@ -70,6 +78,9 @@
         email: '',
         error: '',
         notice: '',
+        snackbar: false,
+        text: '',
+        display_error_text: `入力されたEメールで登録されたユーザーは存在しません。`,
       }
     },
     methods: {
@@ -78,7 +89,7 @@
             email: this.email
           })
           .then(() => this.submitSuccessful())
-          .catch(error => this.submitFailed())
+          .catch(error => this.submitFailed(error))
       },
       submitSuccessful() {
         this.notice = 'Email with reset password istructions had been sent.'
@@ -92,6 +103,8 @@
       },
       submitFailed(error) {
         this.error = (error.response && error.response.data && error.response.data.error) || ''
+        this.text = this.display_error_text
+        this.snackbar = true
       }
     }
   }

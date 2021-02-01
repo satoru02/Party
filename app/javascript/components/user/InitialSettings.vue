@@ -1,6 +1,6 @@
 <template>
   <div justify="center" align="center">
-    <v-sheet class="name rounded-lg ml-5 mt-16 mb-16" color="#212529" width="700"
+    <v-sheet elevation=10 class="name rounded-lg ml-5 mt-16 mb-16" color="#212529" width="700"
       style="border: 1px solid hsla(0,0%,100%,.1); height:auto; min-height: 600px; max-width: 100%; max-height:2000px;">
       <v-row>
         <v-col cols=12 md=1></v-col>

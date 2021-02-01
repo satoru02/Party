@@ -1,18 +1,18 @@
 <template>
   <div justify="center" align="center">
-    <v-sheet elevation=10 style="border: 1px solid hsla(0,0%,100%,.1);" color="#212529" height="330"
+    <v-sheet elevation=10 style="border: 1px solid hsla(0,0%,100%,.1);" color="#212529" height="450"
       class="rounded-lg mt-16" width="650">
       <v-row>
         <v-col cols=12 md=2></v-col>
         <v-col cols=12 md=8 class="mt-8">
-          <h1>Reset Password</h1>
+          <h1>パスワードの再設定</h1>
         </v-col>
       </v-row>
 
       <v-row>
         <v-col cols=12 md=1></v-col>
-        <v-col cols=12 md=1>
-          <h3 style="color:#edf2f4;">PASSWORD</h3>
+        <v-col cols=12 md=2 class="ml-n2">
+          <h3 style="color:#edf2f4;">パスワード</h3>
         </v-col>
       </v-row>
       <v-row class="mt-n4">
@@ -24,8 +24,8 @@
 
       <v-row>
         <v-col cols=12 md=1></v-col>
-        <v-col cols=12 md=1>
-          <h3 style="color:#edf2f4;">PASSWORD CONFIRMATION</h3>
+        <v-col cols=12 md=3 class="ml-n4">
+          <h3 style="color:#edf2f4;">パスワードの確認</h3>
         </v-col>
       </v-row>
       <v-row class="mt-n4">
@@ -42,7 +42,7 @@
             <v-row>
               <v-col cols=12 md=4></v-col>
               <v-col cols=12 md=1>
-                <p class="mt-4 ml-5" style="font-size:1rem;">Send Email</p>
+                <p class="mt-4 ml-10" style="font-size:1rem;">再設定</p>
               </v-col>
             </v-row>
           </v-btn>
@@ -50,14 +50,14 @@
       </v-row>
       <v-row>
         <v-col cols=12 md=1></v-col>
-        <v-col cols=12 md=1 class="mt-n4">
+        <v-col cols=12 md=2 class="mt-n4 ml-n5">
           <router-link :to="{name: 'login'}">
-            <p style="font-size:0.7rem; color:#6c757d;">Login</p>
+            <p style="font-size:0.7rem; color:#6c757d;">ログイン</p>
           </router-link>
         </v-col>
-        <v-col cols=12 md=2 class="mt-n4 ml-n10">
+        <v-col cols=12 md=2 class="mt-n4 ml-n8">
           <router-link :to="{name: 'signup'}">
-            <p style="font-size:0.7rem; color:#6c757d;">Sign up</p>
+            <p style="font-size:0.7rem; color:#6c757d;">アカウント登録</p>
           </router-link>
         </v-col>
       </v-row>
