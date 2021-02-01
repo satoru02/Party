@@ -5,7 +5,6 @@ Rails.application.routes.draw do
   namespace 'api' do
     namespace 'v1' do
       resources :years, only: [:index]
-      resources :tags, only: [:index, :show]
       resources :notifications
       resources :entries, only: [:index, :create]
       resources :entry_responses, only: [:show]
@@ -17,6 +16,12 @@ Rails.application.routes.draw do
       resources :account_activations, only: [:create] do
         collection do
           post ':token', action: :create
+        end
+      end
+
+      resources :tags, only: [:index, :show] do
+        collection do
+          get ':name', action: :show, as: :show
         end
       end
 

@@ -19,7 +19,7 @@
           <h1>検索結果：{{this.$route.params.query}}</h1>
         </v-col>
         <v-col v-if="$route.name === 'Tag'" cols=12 md=4 class="ml-5">
-          <h1>タグ：{{this.$route.params.id}}</h1>
+          <h1>タグ：{{this.$route.params.name}}</h1>
         </v-col>
         <v-col cols=12 md=2></v-col>
         <v-col cols=12 md=1 class="ml-2 mt-1">

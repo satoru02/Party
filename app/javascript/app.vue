@@ -135,7 +135,7 @@
             component: Search
           },
           {
-            path: "/tag/:id",
+            path: "/tag/:name",
             name: "Tag",
             component: Tag
           },
