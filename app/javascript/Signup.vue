@@ -31,7 +31,7 @@
       <v-row class="mt-n4">
         <v-col cols=12 md=1></v-col>
         <v-col cols=12 md=10>
-          <v-text-field v-model="password" outlined dark filled dense></v-text-field>
+          <v-text-field v-model="password" @click="visible = false" :type="visible ? 'text' : 'password'" outlined dark filled dense></v-text-field>
         </v-col>
       </v-row>
 
@@ -43,7 +43,7 @@
       <v-row class="mt-n4">
         <v-col cols=12 md=1></v-col>
         <v-col cols=12 md=10>
-          <v-text-field v-model="password_confirmation" outlined dark filled dense></v-text-field>
+          <v-text-field v-model="password_confirmation" @click="visible = false" :type="visible ? 'text' : 'password'" outlined dark filled dense></v-text-field>
         </v-col>
       </v-row>
       <v-row>
@@ -102,6 +102,7 @@
         password: '',
         password_confirmation: '',
         error: '',
+        visible: true,
         snackbar: false,
         text: '',
         email_error: `Email translation missing: ja.activerecord.errors.models.user.attributes.email.taken`,
