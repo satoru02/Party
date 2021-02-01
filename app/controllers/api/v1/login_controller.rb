@@ -4,8 +4,8 @@ module Api
       before_action :authorize_access_request!, only: [:destroy]
 
       def create
-        user = User.find_by!(email: params[:email])
-        if user.authenticate(params[:password])
+        user = User.find_by(email: params[:email])
+        if user && user.authenticate(params[:password])
           payload = { user_id: user.id, aud: [user.role] }
           session = JWTSessions::Session.new(
             payload: payload,
@@ -22,7 +22,7 @@ module Api
           )
           render json: { csrf: tokens[:csrf] }
         else
-          not_authorized
+          not_found
         end
       end
 

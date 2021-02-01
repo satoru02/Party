@@ -92,7 +92,7 @@
       <v-row class="mt-n4">
         <v-col cols=12 md=1></v-col>
         <v-col cols=12 md=10>
-          <v-text-field v-model="password" outlined dark filled dense></v-text-field>
+          <v-text-field @click="visible = false" v-model="password" :type="visible ? 'text': 'password'" outlined dark filled dense></v-text-field>
         </v-col>
       </v-row>
       <v-row>
@@ -131,6 +131,14 @@
     <v-row class="mt-8">
       <v-col cols=12 md=12></v-col>
     </v-row>
+    <v-snackbar top v-model="snackbar" color="pink">
+      {{ text }}
+      <template v-slot:action="{ attrs }">
+        <v-btn color="white" text v-bind="attrs" @click="snackbar = false">
+          閉じる
+        </v-btn>
+      </template>
+    </v-snackbar>
   </div>
 </template>
 
@@ -147,7 +155,11 @@
       return {
         email: '',
         password: '',
-        error: ''
+        error: '',
+        snackbar: false,
+        text: '',
+        display_error_text: `Eメールとパスワードの組み合わせが違います。`,
+        visible: true
       }
     },
     created() {
@@ -188,6 +200,8 @@
       signinFailed(error) {
         this.error = (error.response && error.response.data && error.response.data.error) || ""
         this.$store.commit('unsetCurrentUser')
+        this.text = this.display_error_text
+        this.snackbar = true
       },
       checkSignedIn() {
         if (this.$store.state.signedIn) {
