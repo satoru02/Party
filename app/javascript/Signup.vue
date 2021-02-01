@@ -36,7 +36,6 @@
       </v-row>
 
       <v-row class="mt-n4">
-        <!-- <v-col cols=12 md=2></v-col> -->
         <v-col cols=12 md=5 class="ml-n4">
           <h3 style="color:#edf2f4;">パスワードの確認</h3>
         </v-col>
@@ -104,7 +103,12 @@
         password_confirmation: '',
         error: '',
         snackbar: false,
-        text: `入力されたメールアドレスは既に使用されています。`
+        text: '',
+        email_error: `Email translation missing: ja.activerecord.errors.models.user.attributes.email.taken`,
+        email_error_text: `入力されたメールアドレスは既に使用されています。`,
+        password_error: `Password confirmation translation missing: ja.activerecord.errors.models.user.attributes.password_confirmation.confirmation`,
+        password_error_text: `入力されたパスワードの組み合わせが違います。`,
+        error_text: `入力内容に間違いがあります。`
       }
     },
     created() {
@@ -129,6 +133,13 @@
       signupFailed(error) {
         this.error = (error.response && error.response.data && error.response.data.error) || ""
         this.$store.commit('unsetCurrentUser')
+        if (this.error === this.email_error) {
+          this.text = this.email_error_text
+        } else if(this.error === this.password_error) {
+          this.text = this.password_error_text
+        } else {
+          this.text = this.error_text
+        }
         this.snackbar = true
       },
       checkSignedIn() {
