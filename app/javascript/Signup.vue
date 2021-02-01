@@ -77,6 +77,14 @@
     <v-row class="mt-8">
       <v-col cols=12 md=12></v-col>
     </v-row>
+    <v-snackbar top v-model="snackbar" color="pink">
+      {{ text }}
+      <template v-slot:action="{ attrs }">
+        <v-btn color="white" text v-bind="attrs" @click="snackbar = false">
+          閉じる
+        </v-btn>
+      </template>
+    </v-snackbar>
   </div>
 
 </template>
@@ -94,7 +102,9 @@
         email: '',
         password: '',
         password_confirmation: '',
-        error: ''
+        error: '',
+        snackbar: false,
+        text: `入力されたメールアドレスは既に使用されています。`
       }
     },
     created() {
@@ -119,6 +129,7 @@
       signupFailed(error) {
         this.error = (error.response && error.response.data && error.response.data.error) || ""
         this.$store.commit('unsetCurrentUser')
+        this.snackbar = true
       },
       checkSignedIn() {
         if (this.$store.state.signedIn) {
