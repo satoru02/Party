@@ -179,11 +179,10 @@
         delete_post: ''
       }
     },
+    watch: {
+      '$route': 'infiniteHandler'
+    },
     methods: {
-      initialize() {
-        this.page = 1
-        this.posts = []
-      },
       infiniteHandler($state) {
         simpleAxios.get(CONTENT_URL, {
             params: {
@@ -223,7 +222,6 @@
           .catch(error => this.deleteFailed(error))
       },
       deleteSuccessful(response){
-        this.initialize()
         this.$router.go(this.$router.currentRoute)
       }
     },

@@ -16,7 +16,8 @@
           <v-col cols=12 md=3 class="ml-n13 mt-2" color="#efeff1">
             <h3>{{ postTime(post.attributes.created_at) }}</h3>
           </v-col>
-          <v-col cols=12 md=1 class="mt-2 ml-16" v-if="$store.state.currentUser.data.attributes.id === post.attributes.user_id">
+          <v-col cols=12 md=1 class="mt-2 ml-16"
+            v-if="$store.state.currentUser.data.attributes.id === post.attributes.user_id">
             <v-menu left offset-y nudge-width="140" nudge-height="100" nudge-bottom="10">
               <template v-slot:activator="{ on, attrs}">
                 <v-icon color="#edf6f9" v-bind="attrs" v-on="on">mdi-dots-horizontal</v-icon>
@@ -27,10 +28,8 @@
                     <v-list-item-title class="ml-5">編集する</v-list-item-title>
                   </v-list-item>
                 </router-link>
-                <v-list-item class="tile">
-                  <!-- <router-link :to="{ name: 'PostEdit', params: {id: `${post.attributes.id }`}}"> -->
-                  <v-list-item-title class="ml-5">削除する</v-list-item-title>
-                  <!-- </router-link> -->
+                <v-list-item @click="delete_check_dialog = true, delete_post = post.attributes.id" class="tile">
+                  <v-list-item-title style="font-weight: bold" class="ml-5">削除する</v-list-item-title>
                 </v-list-item>
               </v-list>
             </v-menu>
@@ -96,6 +95,20 @@
         </v-row>
       </v-sheet>
       <p></p>
+      <v-dialog light v-model="delete_check_dialog" width="300">
+        <v-card>
+          <v-card-title>この投稿を削除しますか？</v-card-title>
+          <v-card-actions>
+            <v-spacer></v-spacer>
+            <v-btn color="green darken-1" text @click="deletePost(delete_post), delete_check_dialog = false">
+              削除する
+            </v-btn>
+            <v-btn color="green darken-1" text @click="delete_check_dialog = false">
+              キャンセル
+            </v-btn>
+          </v-card-actions>
+        </v-card>
+      </v-dialog>
     </div>
   </v-responsive>
 </template>
@@ -107,12 +120,15 @@
     secureAxios
   } from '../../backend/axios.js'
   const USERS_POST_INFO_URL = '/api/v1/posts/'
+  const CONTENT_URL = '/api/v1/posts'
 
   export default {
     name: "MyEvent",
     data() {
       return {
-        posts: []
+        posts: [],
+        delete_check_dialog: false,
+        delete_post: ''
       }
     },
     created() {
@@ -141,6 +157,16 @@
       },
       postTime(time) {
         return moment(time).format("YYYY/MM/DD hh:mm")
+      },
+      deletePost(post) {
+        secureAxios.defaults.headers.common['X-CSRF-TOKEN'] = this.$store.state.csrf
+        secureAxios.delete(CONTENT_URL + `/` + `${post}`)
+          .then(response => this.deleteSuccessful(response))
+          .catch(error => this.deleteFailed(error))
+      },
+      deleteSuccessful(response) {
+        // this.initialize()
+        this.$router.go(this.$router.currentRoute)
       }
     }
   }
