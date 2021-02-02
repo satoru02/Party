@@ -4,9 +4,9 @@ class Post < ApplicationRecord
   validates :title, presence: true, length: { maximum: 100 }
   belongs_to :user
   belongs_to :category
-  has_one :room
-  has_many :entries
-  has_many :entry_responses
+  has_one :room, dependent: :destroy
+  has_many :entries, dependent: :destroy
+  has_many :entry_responses, dependent: :destroy
   acts_as_taggable_on :tags
 
   def import_time

@@ -2,11 +2,11 @@ class User < ApplicationRecord
   include Rails.application.routes.url_helpers
 
   has_and_belongs_to_many :rooms, :uniq => true
-  has_many :messages
-  has_many :posts
-  has_many :entries
-  has_many :entry_responses
-  has_many :notifications
+  has_many :messages, dependent: :destroy
+  has_many :posts, dependent: :destroy
+  has_many :entries, dependent: :destroy
+  has_many :entry_responses, dependent: :destroy
+  has_many :notifications, dependent: :destroy
   has_one_attached :avatar
   has_secure_password
 

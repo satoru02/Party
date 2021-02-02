@@ -31,11 +31,11 @@
                         <v-list-item-title class="ml-5">編集する</v-list-item-title>
                       </v-list-item>
                     </router-link>
-                    <v-list-item class="tile">
-                      <router-link :to="{ name: 'PostEdit', params: {id: `${post.attributes.id }`}}">
+                    <router-link :to="{ name: 'PostEdit', params: {id: `${post.attributes.id }`}}">
+                      <v-list-item class="tile">
                         <v-list-item-title class="ml-5">削除する</v-list-item-title>
-                      </router-link>
-                    </v-list-item>
+                      </v-list-item>
+                    </router-link>
                   </v-list>
                 </v-menu>
               </v-col>

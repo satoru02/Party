@@ -1,7 +1,7 @@
 class Entry < ApplicationRecord
   belongs_to :user
   belongs_to :post
-  has_one :notification
+  has_one :notification, dependent: :destroy
   after_create :create_entry_notification
   validates_uniqueness_of :user_id, :scope => [:post_id]
 

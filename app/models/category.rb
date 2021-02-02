@@ -5,5 +5,5 @@ class Category < ApplicationRecord
 
   friendly_id :name, use: :slugged
 
-  has_many :posts
+  has_many :posts, dependent: :destroy
 end

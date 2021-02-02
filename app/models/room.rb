@@ -1,5 +1,5 @@
 class Room < ApplicationRecord
-  has_many :messages
+  has_many :messages, dependent: :destroy
   has_and_belongs_to_many :users, :uniq => true
   before_create :create_resource_digest
   after_create :create_rooms_users

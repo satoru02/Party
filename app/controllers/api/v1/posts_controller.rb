@@ -2,7 +2,7 @@ module Api
   module V1
     class PostsController < ApplicationController
       before_action :authorize_access_request!
-      before_action :set_post, only: [:show, :edit, :update]
+      before_action :set_post, only: [:show, :edit, :update, :destroy]
 
       def index
         if params[:position] === 'top'
@@ -47,6 +47,7 @@ module Api
       end
 
       def destroy
+        @post.destroy!
       end
 
       def search
