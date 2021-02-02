@@ -48,6 +48,7 @@
   import Top from './components/Top';
   import EventCard from './components/EventCard';
   import RoomTop from './components/RoomTop';
+  import Logout from './Logout';
   import '@mdi/font/css/materialdesignicons.css';
 
   const actionCableVueOptions = {
@@ -188,6 +189,11 @@
         path: "/login",
         name: "login",
         component: Login
+      },
+      {
+        path: "/logout",
+        name: "logout",
+        component: Logout
       },
       {
         path: "/signup",

@@ -27,13 +27,6 @@
   import PostButton from '../postButton';
   import UserMenu from '../perpage/TheUserMenu';
 
-  import {
-    simpleAxios,
-    secureAxios
-  } from '../../backend/axios.js';
-
-  const LOGOUT_URL = '/api/v1/login';
-
   export default {
     name: 'top-header',
     components: {
@@ -49,18 +42,6 @@
     methods: {
       searchPost(query){
         this.$router.push({name: "Search", params: { query: query } }).catch(err => {})
-      },
-      setError(error, text) {
-        this.error = (error.response && error.response.data && error.response.data.error) || text
-      },
-      signOut() {
-        secureAxios.defaults.headers.common['X-CSRF-TOKEN'] = this.$store.state.csrf
-        secureAxios.delete(LOGOUT_URL + `/` + `${this.$store.state.currentUser.data.attributes.id}`)
-          .then(response => {
-            this.$store.commit('unsetCurrentUser')
-            this.$router.replace('/')
-          })
-          .catch(error => this.setError(error, 'Cannot sign out'))
       },
       showAdminLink() {
         return this.$store.getters.isAdmin || this.$store.getters.isManager

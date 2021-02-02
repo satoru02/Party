@@ -2,7 +2,7 @@ module Api
   module V1
     class UsersController < ApplicationController
       before_action :authorize_access_request!
-      before_action :set_user, only: [:posts, :show, :edit, :update]
+      before_action :set_user, only: [:posts, :show, :edit, :update, :destroy]
       before_action :set_host_for_local_storage
 
       def me
@@ -39,6 +39,7 @@ module Api
       end
 
       def destroy
+        @user.destroy!
       end
 
       def posts

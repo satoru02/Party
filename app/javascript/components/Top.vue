@@ -1,6 +1,6 @@
 <template>
   <div class="homes">
-    <categoryHeader></categoryHeader>
+    <categoryHeader v-if="$store.state.signedIn"></categoryHeader>
     <div class="card" style="grid-area:card">
       <v-row>
         <v-col cols=12 md=12></v-col>
@@ -48,7 +48,7 @@
       <router-view></router-view>
     </div>
     <v-divider dark vertical></v-divider>
-    <tagHeader></tagHeader>
+    <tagHeader v-if="$store.state.signedIn"></tagHeader>
     <v-divider dark vertical></v-divider>
   </div>
 </template>
@@ -93,7 +93,7 @@
     },
     methods: {
       checkSignedIn() {
-        if (!this.$store.state.signedIn) {
+        if (!this.$store.state.signedIn || localStorage.getItem('vuex') === null) {
           this.$router.replace('/login')
         }
       },

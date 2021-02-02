@@ -57,7 +57,7 @@
           {
             icon: 'mdi-exit-run',
             title: 'ログアウト',
-            link: '/posts/new'
+            link: '/logout'
           }
         ]
       }
