@@ -54,7 +54,7 @@
         }
       },
       getNotification() {
-        simpleAxios.get(NOTIFICATION_URL + `/` + `${this.$route.params.id}`)
+        secureAxios.get(NOTIFICATION_URL + `/` + `${this.$route.params.id}`)
           .then(response => this.Successful(response))
           .catch(error => this.Failed(error))
       },

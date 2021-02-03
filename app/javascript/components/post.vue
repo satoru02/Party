@@ -152,7 +152,7 @@
         this.error = (error.response && error.response.data && error.response.data.error) || text
       },
       postUrl() {
-        secureAxios.defaults.headers.common['X-CSRF-TOKEN'] = this.$store.state.csrf
+        // secureAxios.defaults.headers.common['X-CSRF-TOKEN'] = this.$store.state.csrf
         secureAxios.post(POST_URL, {
             title: this.title,
             category_id: 1,

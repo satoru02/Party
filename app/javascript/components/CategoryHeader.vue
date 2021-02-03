@@ -36,7 +36,7 @@
     },
     methods: {
       getCategory() {
-        simpleAxios.get(CATEGORY_URL)
+        secureAxios.get(CATEGORY_URL)
           .then(response => this.Successful(response))
           .catch(error => this.Failed(error))
       },

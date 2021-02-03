@@ -67,7 +67,7 @@
 
 <script>
   import {
-    simpleAxios
+    simpleAxios, secureAxios
   } from '../backend/axios.js'
   const PASSWORD_RESET_URL = '/api/v1/password_resets';
 
@@ -85,7 +85,7 @@
     },
     methods: {
       resetPassword() {
-        simpleAxios.post(PASSWORD_RESET_URL, {
+        secureAxios.post(PASSWORD_RESET_URL, {
             email: this.email
           })
           .then(() => this.submitSuccessful())

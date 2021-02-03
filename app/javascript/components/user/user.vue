@@ -138,7 +138,7 @@
         }
       },
       fetchUserInformation() {
-        simpleAxios.get(USER_INFO_URL + `${this.$route.params.id}`)
+        secureAxios.get(USER_INFO_URL + `${this.$route.params.id}`)
           .then(response => this.Successful(response))
           .catch(error => this.Failed(error))
       },

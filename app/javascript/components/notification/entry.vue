@@ -117,7 +117,6 @@
     },
     methods: {
       authorizeEntry() {
-        secureAxios.defaults.headers.common['X-CSRF-TOKEN'] = this.$store.state.csrf
         secureAxios.post(ENTRY_URL, {
           answer: 'authorize',
           entry_id: this.entry.id,
@@ -127,7 +126,6 @@
         this.response_action = "authorize"
       },
       declineEntry() {
-        secureAxios.defaults.headers.common['X-CSRF-TOKEN'] = this.$store.state.csrf
         secureAxios.post(ENTRY_URL, {
           answer: 'decline',
           entry_id: this.entry.id,

@@ -42,7 +42,6 @@
     },
     methods: {
       update() {
-        secureAxios.defaults.headers.common['X-CSRF-TOKEN'] = this.$store.state.csrf
         secureAxios.patch(ADMIN_URL + `/` + `${this.$route.params.id}`, {
             user: {
               role: this.user.role

@@ -184,7 +184,7 @@
     },
     methods: {
       infiniteHandler($state) {
-        simpleAxios.get(CONTENT_URL, {
+        secureAxios.get(CONTENT_URL, {
             params: {
               position: 'top',
               page: this.page,
@@ -205,7 +205,6 @@
           })
       },
       entryRequest(post) {
-        secureAxios.defaults.headers.common['X-CSRF-TOKEN'] = this.$store.state.csrf
         secureAxios.post(ENTRY_URL, {
           post: post.attributes.id,
           user: post.attributes.user_id
@@ -216,7 +215,6 @@
         return moment(time).format("YYYY/MM/DD hh:mm")
       },
       deletePost(post){
-        secureAxios.defaults.headers.common['X-CSRF-TOKEN'] = this.$store.state.csrf
         secureAxios.delete(CONTENT_URL + `/` + `${post}`)
           .then(response => this.deleteSuccessful(response))
           .catch(error => this.deleteFailed(error))

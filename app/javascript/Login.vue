@@ -182,6 +182,7 @@
           this.signinFailed(response)
           return
         }
+        simpleAxios.defaults.headers.common['Authorization'] = `Bearer ${response.data.access_token}`
         simpleAxios.get(USER_INFO_URL, {
           params: {
             position: 'login'
@@ -190,7 +191,8 @@
           .then(me_response => {
             this.$store.commit('setCurrentUser', {
               currentUser: me_response.data,
-              csrf: response.data.csrf
+              csrf: response.data.csrf,
+              token: response.data.access_token
             })
             this.error = ''
             this.$router.replace('/')

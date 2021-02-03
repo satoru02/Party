@@ -35,7 +35,7 @@
 
 <script>
   import {
-    simpleAxios
+    simpleAxios, secureAxios
   } from '../backend/axios';
   import Avatar from '../components/perpage/TheAvatar';
   import Room from '../components/Room';
@@ -85,7 +85,7 @@
         }
       },
       getRooms() {
-        simpleAxios.get(ROOMS_URL)
+        secureAxios.get(ROOMS_URL)
           .then(response => this.Successful(response))
           .catch(error => this.Failed(error))
       },

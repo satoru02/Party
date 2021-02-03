@@ -145,7 +145,7 @@
         }
       },
       getPost() {
-        simpleAxios.get(POST_EDIT_URL + `${this.$route.params.id}` + `/edit`)
+        secureAxios.get(POST_EDIT_URL + `${this.$route.params.id}` + `/edit`)
           .then(response => this.Successful(response))
           .catch(error => this.Failed(error))
       },
@@ -161,7 +161,7 @@
         this.$router.replace('/')
       },
       updatePost() {
-        secureAxios.defaults.headers.common['X-CSRF-TOKEN'] = this.$store.state.csrf
+        // secureAxios.defaults.headers.common['X-CSRF-TOKEN'] = this.$store.state.csrf
         secureAxios.patch(POST_EDIT_URL + `${this.$route.params.id}`, {
             title: this.post.title,
             category_id: 1,
@@ -173,7 +173,7 @@
           .catch(error => this.Failed(error))
       },
       destroyPost() {
-        secureAxios.defaults.headers.common['X-CSRF-TOKEN'] = this.$store.state.csrf
+        // secureAxios.defaults.headers.common['X-CSRF-TOKEN'] = this.$store.state.csrf
         secureAxios.delete(POST_EDIT_URL + `${this.$route.params.id}`)
           .then(response => this.updateSuccessdul(response))
           .catch(error => this.Failed(error))

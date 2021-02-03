@@ -5,9 +5,9 @@ module Api
 
       def create
         session = JWTSessions::Session.new(
-          payload: claimeless_payload,
+          payload: claimless_payload,
           refresh_by_access_allowed: true,
-          namespace: "user_#{claimeless_payload['user_id']}"
+          namespace: "user_#{claimless_payload['user_id']}"
         )
 
         tokens = session.refresh_by_access_payload do
@@ -20,6 +20,8 @@ module Api
           httponly: true,
           secure: Rails.env.production?
         )
+
+        render json: { csrf: tokens[:csrf] }
       end
     end
   end

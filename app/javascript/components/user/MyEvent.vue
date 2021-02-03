@@ -139,7 +139,7 @@
     },
     methods: {
       fetchUsersPost() {
-        simpleAxios.get(USERS_POST_INFO_URL, {
+        secureAxios.get(USERS_POST_INFO_URL, {
             params: {
               user_id: `${this.$route.params.id}`,
               position: 'my_events'
@@ -159,7 +159,6 @@
         return moment(time).format("YYYY/MM/DD hh:mm")
       },
       deletePost(post) {
-        secureAxios.defaults.headers.common['X-CSRF-TOKEN'] = this.$store.state.csrf
         secureAxios.delete(CONTENT_URL + `/` + `${post}`)
           .then(response => this.deleteSuccessful(response))
           .catch(error => this.deleteFailed(error))

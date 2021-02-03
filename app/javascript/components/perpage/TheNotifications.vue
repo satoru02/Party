@@ -59,7 +59,7 @@
 
 <script>
   import {
-    simpleAxios
+    simpleAxios, secureAxios
   } from '../../backend/axios.js'
   import moment from 'moment';
   const NOTIFICATIONS_URL = '/api/v1/notifications'
@@ -100,7 +100,7 @@
     },
     methods: {
       getNotifications() {
-        simpleAxios.get(NOTIFICATIONS_URL, {
+        secureAxios.get(NOTIFICATIONS_URL, {
             params: {
               position: 'top'
             }

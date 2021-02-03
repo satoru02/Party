@@ -182,7 +182,7 @@
         this.posts = []
       },
       infiniteHandler($state) {
-        simpleAxios.get(SEARCH_POST_URL, {
+        secureAxios.get(SEARCH_POST_URL, {
             params: {
               q: this.$route.params.query,
               filter_category: 'date',
@@ -203,7 +203,7 @@
           })
       },
       entryRequest(post) {
-        secureAxios.defaults.headers.common['X-CSRF-TOKEN'] = this.$store.state.csrf
+        // secureAxios.defaults.headers.common['X-CSRF-TOKEN'] = this.$store.state.csrf
         secureAxios.post(ENTRY_URL, {
             post: post.attributes.id,
             user: post.attributes.user_id

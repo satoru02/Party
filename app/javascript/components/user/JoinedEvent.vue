@@ -109,7 +109,7 @@
     },
     methods: {
       fetchJoinedPost() {
-        simpleAxios.get(USERS_POST_INFO_URL, {
+        secureAxios.get(USERS_POST_INFO_URL, {
             params: {
               user_id: `${this.$route.params.id}`,
               position: 'joined_events'

@@ -35,7 +35,7 @@
 
 <script>
   import {
-    simpleAxios
+    simpleAxios, secureAxios
   } from '../backend/axios';
   import Avatar from './perpage/TheAvatar';
   import moment from 'moment';
@@ -66,7 +66,7 @@
         }
       },
       infiniteHandler($state) {
-        simpleAxios.get(NOTIFICATIONS_URL, {
+        secureAxios.get(NOTIFICATIONS_URL, {
           params: {
             position: 'index',
             page: this.page,

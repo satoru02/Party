@@ -18,7 +18,7 @@
 </template>
 
 <script>
-  import { simpleAxios } from '../backend/axios.js'
+  import { simpleAxios, secureAxios } from '../backend/axios.js'
 
   const TAG_URL = `/api/v1/tags`
 
@@ -34,7 +34,8 @@
     },
     methods: {
       getTags() {
-        simpleAxios.get(TAG_URL)
+        // simpleAxios.defaults.headers.common['Authorization'] = `Bearer ${this.$store.state.token}`
+        secureAxios.get(TAG_URL)
           .then(response => this.Successful(response))
           .catch(error => this.Failed(error))
       },

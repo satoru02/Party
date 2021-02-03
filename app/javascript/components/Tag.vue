@@ -142,7 +142,7 @@
 
 <script>
   import {
-    simpleAxios
+    simpleAxios, secureAxios
   } from '../backend/axios.js'
   import Avatar from '../components/perpage/TheAvatar.vue';
   import InfiniteLoading from 'vue-infinite-loading';
@@ -179,7 +179,7 @@
         this.posts = []
       },
        infiniteHandler($state) {
-        simpleAxios.get(TAG_URL + `/` + `${this.$route.params.name}`, {
+        secureAxios.get(TAG_URL + `/` + `${this.$route.params.name}`, {
           params: {
             name: this.$route.params.name,
             page: this.page,
@@ -201,7 +201,6 @@
         this.$router.replace('/')
       },
       entryRequest(post) {
-        secureAxios.defaults.headers.common['X-CSRF-TOKEN'] = this.$store.state.csrf
         secureAxios.post(ENTRY_URL, {
           post: post.id,
           user: post.user_id

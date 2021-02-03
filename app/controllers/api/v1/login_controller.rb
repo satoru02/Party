@@ -20,7 +20,7 @@ module Api
             secure: Rails.env.production?,
             path: "/"
           )
-          render json: { csrf: tokens[:csrf] }
+          render json: { csrf: tokens[:csrf], access_token: tokens[:access] }
         else
           not_found
         end

@@ -205,7 +205,6 @@
     },
     methods: {
       saveProfile() {
-        secureAxios.defaults.headers.common['X-CSRF-TOKEN'] = this.$store.state.csrf
 
         // const params = {
         //   email: this.user.email,

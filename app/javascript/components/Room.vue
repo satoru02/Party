@@ -43,7 +43,7 @@
 
 <script>
   import {
-    simpleAxios
+    simpleAxios, secureAxios
   } from '../backend/axios.js';
   import message from '../components/Message';
   import Appearance from '../components/Appearance';
@@ -106,7 +106,7 @@
         })
       },
       getMessage() {
-        simpleAxios.get(ROOM_URL + `/` + `${this.$route.params.token}` + `/` +
+        secureAxios.get(ROOM_URL + `/` + `${this.$route.params.token}` + `/` +
             `${this.$store.state.currentUser.data.attributes.id}`)
           .then(response => this.Successful(response))
           .catch(error => this.Failed(error))

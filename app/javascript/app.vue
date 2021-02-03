@@ -91,16 +91,19 @@
     mutations: {
       setCurrentUser(state, {
         currentUser,
-        csrf
+        csrf,
+        token
       }) {
         state.currentUser = currentUser
         state.signedIn = true
         state.csrf = csrf
+        state.token = token
       },
       unsetCurrentUser(state) {
         state.currentUser = {}
         state.signedIn = false
         state.csrf = null
+        state.token = null
       },
       refresh(state, csrf) {
         state.signedIn = true

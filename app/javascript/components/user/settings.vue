@@ -256,7 +256,7 @@
         this.user = this.$store.state.currentUser.data.attributes
       },
       saveProfile() {
-        secureAxios.defaults.headers.common['X-CSRF-TOKEN'] = this.$store.state.csrf
+
         // const params = {
         //   email: this.user.email,
         //   about: this.user.about,
@@ -305,7 +305,6 @@
         this.picture = this.$refs.inputFile.files[0];
       },
       deleteAccount() {
-        secureAxios.defaults.headers.common['X-CSRF-TOKEN'] = this.$store.state.csrf
         secureAxios.delete(USER_URL + `/` + `${this.$store.state.currentUser.data.attributes.id}`)
           .then(res => this.deleteSuccessful(res))
           .catch(error => this.setError(error, 'Cannot log out.'))
