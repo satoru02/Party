@@ -62,7 +62,7 @@
           <div style="color:#ff006e; font-size:0.6rem;">（※必須）</div>
         </v-col>
         <v-col cols=12 md=3 class="mt-1">
-          <v-select :items="categories" dense filled outlined v-model="category"></v-select>
+          <v-select :items="categories" item-text="name" dense filled outlined v-model="selectedCategory"></v-select>
         </v-col>
         <v-col cols=12 md=2 class="mt-4">
           <h3>タグ</h3>
@@ -100,11 +100,7 @@
 </template>
 
 <script>
-  import {
-    simpleAxios,
-    secureAxios
-  } from '../backend/axios.js'
-
+  import { secureAxios } from '../backend/axios.js'
   const POST_EDIT_URL = '/api/v1/posts/'
 
   export default {
@@ -126,12 +122,14 @@
           1, 2, 3, 4, 5, 6, 7, 8, 9, 10,
           11, 12, 13, 14, 15, 16, 17, 18, 19, 20, "No limit"
         ],
+        selectedCategory: '',
         categories: [
-          "シェアウォッチ",
-          "プライベートタイムライン",
-          "お笑い",
-          "Netflix",
-          "Amazon Prime"
+          { id: 1, name: "Movie" },
+          { id: 2, name: "TV" },
+          { id: 3, name: "Zoom chat" },
+          { id: 4, name: "Comedy" },
+          { id: 5, name: "Free" },
+          { id: 6, name: "Offline" },
         ],
       }
     },
@@ -162,10 +160,14 @@
         this.error = (error.response && error.response.data && error.response.data.error) || ""
         this.$router.replace('/')
       },
+      setCategory(){
+        var category = this.categories.filter(category => category.name === this.selectedCategory)
+        return category[0].id
+      },
       updatePost() {
         secureAxios.patch(POST_EDIT_URL + `${this.$route.params.id}`, {
             title: this.post.title,
-            category_id: 1,
+            category_id: this.setCategory(),
             content: this.post.content,
             tools: this.post.tools,
             start_date: this.start_date,

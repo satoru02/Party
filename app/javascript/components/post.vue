@@ -61,7 +61,7 @@
           <div style="color:#ff006e; font-size:0.6rem;">（※必須）</div>
         </v-col>
         <v-col cols=12 md=3 class="mt-1">
-          <v-select placeholder="カテゴリーを選択" :items="categories" dense filled outlined v-model="category"></v-select>
+          <v-select placeholder="カテゴリーを選択" :items="categories" item-text="name" dense filled outlined v-model="selectedCategory"></v-select>
         </v-col>
         <v-col cols=12 md=2 class="mt-4">
           <h3>タグ</h3>
@@ -113,13 +113,14 @@
         start_date: '',
         end_date: '',
         content: '',
-        category: '',
+        selectedCategory: '',
         categories: [
-          "シェアウォッチ",
-          "プライベートタイムライン",
-          "お笑い",
-          "Netflix",
-          "Amazon Prime"
+          { id: 1, name: "Movie" },
+          { id: 2, name: "TV" },
+          { id: 3, name: "Zoom chat" },
+          { id: 4, name: "Comedy" },
+          { id: 5, name: "Free" },
+          { id: 6, name: "Offline" },
         ],
         limit: '',
         numbers: [
@@ -151,10 +152,14 @@
       setError(error, text) {
         this.error = (error.response && error.response.data && error.response.data.error) || text
       },
+      setCategory(){
+        var category = this.categories.filter(category => category.name === this.selectedCategory)
+        return category[0].id
+      },
       postUrl() {
         secureAxios.post(POST_URL, {
             title: this.title,
-            category_id: 1,
+            category_id: this.setCategory(),
             content: this.content,
             tools: this.selected_tools,
             start_date: this.start_date,
