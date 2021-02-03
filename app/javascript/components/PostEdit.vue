@@ -78,7 +78,7 @@
           <h3>イベント内容</h3>
         </v-col>
         <v-col cols=12 md=8 class="mt-5">
-          <v-textarea :placeholder="post.content" outlined filled label=""></v-textarea>
+          <v-textarea :placeholder="post.content" v-model="post.content" outlined filled label=""></v-textarea>
         </v-col>
       </v-row>
 
