@@ -25,14 +25,14 @@
           <div style="color:#ff006e; font-size:0.6rem;">（※必須）</div>
         </v-col>
         <v-col cols=12 md=3 class="mt-1">
-          <v-text-field type="datetime-local" :placeholder="post.date" outlined dark filled dense></v-text-field>
+          <v-text-field v-model="start_date" type="datetime-local" outlined dark filled dense></v-text-field>
         </v-col>
         <v-col cols=12 md=2 class="mt-4">
           <h3>終了時間</h3>
           <div style="color:#ff006e; font-size:0.6rem;">（※必須）</div>
         </v-col>
         <v-col cols=12 md=3 class="mt-1">
-          <v-text-field type="datetime-local" outlined dark filled dense></v-text-field>
+          <v-text-field v-model="end_date" type="datetime-local" outlined dark filled dense></v-text-field>
         </v-col>
       </v-row>
 
@@ -111,6 +111,8 @@
     name: "postEdit",
     data() {
       return {
+        start_date: '',
+        end_date: '',
         post: '',
         tools: [
           "Youtube",
@@ -161,19 +163,19 @@
         this.$router.replace('/')
       },
       updatePost() {
-        // secureAxios.defaults.headers.common['X-CSRF-TOKEN'] = this.$store.state.csrf
         secureAxios.patch(POST_EDIT_URL + `${this.$route.params.id}`, {
             title: this.post.title,
             category_id: 1,
             content: this.post.content,
             tools: this.post.tools,
+            start_date: this.start_date,
+            end_date: this.end_date,
             tag_list: this.post.tag_list
           })
           .then(response => this.updateSuccessdul(response))
           .catch(error => this.Failed(error))
       },
       destroyPost() {
-        // secureAxios.defaults.headers.common['X-CSRF-TOKEN'] = this.$store.state.csrf
         secureAxios.delete(POST_EDIT_URL + `${this.$route.params.id}`)
           .then(response => this.updateSuccessdul(response))
           .catch(error => this.Failed(error))

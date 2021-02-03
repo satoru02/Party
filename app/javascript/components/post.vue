@@ -25,14 +25,14 @@
           <div style="color:#ff006e; font-size:0.6rem;">（※必須）</div>
         </v-col>
         <v-col cols=12 md=3 class="mt-1">
-          <v-text-field type="datetime-local" v-model="date" outlined dark filled dense></v-text-field>
+          <v-text-field type="datetime-local" v-model="start_date" outlined dark filled dense></v-text-field>
         </v-col>
         <v-col cols=12 md=2 class="mt-4">
           <h3>終了時間</h3>
           <div style="color:#ff006e; font-size:0.6rem;">（※必須）</div>
         </v-col>
         <v-col cols=12 md=3 class="mt-1">
-          <v-text-field type="datetime-local" v-model="time" outlined dark filled dense></v-text-field>
+          <v-text-field type="datetime-local" v-model="end_date" outlined dark filled dense></v-text-field>
         </v-col>
       </v-row>
 
@@ -110,8 +110,8 @@
     data() {
       return {
         title: '',
-        date: '',
-        time: '',
+        start_date: '',
+        end_date: '',
         content: '',
         category: '',
         categories: [
@@ -157,6 +157,8 @@
             category_id: 1,
             content: this.content,
             tools: this.selected_tools,
+            start_date: this.start_date,
+            end_date: this.end_date,
             tag_list: this.tag_list
           })
           .then(response => {

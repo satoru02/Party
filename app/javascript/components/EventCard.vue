@@ -3,7 +3,7 @@
     <v-container>
       <v-row no-gutters>
         <v-col v-for="post in posts" :key="post.attributes.id" :title="post.attributes.title"
-          :time="post.attributes.date" :user_id="post.attributes.user_id" class="mb-9 pr-10" cols="12" sm="16">
+           :user_id="post.attributes.user_id" class="mb-9 pr-10" cols="12" sm="16">
           <v-sheet class="rounded-lg" color="#11151c" width="740"
             style="border: 1px solid hsla(0,0%,100%,.1); height:auto; min-height: 150px; max-width: 100%; max-height:1000px;">
             <v-row>

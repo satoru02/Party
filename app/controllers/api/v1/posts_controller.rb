@@ -30,7 +30,6 @@ module Api
         @post = current_user.posts.build(post_params)
         if @post.save!
           Room.create!(name: @post.title, host_id: current_user.id, post_id: @post.id)
-          @post.import_time
           redirect_to root_url
         end
       end
@@ -71,7 +70,7 @@ module Api
         end
 
         def post_params
-          params.require(:post).permit(:title, :content, :category_id, :tag_list, :tools => [])
+          params.require(:post).permit(:title, :start_date, :end_date, :content, :category_id, :tag_list, :tools => [])
         end
     end
   end
