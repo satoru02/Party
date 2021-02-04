@@ -37,8 +37,6 @@
   import ActionCableVue from 'actioncable-vue';
   import Post from './components/post';
   import InfoFooter from './components/perpage/TheFooter';
-  import MyEvent from './components/user/MyEvent';
-  import JoinedEvent from './components/user/JoinedEvent';
   import Check from './Check';
   import InitialSettings from './components/user/InitialSettings';
   import Top from './components/Top';

@@ -72,7 +72,7 @@
   import Log from './log.vue'
   import Avatar from '../perpage/TheAvatar'
   import moment from 'moment';
-  import { simpleAxios, secureAxios } from '../../backend/axios.js'
+  import { secureAxios } from '../../backend/axios.js'
   const USER_INFO_URL = '/api/v1/users/'
   export default {
     name: 'User',
