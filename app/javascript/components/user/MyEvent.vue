@@ -1,134 +1,20 @@
 <template>
-  <v-responsive class="overflow-y-auto flex-grow-1 flex-shrink-0" style="max-width: 100%;" height="600">
-    <div v-for="(post, index) in posts" :key="index">
-      <v-sheet color="#11151c" class="rounded-lg" width="740"
-        style="border: 1px solid hsla(0,0%,100%,.1); height:auto; min-height: 150px; max-width: 100%; max-height:1000px;">
-        <v-row>
-          <v-col cols=12 md=2 class="ml-7 mt-1" color="#efeff1">
-            <v-btn small color="#2d00f7">イベント</v-btn>
-          </v-col>
-          <v-col cols=12 md=4 class="ml-n10 mt-2" color="#efeff1">
-            <h3>{{ post.attributes.title }}</h3>
-          </v-col>
-          <v-col cols=12 md=2 class="mt-1" color="#efeff1">
-            <v-btn small color="#2d00f7">開催日</v-btn>
-          </v-col>
-          <v-col cols=12 md=3 class="ml-n13 mt-2" color="#efeff1">
-            <h3>{{ postTime(post.attributes.created_at) }}</h3>
-          </v-col>
-          <v-col cols=12 md=1 class="mt-2 ml-16"
-            v-if="$store.state.currentUser.data.attributes.id === post.attributes.user_id">
-            <v-menu left offset-y nudge-width="140" nudge-height="100" nudge-bottom="10">
-              <template v-slot:activator="{ on, attrs}">
-                <v-icon color="#edf6f9" v-bind="attrs" v-on="on">mdi-dots-horizontal</v-icon>
-              </template>
-              <v-list class="rounded-s" style="background-color:#343a40;">
-                <router-link :to="{ name: 'PostEdit', params: {id: `${post.attributes.id }`}}">
-                  <v-list-item class="tile">
-                    <v-list-item-title class="ml-5">編集する</v-list-item-title>
-                  </v-list-item>
-                </router-link>
-                <v-list-item @click="delete_check_dialog = true, delete_post = post.attributes.id" class="tile">
-                  <v-list-item-title style="font-weight: bold" class="ml-5">削除する</v-list-item-title>
-                </v-list-item>
-              </v-list>
-            </v-menu>
-          </v-col>
-        </v-row>
-        <v-divider></v-divider>
-        <v-row>
-          <v-col cols=12 md=11 class="ml-7 mt-3">
-            <p style="color:#efeff1; font-size:0.8rem;">{{ post.attributes.content }}</p>
-          </v-col>
-          <v-col cols=12 md=1></v-col>
-        </v-row>
-        <v-row class="mt-n3">
-          <v-col cols=12 md="3" class="ml-7 mt-n6">
-            <p style="color:#efeff1; font-size:0.8rem;">
-              <v-icon small>mdi-account-multiple-outline</v-icon> 参加人数
-            </p>
-          </v-col>
-          <v-col cols=12 md="3" class="mt-n6">
-            <p style="color:#efeff1; font-size:0.8rem;">15人</p>
-          </v-col>
-        </v-row>
-        <v-row>
-          <v-col cols=12 md="3" class="ml-7 mt-n6">
-            <p style="color:#efeff1; font-size:0.8rem;">
-              <v-icon small>mdi-door-open</v-icon> カテゴリー
-            </p>
-          </v-col>
-          <v-col cols=12 md="3" class="mt-n6">
-            <p style="color:#efeff1; font-size:0.8rem;">{{ post.attributes.category.name }}</p>
-          </v-col>
-        </v-row>
-        <v-row>
-          <v-col cols=12 md="3" class="ml-7 mt-n6">
-            <p style="color:#efeff1; font-size:0.8rem;">
-              <v-icon small>mdi-laptop</v-icon> 使用ツール
-            </p>
-          </v-col>
-          <v-col cols=12 md="5" class="mt-n6">
-            <p style="color:#efeff1; font-size:0.8rem;">Zoom Youtube Twitch Twitter ChatRoom</p>
-          </v-col>
-        </v-row>
-        <v-row>
-          <v-col cols=12 md="3" class="ml-7 mt-n6">
-            <p style="color:#efeff1; font-size:0.8rem;">
-              <v-icon small>mdi-comment-outline</v-icon> 主催者からのコメント
-            </p>
-          </v-col>
-          <v-col cols=12 md="6" class="mt-n6">
-            <p style="color:#efeff1; font-size:0.8rem;">悪口禁止
-            </p>
-          </v-col>
-        </v-row>
-        <v-row class="tag mt-n5 ml-n9">
-          <v-col cols=12 md=1></v-col>
-          <div v-for="(n,index) in post.attributes.tag_list" :key="index">
-            <v-col cols=12 md=1 class="ml-n4">
-              <v-btn depressed class="rounded-s" x-small color="#46494c">
-                {{ n }}
-              </v-btn>
-            </v-col>
-          </div>
-        </v-row>
-      </v-sheet>
-      <p></p>
-      <v-dialog light v-model="delete_check_dialog" width="300">
-        <v-card>
-          <v-card-title>この投稿を削除しますか？</v-card-title>
-          <v-card-actions>
-            <v-spacer></v-spacer>
-            <v-btn color="green darken-1" text @click="deletePost(delete_post), delete_check_dialog = false">
-              削除する
-            </v-btn>
-            <v-btn color="green darken-1" text @click="delete_check_dialog = false">
-              キャンセル
-            </v-btn>
-          </v-card-actions>
-        </v-card>
-      </v-dialog>
-    </div>
-  </v-responsive>
+ <user-card :posts="posts"></user-card>
 </template>
 
 <script>
-  import moment from 'moment';
-  import {
-    simpleAxios,
-    secureAxios
-  } from '../../backend/axios.js'
+  import { secureAxios } from '../../backend/axios.js'
+  import UserCard from '../user/userCard';
   const USERS_POST_INFO_URL = '/api/v1/posts/'
-  const CONTENT_URL = '/api/v1/posts'
 
   export default {
     name: "MyEvent",
+    components: {
+      'user-card': UserCard
+    },
     data() {
       return {
         posts: [],
-        delete_check_dialog: false,
-        delete_post: ''
       }
     },
     created() {
@@ -154,18 +40,6 @@
       Failed(error) {
         this.error = (error.response && error.response.data && error.response.data.error) || ""
         this.$router.replace('/')
-      },
-      postTime(time) {
-        return moment(time).format("YYYY/MM/DD hh:mm")
-      },
-      deletePost(post) {
-        secureAxios.delete(CONTENT_URL + `/` + `${post}`)
-          .then(response => this.deleteSuccessful(response))
-          .catch(error => this.deleteFailed(error))
-      },
-      deleteSuccessful(response) {
-        // this.initialize()
-        this.$router.go(this.$router.currentRoute)
       }
     }
   }

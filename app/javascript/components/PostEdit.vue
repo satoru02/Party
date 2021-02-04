@@ -62,7 +62,7 @@
           <div style="color:#ff006e; font-size:0.6rem;">（※必須）</div>
         </v-col>
         <v-col cols=12 md=3 class="mt-1">
-          <v-select :items="categories" item-text="name" dense filled outlined v-model="selectedCategory"></v-select>
+          <v-select :items="categories" item-text="name" dense filled outlined v-model="post.Category"></v-select>
         </v-col>
         <v-col cols=12 md=2 class="mt-4">
           <h3>タグ</h3>
@@ -162,7 +162,7 @@
         this.$router.replace('/')
       },
       setCategory(){
-        var category = this.categories.filter(category => category.name === this.selectedCategory)
+        var category = this.categories.filter(category => category.name === this.post.category)
         return category[0].id
       },
       updatePost() {
