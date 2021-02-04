@@ -43,14 +43,14 @@
           <div style="color:#ff006e; font-size:0.6rem;">（※必須）</div>
         </v-col>
         <v-col cols=12 md=3 class="mt-1">
-          <v-select :items="numbers" :placeholder="post.limit" dense filled outlined v-model="limit"></v-select>
+          <v-select :items="numbers" dense filled outlined v-model="limit"></v-select>
         </v-col>
         <v-col cols=12 md=2 class="mt-4">
           <h3>使用ツール</h3>
           <div style="color:#ff006e; font-size:0.6rem;">（※必須）</div>
         </v-col>
         <v-col cols=12 md=3 class="mt-1">
-          <v-select dense :items="tools" :placeholder="post.tools" filled outlined multiple persistent-hint
+          <v-select dense :items="tools" filled outlined multiple persistent-hint
             v-model="post.tools"></v-select>
         </v-col>
       </v-row>
@@ -110,6 +110,7 @@
         start_date: '',
         end_date: '',
         post: '',
+        limit: '',
         tools: [
           "Youtube",
           "Zoom",

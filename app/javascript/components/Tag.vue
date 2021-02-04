@@ -13,7 +13,7 @@
               <v-col cols=12 md=9 class="mt-1" align="start" lg color="#ffffff">
                 <h2>{{ post.attributes.title }}</h2>
               </v-col>
-              <v-col cols=12 md=1 class="mt-2"
+              <!-- <v-col cols=12 md=1 class="mt-2"
                 v-if="$store.state.currentUser.data.attributes.id === post.attributes.user_id">
                 <v-menu left offset-y nudge-width="140" nudge-height="100" nudge-bottom="10">
                   <template v-slot:activator="{ on, attrs}">
@@ -30,7 +30,7 @@
                     </v-list-item>
                   </v-list>
                 </v-menu>
-              </v-col>
+              </v-col> -->
             </v-row>
             <v-divider></v-divider>
             <v-row>
@@ -167,6 +167,7 @@
       }
     },
     watch: {
+      // '$route': 'infiniteHandler'
       '$route.params': {
         immediate: true,
         handler() {
@@ -186,9 +187,10 @@
             name: this.$route.params.name,
             page: this.page,
             per_page: this.pageSize,
+            user_id: `${this.$store.state.currentUser.data.attributes.id}`,
           }
         })
-          .then(res => setTimeout(() => {
+          .then((res) => { setTimeout(() => {
             if (res.data.data.length) {
               this.page += 1;
               this.posts.push(...res.data.data);
@@ -196,7 +198,8 @@
             } else {
               $state.complete();
             }
-          }, 1000))
+          }, 1000)
+          })
       },
       failed(error) {
         this.error = (error.response && error.response.data && error.response.data.error) || ""

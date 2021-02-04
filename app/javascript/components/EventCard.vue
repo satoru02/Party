@@ -13,7 +13,7 @@
               <v-col cols=12 md=9 class="mt-1" align="start" lg color="#ffffff">
                 <h2>{{ post.attributes.title }}</h2>
               </v-col>
-              <v-col cols=12 md=1 class="mt-2"
+              <!-- <v-col cols=12 md=1 class="mt-2"
                 v-if="$store.state.currentUser.data.attributes.id === post.attributes.user_id">
                 <v-menu left offset-y nudge-width="140" nudge-height="100" nudge-bottom="10">
                   <template v-slot:activator="{ on, attrs}">
@@ -30,7 +30,7 @@
                     </v-list-item>
                   </v-list>
                 </v-menu>
-              </v-col>
+              </v-col> -->
             </v-row>
             <v-divider></v-divider>
             <v-row>
@@ -138,7 +138,7 @@
           </v-card-actions>
         </v-card>
       </v-dialog>
-      <v-dialog light v-model="delete_check_dialog" width="300">
+      <!-- <v-dialog light v-model="delete_check_dialog" width="300">
         <v-card>
           <v-card-title>この投稿を削除しますか？</v-card-title>
           <v-card-actions>
@@ -151,7 +151,7 @@
             </v-btn>
           </v-card-actions>
         </v-card>
-      </v-dialog>
+      </v-dialog> -->
     </div>
   </div>
 </template>
@@ -178,8 +178,8 @@
         pageSize: 9,
         posts: [],
         dialog: false,
-        delete_check_dialog: false,
-        delete_post: ''
+        // delete_check_dialog: false,
+        // delete_post: ''
       }
     },
     watch: {
@@ -220,14 +220,14 @@
       endTime(post) {
         return moment(post.attributes.end_date).format("YYYY/MM/DD hh:mm")
       },
-      deletePost(post) {
-        secureAxios.delete(CONTENT_URL + `/` + `${post}`)
-          .then(response => this.deleteSuccessful(response))
-          .catch(error => this.deleteFailed(error))
-      },
-      deleteSuccessful(response) {
-        this.$router.go(this.$router.currentRoute)
-      }
+      // deletePost(post) {
+      //   secureAxios.delete(CONTENT_URL + `/` + `${post}`)
+      //     .then(response => this.deleteSuccessful(response))
+      //     .catch(error => this.deleteFailed(error))
+      // },
+      // deleteSuccessful(response) {
+      //   this.$router.go(this.$router.currentRoute)
+      // }
     },
   }
 </script>
