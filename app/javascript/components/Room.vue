@@ -45,7 +45,6 @@
   import {
     simpleAxios, secureAxios
   } from '../backend/axios.js';
-  import message from '../components/Message';
   import Appearance from '../components/Appearance';
   import Avatar from './perpage/TheAvatar';
   import moment from 'moment';
@@ -55,7 +54,6 @@
   export default {
     name: "Room",
     components: {
-      'message': message,
       'appearance': Appearance,
       'avatar': Avatar,
     },

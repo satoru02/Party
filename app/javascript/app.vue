@@ -30,8 +30,6 @@
   import User from './components/user/user.vue';
   import Settings from './components/user/settings.vue';
   import PostEdit from './components/PostEdit.vue';
-  import Category from './components/Category.vue';
-  import Search from './components/Search.vue';
   import Room from './components/Room.vue';
   import Rooms from './components/Rooms.vue';
   import Notification from './components/Notification';
@@ -39,14 +37,12 @@
   import ActionCableVue from 'actioncable-vue';
   import Post from './components/post';
   import InfoFooter from './components/perpage/TheFooter';
-  import Tag from './components/Tag';
   import MyEvent from './components/user/MyEvent';
   import JoinedEvent from './components/user/JoinedEvent';
   import Check from './Check';
   import InitialSettings from './components/user/InitialSettings';
-  import TopFilter from './components/TopFilter';
   import Top from './components/Top';
-  import EventCard from './components/EventCard';
+  import FilterCard from './components/FilterCard';
   import RoomTop from './components/RoomTop';
   import Logout from './Logout';
   import '@mdi/font/css/materialdesignicons.css';
@@ -121,27 +117,27 @@
         children: [{
             path: '',
             name: "Top",
-            component: EventCard
+            component: FilterCard
           },
           {
             path: '/results/:query',
             name: "TopFilter",
-            component: TopFilter
+            component: FilterCard
           },
           {
             path: "/category/:slug",
             name: "Category",
-            component: Category
+            component: FilterCard
           },
           {
             path: "/search/:query",
             name: "Search",
-            component: Search
+            component: FilterCard
           },
           {
             path: "/tag/:name",
             name: "Tag",
-            component: Tag
+            component: FilterCard
           },
         ]
       },
