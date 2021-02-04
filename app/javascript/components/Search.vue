@@ -152,6 +152,7 @@
   import moment from 'moment';
 
   const CONTENT_URL = '/api/v1/posts/search'
+  const ENTRY_URL = '/api/v1/entries'
 
   export default {
     name: 'Search',
@@ -210,7 +211,7 @@
           post: post.id,
           user: post.user_id
         })
-        post.can_request_entry = false
+        post.attributes.can_request_entry = false
       },
       startTime(post) {
         return moment(post.attributes.start_date).format("YYYY/MM/DD hh:mm")
