@@ -43,6 +43,7 @@
   import InitialSettings from './components/user/InitialSettings';
   import Top from './components/Top';
   import FilterCard from './components/FilterCard';
+  import UserFilterCard from './components/user/userFilterCard';
   import RoomTop from './components/RoomTop';
   import Logout from './Logout';
   import '@mdi/font/css/materialdesignicons.css';
@@ -148,7 +149,7 @@
           {
             path: '',
             name: "MyEvents",
-            component: MyEvent,
+            component: UserFilterCard,
             props: (route) => ({
               query: route.query.status
             })
@@ -156,7 +157,7 @@
           {
             path: "joined-events",
             name: "JoinedEvents",
-            component: JoinedEvent,
+            component: UserFilterCard,
             props: (route) => ({
               query: route.query.status
             })

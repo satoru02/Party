@@ -154,7 +154,11 @@
       },
       setCategory(){
         var category = this.categories.filter(category => category.name === this.selectedCategory)
-        return category[0].id
+        if (category.length > 0) {
+          return category[0].id
+        } else {
+          return 1
+        }
       },
       postUrl() {
         secureAxios.post(POST_URL, {

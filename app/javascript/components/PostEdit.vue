@@ -163,7 +163,11 @@
       },
       setCategory(){
         var category = this.categories.filter(category => category.name === this.post.category)
-        return category[0].id
+        if (category.length > 0) {
+          return category[0].id
+        } else {
+          return 1
+        }
       },
       updatePost() {
         secureAxios.patch(POST_EDIT_URL + `${this.$route.params.id}`, {

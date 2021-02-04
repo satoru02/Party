@@ -5,10 +5,9 @@
 <script>
   import { secureAxios } from '../../backend/axios.js'
   import UserCard from '../user/userCard';
-  const USERS_POST_INFO_URL = '/api/v1/posts/'
 
   export default {
-    name: "MyEvent",
+    name: "UserFilterCard",
     components: {
       'user-card': UserCard
     },
@@ -25,12 +24,7 @@
     },
     methods: {
       fetchUsersPost() {
-        secureAxios.get(USERS_POST_INFO_URL, {
-            params: {
-              user_id: `${this.$route.params.id}`,
-              position: 'my_events'
-            }
-          })
+        secureAxios.get(this.apiURl(), { params: this.apiParams()})
           .then(response => this.Successful(response))
           .catch(error => this.Failed(error))
       },
@@ -40,6 +34,22 @@
       Failed(error) {
         this.error = (error.response && error.response.data && error.response.data.error) || ""
         this.$router.replace('/')
+      },
+      apiURl(){
+        if(this.$route.params.name === ("MyEvents" || "JoinedEvents")){
+          return '/api/v1/posts/'
+        }
+      },
+      apiParams(){
+        var basic_params = { user_id: `${this.$route.params.id}` }
+
+        if(this.$route.params.name === "MyEvents"){
+          var params = { position: 'my_events' }
+          return Object.assign(basic_params, params)
+        } else if(this.$route.params.name === "JoinedEvents"){
+          var params = { position: 'joined_events' }
+          return Object.assign(basic_params, params)
+        }
       }
     }
   }
