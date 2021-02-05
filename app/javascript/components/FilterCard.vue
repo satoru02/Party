@@ -40,7 +40,6 @@
         this.posts = []
       },
       infiniteHandler($state) {
-        console.log($state)
         secureAxios.get(this.apiUrl(), { params: this.apiParams()})
           .then((res) => {
             setTimeout(() => {

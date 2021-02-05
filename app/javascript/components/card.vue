@@ -6,10 +6,10 @@
         <v-sheet class="rounded-lg" color="#11151c" width="740"
           style="border: 1px solid hsla(0,0%,100%,.1); height:auto; min-height: 150px; max-width: 100%; max-height:1000px;">
           <v-row>
-            <v-col cols=12 md=2 class="mt-1 ml-2" align="center" color="#efeff1">
-              <v-btn small color="#2d00f7">イベント</v-btn>
+            <v-col cols=12 md=2 class="mt-1 ml-6 mb-1" align="center" color="#efeff1">
+              <v-btn min-width="100" small color="#2d00f7">{{ post.attributes.category.name }}</v-btn>
             </v-col>
-            <v-col cols=12 md=7 class="mt-1 ml-n4" align="start" lg color="#ffffff">
+            <v-col cols=12 md=7 class="mt-1" align="start" lg color="#ffffff">
               <h2>{{ post.attributes.title }}</h2>
             </v-col>
             <v-col cols=12 md=1 class="mt-2 ml-16">
@@ -32,10 +32,12 @@
           <v-row>
             <v-col cols=12 md=1></v-col>
             <v-col cols=12 md=1 class="ml-n9">
-              <avatar :size="30"></avatar>
+              <router-link :to="{name: 'MyEvents', params: {id: `${post.attributes.user.id}`}}">
+                <avatar :size="30"></avatar>
+              </router-link>
             </v-col>
             <v-col cols=12 md=8 class="mt-4 ml-n6">
-              <h3 style="color:#adb5bd; font-size:0.5rem;">Satoru Sugiwaka ({{ formalizeTime(post.attributes.created_at) }})</h3>
+              <h3 style="color:#adb5bd; font-size:0.5rem;">{{ post.attributes.user.username}} ({{ formalizeTime(post.attributes.created_at) }})</h3>
             </v-col>
           </v-row>
           <v-row>

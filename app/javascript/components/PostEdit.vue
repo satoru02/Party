@@ -162,7 +162,7 @@
         this.$router.replace('/')
       },
       setCategory(){
-        var category = this.categories.filter(category => category.name === this.post.category)
+        var category = this.categories.filter(category => category.name === this.post.Category)
         if (category.length > 0) {
           return category[0].id
         } else {
