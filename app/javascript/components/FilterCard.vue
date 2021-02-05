@@ -40,6 +40,7 @@
         this.posts = []
       },
       infiniteHandler($state) {
+        console.log($state)
         secureAxios.get(this.apiUrl(), { params: this.apiParams()})
           .then((res) => {
             setTimeout(() => {
@@ -74,7 +75,7 @@
         } else if(this.$route.name === "TopFilter"){
           var params = { filter_category: 'date', q: this.$route.params.query }
           return Object.assign(basic_params, params)
-          } else if(this.$route.name === "Search"){
+        } else if(this.$route.name === "Search"){
           var params = { filter_category: 'title', q: this.$route.params.query }
           return Object.assign(basic_params, params)
         } else if(this.$route.name === "Tag"){

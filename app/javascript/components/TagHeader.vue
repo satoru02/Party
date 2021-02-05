@@ -34,7 +34,6 @@
     },
     methods: {
       getTags() {
-        // simpleAxios.defaults.headers.common['Authorization'] = `Bearer ${this.$store.state.token}`
         secureAxios.get(TAG_URL)
           .then(response => this.Successful(response))
           .catch(error => this.Failed(error))

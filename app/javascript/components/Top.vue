@@ -24,24 +24,24 @@
         <v-col cols=12 md=2></v-col>
         <v-col cols=12 md=1 class="ml-2 mt-1">
           <router-link :to="{name: 'Top'}">
-            <v-btn color="#343a40" rounded-s small>
-              <h3 style="color:#e9ecef; font-size:1rem;">最新</h3>
+            <v-btn color="#ff4800" class="rounded-xl" small elevation="0">
+              <h3 style="color:#ffffff; font-size:1rem;">最新</h3>
             </v-btn>
           </router-link>
         </v-col>
         <v-col cols=12 md=1 class="ml-3 mt-1">
-          <v-btn @click="filterSearch(today)" color="#343a40" rounded-s small>
-            <h3 style="color:#e9ecef; font-size:1rem;">今日</h3>
+          <v-btn @click="filterSearch(today)" color="#343a40" class="rounded-xl" small elevation="0">
+            <h3 style="color:#8b949e; font-size:1rem;">今日</h3>
           </v-btn>
         </v-col>
         <v-col cols=12 md=1 class="ml-3 mt-1">
-          <v-btn @click="filterSearch(week)" color="#343a40" small rounded-s>
-            <h3 style="color:#e9ecef; font-size:1rem;">今週</h3>
+          <v-btn @click="filterSearch(week)" color="#343a40" small class="rounded-xl" elevation="0">
+            <h3 style="color:#8b949e; font-size:1rem;">今週</h3>
           </v-btn>
         </v-col>
         <v-col cols=12 md=1 class="ml-3 mt-1">
-          <v-btn @click="filterSearch(month)" color="#343a40" small rounded-s>
-            <h3 style="color:#e9ecef; font-size:1rem;">今月</h3>
+          <v-btn @click="filterSearch(month)" color="#343a40" small class="rounded-xl" elevation="0">
+            <h3 style="color:#8b949e; font-size:1rem;">今月</h3>
           </v-btn>
         </v-col>
       </v-row>
