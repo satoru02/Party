@@ -1,23 +1,22 @@
 <template>
   <div>
     <v-row class="mt-15">
-      <v-col cols=12 md=12>
-      </v-col>
+      <v-col cols=12 md=12 />
     </v-row>
     <div v-if="notification.classification === 'entry'">
-      <entry
+      <notification-entry
         :entry='entry_information'
         :post='requested_post_information'
         :user="requested_user_information"
       />
     </div>
     <div v-if="notification.classification === 'entryResponse'">
-      <entry-response
+      <notification-entry-response
         :entry_response='entry_response_information'
       />
     </div>
     <div v-if="notification.classification === 'message'">
-      <message
+      <notification-message
         :message='message'
       />
     </div>
@@ -25,18 +24,18 @@
 </template>
 
 <script>
-  import Entry from '../../components/notification/NotificationEntry';
-  import EntryResponse from '../../components/notification/NotificationEntryResponse';
-  import Message from '../../components/notification/NotificationMessage';
+  import NotificationEntry from '../../components/notification/NotificationEntry';
+  import NotificationEntryResponse from '../../components/notification/NotificationEntryResponse';
+  import NotificationMessage from '../../components/notification/NotificationMessage';
   import { secureAxios } from "../../backend/axios";
   const NOTIFICATION_URL = `/api/v1/notifications`
 
   export default {
     name: 'Notification',
     components: {
-      'entry': Entry,
-      'entry-response': EntryResponse,
-      'message': Message
+      'notification-entry': NotificationEntry,
+      'notification-entry-response': NotificationEntryResponse,
+      'notification-message': NotificationMessage
     },
     data() {
       return {

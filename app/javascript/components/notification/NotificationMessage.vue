@@ -8,7 +8,7 @@
       </v-row>
       <v-row>
         <v-col cols="12" md="2">
-          <avatar></avatar>
+          <avatar />
         </v-col>
         <v-col cols="12" md="3" class="mt-4 ml-n15">
           <router-link :to="{name: 'MyEvents', params: { id: message.user_id }}">
@@ -17,8 +17,7 @@
         </v-col>
       </v-row>
       <v-row>
-        <v-col cols="12" md="1">
-        </v-col>
+        <v-col cols="12" md="1" />
         <v-col cols="12" md="10" class="mt-5">
           <p style="color:black; font-size: 1.0rem;">あなたが主催するイベントのParty
             room「{{ message.room_info.name }}」に、メッセージが届きました。早速返信してみましょう！</p>
@@ -32,8 +31,7 @@
         </v-col>
       </v-row>
       <v-row>
-        <v-col cols=12 md=9>
-        </v-col>
+        <v-col cols=12 md=9 />
         <v-col cols=12 md=3 class="mt-16">
           <h3 style="color:#6c757d; font-size: 0.5rem">{{ catchedTime(message.created_at) }}</h3>
         </v-col>

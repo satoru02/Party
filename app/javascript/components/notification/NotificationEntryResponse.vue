@@ -8,7 +8,7 @@
       </v-row>
       <v-row>
         <v-col cols="12" md="1" class="ml-15">
-          <avatar></avatar>
+          <avatar />
         </v-col>
         <v-col cols="12" md="3" class="mt-4 ml-n7">
           <router-link :to="{name: 'MyEvents', params: { id: entry_response.user_info.id }}">
@@ -17,8 +17,7 @@
         </v-col>
       </v-row>
       <v-row>
-        <v-col cols="12" md="1">
-        </v-col>
+        <v-col cols="12" md="1" />
         <v-col cols="12" md="10" class="mt-5">
           <p v-if="entry_response.entry_response_info.answer === false" style="color:black; font-size: 1.0rem;">
             ごめんなさい。エントリーしていたイベント「{{ entry_response.room_info.name }}」への参加は、キャンセルになりました。
@@ -27,8 +26,7 @@
             おめでとうございます！{{ entry_response.user_info.name }}さんから、「{{ entry_response.room_info.name }}」へ招待されています！
           </p>
           <v-row class="mt-10">
-            <v-col cols=12 md=12>
-            </v-col>
+            <v-col cols=12 md=12 />
           </v-row>
           <p v-if="entry_response.entry_response_info.answer === false" style="color:black; font-size: 1.0rem;">
             [理由]今回のイベントは定員に達したため
@@ -37,8 +35,7 @@
             早速Party Roomに参加しましょう！
           </p>
         </v-col>
-        <v-col cols="12" md="1">
-        </v-col>
+        <v-col cols="12" md="1" />
       </v-row>
       <v-row>
         <v-col v-if="entry_response.entry_response_info.answer === true" cols=12 md=12 class="mt-16">
@@ -48,8 +45,7 @@
         </v-col>
       </v-row>
       <v-row>
-        <v-col cols=12 md=9>
-        </v-col>
+        <v-col cols=12 md=9 />
         <v-col cols=12 md=3 class="mt-16">
           <h3 style="color:#6c757d; font-size: 0.5rem">{{ catchedTime(entry_response.created_at) }}</h3>
         </v-col>

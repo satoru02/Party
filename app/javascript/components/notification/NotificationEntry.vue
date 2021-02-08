@@ -8,39 +8,45 @@
       </v-row>
       <v-row>
         <v-col cols="12" md="1" class="ml-15">
-          <avatar></avatar>
+          <avatar />
         </v-col>
         <v-col cols="12" md="3" class="mt-4 ml-n7" align-self="baseline">
           <router-link :to="{name: 'MyEvents', params: { id: user.id }}">
             <h3 style="color:black;">{{ user.username }}</h3>
           </router-link>
         </v-col>
-        <v-col cols="12" md="5">
-        </v-col>
+        <v-col cols="12" md="5" />
       </v-row>
       <v-row>
-        <v-col cols="12" md="1">
-        </v-col>
+        <v-col cols="12" md="1" />
         <v-col cols="12" md="10" class="mt-5">
           <p style="color:black; font-size: 1.0rem;">
             あなたが主催するイベント「{{ post.title }}」に、{{ user.name }}さんからエントリーが届きました。このユーザーを招待しますか？</p>
         </v-col>
       </v-row>
       <v-row v-if="entry.activated === null && response_action === ''">
+        <v-col cols=12 md=3 class="mt-16" />
         <v-col cols=12 md=3 class="mt-16">
-        </v-col>
-        <v-col cols=12 md=3 class="mt-16">
-          <v-btn rounded large text color="primary" @click="authorizeEntry(), authorizeDialog = true">
+          <v-btn
+            rounded
+            large
+            text
+            color="primary"
+            @click="authorizeEntry(), authorizeDialog = true">
             <div style="font-size: 1.0rem;">招待する</div>
           </v-btn>
         </v-col>
         <v-col cols=12 md=3 class="mt-16">
-          <v-btn rounded large text color="primary" @click="declineEntry(), declineDialog = true">
+          <v-btn
+           rounded
+           large
+           text
+           color="primary"
+          @click="declineEntry(), declineDialog = true">
             <div style="font-size: 1.0rem;">お断りする</div>
           </v-btn>
         </v-col>
-        <v-col cols=12 md=3 class="mt-16">
-        </v-col>
+        <v-col cols=12 md=3 class="mt-16" />
       </v-row>
       <v-row>
         <v-col style="color:black; font-size: 1.0rem;" v-if="entry.activated == true || response_action === 'authorize'"
@@ -53,32 +59,37 @@
         </v-col>
       </v-row>
       <v-row>
-        <v-col cols=12 md=9>
-        </v-col>
+        <v-col cols=12 md=9 />
         <v-col cols=12 md=3 class="mt-16">
-          <h3 style="color:#6c757d; font-size: 0.5rem">{{ catchedTime(entry.created_at)}}</h3>
+          <h3 style="color:#6c757d; font-size: 0.5rem">{{ catchedTime(entry.created_at) }}</h3>
         </v-col>
       </v-row>
     </v-sheet>
     <div class="dialog">
-      <v-dialog light v-model="authorizeDialog" width="500">
+      <v-dialog
+       light
+       v-model="authorizeDialog"
+       width="500">
         <v-card>
           <v-card-title>招待完了！</v-card-title>
           <v-card-text>{{user.name}}さんを、{{ post.title }}に招待しました！</v-card-text>
           <v-card-actions>
-            <v-spacer></v-spacer>
+            <v-spacer />
             <v-btn color="primary" text @click="authorizeDialog = false">
               Close
             </v-btn>
           </v-card-actions>
         </v-card>
       </v-dialog>
-      <v-dialog light v-model="declineDialog" width="500">
+      <v-dialog
+        light
+        v-model="declineDialog"
+        width="500">
         <v-card>
           <v-card-title>お見送り完了！</v-card-title>
           <v-card-text>今回は{{ user.name }}さんの{{ post.title }}へのエントリーをお断りしました。</v-card-text>
           <v-card-actions>
-            <v-spacer></v-spacer>
+            <v-spacer />
             <v-btn color="primary" text @click="declineDialog = false">
               Close
             </v-btn>

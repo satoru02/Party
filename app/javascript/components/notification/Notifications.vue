@@ -6,21 +6,31 @@
           <v-list color="#161a1d">
             <v-list-item-group>
               <h1 class="mb-5">Notifications</h1>
-              <v-divider dark></v-divider>
+              <v-divider dark />
               <template v-for="(notification) in notifications">
-                <router-link :key="notification.attributes.id"
+                <router-link
+                  :key="notification.attributes.id"
                   :to="{ name: 'Notification', params: {id: `${notification.attributes.id }`}}">
                   <v-list-item class="mt-3">
                     <v-list-item-action>
-                      <v-badge v-if="notification.attributes.confirmation === false" dot left inline color="#2176ff">
-                      </v-badge>
+                      <v-badge
+                        v-if="notification.attributes.confirmation === false"
+                        dot
+                        left
+                        inline
+                        color="#2176ff" />
                     </v-list-item-action>
-                    <avatar :avatar_url="notification.attributes.index_user_info[0].avatar"></avatar>
+                    <avatar
+                    　:avatar_url="notification.attributes.index_user_info[0].avatar"
+                    />
                     <v-list-item-content>
-                      <v-list-item-subtitle class="ml-7" v-html="displayText(notification)"></v-list-item-subtitle>
+                      <v-list-item-subtitle
+                        class="ml-7"
+                        v-html="displayText(notification)" />
                     </v-list-item-content>
-                    <v-list-item-action style="font-size: 0.5rem; color:#6c757d;"
-                      v-text="catchedTime(notification.attributes.created_at)"></v-list-item-action>
+                    <v-list-item-action
+                      style="font-size: 0.5rem; color:#6c757d;"
+                      v-text="catchedTime(notification.attributes.created_at)" />
                   </v-list-item>
                 </router-link>
               </template>
@@ -29,7 +39,10 @@
         </v-col>
       </v-row>
     </v-container>
-    <infinite-loading spinner="spiral" @infinite="infiniteHandler"></infinite-loading>
+    <infinite-loading
+      spinner="spiral"
+      @infinite="infiniteHandler"
+    />
   </div>
 </template>
 
