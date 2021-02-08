@@ -78,7 +78,7 @@
   }
 </script>
 
-<style>
+<style scoped>
   :root {
     --square-size: 9px;
     --square-gap: 4px;

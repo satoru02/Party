@@ -5,7 +5,6 @@
       <v-main>
         <router-view></router-view>
       </v-main>
-      <!-- <info-footer></info-footer> -->
     </v-app>
   </div>
 </template>
@@ -39,7 +38,6 @@
   import UserTop from './components/user/UserTop';
   import UserInitialSettings from './components/user/UserInitialSettings';
   import UserCardFilter from './components/user/UserCardFilter';
-
 
   import Room from './components/room/Room.vue';
   import Rooms from './components/room/Rooms.vue';

@@ -121,9 +121,9 @@
 </template>
 
 <script>
+  import { secureAxios } from '../../backend/axios';
   import moment from 'moment';
   import Avatar from '../page/TheAvatar';
-  import { secureAxios } from '../../backend/axios';
   const CONTENT_URL = '/api/v1/posts'
 
   export default {

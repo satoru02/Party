@@ -2,27 +2,39 @@
   <div>
     <v-container>
       <v-row>
-        <v-col cols=12></v-col>
+        <v-col cols=12 />
       </v-row>
       <v-row>
         <v-col cols=12 md=3 class="ml-16">
-          <avatar :size="140" :avatar_url="user.avatar_url"></avatar>
+          <avatar
+            :size="140"
+            :avatar_url="user.avatar_url" />
         </v-col>
         <v-col cols=12 md=auto class="ml-n3">
-          <v-btn v-for="(n, index) in items" :key="index" color="#efeff1" text rounded class="my-2 mt-8">
+          <v-btn
+            v-for="(n, index) in items"
+            :key="index"
+            color="#efeff1"
+            text
+            rounded
+            class="my-2 mt-8">
             <router-link :to="{ name: n.name }">
               <div style="color:#efeff1; font-size:0.7rem;">{{ n.title }}</div>
             </router-link>
           </v-btn>
-          <v-divider dark class="mt-n1"></v-divider>
+          <v-divider
+            dark
+            class="mt-n1" />
         </v-col>
       </v-row>
       <v-row>
         <v-col cols=12 md=3 class="ml-n2 mt-2">
-          <v-sheet color="#121212" class="rounded-lg"
+          <v-sheet
+            color="#121212"
+            class="rounded-lg"
             style="border: 1px solid hsla(0,0%,100%,.1); height:auto; min-height: 180px; max-width: 100%; max-height:1000px;">
             <h1 class="ml-3 mb-2 mt-2">@{{ user.username }}</h1>
-            <v-divider></v-divider>
+            <v-divider />
             <v-list-item>
               <h3 style="color:#efeff1">主催回数：</h3>
               <h3 class="ml-4" style="color:#efeff1; font-size:0.8rem">
@@ -40,17 +52,29 @@
               <h3 style="color:#efeff1">フォロー：</h3>
               <v-col cols=5 md=1>
                 <v-list-item class="pl-1">
-                  <v-icon v-if="user.facebook_url" small>mdi-facebook</v-icon>
+                  <v-icon
+                    v-if="user.facebook_url"
+                    small>
+                    mdi-facebook
+                  </v-icon>
                 </v-list-item>
               </v-col>
               <v-col cols=5 md=1>
                 <v-list-item class="pl-1">
-                  <v-icon v-if="user.youtube_url" small>mdi-youtube</v-icon>
+                  <v-icon
+                    v-if="user.youtube_url"
+                    small>
+                    mdi-youtube
+                  </v-icon>
                 </v-list-item>
               </v-col>
               <v-col cols=5 md=1>
                 <v-list-item class="pl-1">
-                  <v-icon v-if="user.instagram_url" small>mdi-instagram</v-icon>
+                  <v-icon
+                    v-if="user.instagram_url"
+                    small>
+                    mdi-instagram
+                  </v-icon>
                 </v-list-item>
               </v-col>
             </v-list-item>
@@ -61,7 +85,7 @@
           </v-sheet>
         </v-col>
         <v-col cols=12 md=8 class="mt-n16 ml-12">
-          <router-view></router-view>
+          <router-view />
         </v-col>
       </v-row>
     </v-container>
@@ -69,15 +93,14 @@
 </template>
 
 <script>
-  // import Log from './Log.vue'
+  import { secureAxios } from '../../backend/axios.js'
   import Avatar from '../page/TheAvatar'
   import moment from 'moment';
-  import { secureAxios } from '../../backend/axios.js'
   const USER_INFO_URL = '/api/v1/users/'
+
   export default {
     name: 'User',
     components: {
-      // 'log': Log,
       'avatar': Avatar,
     },
     data() {
@@ -157,5 +180,5 @@
   }
 </script>
 
-<style>
+<style scoped>
 </style>
