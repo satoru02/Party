@@ -30,6 +30,17 @@
           </v-col>
         </v-row>
         <v-divider></v-divider>
+        <v-row v-if="post.type === 'joined_post'">
+            <v-col cols=12 md=1></v-col>
+            <v-col cols=12 md=1 class="ml-n9">
+              <router-link :to="{name: 'MyEvents', params: {id: `${post.attributes.host_user.id}`}}">
+                <avatar :size="30"></avatar>
+              </router-link>
+            </v-col>
+            <v-col cols=12 md=8 class="mt-4 ml-n6">
+              <h3 style="color:#adb5bd; font-size:0.5rem;">{{ post.attributes.host_user.username}} ({{ formalizeTime(post.attributes.created_at) }})</h3>
+            </v-col>
+          </v-row>
         <v-row>
           <v-col cols=12 md=11 class="ml-7 mt-3">
             <p style="color:#ced4da; font-size:0.8rem;">{{ post.attributes.content }}</p>
@@ -43,7 +54,7 @@
             </p>
           </v-col>
           <v-col cols=12 md="5" align="start" class="mt-n6">
-            <p style="color:#ced4da; font-size:0.8rem;">{{ startTime(post) }} 〜 {{ endTime(post) }}</p>
+            <p style="color:#ced4da; font-size:0.8rem;">{{ formalizeTime(post.attributes.start_date) }} 〜 {{ formalizeTime(post.attributes.end_date) }}</p>
           </v-col>
         </v-row>
         <v-row>
@@ -111,15 +122,17 @@
 
 <script>
   import moment from 'moment';
-  import {
-    secureAxios
-  } from '../../backend/axios';
+  import Avatar from '../perpage/TheAvatar';
+  import { secureAxios } from '../../backend/axios';
   const CONTENT_URL = '/api/v1/posts'
 
   export default {
     name: "userCard",
     props: {
       posts: Array
+    },
+    components: {
+      'avatar': Avatar
     },
     data() {
       return {
@@ -129,11 +142,8 @@
       }
     },
     methods: {
-      startTime(post) {
-        return moment(post.attributes.start_date).format("YYYY/MM/DD hh:mm")
-      },
-      endTime(post) {
-        return moment(post.attributes.end_date).format("YYYY/MM/DD hh:mm")
+      formalizeTime(time) {
+        return moment(time).format("YYYY/MM/DD hh:mm")
       },
       deletePost(post) {
         secureAxios.delete(CONTENT_URL + `/` + `${post}`)

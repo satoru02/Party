@@ -16,7 +16,12 @@ module Api
         elsif params[:position] === 'joined_events'
           @user = User.find_by(id: params[:user_id])
           @joined_events = @user.rooms.where("host_id != :user_id", { user_id: @user.id})
-          serializer = JoinedPostSerializer.new(@joined_events.reverse_order)
+          @posts = []
+          @joined_events.each do |event|
+            post = Post.find_by(id: event.post_id)
+            @posts << post
+          end
+          serializer = JoinedPostSerializer.new(@posts)
           render json: serializer.serializable_hash.to_json
         end
       end

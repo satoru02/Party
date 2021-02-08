@@ -1,19 +1,10 @@
 class JoinedPostSerializer
   include JSONAPI::Serializer
 
-  set_type :room
-  attributes :id, :name, :host_id, :post_id
+  set_type :joined_post
+  attributes :id, :title, :user_id, :start_date, :end_date, :category_id, :content, :created_at, :category, :tag_list
 
   attribute :host_user do |object|
-    object.host_user
-  end
-
-  #fix
-  attribute :joined_event do |object|
-    @posts = []
-    post = Post.find_by(id: object.post_id)
-    category = Category.find_by(id: post.category_id)
-    @posts.push(post: post, category: category.name)
-    @posts
+    object.user
   end
 end
