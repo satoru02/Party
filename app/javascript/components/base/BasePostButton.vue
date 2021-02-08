@@ -6,6 +6,6 @@
 
 <script>
   export default {
-    name: 'post'
+    name: 'BasePostButton'
   }
 </script>

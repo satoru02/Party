@@ -16,7 +16,7 @@
         <userMenu></userMenu>
       </v-col>
       <v-col cols=12 md=1 class="ml-n6 mt-7">
-        <postButton></postButton>
+        <base-button></base-button>
       </v-col>
     </v-row>
   </v-app-bar>
@@ -24,14 +24,14 @@
 
 <script>
   import Notifications from './TheNotifications';
-  import PostButton from '../postButton';
+  import PostButton from '../base/BasePostButton';
   import UserMenu from '../perpage/TheUserMenu';
 
   export default {
     name: 'top-header',
     components: {
       'notifications': Notifications,
-      'postButton': PostButton,
+      'base-button': PostButton,
       'userMenu': UserMenu,
     },
     data() {
