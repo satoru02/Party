@@ -17,6 +17,7 @@
   import Vuex from 'vuex';
   import createPersistedState from 'vuex-persistedstate';
   import InfiniteLoading from 'vue-infinite-loading';
+
   import Avatar from './components/page/TheAvatar.vue';
   import Header from './components/page/TheHeader.vue';
   import Login from './Login.vue';
@@ -26,22 +27,24 @@
   import UserPostsList from './components/admin/users/posts/List.vue';
   import ForgotPassword from './components/ForgotPassword.vue';
   import ResetPassword from './components/ResetPassword.vue';
+
   import UserEdit from './components/Edit.vue';
   import UserSettings from './components/user/UserSettings';
   import UserTop from './components/user/UserTop';
+  import UserInitialSettings from './components/user/UserInitialSettings';
+  import UserFilterCard from './components/user/UserFilterCard';
+
   import PostEdit from './components/PostEdit.vue';
   import Room from './components/Room.vue';
   import Rooms from './components/Rooms.vue';
   import Notification from './components/Notification';
   import Notifications from './components/Notifications';
   import ActionCableVue from 'actioncable-vue';
-  import Post from './components/post';
+  import Post from './components/Post';
   import InfoFooter from './components/page/TheFooter';
   import Check from './Check';
-  import UserInitialSettings from './components/user/UserInitialSettings';
   import Top from './components/Top';
   import FilterCard from './components/FilterCard';
-  import UserFilterCard from './components/user/UserFilterCard';
   import RoomTop from './components/RoomTop';
   import Logout from './Logout';
   import '@mdi/font/css/materialdesignicons.css';

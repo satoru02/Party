@@ -1,6 +1,6 @@
 <template>
   <div class="homes">
-    <categoryHeader v-if="$store.state.signedIn"></categoryHeader>
+    <category-header v-if="$store.state.signedIn"></category-header>
     <div class="card" style="grid-area:card">
       <v-row>
         <v-col cols=12 md=12></v-col>
@@ -48,7 +48,7 @@
       <router-view></router-view>
     </div>
     <v-divider dark vertical></v-divider>
-    <tagHeader v-if="$store.state.signedIn"></tagHeader>
+    <tag-header v-if="$store.state.signedIn"></tag-header>
     <v-divider dark vertical></v-divider>
   </div>
 </template>
@@ -60,8 +60,8 @@
   export default {
     name: 'Top',
     components: {
-      'categoryHeader': CategoryHeader,
-      'tagHeader': TagHeader
+      'category-header': CategoryHeader,
+      'tag-header': TagHeader
     },
     data() {
       return {

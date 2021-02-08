@@ -20,10 +20,7 @@
   import Entry from '../components/notification/entry';
   import EntryResponse from '../components/notification/entryResponse';
   import Message from '../components/notification/message';
-  import {
-    simpleAxios,
-    secureAxios
-  } from "../backend/axios"
+  import { secureAxios } from "../backend/axios"
   const NOTIFICATION_URL = `/api/v1/notifications`
 
   export default {

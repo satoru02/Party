@@ -9,7 +9,7 @@
   import { secureAxios } from '../backend/axios';
   import Avatar from '../components/page/TheAvatar.vue';
   import InfiniteLoading from 'vue-infinite-loading';
-  import Card from '../components/card';
+  import Card from '../components/Card';
 
   export default {
     name: 'FilterCard',

@@ -100,9 +100,7 @@
 </template>
 
 <script>
-  import {
-    secureAxios
-  } from '../backend/axios.js'
+  import { secureAxios } from '../backend/axios.js'
   const POST_URL = '/api/v1/posts'
 
   export default {
