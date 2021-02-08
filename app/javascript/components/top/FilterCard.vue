@@ -6,10 +6,10 @@
 </template>
 
 <script>
-  import { secureAxios } from '../backend/axios';
-  import Avatar from '../components/page/TheAvatar.vue';
+  import { secureAxios } from '../../backend/axios';
+  import Avatar from '../../components/page/TheAvatar.vue';
   import InfiniteLoading from 'vue-infinite-loading';
-  import Card from '../components/Card';
+  import Card from '../../components/top/TopCard';
 
   export default {
     name: 'FilterCard',

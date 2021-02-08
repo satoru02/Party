@@ -43,7 +43,7 @@
 
 <script>
   import { secureAxios } from '../../backend/axios';
-  import Appearance from '../../components/Appearance';
+  import Appearance from '../../components/room/RoomAppearance';
   import Avatar from '../page/TheAvatar';
   import moment from 'moment';
 

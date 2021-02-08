@@ -18,7 +18,7 @@
 </template>
 
 <script>
-  import { secureAxios } from '../backend/axios.js'
+  import { secureAxios } from '../../backend/axios';
 
   const TAG_URL = `/api/v1/tags`
 

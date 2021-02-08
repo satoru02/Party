@@ -137,13 +137,13 @@
 </template>
 
 <script>
-  import { secureAxios } from '../backend/axios';
+  import { secureAxios } from '../../backend/axios';
   import moment from 'moment';
-  import Avatar from '../components/page/TheAvatar';
+  import Avatar from '../../components/page/TheAvatar';
   const ENTRY_URL = '/api/v1/entries'
 
   export default {
-    name: "card",
+    name: "TopCard",
     props: {
       posts: Array
     },

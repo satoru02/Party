@@ -17,7 +17,7 @@
 </template>
 
 <script>
-  import { secureAxios } from '../backend/axios.js'
+  import { secureAxios } from '../../backend/axios.js'
 
   const CATEGORY_URL = `/api/v1/categories`
 

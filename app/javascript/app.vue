@@ -40,8 +40,6 @@
   import UserInitialSettings from './components/user/UserInitialSettings';
   import UserFilterCard from './components/user/UserFilterCard';
 
-  import PostEdit from './components/PostEdit.vue';
-
   import Room from './components/room/Room.vue';
   import Rooms from './components/room/Rooms.vue';
   import RoomTop from './components/room/RoomTop';
@@ -49,10 +47,11 @@
   import Notification from './components/notification/Notification';
   import Notifications from './components/notification/Notifications';
 
-  import Post from './components/Post';
+  import Post from './components/upload/Post';
+  import PostEdit from './components/upload/PostEdit.vue';
   import InfoFooter from './components/page/TheFooter';
-  import Top from './components/Top';
-  import FilterCard from './components/FilterCard';
+  import Top from './components/top/TopPage';
+  import FilterCard from './components/top/FilterCard';
 
   const actionCableVueOptions = {
     debug: true,

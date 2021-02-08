@@ -5,13 +5,9 @@
 </template>
 
 <script>
-  import {
-    simpleAxios
-  } from '../backend/axios.js';
-  import consumer from '../channels/consumer.js';
 
   export default {
-    name: "Appearance",
+    name: "RoomAppearance",
     data() {
       return {
         icon: false
