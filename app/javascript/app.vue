@@ -27,7 +27,7 @@
   import ForgotPassword from './components/ForgotPassword.vue';
   import ResetPassword from './components/ResetPassword.vue';
   import UserEdit from './components/Edit.vue';
-  import Settings from './components/user/Settings';
+  import UserSettings from './components/user/UserSettings';
   import UserTop from './components/user/UserTop';
   import PostEdit from './components/PostEdit.vue';
   import Room from './components/Room.vue';
@@ -38,7 +38,7 @@
   import Post from './components/post';
   import InfoFooter from './components/page/TheFooter';
   import Check from './Check';
-  import InitialSettings from './components/user/InitialSettings';
+  import UserInitialSettings from './components/user/UserInitialSettings';
   import Top from './components/Top';
   import FilterCard from './components/FilterCard';
   import UserFilterCard from './components/user/UserFilterCard';
@@ -163,7 +163,7 @@
           {
             path: "settings",
             name: "Settings",
-            component: Settings
+            component: UserSettings
           }
         ]
       },
@@ -211,7 +211,7 @@
       {
         path: "/initial-settings",
         name: "InitialSettings",
-        component: InitialSettings
+        component: UserInitialSettings
       },
       {
         path: "/admin/users",
