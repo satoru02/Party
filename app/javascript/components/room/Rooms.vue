@@ -2,26 +2,47 @@
   <div class="rooms" >
     <div class="group">
       <v-list color="#161a1d">
-        <v-list-item class="tile" v-for="room in rooms" :key="room.id">
+        <v-list-item
+          class="tile"
+          v-for="room in rooms"
+          :key="room.id">
           <v-list-item-icon>
             <!-- <avatar :avatar_url="checkAvatar(room.attributes.host_id, room.attributes.avatar_info)" class="mt-n1"></avatar> -->
           </v-list-item-icon>
           <v-list-item-content class="ml-n9">
-            <router-link @click.native="checkConfirmation(room)" :to="{ name: 'Room', params: {name: `${room.attributes.name}`, token: `${room.attributes.resource_token}`} }">
+            <router-link
+              @click.native="checkConfirmation(room)"
+              :to="{ name: 'Room', params: {name: `${room.attributes.name}`, token: `${room.attributes.resource_token}`} }">
               <v-row no-gutters>
                 <v-col class="d-flex" md="9" offset-md="n1">
                   <v-list-item-subtitle>{{ room.attributes.name }}</v-list-item-subtitle>
                 </v-col>
-                <v-col class="d-flex mb-n6 mr-n8" md="1" offset-md="2" v-if="room.attributes.latest_message">
+                <v-col
+                  class="d-flex mb-n6 mr-n8"
+                  md="1"
+                  offset-md="2"
+                  v-if="room.attributes.latest_message">
                   <p class="room_lasttime">{{ postTime(room.attributes.latest_message.created_at) }}</p>
                 </v-col>
               </v-row>
               <v-row no-gutters>
-                <v-col class="d-flex" md="7" offset-md="n2" v-if="room.attributes.latest_message">
+                <v-col
+                  class="d-flex"
+                  md="7"
+                  offset-md="n2"
+                  v-if="room.attributes.latest_message">
                   <p class="room_message">{{ room.attributes.latest_message.content }}</p>
                 </v-col>
-                <v-col class="d-flex mt-7" md="1" offset-md="2" v-if="room.attributes.latest_message.confirmation === false">
-                  <v-badge dot left inline color="#2176ff"></v-badge>
+                <v-col
+                  class="d-flex mt-7"
+                  md="1"
+                  offset-md="2"
+                  v-if="room.attributes.latest_message.confirmation === false">
+                  <v-badge
+                    dot
+                    left
+                    inline
+                    color="#2176ff" />
                 </v-col>
               </v-row>
             </router-link>
@@ -61,8 +82,7 @@
         connected(){},
         rejected(){},
         received(data){
-          console.log(data)
-          var filtered_room = this.rooms.filter(room => room.attributes.resource_token === data["token"])
+          let filtered_room = this.rooms.filter(room => room.attributes.resource_token === data["token"])
           filtered_room[0].attributes.latest_message.content = data["content"]
           filtered_room[0].attributes.latest_message.created_at = data["time"]
           if (this.$route.params.token !== filtered_room[0].attributes.resource_token ){

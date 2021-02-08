@@ -1,6 +1,11 @@
 <template>
 <div>
-  <v-badge v-if="this.icon === true" dot left inline color="#2176ff"></v-badge>
+  <v-badge
+    v-if="this.icon === true"
+    dot
+    left
+    inline
+    color="#2176ff" />
 </div>
 </template>
 
