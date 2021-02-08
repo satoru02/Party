@@ -35,8 +35,8 @@
   import UserFilterCard from './components/user/UserFilterCard';
 
   import PostEdit from './components/PostEdit.vue';
-  import Room from './components/Room.vue';
-  import Rooms from './components/Rooms.vue';
+  import Room from './components/room/Room.vue';
+  import Rooms from './components/room/Rooms.vue';
   import Notification from './components/notification/Notification';
   import Notifications from './components/notification/Notifications';
   import ActionCableVue from 'actioncable-vue';
@@ -45,7 +45,7 @@
   import Check from './Check';
   import Top from './components/Top';
   import FilterCard from './components/FilterCard';
-  import RoomTop from './components/RoomTop';
+  import RoomTop from './components/room/RoomTop';
   import Logout from './Logout';
   import '@mdi/font/css/materialdesignicons.css';
 

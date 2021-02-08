@@ -34,9 +34,9 @@
 </template>
 
 <script>
-  import { secureAxios } from '../backend/axios';
-  import Avatar from '../components/page/TheAvatar';
-  import Room from '../components/Room';
+  import { secureAxios } from '../../backend/axios';
+  import Avatar from '../page/TheAvatar';
+  import Room from './Room';
   import moment from 'moment';
 
   const ROOMS_URL = `/api/v1/rooms`;
