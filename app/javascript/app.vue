@@ -27,8 +27,8 @@
   import ForgotPassword from './components/ForgotPassword.vue';
   import ResetPassword from './components/ResetPassword.vue';
   import UserEdit from './components/Edit.vue';
-  import User from './components/user/user.vue';
-  import Settings from './components/user/settings.vue';
+  import Settings from './components/user/Settings';
+  import User from './components/user/User';
   import PostEdit from './components/PostEdit.vue';
   import Room from './components/Room.vue';
   import Rooms from './components/Rooms.vue';
@@ -41,7 +41,7 @@
   import InitialSettings from './components/user/InitialSettings';
   import Top from './components/Top';
   import FilterCard from './components/FilterCard';
-  import UserFilterCard from './components/user/userFilterCard';
+  import UserFilterCard from './components/user/UserFilterCard';
   import RoomTop from './components/RoomTop';
   import Logout from './Logout';
   import '@mdi/font/css/materialdesignicons.css';

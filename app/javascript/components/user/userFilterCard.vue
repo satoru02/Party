@@ -4,7 +4,7 @@
 
 <script>
   import { secureAxios } from '../../backend/axios.js'
-  import UserCard from '../user/userCard';
+  import UserCard from '../user/UserCard';
 
   export default {
     name: "UserFilterCard",

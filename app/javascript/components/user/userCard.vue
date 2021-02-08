@@ -127,7 +127,7 @@
   const CONTENT_URL = '/api/v1/posts'
 
   export default {
-    name: "userCard",
+    name: "UserCard",
     props: {
       posts: Array
     },

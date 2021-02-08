@@ -69,7 +69,7 @@
 </template>
 
 <script>
-  import Log from './log.vue'
+  // import Log from './Log.vue'
   import Avatar from '../page/TheAvatar'
   import moment from 'moment';
   import { secureAxios } from '../../backend/axios.js'
@@ -77,7 +77,7 @@
   export default {
     name: 'User',
     components: {
-      'log': Log,
+      // 'log': Log,
       'avatar': Avatar,
     },
     data() {
