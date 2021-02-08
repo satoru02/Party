@@ -33,7 +33,7 @@
   const USERS_POSTS_URL = '/api/v1/users'
 
   export default {
-    name: "Log",
+    name: "UserLog",
     components: {
       'cube': CUBE
     },
