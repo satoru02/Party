@@ -28,7 +28,7 @@
   import ResetPassword from './components/ResetPassword.vue';
   import UserEdit from './components/Edit.vue';
   import Settings from './components/user/Settings';
-  import User from './components/user/User';
+  import UserTop from './components/user/UserTop';
   import PostEdit from './components/PostEdit.vue';
   import Room from './components/Room.vue';
   import Rooms from './components/Rooms.vue';
@@ -142,7 +142,7 @@
       },
       {
         path: "/users/:id",
-        component: User,
+        component: UserTop,
         children: [
           {
             path: '',
