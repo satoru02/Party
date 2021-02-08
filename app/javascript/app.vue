@@ -34,7 +34,7 @@
   import Logout from './components/authorization/Logout';
   import Check from './components/authorization/Check';
 
-  import UserEdit from './components/Edit.vue';
+  import UserEdit from './components/admin/users/Edit.vue';
   import UserSettings from './components/user/UserSettings';
   import UserTop from './components/user/UserTop';
   import UserInitialSettings from './components/user/UserInitialSettings';

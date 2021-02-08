@@ -22,7 +22,7 @@
 </template>
 
 <script>
-  import { secureAxios } from '../backend/axios.js'
+  import { secureAxios } from '../../../backend/axios';
   const ADMIN_URL = '/api/v1/password_resets'
 
   export default {
