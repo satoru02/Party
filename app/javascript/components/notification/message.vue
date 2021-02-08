@@ -43,7 +43,7 @@
 </template>
 
 <script>
-  import Avatar from '../perpage/TheAvatar';
+  import Avatar from '../page/TheAvatar';
   import moment from 'moment';
 
   export default {

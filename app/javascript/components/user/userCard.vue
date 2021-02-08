@@ -122,7 +122,7 @@
 
 <script>
   import moment from 'moment';
-  import Avatar from '../perpage/TheAvatar';
+  import Avatar from '../page/TheAvatar';
   import { secureAxios } from '../../backend/axios';
   const CONTENT_URL = '/api/v1/posts'
 

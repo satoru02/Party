@@ -70,7 +70,7 @@
 
 <script>
   import Log from './log.vue'
-  import Avatar from '../perpage/TheAvatar'
+  import Avatar from '../page/TheAvatar'
   import moment from 'moment';
   import { secureAxios } from '../../backend/axios.js'
   const USER_INFO_URL = '/api/v1/users/'

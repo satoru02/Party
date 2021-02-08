@@ -94,7 +94,7 @@
     simpleAxios,
     secureAxios
   } from "../../backend/axios"
-  import Avatar from '../perpage/TheAvatar';
+  import Avatar from '../page/TheAvatar';
   import moment from 'moment';
   const ENTRY_URL = `/api/v1/rooms_user`
 

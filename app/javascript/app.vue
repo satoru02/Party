@@ -17,8 +17,8 @@
   import Vuex from 'vuex';
   import createPersistedState from 'vuex-persistedstate';
   import InfiniteLoading from 'vue-infinite-loading';
-  import Avatar from './components/perpage/TheAvatar.vue';
-  import Header from './components/perpage/TheHeader.vue';
+  import Avatar from './components/page/TheAvatar.vue';
+  import Header from './components/page/TheHeader.vue';
   import Login from './Login.vue';
   import Signup from './Signup.vue';
   import Activation from './Activation.vue';
@@ -36,7 +36,7 @@
   import Notifications from './components/Notifications';
   import ActionCableVue from 'actioncable-vue';
   import Post from './components/post';
-  import InfoFooter from './components/perpage/TheFooter';
+  import InfoFooter from './components/page/TheFooter';
   import Check from './Check';
   import InitialSettings from './components/user/InitialSettings';
   import Top from './components/Top';

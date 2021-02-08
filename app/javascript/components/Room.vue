@@ -44,7 +44,7 @@
 <script>
   import { secureAxios } from '../backend/axios.js';
   import Appearance from '../components/Appearance';
-  import Avatar from './perpage/TheAvatar';
+  import Avatar from './page/TheAvatar';
   import moment from 'moment';
 
   const ROOM_URL = '/api/v1/rooms'

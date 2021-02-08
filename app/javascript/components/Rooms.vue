@@ -35,7 +35,7 @@
 
 <script>
   import { secureAxios } from '../backend/axios';
-  import Avatar from '../components/perpage/TheAvatar';
+  import Avatar from '../components/page/TheAvatar';
   import Room from '../components/Room';
   import moment from 'moment';
 

@@ -7,7 +7,7 @@
 
 <script>
   import { secureAxios } from '../backend/axios';
-  import Avatar from '../components/perpage/TheAvatar.vue';
+  import Avatar from '../components/page/TheAvatar.vue';
   import InfiniteLoading from 'vue-infinite-loading';
   import Card from '../components/card';
 

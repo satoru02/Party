@@ -6,6 +6,7 @@
     <v-row>
       <v-col cols=12 md=3></v-col>
       <v-col cols=12 md=5 class="mt-6 ml-8" >
+        <!-- #component -->
         <v-text-field rounded height="39" prepend-inner-icon="mdi-magnify" background-color="#212529" v-model="query" @keydown.enter="searchPost(query)" placeholder="検索"></v-text-field>
       </v-col>
       <v-col cols=12 md=1></v-col>
@@ -25,7 +26,7 @@
 <script>
   import Notifications from './TheNotifications';
   import BasePostButton from '../base/BasePostButton';
-  import UserMenu from '../perpage/TheUserMenu';
+  import UserMenu from '../page/TheUserMenu';
 
   export default {
     name: 'top-header',
