@@ -24,10 +24,10 @@
 </template>
 
 <script>
+  import { secureAxios } from "../../backend/axios";
   import NotificationEntry from '../../components/notification/NotificationEntry';
   import NotificationEntryResponse from '../../components/notification/NotificationEntryResponse';
   import NotificationMessage from '../../components/notification/NotificationMessage';
-  import { secureAxios } from "../../backend/axios";
   const NOTIFICATION_URL = `/api/v1/notifications`
 
   export default {

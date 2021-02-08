@@ -1,15 +1,27 @@
 <template>
   <div class="text-center">
-    <v-menu open-on-hover offset-y left nudge-left=32 nudge-height=600 nudge-width=130>
+    <v-menu
+      open-on-hover
+      offset-y
+      left
+      nudge-left=32
+      nudge-height=600
+      nudge-width=130>
       <template v-slot:activator="{ on, attrs }">
         <div v-bind="attrs" v-on="on">
           <avatar :size="32" :avatar_url="avatar"></avatar>
         </div>
       </template>
       <v-list class="rounded-s" style="background-color:#343a40;">
-        <v-list-item class="tile" v-for="(item, index) in items" :key="index" :to="item.link" :icon="item.icon" link>
+        <v-list-item
+          class="tile"
+          v-for="(item, index) in items"
+          :key="index"
+          :to="item.link"
+          :icon="item.icon"
+          link>
           <v-list-item-icon>
-            <v-icon v-text="item.icon"></v-icon>
+            <v-icon v-text="item.icon" />
           </v-list-item-icon>
           <v-list-item-title style="color:#ced4da">{{ item.title }}</v-list-item-title>
         </v-list-item>
