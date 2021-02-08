@@ -68,7 +68,10 @@
       'avatar': Avatar
     },
     props: {
-      entry_response: Object
+      entry_response: {
+        type: Object,
+        required: true
+      }
     },
     methods: {
       catchedTime(time) {
@@ -78,7 +81,7 @@
   }
 </script>
 
-<style>
+<style scoped>
   .underline {
     background-image: linear-gradient(120deg, #fa84f0 0%, #8ff4e7 100%);
     background-repeat: no-repeat;

@@ -5,13 +5,21 @@
       </v-col>
     </v-row>
     <div v-if="notification.classification === 'entry'">
-      <entry :entry='entry_information' :post='requested_post_information' :user="requested_user_information"></entry>
+      <entry
+        :entry='entry_information'
+        :post='requested_post_information'
+        :user="requested_user_information"
+      />
     </div>
     <div v-if="notification.classification === 'entryResponse'">
-      <entry-response :entry_response='entry_response_information'></entry-response>
+      <entry-response
+        :entry_response='entry_response_information'
+      />
     </div>
     <div v-if="notification.classification === 'message'">
-      <message :message='message'></message>
+      <message
+        :message='message'
+      />
     </div>
   </div>
 </template>

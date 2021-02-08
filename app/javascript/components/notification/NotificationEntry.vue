@@ -76,7 +76,7 @@
       <v-dialog light v-model="declineDialog" width="500">
         <v-card>
           <v-card-title>お見送り完了！</v-card-title>
-          <v-card-text>今回は{{user.name}}さんの{{ post.title }}へのエントリーをお断りしました。</v-card-text>
+          <v-card-text>今回は{{ user.name }}さんの{{ post.title }}へのエントリーをお断りしました。</v-card-text>
           <v-card-actions>
             <v-spacer></v-spacer>
             <v-btn color="primary" text @click="declineDialog = false">
@@ -104,13 +104,22 @@
       return {
         authorizeDialog: false,
         declineDialog: false,
-        response_action: ""
+        response_action: ''
       }
     },
     props: {
-      entry: Object,
-      post: Object,
-      user: Object
+      entry: {
+        type: Object,
+        required: true,
+      },
+      post: {
+        type: Object,
+        required: true,
+      },
+      user: {
+        type: Object,
+        required: true
+      }
     },
     methods: {
       authorizeEntry() {
@@ -141,7 +150,7 @@
   }
 </script>
 
-<style>
+<style scoped>
   .underline {
     background-image: linear-gradient(120deg, #f8fa84 0%, #8fd3f4 100%);
     background-repeat: no-repeat;
@@ -152,14 +161,4 @@
   .title span {
     font-size: 30px;
   }
-
-  /* .outputline {
-    background-image: linear-gradient(120deg, #f8fa84 0%, #8fd3f4 100%);
-    background-repeat: no-repeat;
-    background-size: 100% 1em;
-    background-position: 0 92%;
-  }
-  .output span {
-    font-size: 15px;
-  } */
 </style>

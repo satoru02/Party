@@ -52,7 +52,10 @@
       'avatar': Avatar
     },
     props: {
-      message: Object,
+      message: {
+        type: Object,
+        required: true,
+      },
     },
     methods: {
       catchedTime(time) {
@@ -62,7 +65,7 @@
   }
 </script>
 
-<style>
+<style scoped>
   .underline {
     background-image: linear-gradient(120deg, #84fab0 0%, #8fd3f4 100%);
     background-repeat: no-repeat;

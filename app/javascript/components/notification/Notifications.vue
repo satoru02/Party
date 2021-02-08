@@ -38,7 +38,6 @@
   import Avatar from '../page/TheAvatar';
   import moment from 'moment';
   import InfiniteLoading from 'vue-infinite-loading';
-
   const NOTIFICATIONS_URL = `/api/v1/notifications`
 
   export default {
