@@ -38,7 +38,8 @@
   import UserSettings from './components/user/UserSettings';
   import UserTop from './components/user/UserTop';
   import UserInitialSettings from './components/user/UserInitialSettings';
-  import UserFilterCard from './components/user/UserFilterCard';
+  import UserCardFilter from './components/user/UserCardFilter';
+
 
   import Room from './components/room/Room.vue';
   import Rooms from './components/room/Rooms.vue';
@@ -51,7 +52,8 @@
   import PostEdit from './components/upload/PostEdit.vue';
   import InfoFooter from './components/page/TheFooter';
   import Top from './components/top/TopPage';
-  import FilterCard from './components/top/TopFilterCard';
+  import TopCardFilter from './components/top/TopCardFilter';
+
 
   const actionCableVueOptions = {
     debug: true,
@@ -123,27 +125,27 @@
         children: [{
             path: '',
             name: "Top",
-            component: FilterCard
+            component: TopCardFilter
           },
           {
             path: '/results/:query',
             name: "TopFilter",
-            component: FilterCard
+            component: TopCardFilter
           },
           {
             path: "/category/:slug",
             name: "Category",
-            component: FilterCard
+            component: TopCardFilter
           },
           {
             path: "/search/:query",
             name: "Search",
-            component: FilterCard
+            component: TopCardFilter
           },
           {
             path: "/tag/:name",
             name: "Tag",
-            component: FilterCard
+            component: TopCardFilter
           },
         ]
       },
@@ -154,7 +156,7 @@
           {
             path: '',
             name: "MyEvents",
-            component: UserFilterCard,
+            component: UserCardFilter,
             props: (route) => ({
               query: route.query.status
             })
@@ -162,7 +164,7 @@
           {
             path: "joined-events",
             name: "JoinedEvents",
-            component: UserFilterCard,
+            component: UserCardFilter,
             props: (route) => ({
               query: route.query.status
             })
