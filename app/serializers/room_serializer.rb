@@ -7,6 +7,10 @@ class RoomSerializer
     object.messages.last
   end
 
+  attribute :latest_message_notification do |object|
+    object.messages.last.notification
+  end
+
   # attribute :avatar_info do |object|
   #   @index_avatar = []
   #   object.users.each do |user|

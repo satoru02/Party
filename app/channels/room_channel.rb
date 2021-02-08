@@ -29,7 +29,8 @@ class RoomChannel < ApplicationCable::Channel
     ActionCable.server.broadcast("Notifications", {
       title: "You got a message",
       target_user_id: @room.host_id,
-      attributes: message.notification
+      attributes: message.notification,
+      message_confirmation: false
     })
 
     # 3.Rooms broadcast

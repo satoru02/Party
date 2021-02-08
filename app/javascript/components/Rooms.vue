@@ -34,9 +34,7 @@
 </template>
 
 <script>
-  import {
-    simpleAxios, secureAxios
-  } from '../backend/axios';
+  import { secureAxios } from '../backend/axios';
   import Avatar from '../components/perpage/TheAvatar';
   import Room from '../components/Room';
   import moment from 'moment';
@@ -63,6 +61,7 @@
         connected(){},
         rejected(){},
         received(data){
+          console.log(data)
           var filtered_room = this.rooms.filter(room => room.attributes.resource_token === data["token"])
           filtered_room[0].attributes.latest_message.content = data["content"]
           filtered_room[0].attributes.latest_message.created_at = data["time"]

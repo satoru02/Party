@@ -40,8 +40,7 @@
         <v-menu>
           <template v-slot:activator="{on, attrs}">
             <div v-bind="attrs" v-on="on">
-              <v-badge color="red" offset-y="10" offset-x="7" v-if="messageNotifications.length > 0"
-                :content="messageNotifications.length">
+              <v-badge color="red" offset-y="10" offset-x="7" v-if="messageNotifications.length > 0" :content="messageNotifications.length">
                 <router-link to="/rooms">
                   <v-icon class="icon mt-1" size=24>mdi-chat-outline</v-icon>
                 </router-link>
@@ -75,17 +74,21 @@
         connected() {},
         rejected() {},
         received(data) {
-          // 1.Entryがあった時
-          // 2.Entry_Responseがあった時（承認/拒否）
-          // 3.Messageを受け取った時 -> chat_icon
-          // 4.Notificationが読まれた時
+          // 1.Entry is catched.
+          // 2.EntryResponse is catched（authorization/decline）.
+          // 3.Message is catched.
+          // 4.Notification is readen.
 
-          if (this.$store.state.currentUser.data.attributes.id === data["target_user_id"] && data["condition"] !== "read" && (data.attributes.classification === "entry" || "entryResponse")) {
-            this.entryNotifications.push(data)
-          } else if(this.$store.state.currentUser.data.attributes.id === data["target_user_id"] && data.attributes.classification === "message"){
-            this.messageNotifications.push(data)
-          } else if (this.$store.state.currentUser.data.attributes.id === data["target_user_id"] && data["condition"] === "read") {
-            this.entryNotifications.pop()
+          if(this.$store.state.currentUser.data.attributes.id === data["target_user_id"]) {
+            if(((data.attributes.classification === "entry") || (data.attributes.classification === "entryResponse")) && data["condition"] !== "read" ){
+              this.entryNotifications.push(data)
+            } else if((data.attributes.classification === "message") && (data.attributes.confirmation === false) && (data.message_confirmation === false)) {
+              this.messageNotifications.push(data)
+            } else if((data.attributes.classification === "message") && (data.message_confirmation === true)){
+              this.messageNotifications = this.messageNotifications.filter(notification => notification.attributes.id !== data.attributes.id)
+            } else if(data["condition"] === "read") {
+              this.entryNotifications.pop()
+            }
           }
         },
         disconnected() {}

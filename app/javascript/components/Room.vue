@@ -42,9 +42,7 @@
 </template>
 
 <script>
-  import {
-    simpleAxios, secureAxios
-  } from '../backend/axios.js';
+  import { secureAxios } from '../backend/axios.js';
   import Appearance from '../components/Appearance';
   import Avatar from './perpage/TheAvatar';
   import moment from 'moment';
@@ -120,7 +118,7 @@
       },
       sendMessage(message) {
         if(message) {
-                  this.$cable.perform({
+        this.$cable.perform({
           channel: 'RoomChannel',
           action: 'speak',
           data: {
