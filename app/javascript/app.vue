@@ -17,16 +17,22 @@
   import Vuex from 'vuex';
   import createPersistedState from 'vuex-persistedstate';
   import InfiniteLoading from 'vue-infinite-loading';
+  import ActionCableVue from 'actioncable-vue';
+  import '@mdi/font/css/materialdesignicons.css';
 
   import Avatar from './components/page/TheAvatar.vue';
   import Header from './components/page/TheHeader.vue';
-  import Login from './Login.vue';
-  import Signup from './Signup.vue';
-  import Activation from './Activation.vue';
+
   import UsersList from './components/admin/users/List.vue';
   import UserPostsList from './components/admin/users/posts/List.vue';
-  import ForgotPassword from './components/ForgotPassword.vue';
-  import ResetPassword from './components/ResetPassword.vue';
+
+  import Login from './components/authorization/Login';
+  import Signup from './components/authorization/Signup';
+  import Activation from './components/authorization/Activation';
+  import ForgotPassword from './components/authorization/ForgotPassword';
+  import ResetPassword from './components/authorization/ResetPassword';
+  import Logout from './components/authorization/Logout';
+  import Check from './components/authorization/Check';
 
   import UserEdit from './components/Edit.vue';
   import UserSettings from './components/user/UserSettings';
@@ -35,19 +41,18 @@
   import UserFilterCard from './components/user/UserFilterCard';
 
   import PostEdit from './components/PostEdit.vue';
+
   import Room from './components/room/Room.vue';
   import Rooms from './components/room/Rooms.vue';
+  import RoomTop from './components/room/RoomTop';
+
   import Notification from './components/notification/Notification';
   import Notifications from './components/notification/Notifications';
-  import ActionCableVue from 'actioncable-vue';
+
   import Post from './components/Post';
   import InfoFooter from './components/page/TheFooter';
-  import Check from './Check';
   import Top from './components/Top';
   import FilterCard from './components/FilterCard';
-  import RoomTop from './components/room/RoomTop';
-  import Logout from './Logout';
-  import '@mdi/font/css/materialdesignicons.css';
 
   const actionCableVueOptions = {
     debug: true,

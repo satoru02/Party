@@ -5,9 +5,9 @@
   import {
     simpleAxios,
     secureAxios
-  } from './backend/axios.js'
-  const ACTIVATION_URL = '/api/v1/account_activations'
-  const USER_INFO_URL = '/api/v1/users/me'
+  } from '../../backend/axios';
+  const ACTIVATION_URL = '/api/v1/account_activations';
+  const USER_INFO_URL = '/api/v1/users/me';
 
   export default {
     name: 'AccountActivations',

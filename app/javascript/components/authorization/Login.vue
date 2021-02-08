@@ -145,7 +145,7 @@
 <script>
   import {
     simpleAxios
-  } from './backend/axios.js'
+  } from '../../backend/axios.js'
   const LOGIN_URL = '/api/v1/login'
   const USER_INFO_URL = '/api/v1/users/me'
 

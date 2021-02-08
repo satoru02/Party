@@ -2,7 +2,7 @@
 </template>
 
 <script>
-import { secureAxios } from './backend/axios';
+import { secureAxios } from '../../backend/axios';
 const LOGOUT_URL = "/api/v1/login"
 
 export default {

@@ -70,10 +70,7 @@
 </template>
 
 <script>
-  import {
-    simpleAxios,
-    secureAxios
-  } from '../backend/axios.js'
+  import { simpleAxios, secureAxios } from '../../backend/axios.js'
   const PASSWORD_RESET_URL = '/api/v1/password_resets'
 
   export default {

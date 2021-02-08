@@ -89,9 +89,7 @@
 </template>
 
 <script>
-  import {
-    simpleAxios
-  } from './backend/axios.js'
+  import { simpleAxios } from '../../backend/axios.js'
   const SIGNUP_URL = '/api/v1/signup'
 
   export default {
