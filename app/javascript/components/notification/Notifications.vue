@@ -34,10 +34,8 @@
 </template>
 
 <script>
-  import {
-    simpleAxios, secureAxios
-  } from '../backend/axios';
-  import Avatar from './page/TheAvatar';
+  import { secureAxios } from "../../backend/axios";
+  import Avatar from '../page/TheAvatar';
   import moment from 'moment';
   import InfiniteLoading from 'vue-infinite-loading';
 

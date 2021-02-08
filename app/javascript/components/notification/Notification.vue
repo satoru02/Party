@@ -8,7 +8,7 @@
       <entry :entry='entry_information' :post='requested_post_information' :user="requested_user_information"></entry>
     </div>
     <div v-if="notification.classification === 'entryResponse'">
-      <entryResponse :entry_response='entry_response_information'></entryResponse>
+      <entry-response :entry_response='entry_response_information'></entry-response>
     </div>
     <div v-if="notification.classification === 'message'">
       <message :message='message'></message>
@@ -17,17 +17,17 @@
 </template>
 
 <script>
-  import Entry from '../components/notification/entry';
-  import EntryResponse from '../components/notification/entryResponse';
-  import Message from '../components/notification/message';
-  import { secureAxios } from "../backend/axios"
+  import Entry from '../../components/notification/NotificationEntry';
+  import EntryResponse from '../../components/notification/NotificationEntryResponse';
+  import Message from '../../components/notification/NotificationMessage';
+  import { secureAxios } from "../../backend/axios";
   const NOTIFICATION_URL = `/api/v1/notifications`
 
   export default {
     name: 'Notification',
     components: {
       'entry': Entry,
-      'entryResponse': EntryResponse,
+      'entry-response': EntryResponse,
       'message': Message
     },
     data() {

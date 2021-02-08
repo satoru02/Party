@@ -37,8 +37,8 @@
   import PostEdit from './components/PostEdit.vue';
   import Room from './components/Room.vue';
   import Rooms from './components/Rooms.vue';
-  import Notification from './components/Notification';
-  import Notifications from './components/Notifications';
+  import Notification from './components/notification/Notification';
+  import Notifications from './components/notification/Notifications';
   import ActionCableVue from 'actioncable-vue';
   import Post from './components/Post';
   import InfoFooter from './components/page/TheFooter';
