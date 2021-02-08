@@ -27,7 +27,7 @@
   import {
     simpleAxios
   } from '../../backend/axios.js'
-  import CUBE from '../cube.vue'
+  import CUBE from '../user/UserCube';
 
   const DATE_URL = '/api/v1/years'
   const USERS_POSTS_URL = '/api/v1/users'
