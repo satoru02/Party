@@ -54,8 +54,8 @@
 </template>
 
 <script>
-  import CategoryHeader from '../../components/top/CategoryHeader';
-  import TagHeader from '../../components/top/TagHeader';
+  import CategoryHeader from '../../components/top/TopCategoryHeader';
+  import TagHeader from '../../components/top/TopTagHeader';
 
   export default {
     name: 'Top',

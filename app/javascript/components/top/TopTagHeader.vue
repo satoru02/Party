@@ -23,7 +23,7 @@
   const TAG_URL = `/api/v1/tags`
 
   export default {
-    name: "TagHeader",
+    name: "TopTagHeader",
     data() {
       return {
         tags: []

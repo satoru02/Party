@@ -22,7 +22,7 @@
   const CATEGORY_URL = `/api/v1/categories`
 
   export default {
-    name: "categoryHeader",
+    name: "TopCategoryHeader",
     data() {
       return {
         categories: []

@@ -51,7 +51,7 @@
   import PostEdit from './components/upload/PostEdit.vue';
   import InfoFooter from './components/page/TheFooter';
   import Top from './components/top/TopPage';
-  import FilterCard from './components/top/FilterCard';
+  import FilterCard from './components/top/TopFilterCard';
 
   const actionCableVueOptions = {
     debug: true,
