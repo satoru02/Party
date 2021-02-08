@@ -62,7 +62,7 @@
   const NOTIFICATIONS_URL = '/api/v1/notifications'
 
   export default {
-    name: 'Notifications',
+    name: 'NotificationMenu',
     data() {
       return {
         entryNotifications: [],

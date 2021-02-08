@@ -11,7 +11,7 @@
       </v-col>
       <v-col cols=12 md=1></v-col>
       <v-col cols=12 md=1 class="mt-6">
-        <notifications></notifications>
+        <notification-menu></notification-menu>
       </v-col>
       <v-col cols=12 md=1 class="ml-n5 mt-6">
         <user-menu></user-menu>
@@ -24,14 +24,14 @@
 </template>
 
 <script>
-  import Notifications from './TheNotifications';
+  import NotificationMenu from './TheNotificationMenu';
   import BasePostButton from '../base/BasePostButton';
   import UserMenu from '../page/TheUserMenu';
 
   export default {
     name: 'top-header',
     components: {
-      'notifications': Notifications,
+      'notification-menu': NotificationMenu,
       'base-button': BasePostButton,
       'user-menu': UserMenu,
     },
