@@ -10,7 +10,7 @@
   const USER_INFO_URL = '/api/v1/users/me';
 
   export default {
-    name: 'AccountActivations',
+    name: 'AccountActivation',
     created() {
       this.checkSignedIn()
       secureAxios.post(ACTIVATION_URL + `/` + `${this.$route.params.token}`)

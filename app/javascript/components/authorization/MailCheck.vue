@@ -24,7 +24,7 @@
 
 <script>
 export default {
-  name: 'check',
+  name: 'MailCheck',
   data(){
     return {
       email: ''

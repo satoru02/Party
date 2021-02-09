@@ -26,11 +26,11 @@
 
   import Login from './components/authorization/Login';
   import Signup from './components/authorization/Signup';
-  import Activation from './components/authorization/Activation';
+  import AccountActivation from './components/authorization/AccountActivation';
   import ForgotPassword from './components/authorization/ForgotPassword';
   import ResetPassword from './components/authorization/ResetPassword';
   import Logout from './components/authorization/Logout';
-  import Check from './components/authorization/Check';
+  import MailCheck from './components/authorization/MailCheck';
 
   import UserEdit from './components/admin/users/Edit.vue';
   import UserSettings from './components/user/UserSettings';
@@ -207,12 +207,12 @@
       {
         path: "/verify-email/:email",
         name: "check",
-        component: Check
+        component: MailCheck
       },
       {
         path: "/account_activations/:token",
         name: "AccountActivations",
-        component: Activation
+        component: AccountActivation
       },
       {
         path: "/initial-settings",

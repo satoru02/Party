@@ -150,7 +150,7 @@
   const USER_INFO_URL = '/api/v1/users/me'
 
   export default {
-    name: 'Signin',
+    name: 'Login',
     data() {
       return {
         email: '',
