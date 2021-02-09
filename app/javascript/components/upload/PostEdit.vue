@@ -149,22 +149,29 @@
     <v-row class="mt-8">
       <v-col cols=12 md=12 />
     </v-row>
+    <base-snackbar
+     v-if="this.snackbar === true"
+     :childValue="display_error_text"
+     v-on:click="snackbar = value"
+    />
   </div>
 </template>
 
 <script>
-  import { secureAxios } from '../../backend/axios.js'
+  import { secureAxios } from '../../backend/axios.js';
   import BaseTextField from '../../components/base/BaseTextField';
   import BaseTextArea from '../../components/base/BaseTextArea';
   import BaseSelector from '../../components/base/BaseSelector';
-  const POST_EDIT_URL = '/api/v1/posts/'
+  import BaseSnackbar from '../../components/base/BaseSnackbar';
+  const  POST_EDIT_URL = '/api/v1/posts/';
 
   export default {
     name: "PostEdit",
     components: {
       'base-text-field': BaseTextField,
-      'base-text-area': BaseTextArea,
-      'base-selector': BaseSelector
+      'base-text-area':  BaseTextArea,
+      'base-selector':   BaseSelector,
+      'base-snackbar':   BaseSnackbar
     },
     data() {
       return {
@@ -173,6 +180,9 @@
         post: '',
         limit: '',
         selectedCategory: '',
+        value: Boolean,
+        snackbar: false,
+        display_error_text: [],
         limitText: "参加人数を選択",
         toolText: "使用ツールを選択",
         categoryText: "カテゴリーを選択",
@@ -223,10 +233,6 @@
         }
         this.post = response.data.data.attributes
       },
-      Failed(error) {
-        this.error = (error.response && error.response.data && error.response.data.error) || ""
-        this.$router.replace('/')
-      },
       setCategory(){
         var category = this.categories.filter(category => category.name === this.post.Category)
         if (category.length > 0) {
@@ -245,20 +251,43 @@
             end_date: this.end_date,
             tag_list: this.post.tag_list
           })
-          .then(response => this.updateSuccessdul(response))
-          .catch(error => this.Failed(error))
+          .then(response => this.updateSuccessful(response))
+          .catch(error => this.updateFailed(error))
+      },
+      updateSuccessful(response) {
+        if (!response) {
+          this.Failed(response)
+          return
+        }
+        this.$router.replace('/')
+      },
+      updateFailed(error) {
+        this.error = (error.response && error.response.data && error.response.data.error) || ""
+        this.display_error_text = this.ErrorChecker(this.error)
+        this.snackbar = true
+      },
+      ErrorChecker(error){
+        var i;
+        let errors = []
+        for(i = 0; i < error.length; i++){
+          if (error[i] === `Title translation missing: ja.activerecord.errors.models.post.attributes.title.blank`){
+            errors.push("タイトルが入力されていません。")
+          } else if (error[i] === `Content translation missing: ja.activerecord.errors.models.post.attributes.content.blank`){
+            errors.push("イベント内容が入力されていません。")
+          } else if(error[i] === `Start date translation missing: ja.activerecord.errors.models.post.attributes.start_date.blank`){
+            errors.push("開始時間が入力されていません。")
+          } else if(error[i] === `End date translation missing: ja.activerecord.errors.models.post.attributes.end_date.blank`){
+            errors.push("終了時間が入力されていません。")
+          } else if(error[i] === `Tools translation missing: ja.activerecord.errors.models.post.attributes.tools.blank`){
+            errors.push("使用ツールが入力されていません。")
+          }
+        }
+        return errors
       },
       destroyPost() {
         secureAxios.delete(POST_EDIT_URL + `${this.$route.params.id}`)
           .then(response => this.updateSuccessdul(response))
           .catch(error => this.Failed(error))
-      },
-      updateSuccessdul(response) {
-        if (!response.data) {
-          this.Failed(response)
-          return
-        }
-        this.$router.replace('/')
       },
       checkUsersPost() {
         if (!(this.$store.state.signedIn && this.$store.getters.currentUserId)) {

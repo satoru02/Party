@@ -25,7 +25,6 @@
         </v-col>
       </v-row>
       <v-divider class="mt-n5"/>
-
       <v-row>
         <v-col cols=12 md=3 class="mt-4">
           <h3>開始時間</h3>
@@ -33,8 +32,8 @@
         </v-col>
         <v-col cols=12 md=3 class="mt-1">
           <v-text-field
-            type="datetime-local"
             v-model="start_date"
+            type="datetime-local"
             outlined
             dark
             filled
@@ -46,15 +45,14 @@
         </v-col>
         <v-col cols=12 md=3 class="mt-1">
           <v-text-field
-            type="datetime-local"
             v-model="end_date"
+            type="datetime-local"
             outlined
             dark
             filled
             dense />
         </v-col>
       </v-row>
-
       <v-divider class="mt-n5"/>
       <v-row>
         <v-col cols=12 md=3 class="mt-4">
@@ -74,6 +72,7 @@
         </v-col>
         <v-col cols=12 md=3 class="mt-1">
           <v-select
+            v-model="selected_tools"
             placeholder="使用ツールを選択"
             dense
             :items="tools"
@@ -81,7 +80,7 @@
             outlined
             multiple
             persistent-hint
-            v-model="selected_tools"/>
+          />
           <!-- <base-selector
             :selectorText="toolText"
             :childItems="tools"
@@ -90,7 +89,6 @@
         </v-col>
       </v-row>
       <v-divider class="mt-n5"/>
-
       <v-row>
         <v-col cols=12 md=3 class="mt-4">
           <h3>カテゴリー</h3>
@@ -115,7 +113,6 @@
         </v-col>
       </v-row>
       <v-divider class="mt-n5"/>
-
       <v-row>
         <v-col cols=12 md=3 class="mt-4">
           <h3>イベント内容</h3>
@@ -127,7 +124,6 @@
            />
         </v-col>
       </v-row>
-
     </v-sheet>
     <v-row class="mt-4">
       <v-col cols=12 md=2 />
@@ -157,22 +153,29 @@
     <v-row class="mt-8">
       <v-col cols=12 md=12 />
     </v-row>
+    <base-snackbar
+     v-if="this.snackbar === true"
+     :childValue="display_error_text"
+     v-on:click="snackbar = value"
+    />
   </div>
 </template>
 
 <script>
-  import { secureAxios } from '../../backend/axios.js'
+  import { secureAxios } from '../../backend/axios.js';
   import BaseTextField from '../../components/base/BaseTextField';
   import BaseTextArea from '../../components/base/BaseTextArea';
   import BaseSelector from '../../components/base/BaseSelector';
-  const POST_URL = '/api/v1/posts'
+  import BaseSnackbar from '../../components/base/BaseSnackbar';
+  const  POST_URL = '/api/v1/posts';
 
   export default {
     name: "Post",
     components: {
       'base-text-field': BaseTextField,
-      'base-text-area': BaseTextArea,
-      'base-selector': BaseSelector
+      'base-text-area':  BaseTextArea,
+      'base-selector':   BaseSelector,
+      'base-snackbar':   BaseSnackbar
     },
     data() {
       return {
@@ -184,6 +187,10 @@
         tag_list: '',
         rule: '',
         limit: '',
+        error: '',
+        value: Boolean,
+        snackbar: false,
+        display_error_text: [],
         selected_tools: [],
         limitText: "参加人数を選択",
         toolText: "使用ツールを選択",
@@ -208,7 +215,8 @@
         ],
         numbers: [
           1, 2, 3, 4, 5, 6, 7, 8, 9, 10,
-          11, 12, 13, 14, 15, 16, 17, 18, 19, 20, "No limit"
+          11, 12, 13, 14, 15, 16, 17, 18, 19, 20,
+          "No limit"
         ],
       }
     },
@@ -225,7 +233,7 @@
         this.error = (error.response && error.response.data && error.response.data.error) || text
       },
       setCategory(){
-        var category = this.categories.filter(category => category.name === this.selectedCategory)
+        let category = this.categories.filter(category => category.name === this.selectedCategory)
         if (category.length > 0) {
           return category[0].id
         } else {
@@ -234,18 +242,41 @@
       },
       postUrl() {
         secureAxios.post(POST_URL, {
-            title: this.title,
-            category_id: this.setCategory(),
-            content: this.content,
-            tools: this.selected_tools,
-            start_date: this.start_date,
-            end_date: this.end_date,
-            tag_list: this.tag_list
-          })
-          .then(response => {
-            this.$router.replace('/')
-          })
-          .catch(error => this.setError(error, "Cannot post"))
+          title: this.title,
+          category_id: this.setCategory(),
+          content: this.content,
+          tools: this.selected_tools,
+          start_date: this.start_date,
+          end_date: this.end_date,
+          tag_list: this.tag_list
+        })
+        .then(response => {
+          this.$router.replace('/')
+        })
+        .catch(error => this.Failed(error))
+      },
+      Failed(error){
+        this.error = (error.response && error.response.data && error.response.data.error) || ""
+        this.display_error_text = this.ErrorChecker(this.error)
+        this.snackbar = true
+      },
+      ErrorChecker(error){
+        var i;
+        let errors = []
+        for(i = 0; i < error.length; i++){
+          if (error[i] === `Title translation missing: ja.activerecord.errors.models.post.attributes.title.blank`){
+            errors.push("タイトルが入力されていません。")
+          } else if (error[i] === `Content translation missing: ja.activerecord.errors.models.post.attributes.content.blank`){
+            errors.push("イベント内容が入力されていません。")
+          } else if(error[i] === `Start date translation missing: ja.activerecord.errors.models.post.attributes.start_date.blank`){
+            errors.push("開始時間が入力されていません。")
+          } else if(error[i] === `End date translation missing: ja.activerecord.errors.models.post.attributes.end_date.blank`){
+            errors.push("終了時間が入力されていません。")
+          } else if(error[i] === `Tools translation missing: ja.activerecord.errors.models.post.attributes.tools.blank`){
+            errors.push("使用ツールが入力されていません。")
+          }
+        }
+        return errors
       },
       backTop(){
         this.$router.replace('/')

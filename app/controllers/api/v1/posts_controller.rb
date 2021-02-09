@@ -33,9 +33,11 @@ module Api
 
       def create
         @post = current_user.posts.build(post_params)
-        if @post.save!
+        if @post.save
           Room.create!(name: @post.title, host_id: current_user.id, post_id: @post.id)
           redirect_to root_url
+        else
+          render json: { error: @post.errors.full_messages }, status: :unprocessable_entity
         end
       end
 
@@ -47,7 +49,9 @@ module Api
       end
 
       def update
-        @post.update(post_params)
+        unless @post.update(post_params)
+          render json: { error: @post.errors.full_messages }, status: :unprocessable_entity
+        end
       end
 
       def destroy
