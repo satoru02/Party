@@ -112,7 +112,7 @@
   import TopTagHeader from '../../components/top/TopTagHeader';
 
   export default {
-    name: 'Top',
+    name: 'TopPage',
     components: {
       'top-category-header': TopCategoryHeader,
       'top-tag-header': TopTagHeader

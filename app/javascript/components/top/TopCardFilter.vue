@@ -12,7 +12,7 @@
   import Card from '../../components/top/TopCard';
 
   export default {
-    name: 'FilterCard',
+    name: 'TopCardFilter',
     components: {
       'base-avatar': BaseAvatar,
       'infinite-loading': InfiniteLoading,
