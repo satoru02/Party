@@ -99,7 +99,7 @@
   const USER_INFO_URL = '/api/v1/users/'
 
   export default {
-    name: 'User',
+    name: 'UserTop',
     components: {
       'base-avatar': BaseAvatar,
     },

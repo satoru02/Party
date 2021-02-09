@@ -7,7 +7,7 @@
   import UserCard from '../user/UserCard';
 
   export default {
-    name: "UserFilterCard",
+    name: "UserCardFilter",
     components: {
       'user-card': UserCard
     },

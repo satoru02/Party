@@ -265,7 +265,7 @@
   const USER_URL = '/api/v1/users/'
 
   export default {
-    name: 'Settings',
+    name: 'UserSettings',
     data() {
       return {
         user: '',

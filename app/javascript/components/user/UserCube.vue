@@ -6,6 +6,6 @@
 
 <script>
 export default {
-  name: "cube"
+  name: "UserCube"
 }
 </script>
