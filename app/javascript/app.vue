@@ -51,7 +51,6 @@
   import Top from './components/top/TopPage';
   import TopCardFilter from './components/top/TopCardFilter';
 
-
   const actionCableVueOptions = {
     debug: true,
     debugLevel: 'error',
