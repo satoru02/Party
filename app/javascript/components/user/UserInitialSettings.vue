@@ -12,13 +12,10 @@
           <h3>ユーザーネーム</h3>
         </v-col>
         <v-col cols=12 md=7 class="mt-4">
-          <v-text-field
-            v-model="user.username"
-            :placeholder="user.username"
-            outlined
-            dark
-            filled
-            dense />
+          <base-text-field
+            :childValue="user.username"
+            v-on:input="user.username = $event"
+          />
         </v-col>
         <v-col cols=12 md=1 />
       </v-row>
@@ -30,7 +27,6 @@
         </v-col>
         <v-col cols=12 md=1 />
       </v-row>
-
       <v-row>
         <v-col cols=12 md=1 />
         <v-col cols=12 md=3>
@@ -65,13 +61,10 @@
           <h3>自己紹介</h3>
         </v-col>
         <v-col cols=12 md=7 class=mt-n2>
-          <v-text-field
-            v-model="user.about"
-            :placeholder="user.about"
-            outlined
-            dark
-            filled
-            dense />
+          <base-text-field
+            :childValue="user.about"
+            v-on:input="user.about = $event"
+          />
         </v-col>
         <v-col cols=12 md=1 />
       </v-row>
@@ -90,13 +83,10 @@
           <h3>居住地</h3>
         </v-col>
         <v-col cols=12 md=7 class="mt-n2">
-          <v-text-field
-            v-model="user.location"
-            :placeholder="user.location"
-            outlined
-            dark
-            filled
-            dense />
+          <base-text-field
+            :childValue="user.location"
+            v-on:input="user.location = $event"
+          />
         </v-col>
         <v-col cols=12 md=1 />
       </v-row>
@@ -115,13 +105,10 @@
           <h3>Eメール</h3>
         </v-col>
         <v-col cols=12 md=7 class="mt-n1">
-          <v-text-field
-            v-model="user.email"
-            :placeholder="user.email"
-            outlined
-            dark
-            filled
-            dense />
+          <base-text-field
+            :childValue="user.email"
+            v-on:input="user.email = $event"
+          />
         </v-col>
         <v-col cols=12 md=1 />
       </v-row>
@@ -140,13 +127,9 @@
           <h3>Youtube URL</h3>
         </v-col>
         <v-col cols=12 md=7 class="mt-n1">
-          <v-text-field
-            v-model="user.youtube_url"
-            :placeholder="user.youtube_url"
-            outlined
-            dark
-            filled
-            dense
+          <base-text-field
+            :childValue="user.youtube_url"
+            v-on:input="user.youtube_url = $event"
           />
         </v-col>
         <v-col cols=12 md=1 />
@@ -166,13 +149,9 @@
           <h3>Facebook URL</h3>
         </v-col>
         <v-col cols=12 md=7 class="mt-n1">
-          <v-text-field
-            v-model="user.facebook_url"
-            :placeholder="user.facebook_url"
-            outlined
-            dark
-            filled
-            dense
+          <base-text-field
+            :childValue="user.facebook_url"
+            v-on:input="user.facebook_url = $event"
           />
         </v-col>
         <v-col cols=12 md=1 />
@@ -192,13 +171,9 @@
           <h3>Instagram URL</h3>
         </v-col>
         <v-col cols=12 md=7 class="mt-n1">
-          <v-text-field
-            v-model="user.instagram_url"
-            :placeholder="user.instagram_url"
-            outlined
-            dark
-            filled
-            dense
+          <base-text-field
+            :childValue="user.instagram_url"
+            v-on:input="user.instagram_url = $event"
           />
         </v-col>
         <v-col cols=12 md=1 />
@@ -218,13 +193,9 @@
           <h3>Filmarks URL</h3>
         </v-col>
         <v-col cols=12 md=7 class="mt-n1">
-          <v-text-field
-            v-model="user.filmarks_url"
-            :placeholder="user.filmarks_url"
-            outlined
-            dark
-            filled
-            dense
+          <base-text-field
+            :childValue="user.filmarks_url"
+            v-on:input="user.filmarks_url = $event"
           />
         </v-col>
         <v-col cols=12 md=1 />
@@ -283,11 +254,17 @@
           .then(response => this.updateSuccessful(response))
           .catch(error => this.Failed(error))
       },
+      updateSuccessful(response) {
+        this.$store.commit('setCurrentUser',
+          {
+            currentUser: response.data,
+            csrf: this.$store.state.csrf,
+            token: this.$store.state.token
+          })
+        this.$router.replace('/')
+      },
       Failed(error) {
         this.error = (error.response && error.response.data && error.response.data.error) || ""
-      },
-      updateSuccessful(response) {
-        this.$router.replace('/')
       },
       uploadFile() {
         this.picture = this.$refs.inputFile.files[0];

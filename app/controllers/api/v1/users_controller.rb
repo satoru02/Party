@@ -34,8 +34,10 @@ module Api
       end
 
       def update
-        @user.update(user_params)
+        @user.update!(user_params)
         # @user.avatar.attach(params[:avatar])
+        serializer = UserSerializer.new(current_user)
+        render json: serializer.serializable_hash.to_json
       end
 
       def destroy

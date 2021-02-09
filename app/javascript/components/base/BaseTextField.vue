@@ -1,6 +1,8 @@
 <template>
   <v-text-field
-     @input="handleInput"
+     v-model="value"
+     @input="$emit('input', $event)"
+     :placeholder="childValue"
      outlined
      dark
      filled
@@ -11,17 +13,12 @@
 <script>
 export default {
   name: "BaseTextField",
-  prop: ['value'],
-  data(){
-    return {
-      content: this.value
-    }
+  props: {
+    childValue: '',
   },
-  methods: {
-    handleInput(e){
-      // console.log(this.value)
-      console.log(this.content)
-      console.log(this.$emit('input', this.content))
+  data(){
+    return{
+      value: ''
     }
   }
 }
