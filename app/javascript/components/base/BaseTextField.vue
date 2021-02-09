@@ -17,7 +17,7 @@ export default {
     childValue: '',
   },
   data(){
-    return{
+    return {
       value: ''
     }
   }
