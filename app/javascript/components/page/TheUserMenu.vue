@@ -35,7 +35,7 @@
 <script>
   import BaseAvatar from '../base/BaseAvatar.vue';
   export default {
-    name: "userMenu",
+    name: "TheUserMenu",
     components: {
       'base-avatar': BaseAvatar
     },

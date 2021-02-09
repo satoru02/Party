@@ -19,7 +19,7 @@
 
 <script>
 export default {
-  name: "info-footer",
+  name: "TheFooter",
   data() {
     return {
       items: {

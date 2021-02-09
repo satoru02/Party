@@ -31,7 +31,7 @@
   import UserMenu from '../page/TheUserMenu';
 
   export default {
-    name: 'top-header',
+    name: 'TheHeader',
     components: {
       'notification-menu': NotificationMenu,
       'base-button': BasePostButton,
