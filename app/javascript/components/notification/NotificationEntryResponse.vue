@@ -59,7 +59,7 @@
   import moment from 'moment';
 
   export default {
-    name: 'EntryReponse',
+    name: 'NotificationEntryReponse',
     components: {
       'base-avatar': BaseAvatar
     },

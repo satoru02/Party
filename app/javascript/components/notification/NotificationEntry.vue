@@ -107,7 +107,7 @@
   const ENTRY_URL = `/api/v1/rooms_user`
 
   export default {
-    name: "Entry",
+    name: "NotificationEntry",
     components: {
       'base-avatar': BaseAvatar
     },

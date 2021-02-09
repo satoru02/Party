@@ -45,7 +45,7 @@
   import moment from 'moment';
 
   export default {
-    name: 'Message',
+    name: 'NotificationMessage',
     components: {
       'base-avatar': BaseAvatar
     },
