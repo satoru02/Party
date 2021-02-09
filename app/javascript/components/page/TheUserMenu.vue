@@ -9,7 +9,9 @@
       nudge-width=130>
       <template v-slot:activator="{ on, attrs }">
         <div v-bind="attrs" v-on="on">
-          <avatar :size="32" :avatar_url="avatar"></avatar>
+          <base-avatar
+            :size="32"
+            :avatar_url="avatar"/>
         </div>
       </template>
       <v-list class="rounded-s" style="background-color:#343a40;">
@@ -31,11 +33,11 @@
 </template>
 
 <script>
-  import Avatar from './TheAvatar.vue';
+  import BaseAvatar from '../base/BaseAvatar.vue';
   export default {
     name: "userMenu",
     components: {
-      'avatar': Avatar
+      'base-avatar': BaseAvatar
     },
     data() {
       return {

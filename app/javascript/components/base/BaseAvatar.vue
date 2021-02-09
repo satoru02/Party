@@ -13,7 +13,7 @@
 <script>
 
 export default {
-  name: 'avatar',
+  name: 'BaseAvatar',
   props:{
     avatar_url: {
       type: String,

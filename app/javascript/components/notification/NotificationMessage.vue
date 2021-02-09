@@ -8,7 +8,7 @@
       </v-row>
       <v-row>
         <v-col cols="12" md="2">
-          <avatar />
+          <base-avatar />
         </v-col>
         <v-col cols="12" md="3" class="mt-4 ml-n15">
           <router-link :to="{name: 'MyEvents', params: { id: message.user_id }}">
@@ -41,13 +41,13 @@
 </template>
 
 <script>
-  import Avatar from '../page/TheAvatar';
+  import BaseAvatar from '../base/BaseAvatar';
   import moment from 'moment';
 
   export default {
     name: 'Message',
     components: {
-      'avatar': Avatar
+      'base-avatar': BaseAvatar
     },
     props: {
       message: {

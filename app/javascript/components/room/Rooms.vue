@@ -56,7 +56,7 @@
 
 <script>
   import { secureAxios } from '../../backend/axios';
-  import Avatar from '../page/TheAvatar';
+  import BaseAvatar from '../base/BaseAvatar';
   import Room from './Room';
   import moment from 'moment';
 
@@ -65,7 +65,7 @@
   export default {
     name: "Rooms",
     components: {
-      'avatar': Avatar,
+      'base-avatar': BaseAvatar,
       'room': Room
     },
     data() {

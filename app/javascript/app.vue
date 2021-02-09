@@ -19,7 +19,6 @@
   import ActionCableVue from 'actioncable-vue';
   import '@mdi/font/css/materialdesignicons.css';
 
-  import Avatar from './components/page/TheAvatar.vue';
   import Header from './components/page/TheHeader.vue';
 
   import UsersList from './components/admin/users/List.vue';
@@ -48,7 +47,7 @@
 
   import Post from './components/upload/Post';
   import PostEdit from './components/upload/PostEdit.vue';
-  import InfoFooter from './components/page/TheFooter';
+
   import Top from './components/top/TopPage';
   import TopCardFilter from './components/top/TopCardFilter';
 
@@ -272,9 +271,7 @@
     router,
     store,
     components: {
-      'avatar': Avatar,
-      'top-header': Header,
-      'info-footer': InfoFooter
+      'top-header': Header
     }
   }
 </script>

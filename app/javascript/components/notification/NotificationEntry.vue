@@ -8,7 +8,7 @@
       </v-row>
       <v-row>
         <v-col cols="12" md="1" class="ml-15">
-          <avatar />
+          <base-avatar />
         </v-col>
         <v-col cols="12" md="3" class="mt-4 ml-n7" align-self="baseline">
           <router-link :to="{name: 'MyEvents', params: { id: user.id }}">
@@ -102,14 +102,14 @@
 
 <script>
   import { secureAxios } from "../../backend/axios"
-  import Avatar from '../page/TheAvatar';
+  import BaseAvatar from '../base/BaseAvatar';
   import moment from 'moment';
   const ENTRY_URL = `/api/v1/rooms_user`
 
   export default {
     name: "Entry",
     components: {
-      'avatar': Avatar
+      'base-avatar': BaseAvatar
     },
     data() {
       return {

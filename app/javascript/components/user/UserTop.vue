@@ -6,7 +6,7 @@
       </v-row>
       <v-row>
         <v-col cols=12 md=3 class="ml-16">
-          <avatar
+          <base-avatar
             :size="140"
             :avatar_url="user.avatar_url" />
         </v-col>
@@ -94,14 +94,14 @@
 
 <script>
   import { secureAxios } from '../../backend/axios.js'
-  import Avatar from '../page/TheAvatar'
+  import BaseAvatar from '../base/BaseAvatar'
   import moment from 'moment';
   const USER_INFO_URL = '/api/v1/users/'
 
   export default {
     name: 'User',
     components: {
-      'avatar': Avatar,
+      'base-avatar': BaseAvatar,
     },
     data() {
       return {

@@ -46,7 +46,7 @@
             <v-col cols=12 md=1 />
             <v-col cols=12 md=1 class="ml-n9">
               <router-link :to="{name: 'MyEvents', params: {id: `${post.attributes.user.id}`}}">
-                <avatar />
+                <base-avatar />
               </router-link>
             </v-col>
             <v-col cols=12 md=8 class="mt-4 ml-n6">
@@ -166,7 +166,7 @@
 <script>
   import { secureAxios } from '../../backend/axios';
   import moment from 'moment';
-  import Avatar from '../../components/page/TheAvatar';
+  import BaseAvatar from '../../components/base/BaseAvatar';
   const ENTRY_URL = '/api/v1/entries'
 
   export default {
@@ -178,7 +178,7 @@
       }
     },
     components: {
-      'avatar': Avatar
+      'base-avatar': BaseAvatar
     },
     data() {
       return {

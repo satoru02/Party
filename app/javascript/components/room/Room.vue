@@ -17,7 +17,7 @@
           show-arrows>
           <v-slide-item v-for="n in 5" :key="n">
             <div>
-              <avatar />
+              <base-avatar />
             </div>
           </v-slide-item>
         </v-slide-group>
@@ -65,7 +65,7 @@
 <script>
   import { secureAxios } from '../../backend/axios';
   import RoomAppearance from '../../components/room/RoomAppearance';
-  import Avatar from '../page/TheAvatar';
+  import BaseAvatar from '../base/BaseAvatar';
   import moment from 'moment';
 
   const ROOM_URL = '/api/v1/rooms'
@@ -74,7 +74,7 @@
     name: "Room",
     components: {
       'room-appearance': RoomAppearance,
-      'avatar': Avatar,
+      'base-avatar': BaseAvatar,
     },
     data() {
       return {

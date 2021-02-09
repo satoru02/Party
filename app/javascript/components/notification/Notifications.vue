@@ -20,7 +20,7 @@
                         inline
                         color="#2176ff" />
                     </v-list-item-action>
-                    <avatar
+                    <base-avatar
                     　:avatar_url="notification.attributes.index_user_info[0].avatar"
                     />
                     <v-list-item-content>
@@ -48,7 +48,7 @@
 
 <script>
   import { secureAxios } from "../../backend/axios";
-  import Avatar from '../page/TheAvatar';
+  import BaseAvatar from '../base/BaseAvatar';
   import moment from 'moment';
   import InfiniteLoading from 'vue-infinite-loading';
   const NOTIFICATIONS_URL = `/api/v1/notifications`
@@ -56,7 +56,7 @@
   export default {
     name: 'Notifications',
     components: {
-      'avatar': Avatar,
+      'base-avatar': BaseAvatar,
       'infinite-loading': InfiniteLoading
     },
     data() {

@@ -7,14 +7,14 @@
 
 <script>
   import { secureAxios } from '../../backend/axios';
-  import Avatar from '../../components/page/TheAvatar.vue';
+  import BaseAvatar from '../../components/base/BaseAvatar.vue';
   import InfiniteLoading from 'vue-infinite-loading';
   import Card from '../../components/top/TopCard';
 
   export default {
     name: 'FilterCard',
     components: {
-      'avatar': Avatar,
+      'base-avatar': BaseAvatar,
       'infinite-loading': InfiniteLoading,
       'card': Card
     },
