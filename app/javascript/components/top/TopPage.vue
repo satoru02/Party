@@ -3,7 +3,7 @@
     <top-category-header v-if="$store.state.signedIn" />
     <div class="card" style="grid-area:card">
       <v-row>
-        <v-col cols=12 md=12></v-col>
+        <v-col cols=12 md=12 />
       </v-row>
       <v-row>
         <v-col
@@ -47,11 +47,12 @@
         <v-col cols=12 md=1 class="ml-2 mt-1">
           <router-link :to="{name: 'Top'}">
             <v-btn
-              color="#ff4800"
+              @click="condition = 'Top'"
+              :style="[condition === 'Top' ? pushedStyles : buttonStyles]"
               class="rounded-xl"
               small
               elevation="0">
-              <h3 style="color:#ffffff; font-size:1rem;">最新</h3>
+              <h3 :style="[condition === 'Top' ? pushedTextStyles : buttonTextStyles]">最新</h3>
             </v-btn>
           </router-link>
         </v-col>
@@ -60,12 +61,12 @@
           md=1
           class="ml-3 mt-1">
           <v-btn
-            @click="filterSearch(today)"
-            color="#343a40"
+            @click="filterSearch(today), condition = 'today'"
+            :style="[condition === 'today' ? pushedStyles : buttonStyles]"
             class="rounded-xl"
             small
             elevation="0">
-            <h3 style="color:#8b949e; font-size:1rem;">今日</h3>
+            <h3 :style="[condition === 'today' ? pushedTextStyles : buttonTextStyles]">今日</h3>
           </v-btn>
         </v-col>
         <v-col
@@ -73,12 +74,12 @@
           md=1
           class="ml-3 mt-1">
           <v-btn
-            @click="filterSearch(week)"
-            color="#343a40"
+            @click="filterSearch(week), condition = 'week'"
+            :style="[condition === 'week' ? pushedStyles : buttonStyles]"
             small
             class="rounded-xl"
             elevation="0">
-            <h3 style="color:#8b949e; font-size:1rem;">今週</h3>
+            <h3 :style="[condition === 'week' ? pushedTextStyles : buttonTextStyles]">今週</h3>
           </v-btn>
         </v-col>
         <v-col
@@ -86,12 +87,12 @@
           md=1
           class="ml-3 mt-1">
           <v-btn
-            @click="filterSearch(month)"
-            color="#343a40"
+            @click="filterSearch(month), condition = 'month'"
+            :style="[condition === 'month' ? pushedStyles : buttonStyles]"
             small
             class="rounded-xl"
             elevation="0">
-            <h3 style="color:#8b949e; font-size:1rem;">今月</h3>
+            <h3 :style="[condition === 'month' ? pushedTextStyles : buttonTextStyles]">今月</h3>
           </v-btn>
         </v-col>
       </v-row>
@@ -101,7 +102,7 @@
       dark
       vertical />
     <top-tag-header v-if="$store.state.signedIn" />
-    <v-divider 
+    <v-divider
       dark
       vertical />
   </div>
@@ -119,6 +120,8 @@
     },
     data() {
       return {
+        date: '最新',
+        condition: 'Top',
         today: {
           identifier: 'today',
           date: ''
@@ -131,7 +134,20 @@
           identifier: 'month',
           date: ''
         },
-        date: '最新'
+        pushedStyles: {
+          backgroundColor: "#ff4800",
+        },
+        buttonStyles: {
+          backgroundColor: "#343a40",
+        },
+        pushedTextStyles: {
+          fontSize: "1rem",
+          color: "#ffffff"
+        },
+        buttonTextStyles: {
+          fontSize: "1rem",
+          color: "#8b949e"
+        }
       }
     },
     watch: {
