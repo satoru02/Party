@@ -160,7 +160,7 @@
   const POST_EDIT_URL = '/api/v1/posts/'
 
   export default {
-    name: "postEdit",
+    name: "PostEdit",
     components: {
       'base-text-field': BaseTextField,
       'base-text-area': BaseTextArea,

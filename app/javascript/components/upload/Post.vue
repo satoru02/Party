@@ -168,7 +168,7 @@
   const POST_URL = '/api/v1/posts'
 
   export default {
-    name: "post",
+    name: "Post",
     components: {
       'base-text-field': BaseTextField,
       'base-text-area': BaseTextArea,
