@@ -13,6 +13,8 @@ Rails.application.routes.draw do
       resources :signup, only: [:create]
       resources :login, only: [:create, :destroy]
       resources :refresh, only: [:create]
+      resources :relationships, only: [:create, :destroy]
+
       resources :account_activations, only: [:create] do
         collection do
           post ':token', action: :create
@@ -65,6 +67,7 @@ Rails.application.routes.draw do
 
   get '/api/v1/users/:id/edit', to:'api/v1/users#edit'
   get '/api/v1/posts/:id/edit', to:'api/v1/posts#edit'
+
   #local
   get '/rails/active_storage/disk/:encoded_key/*filename', to: 'active_storage/disk#show'
   get '*path', to: 'home#index'

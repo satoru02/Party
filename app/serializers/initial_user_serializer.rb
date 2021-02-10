@@ -5,4 +5,12 @@ class InitialUserSerializer
   attributes :id, :name, :email, :role, :activated, :about, :web_url,
              :youtube_url, :facebook_url, :instagram_url, :filmarks_url,
              :username, :location, :activated_at
+
+  attribute :following do |object|
+    object.following.map(&:id)
+  end
+
+  attribute :follower do |object|
+    object.followers.map(&:id)
+  end
 end

@@ -108,6 +108,14 @@
       refresh(state, csrf) {
         state.signedIn = true
         state.csrf = csrf
+      },
+      follow(state, user_id) {
+        state.currentUser.data.attributes.following.push(user_id)
+      },
+      unfollow(state, user_id) {
+        state.currentUser.data.attributes.following = state.currentUser.data.attributes.following.filter(
+          following => following != user_id
+        )
       }
     },
     plugins: [createPersistedState()]

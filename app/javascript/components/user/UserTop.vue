@@ -33,7 +33,19 @@
             color="#121212"
             class="rounded-lg"
             style="border: 1px solid hsla(0,0%,100%,.1); height:auto; min-height: 180px; max-width: 100%; max-height:1000px;">
-            <h1 class="ml-3 mb-2 mt-2">@{{ user.username }}</h1>
+            <v-row>
+              <v-col cols=12 md=2>
+                <h3 class="ml-3 mb-2 mt-2" style="font-size:0.8rem;">{{ user.username }}</h3>
+              </v-col>
+              <v-col cols=12 md=5 />
+              <v-col cols=12 md=3 class="ml-2 mt-2">
+                <user-follow-button
+                 v-if="this.$store.state.currentUser.data.attributes.id != this.$route.params.id"
+                 :user_id="user.id"
+                 :followed="this.$store.state.currentUser.data.attributes.following.includes(user.id) ? true : false"
+                 />
+              </v-col>
+            </v-row>
             <v-divider />
             <v-list-item>
               <h3 style="color:#efeff1">主催回数：</h3>
@@ -93,15 +105,17 @@
 </template>
 
 <script>
-  import { secureAxios } from '../../backend/axios.js'
-  import BaseAvatar from '../base/BaseAvatar'
+  import { secureAxios } from '../../backend/axios.js';
+  import BaseAvatar from '../base/BaseAvatar';
+  import UserFollowButton from './UserFollowButton';
   import moment from 'moment';
-  const USER_INFO_URL = '/api/v1/users/'
+  const  USER_INFO_URL = '/api/v1/users/';
 
   export default {
     name: 'UserTop',
     components: {
       'base-avatar': BaseAvatar,
+      'user-follow-button': UserFollowButton
     },
     data() {
       return {
@@ -179,6 +193,3 @@
     }
   }
 </script>
-
-<style scoped>
-</style>
