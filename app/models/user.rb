@@ -1,6 +1,17 @@
 class User < ApplicationRecord
   include Rails.application.routes.url_helpers
 
+  has_many :active_relationships, class_name: "Relationship",
+            #myself => active_follower
+            foreign_key: "follower_id",
+            dependent: :destroy
+  has_many :passive_relationships, class_name: "Relationship",
+            #myself => passive_followed
+            foreign_key: "followed_id",
+            dependent: :destroy
+  has_many :following, through: :active_relationships, source: :followed
+  has_many :followers, through: :passive_relationships, source: :follower
+
   has_and_belongs_to_many :rooms, :uniq => true
   has_many :messages, dependent: :destroy
   has_many :posts, dependent: :destroy
@@ -8,15 +19,15 @@ class User < ApplicationRecord
   has_many :entry_responses, dependent: :destroy
   has_many :notifications, dependent: :destroy
   has_one_attached :avatar
-  has_secure_password
 
+  has_secure_password
   enum role: %i[user manager admin].freeze
   before_save :downcase_email
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
+  validates :password, presence: true, length: { minimum: 6 }, allow_nil:true
   validates :email, presence: true, length: { maximum: 235 },
              format: { with:VALID_EMAIL_REGEX },
              uniqueness: { case_sensitive: false }
-  validates :password, presence: true, length: { minimum: 6 }, allow_nil:true
   attr_accessor :online_status
 
   def authenticated?(attribute, token)
@@ -60,6 +71,18 @@ class User < ApplicationRecord
 
   def avatar_url(object)
     object.service_url
+  end
+
+  def follow(other_user)
+    following << other_user
+  end
+
+  def unfollow(other_user)
+    active_relationships.find_by(followed_id: other_user.id).destroy
+  end
+
+  def following?(other_user)
+    following.include?(other_user)
   end
 
   private
