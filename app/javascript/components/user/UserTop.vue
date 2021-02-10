@@ -145,12 +145,12 @@
           },
           Followers: {
             title: "フォロワー",
-            name: '',
+            name: 'UserFollowers',
             link: ''
           },
           Following: {
             title: "フォロー",
-            name: '',
+            name: 'UserFollowing',
             link: ''
           },
           About: {

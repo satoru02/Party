@@ -37,6 +37,8 @@
   import UserTop from './components/user/UserTop';
   import UserInitialSettings from './components/user/UserInitialSettings';
   import UserCardFilter from './components/user/UserCardFilter';
+  import UserFollowing from './components/user/UserFollowing';
+  import UserFollowers from './components/user/UserFollowers';
 
   import Room from './components/room/Room.vue';
   import Rooms from './components/room/Rooms.vue';
@@ -169,6 +171,22 @@
             path: "joined-events",
             name: "JoinedEvents",
             component: UserCardFilter,
+            props: (route) => ({
+              query: route.query.status
+            })
+          },
+          {
+            path: "following",
+            name: "UserFollowing",
+            component: UserFollowing,
+            props: (route) => ({
+              query: route.query.status
+            })
+          },
+          {
+            path: "followers",
+            name: "UserFollowers",
+            component: UserFollowers,
             props: (route) => ({
               query: route.query.status
             })

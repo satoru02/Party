@@ -49,10 +49,26 @@ module Api
         render json: serializer.serializable_hash.to_json
       end
 
+      def following
+        @user = User.find(params[:id])
+        @following_users = @user.following
+        serializer = FollowingSerializer.new(@following_users)
+        render json: serializer.serializable_hash.to_json
+      end
+
+      def followers
+        @user = User.find(params[:id])
+        @user_followers = @user.followers
+        serializer = FollowingSerializer.new(@user_followers)
+        render json: serializer.serializable_hash.to_json
+      end
+
       private
 
         def user_params
-          params.require(:user).permit(:email, :about, :web_url, :name, :username, :youtube_url, :facebook_url, :instagram_url, :filmarks_url, :location, :avatar)
+          params.require(:user).permit(
+            :email, :about, :web_url, :name, :username, :youtube_url, :facebook_url, :instagram_url, :filmarks_url, :location, :avatar
+          )
         end
 
         def set_user

@@ -39,6 +39,9 @@ Rails.application.routes.draw do
           get :me
           get ':id/posts', action: :posts
         end
+        member do
+          get :following, :followers
+        end
       end
 
       resources :rooms do
