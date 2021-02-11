@@ -2,7 +2,7 @@
   <v-app-bar
     fixed
     app
-    style="background-color:#161a1d">
+    style="background-color:#0e0e10">
     <router-link to="/">
       <v-toolbar-title>TITLE</v-toolbar-title>
     </router-link>

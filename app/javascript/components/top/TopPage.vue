@@ -1,111 +1,95 @@
 <template>
-  <div class="homes">
-    <top-category-header v-if="$store.state.signedIn" />
-    <div class="card" style="grid-area:card">
+  <v-row>
+    <v-col cols=12 md=3>
+      <v-row>
+        <v-col cols=12 md=12>
+          <top-category-header v-if="$store.state.signedIn" />
+        </v-col>
+      </v-row>
+      <v-row>
+        <v-col cols=12 md=12>
+          <top-tag-header v-if="$store.state.signedIn" />
+        </v-col>
+      </v-row>
+    </v-col>
+    <v-col cols=12 md=7 class=ml-n8>
       <v-row>
         <v-col cols=12 md=12 />
       </v-row>
       <v-row>
-        <v-col
-          v-if="$route.name === 'Top'"
-          v-model="date"
-          cols=12
-          md=4
-          class="ml-5">
-          <h1>最新のイベント</h1>
+        <v-col v-if="$route.name === 'Top'" v-model="date" cols=12 md=5 class="ml-5">
+          <h2>最新のイベント</h2>
         </v-col>
-        <v-col
-          v-if="$route.name === 'TopFilter'"
-          v-model="date"
-          cols=12
-          md=4
-          class="ml-5">
-          <h1>{{date}}のイベント</h1>
+        <v-col v-if="$route.name === 'TopFilter'" v-model="date" cols=12 md=5 class="ml-5">
+          <h2>{{date}}のイベント</h2>
         </v-col>
-        <v-col
-          v-if="$route.name === 'Category'"
-          cols=12
-          md=4
-          class="ml-5">
-          <h1>カテゴリー：{{this.$route.params.slug}}</h1>
+        <v-col v-if="$route.name === 'Category'" cols=12 md=5 class="ml-5">
+          <h2>カテゴリー：{{this.$route.params.slug}}</h2>
         </v-col>
-        <v-col
-          v-if="$route.name === 'Search'"
-          cols=12
-          md=4
-          class="ml-5">
-          <h1>検索結果：{{this.$route.params.query}}</h1>
+        <v-col v-if="$route.name === 'Search'" cols=12 md=5 class="ml-5">
+          <h2>検索結果：{{this.$route.params.query}}</h2>
         </v-col>
-        <v-col
-          v-if="$route.name === 'Tag'"
-          cols=12
-          md=4
-          class="ml-5">
-          <h1>タグ：{{this.$route.params.name}}</h1>
+        <v-col v-if="$route.name === 'Tag'" cols=12 md=5 class="ml-5">
+          <h2>タグ：{{this.$route.params.name}}</h2>
         </v-col>
-        <v-col cols=12 md=2 />
-        <v-col cols=12 md=1 class="ml-2 mt-1">
+        <v-col cols=12 md=1 class="mt-1 ml-16">
           <router-link :to="{name: 'Top'}">
-            <v-btn
-              @click="condition = 'Top'"
-              :style="[condition === 'Top' ? pushedStyles : buttonStyles]"
-              class="rounded-xl"
-              small
-              elevation="0">
+            <v-btn @click="condition = 'Top'" :style="[condition === 'Top' ? pushedStyles : buttonStyles]"
+              class="rounded-xl" small elevation=0>
               <h3 :style="[condition === 'Top' ? pushedTextStyles : buttonTextStyles]">最新</h3>
             </v-btn>
           </router-link>
         </v-col>
-        <v-col
-          cols=12
-          md=1
-          class="ml-3 mt-1">
-          <v-btn
-            @click="filterSearch(today), condition = 'today'"
-            :style="[condition === 'today' ? pushedStyles : buttonStyles]"
-            class="rounded-xl"
-            small
-            elevation="0">
+        <v-col cols=12 md=1 class="ml-2 mt-1">
+          <v-btn @click="filterSearch(today), condition = 'today'"
+            :style="[condition === 'today' ? pushedStyles : buttonStyles]" class="rounded-xl" small elevation=0>
             <h3 :style="[condition === 'today' ? pushedTextStyles : buttonTextStyles]">今日</h3>
           </v-btn>
         </v-col>
-        <v-col
-          cols=12
-          md=1
-          class="ml-3 mt-1">
-          <v-btn
-            @click="filterSearch(week), condition = 'week'"
-            :style="[condition === 'week' ? pushedStyles : buttonStyles]"
-            small
-            class="rounded-xl"
-            elevation="0">
+        <v-col cols=12 md=1 class="ml-2 mt-1">
+          <v-btn @click="filterSearch(week), condition = 'week'"
+            :style="[condition === 'week' ? pushedStyles : buttonStyles]" small class="rounded-xl" elevation=0>
             <h3 :style="[condition === 'week' ? pushedTextStyles : buttonTextStyles]">今週</h3>
           </v-btn>
         </v-col>
-        <v-col
-          cols=12
-          md=1
-          class="ml-3 mt-1">
-          <v-btn
-            @click="filterSearch(month), condition = 'month'"
-            :style="[condition === 'month' ? pushedStyles : buttonStyles]"
-            small
-            class="rounded-xl"
-            elevation="0">
+        <v-col cols=12 md=1 class="ml-2 mt-1">
+          <v-btn @click="filterSearch(month), condition = 'month'"
+            :style="[condition === 'month' ? pushedStyles : buttonStyles]" small class="rounded-xl" elevation=0>
             <h3 :style="[condition === 'month' ? pushedTextStyles : buttonTextStyles]">今月</h3>
           </v-btn>
         </v-col>
       </v-row>
       <router-view />
-    </div>
-    <v-divider
-      dark
-      vertical />
-    <top-tag-header v-if="$store.state.signedIn" />
-    <v-divider
-      dark
-      vertical />
-  </div>
+    </v-col>
+    <v-col cols=12 md=2 class="ml-n16">
+      <v-row class="mt-16">
+        <v-col cols=12 md=4 />
+        <v-col cols=12 md=4>
+        </v-col>
+        <v-col cols=12 md=4 />
+      </v-row>
+      <v-row class="mb-8 mt-2">
+        <v-sheet class="rounded-xl" width=320 height=520 color="#11151c"
+          style="border: 1px solid hsla(0,0%,100%,.1); height:auto; min-height: 520px; max-width: 100%; max-height:1000px;"
+        >
+          <v-row>
+          </v-row>
+          <v-row class="mt-n5">
+          </v-row>
+        </v-sheet>
+      </v-row>
+      <v-row>
+        <v-sheet class="rounded-xl" width=340 height=520 color="#11151c"
+          style="border: 1px solid hsla(0,0%,100%,.1); height:auto; min-height: 520px; max-width: 100%; max-height:1000px;"
+        >
+          <v-row>
+          </v-row>
+          <v-row class="mt-n5">
+          </v-row>
+        </v-sheet>
+      </v-row>
+    </v-col>
+  </v-row>
 </template>
 
 <script>
@@ -214,12 +198,5 @@
   span {
     font-family: 'Roboto', sans-serif;
     font-size: 10;
-  }
-
-  .homes {
-    display: grid;
-    grid-template-columns: 340px 810px 333px;
-    grid-template-areas: "category card list""tag card list";
-    grid-template-rows: 425px auto;
   }
 </style>
