@@ -6,7 +6,9 @@
 </template>
 
 <script>
-  import { secureAxios } from '../../backend/axios';
+  import {
+    secureAxios
+  } from '../../backend/axios';
   import BaseAvatar from '../../components/base/BaseAvatar.vue';
   import InfiniteLoading from 'vue-infinite-loading';
   import Card from '../../components/top/TopCard';
@@ -40,7 +42,9 @@
         this.posts = []
       },
       infiniteHandler($state) {
-        secureAxios.get(this.apiUrl(), { params: this.apiParams()})
+        secureAxios.get(this.apiUrl(), {
+            params: this.apiParams()
+          })
           .then((res) => {
             setTimeout(() => {
               if (res.data.data.length) {
@@ -53,33 +57,45 @@
             }, 100)
           })
       },
-      apiUrl(){
-        if(this.$route.name === "Top"){
+      apiUrl() {
+        if (this.$route.name === "Top") {
           return '/api/v1/posts'
-        } else if(this.$route.name === "TopFilter"){
+        } else if (this.$route.name === "TopFilter") {
           return '/api/v1/posts/search'
-        } else if(this.$route.name === "Category"){
+        } else if (this.$route.name === "Category") {
           return '/api/v1/categories' + `/` + `${this.$route.params.slug}`
-        } else if(this.$route.name === "Search"){
+        } else if (this.$route.name === "Search") {
           return '/api/v1/posts/search'
-        } else if(this.$route.name === "Tag"){
+        } else if (this.$route.name === "Tag") {
           return '/api/v1/tags' + `/` + `${this.$route.params.name}`
         }
       },
-      apiParams(){
-        var basic_params = { page: this.page, per_page: this.pageSize, user_id: `${this.$store.state.currentUser.data.attributes.id}` }
-        if(this.$route.name === "Top"){
-          var params = { position: 'top' }
+      apiParams() {
+        var basic_params = {
+          page: this.page,
+          per_page: this.pageSize,
+          user_id: `${this.$store.state.currentUser.data.attributes.id}`
+        }
+        if (this.$route.name === "Top") {
+          var params = {
+            position: 'top'
+          }
           return Object.assign(basic_params, params)
-        } else if(this.$route.name === "TopFilter"){
-          var params = { filter_category: 'date', q: this.$route.params.query }
+        } else if (this.$route.name === "TopFilter") {
+          var params = {
+            filter_category: 'date',
+            q: this.$route.params.query
+          }
           return Object.assign(basic_params, params)
-        } else if(this.$route.name === "Search"){
-          var params = { filter_category: 'title', q: this.$route.params.query }
+        } else if (this.$route.name === "Search") {
+          var params = {
+            filter_category: 'title',
+            q: this.$route.params.query
+          }
           return Object.assign(basic_params, params)
-        } else if(this.$route.name === "Tag"){
+        } else if (this.$route.name === "Tag") {
           return basic_params
-        } else if(this.$route.name === "Category"){
+        } else if (this.$route.name === "Category") {
           return basic_params
         }
       }

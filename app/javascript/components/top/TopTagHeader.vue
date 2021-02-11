@@ -4,7 +4,7 @@
       <v-container class="ml-16">
         <v-row no-gutters>
           <h2 class="mb-5 ml-8 mt-n3">ピックアップ</h2>
-          <v-col v-for="(tag, index) in tags" :key="index" class="ml-8" cols="12" sm="16">
+          <v-col cols=12 sm=12 md=12 lg=12 xl=12 v-for="(tag, index) in tags" :key="index" class="ml-8">
             <v-hover>
               <router-link :to="{name: 'Tag', params: {name: `${ tag.attributes.name }`}}">
                 <p class="tag_item" style="color:#d3d3d3; font-size: 15px;">#{{ tag.attributes.name }}</p>

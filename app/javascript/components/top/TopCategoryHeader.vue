@@ -1,12 +1,9 @@
 <template>
   <div class="category">
-    <v-container class="mt-4 ml-16">
-      <v-row>
-        <v-col cols=12 md=12></v-col>
-      </v-row>
+    <v-container class="ml-16">
       <v-row no-gutters>
         <h2 class="mb-5 ml-8 mt-n3">カテゴリー</h2>
-        <v-col v-for="(category, index) in categories" :key="index" class="mb-4 ml-8" cols="12" sm="16">
+        <v-col cols=12 sm=12 md=12 lg=12 xl=12 v-for="(category, index) in categories" :key="index" class="mb-4 ml-8">
           <router-link :to="{name: 'Category', params: {slug: `${ category.attributes.slug }`}}">
             <div class="category_item" style="color:#d3d3d3; font-size: 15px;">{{ category.attributes.name }}</div>
           </router-link>

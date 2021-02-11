@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <v-app style="background-color:#0e0e10">
-      <top-header></top-header>
+      <!-- <top-header></top-header> -->
       <v-main>
         <router-view></router-view>
       </v-main>

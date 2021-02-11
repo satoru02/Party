@@ -1,38 +1,36 @@
 <template>
   <v-row>
-    <v-col cols=12 md=3>
+    <v-col md=3 lg=3 xl=3 class="hidden-xs-only hidden-sm-only">
       <v-row>
-        <v-col cols=12 md=12>
+        <v-col md=12 lg=12 xl=12>
           <top-category-header v-if="$store.state.signedIn" />
         </v-col>
       </v-row>
       <v-row>
-        <v-col cols=12 md=12>
+        <v-col md=12 lg=12 xl=12>
           <top-tag-header v-if="$store.state.signedIn" />
         </v-col>
       </v-row>
     </v-col>
-    <v-col cols=12 md=7 class=ml-n8>
+
+    <v-col cols=12 sm=12 md=7 lg=7 xl=7 class=".d-flex">
       <v-row>
-        <v-col cols=12 md=12 />
-      </v-row>
-      <v-row>
-        <v-col v-if="$route.name === 'Top'" v-model="date" cols=12 md=5 class="ml-5">
+        <v-col v-if="$route.name === 'Top'" v-model="date" cols=5 sm=5 md=5 lg=5 xl=5 class="ml-5">
           <h2>最新のイベント</h2>
         </v-col>
-        <v-col v-if="$route.name === 'TopFilter'" v-model="date" cols=12 md=5 class="ml-5">
+        <v-col v-if="$route.name === 'TopFilter'" v-model="date" cols=5 sm=5 md=5 lg=5 xl=5 class="ml-5">
           <h2>{{date}}のイベント</h2>
         </v-col>
-        <v-col v-if="$route.name === 'Category'" cols=12 md=5 class="ml-5">
+        <v-col v-if="$route.name === 'Category'" cols=5 sm=5 md=5 lg=5 xl=5 class="ml-5">
           <h2>カテゴリー：{{this.$route.params.slug}}</h2>
         </v-col>
-        <v-col v-if="$route.name === 'Search'" cols=12 md=5 class="ml-5">
+        <v-col v-if="$route.name === 'Search'" cols=5 sm=5 md=5 lg=5 xl=5 class="ml-5">
           <h2>検索結果：{{this.$route.params.query}}</h2>
         </v-col>
-        <v-col v-if="$route.name === 'Tag'" cols=12 md=5 class="ml-5">
+        <v-col v-if="$route.name === 'Tag'" cols=5 sm=5 md=5 lg=5 xl=5 class="ml-5">
           <h2>タグ：{{this.$route.params.name}}</h2>
         </v-col>
-        <v-col cols=12 md=1 class="mt-1 ml-16">
+        <v-col cols=1 sm=1 md=1 lg=1 xl=1 class="mt-1 ml-16">
           <router-link :to="{name: 'Top'}">
             <v-btn @click="condition = 'Top'" :style="[condition === 'Top' ? pushedStyles : buttonStyles]"
               class="rounded-xl" small elevation=0>
@@ -40,19 +38,19 @@
             </v-btn>
           </router-link>
         </v-col>
-        <v-col cols=12 md=1 class="ml-2 mt-1">
+        <v-col cols=1 sm=1 md=1 lg=1 xl=1 class="ml-2 mt-1">
           <v-btn @click="filterSearch(today), condition = 'today'"
             :style="[condition === 'today' ? pushedStyles : buttonStyles]" class="rounded-xl" small elevation=0>
             <h3 :style="[condition === 'today' ? pushedTextStyles : buttonTextStyles]">今日</h3>
           </v-btn>
         </v-col>
-        <v-col cols=12 md=1 class="ml-2 mt-1">
+        <v-col cols=1 sm=1 md=1 lg=1 xl=1 class="ml-2 mt-1">
           <v-btn @click="filterSearch(week), condition = 'week'"
             :style="[condition === 'week' ? pushedStyles : buttonStyles]" small class="rounded-xl" elevation=0>
             <h3 :style="[condition === 'week' ? pushedTextStyles : buttonTextStyles]">今週</h3>
           </v-btn>
         </v-col>
-        <v-col cols=12 md=1 class="ml-2 mt-1">
+        <v-col cols=1 sm=1 md=1 lg=1 xl=1 class="ml-2 mt-1">
           <v-btn @click="filterSearch(month), condition = 'month'"
             :style="[condition === 'month' ? pushedStyles : buttonStyles]" small class="rounded-xl" elevation=0>
             <h3 :style="[condition === 'month' ? pushedTextStyles : buttonTextStyles]">今月</h3>
@@ -61,17 +59,11 @@
       </v-row>
       <router-view />
     </v-col>
-    <v-col cols=12 md=2 class="ml-n16">
-      <v-row class="mt-16">
-        <v-col cols=12 md=4 />
-        <v-col cols=12 md=4>
-        </v-col>
-        <v-col cols=12 md=4 />
-      </v-row>
-      <v-row class="mb-8 mt-2">
-        <v-sheet class="rounded-xl" width=320 height=520 color="#11151c"
-          style="border: 1px solid hsla(0,0%,100%,.1); height:auto; min-height: 520px; max-width: 100%; max-height:1000px;"
-        >
+
+    <v-col md=2 lg=2 xl=2 class="ml-n16 hidden-xs-only hidden-sm-only">
+      <v-row class="mb-4 mt-4">
+        <v-sheet class="rounded-xl" width=320 height=400 color="#11151c"
+          style="border: 1px solid hsla(0,0%,100%,.1); height:auto; min-height: 220px; max-width: 100%; max-height:1000px;">
           <v-row>
           </v-row>
           <v-row class="mt-n5">
@@ -80,8 +72,7 @@
       </v-row>
       <v-row>
         <v-sheet class="rounded-xl" width=340 height=520 color="#11151c"
-          style="border: 1px solid hsla(0,0%,100%,.1); height:auto; min-height: 520px; max-width: 100%; max-height:1000px;"
-        >
+          style="border: 1px solid hsla(0,0%,100%,.1); height:auto; min-height: 520px; max-width: 100%; max-height:1000px;">
           <v-row>
           </v-row>
           <v-row class="mt-n5">
