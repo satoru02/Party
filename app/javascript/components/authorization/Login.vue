@@ -4,7 +4,7 @@
       <v-col cols=1 sm=1 md=1 lg=3 xl=3 />
       <v-col cols=10 sm=10 md=10 lg=6 xl=6>
         <v-sheet elevation=10 style="border: 1px solid hsla(0,0%,100%,.1); height:auto; width:auto;" color="#212529"
-          class="rounded-lg mt-12">
+          class="rounded-lg mt-6">
           <v-row>
             <v-col cols=12 md=2></v-col>
             <v-col cols=12 md=8 class="mt-8">
@@ -102,7 +102,7 @@
             <v-col cols=10 sm=10 md=10 lg=10 xl=10>
               <v-text-field @click="visible = false" v-model="password" :type="visible ? 'text': 'password'" outlined
                 dark filled dense />
-            <v-col cols=1 sm=1 md=1 lg=1 xl=1 />
+              <v-col cols=1 sm=1 md=1 lg=1 xl=1 />
             </v-col>
           </v-row>
 
