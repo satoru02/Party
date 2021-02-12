@@ -1,16 +1,15 @@
 <template>
-  <div class="text-center">
     <v-menu
       open-on-hover
       offset-y
       left
-      nudge-left=32
-      nudge-height=600
+      nudge-right=60
+      nudge-height=800
       nudge-width=130>
       <template v-slot:activator="{ on, attrs }">
         <div v-bind="attrs" v-on="on">
           <base-avatar
-            :size="32"
+            :size="29"
             :avatar_url="avatar"/>
         </div>
       </template>
@@ -29,7 +28,6 @@
         </v-list-item>
       </v-list>
     </v-menu>
-  </div>
 </template>
 
 <script>

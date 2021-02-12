@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <v-app style="background-color:#0e0e10">
-      <!-- <top-header></top-header> -->
+      <top-header></top-header>
       <v-main>
         <router-view></router-view>
       </v-main>
@@ -301,7 +301,7 @@
   }
 </script>
 
-<style>
+<style scoped>
   @import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700&display=swap');
   @import url('https://fonts.googleapis.com/css2?family=Montserrat&family=Open+Sans:wght@400;700&display=swap');
 

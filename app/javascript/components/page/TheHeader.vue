@@ -1,25 +1,28 @@
 <template>
-  <v-app-bar
-    fixed
-    app
-    style="background-color:#0e0e10">
-    <router-link to="/">
-      <v-toolbar-title>TITLE</v-toolbar-title>
-    </router-link>
-    <v-row>
-      <v-col cols=12 md=3 />
-      <v-col cols=12 md=5 class="mt-6 ml-8" >
-        <v-text-field rounded height="39" prepend-inner-icon="mdi-magnify" background-color="#212529" v-model="query" @keydown.enter="searchPost(query)" placeholder="検索"></v-text-field>
+  <v-app-bar fixed app style="background-color:#0e0e10">
+    <v-row no-gutters dense>
+      <v-col lg=4 xl=4 class="hidden-xs-only hidden-sm-only hidden-md-only mt-6">
+        <router-link to="/">
+          <v-toolbar-title>TITLE</v-toolbar-title>
+        </router-link>
       </v-col>
-      <v-col cols=12 md=1 />
-      <v-col cols=12 md=1 class="mt-6">
-        <notification-menu />
+      <v-col sm=2 md=4 lg=4 xl=4 class="mt-6 hidden-xs-only">
+        <v-text-field rounded height="38" prepend-inner-icon="mdi-magnify" background-color="#212529" v-model="query"
+          @keydown.enter="searchPost(query)" placeholder="検索"></v-text-field>
       </v-col>
-      <v-col cols=12 md=1 class="ml-n5 mt-6">
-        <user-menu />
-      </v-col>
-      <v-col cols=12 md=1 class="ml-n6 mt-7">
-        <base-button />
+      <v-col xs=12 sm=10 md=8 lg=4 xl=4>
+        <v-row>
+          <v-col lg=5 xl=1 class="hidden-xs-only" />
+          <v-col lg=3 class=mt-1>
+            <notification-menu />
+          </v-col>
+          <v-col lg=1 class="mt-2 ml-n4">
+            <user-menu />
+          </v-col>
+          <v-col lg=1 class="mt-2 ml-5">
+            <base-post-button />
+          </v-col>
+        </v-row>
       </v-col>
     </v-row>
   </v-app-bar>
@@ -34,7 +37,7 @@
     name: 'TheHeader',
     components: {
       'notification-menu': NotificationMenu,
-      'base-button': BasePostButton,
+      'base-post-button': BasePostButton,
       'user-menu': UserMenu,
     },
     data() {
@@ -43,8 +46,13 @@
       }
     },
     methods: {
-      searchPost(query){
-        this.$router.push({name: "Search", params: { query: query } }).catch(err => {})
+      searchPost(query) {
+        this.$router.push({
+          name: "Search",
+          params: {
+            query: query
+          }
+        }).catch(err => {})
       },
       showAdminLink() {
         return this.$store.getters.isAdmin || this.$store.getters.isManager
@@ -53,15 +61,11 @@
   }
 </script>
 
-<style scoped>
-.v-application--is-ltr .v-text-field .v-input__prepend-inner {
-  margin-right: auto;
-  padding-right: 15px;
-  margin-left: -10px;
-}
-
-.v-application--is-ltr .v-text-field .v-input__prepend-inner .v-input__icon {
-  height: 30px;
-  color: #343a40;
-}
+<style>
+  .v-application--is-ltr .v-text-field .v-input__prepend-inner {
+    margin-right: auto;
+    padding-right: 17px;
+    color:darkgrey;
+    padding-top: 2px;
+  }
 </style>
