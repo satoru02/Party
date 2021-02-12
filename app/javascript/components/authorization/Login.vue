@@ -1,53 +1,57 @@
 <template>
   <div justify="center" align="center">
-    <v-sheet elevation=10 style="border: 1px solid hsla(0,0%,100%,.1);" color="#212529" height="650" class="rounded-lg mt-12"
-      width="650">
-      <v-row>
-        <v-col cols=12 md=2></v-col>
-        <v-col cols=12 md=8 class="mt-8">
-          <h1>VIDEOKITコミュニティへようこそ！</h1>
-          <h2 style="color:#6c757d;">好きな友達とパーティしよう。</h2>
-        </v-col>
-      </v-row>
+    <v-row>
+      <v-col cols=1 sm=1 md=1 lg=3 xl=3 />
+      <v-col cols=10 sm=10 md=10 lg=6 xl=6>
+        <v-sheet elevation=10 style="border: 1px solid hsla(0,0%,100%,.1); height:auto; width:auto;" color="#212529"
+          class="rounded-lg mt-12">
+          <v-row>
+            <v-col cols=12 md=2></v-col>
+            <v-col cols=12 md=8 class="mt-8">
+              <h2>VIDEOKITコミュニティへようこそ！</h2>
+              <h2 style="color:#6c757d;">好きな友達とパーティしよう。</h2>
+            </v-col>
+          </v-row>
 
-      <v-row class="mt-5">
-        <v-col cols=12 md=1></v-col>
-        <v-col cols=12 md=10>
-          <v-btn large depressed block color="#0a0908">
-            <v-row>
-              <v-col cols=12 md=3></v-col>
-              <v-col cols=12 md=1>
-                <v-icon class="ml-7 mt-3">mdi-apple</v-icon>
-              </v-col>
-              <v-col cols=12 md=3>
-                <p class="ml-7 mt-4" style="font-size:0.8rem;">Appleでログイン</p>
-              </v-col>
-              <v-col cols=12 md=3></v-col>
-            </v-row>
-          </v-btn>
-        </v-col>
-        <v-col cols=12 md=1></v-col>
+          <v-row class="mt-5">
+            <v-col cols=1 sm=1 md=1 lg=1 xl=1 />
+            <v-col cols=10 sm=10 md=10 lg=10 xl=10>
+              <v-btn large depressed block color="#0a0908">
+                <v-row>
+                  <v-col cols=2 sm=3 md=3 lg=3 xl=3 />
+                  <v-col cols=1 sm=1 md=1 lg=1 xl=1>
+                    <v-icon class="ml-7 mt-3">mdi-apple</v-icon>
+                  </v-col>
+                  <v-col cols=3 sm=3 md=3 lg=3 xl=3>
+                    <p class="ml-7 mt-4" style="font-size:0.8rem;">Appleでログイン</p>
+                  </v-col>
+                  <v-col cols=3 sm=3 md=3 lg=3 xl=3 />
+                </v-row>
+              </v-btn>
+            </v-col>
+            <v-col cols=1 sm=1 md=1 lg=1 xl=1 />
+          </v-row>
 
-      </v-row>
-      <v-row class="mt-n3">
-        <v-col cols=12 md=1></v-col>
-        <v-col cols=12 md=10>
-          <v-btn large depressed block color="#4285f4">
-            <v-row>
-              <v-col cols=12 md=3></v-col>
-              <v-col cols=12 md=1>
-                <v-icon class="ml-7 mt-3">mdi-google</v-icon>
-              </v-col>
-              <v-col cols=12 md=3>
-                <p class="ml-7 mt-4" style="font-size:0.8rem;">Googleでログイン</p>
-              </v-col>
-              <v-col cols=12 md=3></v-col>
-            </v-row>
-          </v-btn>
-        </v-col>
-        <v-col cols=12 md=1></v-col>
-      </v-row>
-      <!-- <v-row class="mt-n3">
+          <v-row class="mt-n3">
+            <v-col cols=1 sm=1 md=1 lg=1 xl=1 />
+            <v-col cols=10 sm=10 md=10 lg=10 xl=10>
+              <v-btn large depressed block color="#4285f4">
+                <v-row>
+                  <v-col cols=2 sm=3 md=3 lg=3 xl=3 />
+                  <v-col cols=1 sm=1 md=1 lg=1 xl=1>
+                    <v-icon class="ml-7 mt-3">mdi-google</v-icon>
+                  </v-col>
+                  <v-col cols=3 sm=3 md=3 lg=3 xl=3>
+                    <p class="ml-7 mt-4" style="font-size:0.8rem;">Googleでログイン</p>
+                  </v-col>
+                  <v-col cols=3 sm=3 md=3 lg=3 xl=3 />
+                </v-row>
+              </v-btn>
+            </v-col>
+            <v-col cols=1 sm=1 md=1 lg=1 xl=1 />
+          </v-row>
+
+          <!-- <v-row class="mt-n3">
         <v-col cols=12 md=2></v-col>
         <v-col cols=12 md=8>
           <v-btn large depressed block color="#1da1f2">
@@ -64,70 +68,81 @@
           </v-btn>
         </v-col>
       </v-row> -->
-      <v-row>
-        <v-col cols=12 md=2></v-col>
-        <v-col cols=12 md=8>
-          <p>or</p>
-        </v-col>
-      </v-row>
-      <v-row class="mt-n10">
-        <v-col cols=12 md=1></v-col>
-        <v-col cols=12 md=2 class="ml-n4">
-          <h3 style="color:#edf2f4;">Eメール</h3>
-        </v-col>
-      </v-row>
-      <v-row class="mt-n4">
-        <v-col cols=12 md=1></v-col>
-        <v-col cols=12 md=10>
-          <v-text-field v-model="email" outlined filled dense></v-text-field>
-        </v-col>
-      </v-row>
+          <v-row>
+            <v-col cols=2 sm=2 md=2 lg=2 xl=2 />
+            <v-col cols=8 sm=8 md=8 lg=8 xl=8>
+              <p>or</p>
+            </v-col>
+          </v-row>
 
-      <v-row class="mt-n5">
-        <v-col cols=12 md=1></v-col>
-        <v-col cols=12 md=2 class="ml-n2">
-          <h3 style="color:#edf2f4;">パスワード</h3>
-        </v-col>
-      </v-row>
-      <v-row class="mt-n4">
-        <v-col cols=12 md=1></v-col>
-        <v-col cols=12 md=10>
-          <v-text-field @click="visible = false" v-model="password" :type="visible ? 'text': 'password'" outlined dark filled dense></v-text-field>
-        </v-col>
-      </v-row>
-      <v-row>
-        <v-col cols=12 md=1></v-col>
-        <v-col cols=12 md=3 class="mt-n11 ml-n5">
-          <router-link :to="{name: 'ForgotPassword'}">
-            <div>
-              <p style="font-size:0.7rem; color:#6c757d;">パスワードを忘れた</p>
-            </div>
-          </router-link>
-        </v-col>
-      </v-row>
-      <v-row>
-        <v-col cols=12 md=1></v-col>
-        <v-col cols=12 md=10>
-          <v-btn @click="signin()" large depressed block color="#2d00f7">
-            <v-row>
-              <v-col cols=12 md=5></v-col>
-              <v-col cols=12 md=2>
-                <p class="mt-4" style="font-size:1rem;">ログイン</p>
-              </v-col>
-            </v-row>
-          </v-btn>
-        </v-col>
-      </v-row>
-      <v-row>
-        <v-col cols=12 md=1></v-col>
-        <v-col cols=12 md=3 class="ml-n8 mt-n4">
-          <router-link :to="{name: 'signup'}">
-            <p style="font-size:0.7rem; color:#6c757d;">アカウント作成</p>
-          </router-link>
-        </v-col>
-      </v-row>
+          <v-row class="mt-n10">
+            <v-col cols=1 sm=1 md=1 lg=1 xl=1 />
+            <v-col cols=3 sm=3 md=2 lg=2 xl=2 class="ml-n5">
+              <h3 style="color:#edf2f4;">Eメール</h3>
+            </v-col>
+          </v-row>
 
-    </v-sheet>
+          <v-row class="mt-n4">
+            <v-col cols=1 sm=1 md=1 lg=1 xl=1 />
+            <v-col cols=10 sm=10 md=10 lg=10 xl=10>
+              <v-text-field v-model="email" outlined filled dense />
+            </v-col>
+            <v-col cols=1 sm=1 md=1 lg=1 xl=1 />
+          </v-row>
+
+          <v-row class="mt-n5">
+            <v-col cols=1 sm=1 md=1 lg=1 xl=1 />
+            <v-col cols=3 sm=3 md=2 lg=2 xl=2 class="ml-n3">
+              <h3 style="color:#edf2f4;">パスワード</h3>
+            </v-col>
+          </v-row>
+
+          <v-row class="mt-n4">
+            <v-col cols=1 sm=1 md=1 lg=1 xl=1 />
+            <v-col cols=10 sm=10 md=10 lg=10 xl=10>
+              <v-text-field @click="visible = false" v-model="password" :type="visible ? 'text': 'password'" outlined
+                dark filled dense />
+            <v-col cols=1 sm=1 md=1 lg=1 xl=1 />
+            </v-col>
+          </v-row>
+
+          <v-row>
+            <v-col cols=2 sm=2 md=1 lg=1 xl=1 />
+            <v-col cols=4 sm=4 md=3 lg=3 xl=3 class="mt-n16 ml-n7">
+              <router-link :to="{name: 'ForgotPassword'}">
+                <div>
+                  <p style="font-size:0.7rem; color:#6c757d;">パスワードを忘れた</p>
+                </div>
+              </router-link>
+            </v-col>
+          </v-row>
+
+          <v-row class="mt-n10">
+            <v-col cols=1 sm=1 md=1 lg=1 xl=1 />
+            <v-col cols=10 sm=10 md=10 lg=10 xl=10>
+              <v-btn @click="signin()" large depressed block color="#2d00f7">
+                <v-row>
+                  <v-col cols=4 sm=5 md=5 lg=5 xl=5 />
+                  <v-col cols=2 sm=2 md=2 lg=2 xl=2>
+                    <p class="mt-4" style="font-size:1rem;">ログイン</p>
+                  </v-col>
+                </v-row>
+              </v-btn>
+            </v-col>
+          </v-row>
+
+          <v-row>
+            <v-col cols=2 sm=2 md=1 lg=1 xl=1 />
+            <v-col cols=3 sm=3 md=3 lg=3 xl=3 class="ml-n10 mt-n3">
+              <router-link :to="{name: 'signup'}">
+                <p style="font-size:0.7rem; color:#6c757d;">アカウント作成</p>
+              </router-link>
+            </v-col>
+          </v-row>
+        </v-sheet>
+      </v-col>
+      <v-col cols=1 sm=1 md=1 lg=3 xl=3 />
+    </v-row>
     <v-row class="mt-8">
       <v-col cols=12 md=12></v-col>
     </v-row>
@@ -184,10 +199,10 @@
         }
         simpleAxios.defaults.headers.common['Authorization'] = `Bearer ${response.data.access_token}`
         simpleAxios.get(USER_INFO_URL, {
-          params: {
-            position: 'login'
-          }
-        })
+            params: {
+              position: 'login'
+            }
+          })
           .then(me_response => {
             this.$store.commit('setCurrentUser', {
               currentUser: me_response.data,
@@ -214,11 +229,15 @@
   }
 </script>
 
-<style lang="css">
+<style scoped>
   .form-signup {
     width: 70%;
     max-width: 500px;
     padding: 10% 15px;
     margin: 0 auto;
+  }
+
+  h3 {
+    font-size: 0.9rem;
   }
 </style>
