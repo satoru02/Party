@@ -2,48 +2,26 @@
   <div>
     <v-container>
       <v-row>
-        <v-col cols=12 />
+        <v-col cols=12 sm=12 md=12 lg=12 xl=12 />
       </v-row>
+
       <v-row>
-        <v-col cols=12 md=3 class="ml-16">
-          <base-avatar
-            :size="140"
-            :avatar_url="user.avatar_url" />
-        </v-col>
-        <v-col cols=12 md=auto class="ml-n3">
-          <v-btn
-            v-for="(n, index) in items"
-            :key="index"
-            color="#efeff1"
-            text
-            rounded
-            class="my-2 mt-8">
-            <router-link :to="{ name: n.name }">
-              <div style="color:#efeff1; font-size:0.7rem;">{{ n.title }}</div>
-            </router-link>
-          </v-btn>
-          <v-divider
-            dark
-            class="mt-n1" />
-        </v-col>
-      </v-row>
-      <v-row>
-        <v-col cols=12 md=3 class="ml-n2 mt-2">
-          <v-sheet
-            color="#121212"
-            class="rounded-lg"
-            style="border: 1px solid hsla(0,0%,100%,.1); height:auto; min-height: 180px; max-width: 100%; max-height:1000px;">
+        <v-col md=3 lg=3 xl=3 align="center" class="hidden-xs-only hidden-sm-only">
+          <base-avatar class="ml-6" :size="150" :avatar_url="user.avatar_url" />
+          <v-row>
+            <v-col lg=12 xl=12 />
+          </v-row>
+          <v-sheet color="#11151c" class="rounded-lg" width="230"
+            style="border: 1px solid hsla(0,0%,100%,.1); height:auto; max-width: 100%;">
             <v-row>
-              <v-col cols=12 md=2>
+              <v-col lg=3 xl=3>
                 <h3 class="ml-3 mb-2 mt-2" style="font-size:0.8rem;">{{ user.username }}</h3>
               </v-col>
-              <v-col cols=12 md=5 />
-              <v-col cols=12 md=3 class="ml-2 mt-2">
-                <user-follow-button
-                 v-if="this.$store.state.currentUser.data.attributes.id != this.$route.params.id"
-                 :user_id="user.id"
-                 :followed="this.$store.state.currentUser.data.attributes.following.includes(user.id) ? true : false"
-                 />
+              <v-col lg=3 xl=3 />
+              <v-col lg=4 xl=4 class="ml-2 mt-1">
+                <user-follow-button v-if="this.$store.state.currentUser.data.attributes.id != this.$route.params.id"
+                  :user_id="user.id"
+                  :followed="this.$store.state.currentUser.data.attributes.following.includes(user.id) ? true : false" />
               </v-col>
             </v-row>
             <v-divider />
@@ -62,54 +40,60 @@
             </v-list-item>
             <v-list-item class="mt-n7">
               <h3 style="color:#efeff1">フォロー：</h3>
-              <v-col cols=5 md=1>
+              <v-col md=1 lg=1 xl=1>
                 <v-list-item class="pl-1">
-                  <v-icon
-                    v-if="user.facebook_url"
-                    small>
+                  <v-icon v-if="user.facebook_url" small>
                     mdi-facebook
                   </v-icon>
                 </v-list-item>
               </v-col>
-              <v-col cols=5 md=1>
+              <v-col md=1 lg=1 xl=1>
                 <v-list-item class="pl-1">
-                  <v-icon
-                    v-if="user.youtube_url"
-                    small>
+                  <v-icon v-if="user.youtube_url" small>
                     mdi-youtube
                   </v-icon>
                 </v-list-item>
               </v-col>
-              <v-col cols=5 md=1>
+              <v-col md=1 lg=1 xl=1>
                 <v-list-item class="pl-1">
-                  <v-icon
-                    v-if="user.instagram_url"
-                    small>
+                  <v-icon v-if="user.instagram_url" small>
                     mdi-instagram
                   </v-icon>
                 </v-list-item>
               </v-col>
             </v-list-item>
-             <v-list-item class="mt-n6">
+            <v-list-item class="mt-n6">
               <h3 style="color:#efeff1">登録日：</h3>
               <h3 class="ml-7" style="color:#efeff1; font-size:0.8rem">{{ joinedTime(user.activated_at) }}</h3>
             </v-list-item>
           </v-sheet>
         </v-col>
-        <v-col cols=12 md=8 class="mt-n16 ml-12">
+        <v-spacer />
+        <v-col cols=1 sm=1 class="hidden-md-only hidden-lg-only hidden-xl-only" />
+        <v-col cols=10 sm=10 md=8 lg=8 xl=8 class="fill-height">
+          <v-btn @click="changeUserComponent(n.name)" class="ml-1 mb-1" v-for="(n, index) in items" :key="index" color="#efeff1" text rounded>
+            <div style="color:#efeff1; font-size:0.7rem;">{{ n.title }}</div>
+          </v-btn>
+          <v-divider dark />
+          <v-row>
+            <v-col cols=12 sm=12 md=12 lg=12 xl=12 />
+          </v-row>
           <router-view />
         </v-col>
+        <v-col cols=1 sm=1 class="hidden-md-only hidden-lg-only hidden-xl-only" />
       </v-row>
     </v-container>
   </div>
 </template>
 
 <script>
-  import { secureAxios } from '../../backend/axios.js';
+  import {
+    secureAxios
+  } from '../../backend/axios.js';
   import BaseAvatar from '../base/BaseAvatar';
   import UserFollowButton from './UserFollowButton';
   import moment from 'moment';
-  const  USER_INFO_URL = '/api/v1/users/';
+  const USER_INFO_URL = '/api/v1/users/';
 
   export default {
     name: 'UserTop',
@@ -119,6 +103,11 @@
     },
     data() {
       return {
+        justify: [
+          'start',
+          'center',
+          'center',
+        ],
         user: '',
         events: [],
         error: '',
@@ -161,7 +150,7 @@
         }
       }
     },
-    created(){
+    created() {
       this.checkSignedIn()
       this.fetchUserInformation()
     },
@@ -189,7 +178,16 @@
       },
       joinedTime(time) {
         return moment(time).format("YYYY/MM/DD")
+      },
+      changeUserComponent(name){
+        this.$router.push({name: name})
       }
     }
   }
 </script>
+
+<style scoped>
+  h3 {
+    font-size: 0.9rem;
+  }
+</style>
