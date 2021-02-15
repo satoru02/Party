@@ -7,9 +7,9 @@
       nudge-height=800
       nudge-width=130>
       <template v-slot:activator="{ on, attrs }">
-        <div v-bind="attrs" v-on="on">
+        <div v-bind="attrs" v-on="on" class="mt-1 ml-4">
           <base-avatar
-            :size="29"
+            :size="22"
             :avatar_url="avatar"/>
         </div>
       </template>

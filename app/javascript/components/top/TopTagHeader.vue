@@ -6,6 +6,9 @@
           <v-col cols=12 sm=12 md=12 lg=12 xl=12 v-for="(tag, index) in tags" :key="index" class="ml-8">
             <v-hover>
               <router-link :to="{name: 'Tag', params: {name: `${ tag.attributes.name }`}}">
+                <!-- <v-btn rounded class="mb-2">
+                  #{{ tag.attributes.name }}
+                </v-btn> -->
                 <p class="tag_item" style="font-size: 15px;">#{{ tag.attributes.name }}</p>
               </router-link>
             </v-hover>

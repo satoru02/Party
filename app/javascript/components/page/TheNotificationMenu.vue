@@ -6,13 +6,13 @@
           <div v-bind="attrs" v-on="on">
             <v-badge v-if="entryNotifications.length > 0" color="red" :content="entryNotifications.length" bordered overlap>
               <router-link to="/notifications">
-                <v-icon class="icon" size=29>
+                <v-icon class="icon mt-1 ml-7" size=22 color="#8b949e">
                   mdi-bell-outline
                 </v-icon>
               </router-link>
             </v-badge>
             <router-link to="/notifications">
-              <v-icon v-if="entryNotifications.length === 0" class="icon" size=29>
+              <v-icon v-if="entryNotifications.length === 0" class="icon mt-1 ml-7" size=22 color="#8b949e">
                 mdi-bell-outline
               </v-icon>
             </router-link>
@@ -51,11 +51,11 @@
             <v-badge color="red" bordered overlap v-if="messageNotifications.length > 0"
               :content="messageNotifications.length">
               <router-link to="/rooms">
-                <v-icon class="icon" size=29>mdi-chat-outline</v-icon>
+                <v-icon class="icon mt-1 ml-6" size=22 color="#8b949e">mdi-chat-outline</v-icon>
               </router-link>
             </v-badge>
             <router-link to="/rooms">
-              <v-icon v-if="messageNotifications.length === 0" class="icon" size=29>mdi-chat-outline</v-icon>
+              <v-icon v-if="messageNotifications.length === 0" class="icon mt-1 ml-6" size=22 color="#8b949e">mdi-chat-outline</v-icon>
             </router-link>
           </div>
         </template>
