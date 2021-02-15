@@ -1,31 +1,32 @@
 <template>
-  <v-container fluid>
+  <v-container fluid fill-height justify="center" align="center" style="position:fixed; height:100%">
     <v-row>
-      <v-col lg=3 xl=4>
-        <v-responsive class="overflow-y-auto flex-grow-1 flex-shrink-0" style="height:780px;">
-        <v-list-item three-line class="tile" v-for="room in rooms" :key="room.id"
-          @click="moveRoom(room), checkConfirmation(room)">
-          <v-list-item-icon>
-            <base-avatar :size="40" />
-            <!-- <base-avatar :avatar_url="checkAvatar(room.attributes.host_id, room.attributes.avatar_info)" class="mt-n1"></base-avatar> -->
-          </v-list-item-icon>
-          <v-list-item-content>
-            <v-list-item-title>{{ room.attributes.name }}</v-list-item-title>
-            <v-list-item-subtitle class="room_message">{{ room.attributes.latest_message.content }}
-            </v-list-item-subtitle>
-          </v-list-item-content>
-          <v-list-item-action>
-            <v-list-item-action-text>
-              {{ postTime(room.attributes.latest_message.created_at) }}
-            </v-list-item-action-text>
-            <v-btn icon v-if="room.attributes.latest_message.confirmation === false">
-              <v-icon size=8 color="#2176ff">mdi-checkbox-blank-circle</v-icon>
-            </v-btn>
-          </v-list-item-action>
-        </v-list-item>
+      <v-col lg=4 xl=4 class="hidden-md-only hidden-xs-only hidden-sm-only">
+        <v-responsive class="overflow-y-auto flex-grow-1 flex-shrink-0" style="height: 800px;">
+          <v-list-item three-line class="tile" v-for="room in rooms" :key="room.id"
+            @click="moveRoom(room), checkConfirmation(room)">
+            <v-list-item-icon>
+              <base-avatar :size="40" />
+              <!-- <base-avatar :avatar_url="checkAvatar(room.attributes.host_id, room.attributes.avatar_info)" class="mt-n1"></base-avatar> -->
+            </v-list-item-icon>
+            <v-list-item-content>
+              <v-list-item-title>{{ room.attributes.name }}</v-list-item-title>
+              <v-list-item-subtitle class="room_message">{{ room.attributes.latest_message.content }}
+              </v-list-item-subtitle>
+            </v-list-item-content>
+            <v-list-item-action>
+              <v-list-item-action-text>
+                {{ postTime(room.attributes.latest_message.created_at) }}
+              </v-list-item-action-text>
+              <v-btn class="mt-1" icon v-if="room.attributes.latest_message.confirmation === false">
+                <v-icon size=8 color="#2176ff">mdi-checkbox-blank-circle</v-icon>
+              </v-btn>
+            </v-list-item-action>
+          </v-list-item>
         </v-responsive>
       </v-col>
-      <v-col lg=9 xl=9>
+      <!-- <v-divider vertical /> -->
+      <v-col cols=12 sm=12 md=12 lg=8 xl=8>
         <router-view />
       </v-col>
     </v-row>
