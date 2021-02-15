@@ -92,7 +92,7 @@
   }
 
   .text:hover {
-    color: #e500a4;
+    color: #edf6f9;
     cursor: pointer;
   }
 </style>

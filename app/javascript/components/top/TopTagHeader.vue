@@ -1,19 +1,17 @@
 <template>
   <v-responsive class="overflow-y-auto flex-grow-1 flex-shrink-0" style="max-width: 80%;" height="400">
-    <div class="tag">
       <v-container class="ml-16">
         <v-row no-gutters>
-          <div class="mb-5 ml-8 mt-n3">Pickups</div>
+          <div class="mb-5 ml-8 mt-n3 tags">PICKUP TAGS</div>
           <v-col cols=12 sm=12 md=12 lg=12 xl=12 v-for="(tag, index) in tags" :key="index" class="ml-8">
             <v-hover>
               <router-link :to="{name: 'Tag', params: {name: `${ tag.attributes.name }`}}">
-                <p class="tag_item" style="color:#d3d3d3; font-size: 15px;">#{{ tag.attributes.name }}</p>
+                <p class="tag_item" style="font-size: 15px;">#{{ tag.attributes.name }}</p>
               </router-link>
             </v-hover>
           </v-col>
         </v-row>
       </v-container>
-    </div>
   </v-responsive>
 </template>
 
@@ -52,11 +50,18 @@
 <style>
   @import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
 
-  .category_item {
-    font-family: 'Roboto', sans-serif;
+  .tags {
+    font-family: 'Montserrat', sans-serif;
+    font-family: 'Open Sans', sans-serif;
+    font-size:0.9rem;
+    font-weight: bold;
+    color: #495057;
+  }
+  .tag_item {
+    color: #8b949e;
   }
 
   .tag_item:hover {
-    color: #000000;
+    color: #edf6f9;
   }
 </style>
