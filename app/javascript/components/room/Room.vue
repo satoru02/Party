@@ -20,7 +20,7 @@
       </v-col>
     </v-row>
 
-    <v-responsive class="overflow-y-auto flex-grow-1 flex-shrink-0 mt-5" height="520">
+    <v-responsive class="overflow-y-auto flex-grow-1 flex-shrink-0 mt-5" height="550">
       <v-container v-for="word in messages" :word="word" :key="word.id"
         :class="[ word.user_id === $store.state.currentUser.data.attributes.id ? 'd-flex flex-row-reverse': 'd-flex flex-row']">
         <!-- <avatar class="mt-1 ml-12" v-if="word.user_id !== $store.state.currentUser.data.attributes.id"
@@ -38,7 +38,7 @@
       </v-container>
     </v-responsive>
     <v-text-field background-color="#212529" v-model="message" @click:append-outer="sendMessage(message)"
-      style="bottom:0; width: 100%" append-outer-icon="mdi-send" dense class="mt-7 bottom rounded-xl"
+      style="bottom:0; width: 100%" append-outer-icon="mdi-send" dense class="mt-5 rounded-xl"
       placeholder="メッセージを送信する" type="text" no-details outlined />
   </div>
 </template>
