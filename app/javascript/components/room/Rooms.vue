@@ -2,10 +2,12 @@
   <v-container fluid>
     <v-row>
       <v-col lg=3 xl=4>
-        <v-list-item two-line class="tile" v-for="room in rooms" :key="room.id"
+        <v-responsive class="overflow-y-auto flex-grow-1 flex-shrink-0" style="height:780px;">
+        <v-list-item three-line class="tile" v-for="room in rooms" :key="room.id"
           @click="moveRoom(room), checkConfirmation(room)">
           <v-list-item-icon>
-            <base-avatar />
+            <base-avatar :size="40" />
+            <!-- <base-avatar :avatar_url="checkAvatar(room.attributes.host_id, room.attributes.avatar_info)" class="mt-n1"></base-avatar> -->
           </v-list-item-icon>
           <v-list-item-content>
             <v-list-item-title>{{ room.attributes.name }}</v-list-item-title>
@@ -16,11 +18,12 @@
             <v-list-item-action-text>
               {{ postTime(room.attributes.latest_message.created_at) }}
             </v-list-item-action-text>
-            <!-- <v-icon> -->
-              <v-badge left v-if="room.attributes.latest_message.confirmation === false" dot color="#2176ff" />
-            <!-- </v-icon> -->
+            <v-btn icon v-if="room.attributes.latest_message.confirmation === false">
+              <v-icon size=8 color="#2176ff">mdi-checkbox-blank-circle</v-icon>
+            </v-btn>
           </v-list-item-action>
         </v-list-item>
+        </v-responsive>
       </v-col>
       <v-col lg=9 xl=9>
         <router-view />
@@ -118,18 +121,6 @@
 </script>
 
 <style>
-  .room_message {
-    font-size: 9px;
-    color: gray;
-    margin-top: 15px;
-  }
-
-  .room_lasttime {
-    font-size: 11px;
-    color: gray;
-    margin-top: 4px;
-  }
-
   .tile {
     margin: 6px;
     border-radius: 7px;
@@ -139,5 +130,3 @@
     background: #212529;
   }
 </style>
-
-<!-- <avatar :avatar_url="checkAvatar(room.attributes.host_id, room.attributes.avatar_info)" class="mt-n1"></avatar> -->
