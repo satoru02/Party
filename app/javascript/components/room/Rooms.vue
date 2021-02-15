@@ -1,61 +1,38 @@
 <template>
-  <div class="rooms" >
-    <div class="group">
-      <v-list color="#161a1d">
-        <v-list-item
-          class="tile"
-          v-for="room in rooms"
-          :key="room.id">
+  <v-container fluid>
+    <v-row>
+      <v-col lg=3 xl=4>
+        <v-list-item two-line class="tile" v-for="room in rooms" :key="room.id"
+          @click="moveRoom(room), checkConfirmation(room)">
           <v-list-item-icon>
-            <!-- <avatar :avatar_url="checkAvatar(room.attributes.host_id, room.attributes.avatar_info)" class="mt-n1"></avatar> -->
+            <base-avatar />
           </v-list-item-icon>
-          <v-list-item-content class="ml-n9">
-            <router-link
-              @click.native="checkConfirmation(room)"
-              :to="{ name: 'Room', params: {name: `${room.attributes.name}`, token: `${room.attributes.resource_token}`} }">
-              <v-row no-gutters>
-                <v-col class="d-flex" md="9" offset-md="n1">
-                  <v-list-item-subtitle>{{ room.attributes.name }}</v-list-item-subtitle>
-                </v-col>
-                <v-col
-                  class="d-flex mb-n6 mr-n8"
-                  md="1"
-                  offset-md="2"
-                  v-if="room.attributes.latest_message">
-                  <p class="room_lasttime">{{ postTime(room.attributes.latest_message.created_at) }}</p>
-                </v-col>
-              </v-row>
-              <v-row no-gutters>
-                <v-col
-                  class="d-flex"
-                  md="7"
-                  offset-md="n2"
-                  v-if="room.attributes.latest_message">
-                  <p class="room_message">{{ room.attributes.latest_message.content }}</p>
-                </v-col>
-                <v-col
-                  class="d-flex mt-7"
-                  md="1"
-                  offset-md="2"
-                  v-if="room.attributes.latest_message.confirmation === false">
-                  <v-badge
-                    dot
-                    left
-                    inline
-                    color="#2176ff" />
-                </v-col>
-              </v-row>
-            </router-link>
+          <v-list-item-content>
+            <v-list-item-title>{{ room.attributes.name }}</v-list-item-title>
+            <v-list-item-subtitle class="room_message">{{ room.attributes.latest_message.content }}
+            </v-list-item-subtitle>
           </v-list-item-content>
+          <v-list-item-action>
+            <v-list-item-action-text>
+              {{ postTime(room.attributes.latest_message.created_at) }}
+            </v-list-item-action-text>
+            <!-- <v-icon> -->
+              <v-badge left v-if="room.attributes.latest_message.confirmation === false" dot color="#2176ff" />
+            <!-- </v-icon> -->
+          </v-list-item-action>
         </v-list-item>
-      </v-list>
-    </div>
-    <router-view></router-view>
-  </div>
+      </v-col>
+      <v-col lg=9 xl=9>
+        <router-view />
+      </v-col>
+    </v-row>
+  </v-container>
 </template>
 
 <script>
-  import { secureAxios } from '../../backend/axios';
+  import {
+    secureAxios
+  } from '../../backend/axios';
   import BaseAvatar from '../base/BaseAvatar';
   import Room from './Room';
   import moment from 'moment';
@@ -79,20 +56,20 @@
     },
     channels: {
       RoomsChannel: {
-        connected(){},
-        rejected(){},
-        received(data){
+        connected() {},
+        rejected() {},
+        received(data) {
           let filtered_room = this.rooms.filter(room => room.attributes.resource_token === data["token"])
           filtered_room[0].attributes.latest_message.content = data["content"]
           filtered_room[0].attributes.latest_message.created_at = data["time"]
-          if (this.$route.params.token !== filtered_room[0].attributes.resource_token ){
+          if (this.$route.params.token !== filtered_room[0].attributes.resource_token) {
             filtered_room[0].attributes.latest_message.confirmation = false
           }
         },
-        disconnected(){}
+        disconnected() {}
       }
     },
-    mounted(){
+    mounted() {
       this.$cable.subscribe({
         channel: 'RoomsChannel',
       })
@@ -124,28 +101,25 @@
       postTime(time) {
         return moment(time).format("YYYY/MM/DD hh:mm")
       },
-      checkConfirmation(room){
+      checkConfirmation(room) {
         room.attributes.latest_message.confirmation = true
+      },
+      moveRoom(room) {
+        this.$router.push({
+          name: 'Room',
+          params: {
+            name: room.attributes.name,
+            token: room.attributes.resource_token
+          }
+        })
       }
     }
   }
 </script>
 
 <style>
-  .rooms {
-    display: grid;
-    grid-template-columns: 364px auto;
-    grid-template-areas: "group room";
-  }
-
-  .room {
-    position: sticky;
-    top: 0;
-    height: 100vh;
-  }
-
   .room_message {
-    font-size: 11px;
+    font-size: 9px;
     color: gray;
     margin-top: 15px;
   }
@@ -165,3 +139,5 @@
     background: #212529;
   }
 </style>
+
+<!-- <avatar :avatar_url="checkAvatar(room.attributes.host_id, room.attributes.avatar_info)" class="mt-n1"></avatar> -->
