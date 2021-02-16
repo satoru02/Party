@@ -16,10 +16,12 @@
 
     <v-col cols=12 sm=12 md=6 lg=6 xl=6>
       <v-row>
-        <v-col v-if="$route.name === 'Top'" v-model="date" cols=12 sm=12 md=12 lg=3 xl=5 align="start" class="ml-5 mb-n2">
+        <v-col v-if="$route.name === 'Top'" v-model="date" cols=12 sm=12 md=12 lg=4 xl=5 align="start"
+          class="ml-5 mb-n2">
           <h2>Discover</h2>
         </v-col>
-        <v-col v-if="$route.name === 'TopFilter'" v-model="date" cols=12 sm=12 md=12 lg=4 xl=5 align="start" class="ml-5 mb-n2">
+        <v-col v-if="$route.name === 'TopFilter'" v-model="date" cols=12 sm=12 md=12 lg=4 xl=5 align="start"
+          class="ml-5 mb-n2">
           <h2>{{date}}のイベント</h2>
         </v-col>
         <v-col v-if="$route.name === 'Category'" cols=12 sm=12 md=12 lg=4 xl=5 align="start" class="ml-5 mb-n2">
@@ -30,6 +32,22 @@
         </v-col>
         <v-col v-if="$route.name === 'Tag'" cols=12 sm=12 md=12 lg=4 xl=5 align="start" class="ml-5 mb-n2">
           <h2>タグ：{{this.$route.params.name}}</h2>
+        </v-col>
+        <v-col lg=6 />
+        <v-col lg=1 class="mt-2 ml-n11">
+          <v-menu offset-y>
+            <template v-slot:activator="{on, attrs}">
+              <v-btn elevation=0 small width="110" class="rounded-lg" style="background-color:#21262d;" dark v-bind="attrs" v-on="on">
+                Filter
+                <v-icon small>mdi-chevron-down</v-icon>
+                </v-btn>
+            </template>
+            <v-list>
+              <v-list-item @click="filterSearch(item.name)" class="tile" v-for="(item, n) in items" :key="n">
+                <v-list-item-title>{{ item.name }}</v-list-item-title>
+              </v-list-item>
+            </v-list>
+          </v-menu>
         </v-col>
         <!-- <v-col md=1 />
         <v-col cols=1 lg=2 />
@@ -93,6 +111,12 @@
       return {
         date: '最新',
         condition: 'Top',
+        items: [
+          // {name: '投稿日順'},
+          {name: 'today'},
+          {name: 'week'},
+          {name: 'month'},
+        ],
         today: {
           identifier: 'today',
           date: ''
@@ -138,11 +162,11 @@
           this.$router.replace('/login')
         }
       },
-      filterSearch(value) {
+      filterSearch(target) {
         this.$router.replace({
           name: "TopFilter",
           params: {
-            query: value.identifier
+            query: target
           }
         })
       },
@@ -185,6 +209,16 @@
   span {
     font-family: 'Roboto', sans-serif;
     font-size: 10;
+  }
+
+  .tile {
+    margin: 10px;
+    border-radius: 7px;
+  }
+
+  .tile:hover {
+    background: #6c757d;
+    cursor: pointer;
   }
 
   h2 {

@@ -2,7 +2,7 @@
   <v-container>
     <v-row no-gutters>
       <v-col cols=12 sm=12 md=12 lg=12 xl=12 v-for="post in posts" :key="post.attributes.id + Math.random()" :title="post.attributes.title"
-        :user_id="post.attributes.user_id" class="mb-6">
+        :user_id="post.attributes.user_id" class="mb-6 mt-n2">
         <v-sheet class="rounded-lg" color="#11151c"
           style="height:auto; min-height: 150px; width:auto;">
           <v-row>
