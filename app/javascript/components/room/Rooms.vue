@@ -1,5 +1,5 @@
 <template>
-  <v-container fluid fill-height justify="center" align="center" style="position:fixed; height:100%">
+  <v-container fluid fill-height justify="center" align="center" style="position:fixed; height:100%; display: flex; max-height: 10vh;">
     <v-row>
       <v-col lg=4 xl=4 class="hidden-md-only hidden-xs-only hidden-sm-only">
         <v-responsive class="overflow-y-auto flex-grow-1 flex-shrink-0" style="height: 800px;">

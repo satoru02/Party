@@ -49,7 +49,6 @@
          .catch(error => this.Failed(error))
       },
       Successful(res){
-        console.log(res)
         this.posts = res.data.data
       },
       Failed(error) {

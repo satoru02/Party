@@ -3,13 +3,14 @@
       open-on-hover
       offset-y
       left
+      nudge-top=10
       nudge-right=60
       nudge-height=800
       nudge-width=130>
       <template v-slot:activator="{ on, attrs }">
         <div v-bind="attrs" v-on="on" class="mt-1 ml-4">
           <base-avatar
-            :size="22"
+            :size="25"
             :avatar_url="avatar"/>
         </div>
       </template>

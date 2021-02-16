@@ -2,9 +2,9 @@
   <v-app-bar fixed app style="background-color:#0e0e10">
     <v-row no-gutters dense>
       <v-col lg=4 xl=4 class="hidden-xs-only hidden-sm-only hidden-md-only mt-6">
-        <router-link to="/">
-          <v-toolbar-title>TITLE</v-toolbar-title>
-        </router-link>
+        <!-- <router-link to="/"> -->
+          <v-toolbar-title>Service Titile</v-toolbar-title>
+        <!-- </router-link> -->
       </v-col>
       <v-col sm=2 md=4 lg=4 xl=4 class="mt-6 hidden-xs-only">
         <v-text-field rounded height="38" prepend-inner-icon="mdi-magnify" background-color="#212529" v-model="query"
@@ -16,10 +16,10 @@
           <v-col lg=3 class=mt-1>
             <notification-menu />
           </v-col>
-          <v-col lg=1 class="mt-2 ml-n4">
+          <v-col lg=1 class="mt-1 ml-n4">
             <user-menu />
           </v-col>
-          <v-col lg=1 class="mt-2 ml-5">
+          <v-col lg=1 class="mt-3 ml-8">
             <base-post-button />
           </v-col>
         </v-row>
