@@ -72,6 +72,12 @@ module Api
         render json: serializer.serializable_hash.to_json
       end
 
+      def popularity
+        @filterd_posts = filter_by_popularity
+        serializer = PostSerializer.new(@filtered_posts)
+        render json: serializer.serializable_hash.to_json
+      end
+
       private
 
         def set_post

@@ -88,11 +88,11 @@
     font-family: 'Open Sans', sans-serif;
     font-weight: bold;
     font-size: 0.9rem;
-    color: #8b949e;
+    color: #929ba5;
   }
 
   .text:hover {
-    color: #edf6f9;
+    color: #ffffff;
     cursor: pointer;
   }
 </style>

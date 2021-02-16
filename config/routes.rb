@@ -53,6 +53,7 @@ Rails.application.routes.draw do
       resources :posts do
         collection do
           get :search
+          get :popularity
         end
       end
 

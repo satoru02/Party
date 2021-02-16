@@ -8,7 +8,7 @@
       </v-col>
       <v-col sm=2 md=4 lg=4 xl=4 class="mt-6 hidden-xs-only">
         <v-text-field rounded height="38" prepend-inner-icon="mdi-magnify" background-color="#212529" v-model="query"
-          @keydown.enter="searchPost(query)" placeholder="検索"></v-text-field>
+          @keydown.enter="searchPost(query)" placeholder="Search"></v-text-field>
       </v-col>
       <v-col xs=12 sm=10 md=8 lg=4 xl=4>
         <v-row>

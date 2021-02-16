@@ -1,5 +1,5 @@
 <template>
-  <v-sheet class="rounded-lg" width=340  color="#11151c" elevation=4
+  <v-sheet class="rounded-lg" width=340 color="#11151c" elevation=14
     style="height:auto; min-height: 420px; max-width: 100%; max-height:1000px;">
     <v-row no-gutters>
       <v-col lg=1 />
@@ -12,10 +12,10 @@
       <v-col lg=12 />
     </v-row>
 
-    <v-row v-for="(n,index) in 10" :key="index" class="mt-n2">
+    <v-row v-for="(post ,index) in posts" :key="index" class="mt-n2">
       <v-col lg=1 />
       <v-col lg=7>
-        <h3 class="events">ドキュメン鑑賞会</h3>
+        <h3 @click="movePost(post)" class="events">{{ post.attributes.title }}</h3>
       </v-col>
       <v-col lg=1 class="mt-1">
         <v-btn width="10" height="14" color="pink">
@@ -27,8 +27,44 @@
 </template>
 
 <script>
+  import {
+    secureAxios
+  } from '../../backend/axios';
+  const POPULARITY_URL = `/api/v1/posts/popularity`
   export default {
     name: 'TopPopularContents',
+    data() {
+      return {
+        posts: [],
+        error: ''
+      }
+    },
+    created() {
+      this.fetchPosts()
+    },
+    methods: {
+      fetchPosts() {
+        secureAxios.get(POPULARITY_URL)
+         .then(res => this.Successful(res))
+         .catch(error => this.Failed(error))
+      },
+      Successful(res){
+        console.log(res)
+        this.posts = res.data.data
+      },
+      Failed(error) {
+        this.error = (error.response && error.response.data && error.response.data.error) || ""
+      },
+      movePost(post){
+        this.$router.push({
+          name: 'Search',
+          params: {
+            query: post.attributes.title
+          }
+        })
+
+      }
+    }
   }
 </script>
 
@@ -45,12 +81,17 @@
   .events {
     font-family: 'Montserrat', sans-serif;
     font-family: 'Open Sans', sans-serif;
-    /* font-weight: bold; */
-    color: #d6d6d6;
+    color: #929ba5;
     font-size: 0.8rem;
+    cursor: pointer;
+  }
+
+  .events:hover {
+    color: #ffffff;
+    cursor: pointer;
   }
 
   .v-btn:not(.v-btn--round).v-size--default {
-  min-width: 0;
-}
+    min-width: 0;
+  }
 </style>

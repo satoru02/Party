@@ -1,5 +1,5 @@
 <template>
-  <v-sheet class="rounded-lg" width=320 height=400 color="#11151c" elevation=7
+  <v-sheet class="rounded-lg" width=320 height=400 color="#11151c" elevation=14
     style="height:auto; min-height: 220px; max-height:1000px; width:auto;">
     <v-row no-gutters>
       <v-col lg=1 />
@@ -11,7 +11,7 @@
     <v-row>
       <v-col lg=1 xl=1 />
       <v-col md=2 lg=3 xl=3 align="end">
-        <base-avatar size=40 />
+        <base-avatar :size="40" />
         <v-row no-gutters>
           <v-col lg=12 xl=12 class="hidden-md-only" align="center">
             <h3 class="username">John</h3>
@@ -19,7 +19,7 @@
         </v-row>
       </v-col>
       <v-col md=2 lg=3 xl=3 align="end" class="ml-3 mr-3">
-        <base-avatar size=40 />
+        <base-avatar :size="40" />
         <v-row no-gutters>
           <v-col lg=12 xl=12 class="hidden-md-only" align="center">
             <h3 class="username">Smith</h3>
@@ -27,7 +27,7 @@
         </v-row>
       </v-col>
       <v-col md=2 lg=3 xl=3 align="end">
-        <base-avatar size=40 />
+        <base-avatar :size="40" />
         <v-row no-gutters>
           <v-col lg=12 xl=12 class="hidden-md-only" align="center">
             <h3 class="username">Sugiwaka</h3>
@@ -39,7 +39,7 @@
     <v-row class="mt-n10">
      <v-col lg=1 xl=1 />
       <v-col md=2 lg=3 xl=3 align="end">
-        <base-avatar size=40 />
+        <base-avatar :size="40" />
         <v-row no-gutters>
           <v-col lg=12 xl=12 class="hidden-md-only" align="center">
             <h3 class="username">Alice</h3>
@@ -47,7 +47,7 @@
         </v-row>
       </v-col>
       <v-col md=2 lg=3 xl=3 align="end" class="ml-3 mr-3">
-        <base-avatar size=40 />
+        <base-avatar :size="40" />
         <v-row no-gutters>
           <v-col lg=12 xl=12 class="hidden-md-only" align="center">
             <h3 class="username">Ted</h3>
@@ -55,7 +55,7 @@
         </v-row>
       </v-col>
       <v-col md=2 lg=3 xl=3 align="end">
-        <base-avatar size=40 />
+        <base-avatar :size="40" />
         <v-row no-gutters>
           <v-col lg=12 xl=12 class="hidden-md-only" align="center">
             <h3 class="username">Lowly</h3>

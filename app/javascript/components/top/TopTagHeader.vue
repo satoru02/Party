@@ -61,7 +61,7 @@
     color: #495057;
   }
   .tag_item {
-    color: #8b949e;
+    color: #929ba5;
   }
 
   .tag_item:hover {

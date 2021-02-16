@@ -1,5 +1,10 @@
 module FilterHelper
 
+  def filter_by_popularity
+    #fix
+    @filtered_posts = Post.order('RANDOM()').limit(10)
+  end
+
   def filter_by_title(query)
     @filtered_posts = Post.where("title like ?", "%#{query}%")
   end
