@@ -1,27 +1,24 @@
 <template>
   <v-app-bar fixed app style="background-color:#0e0e10">
-    <v-row no-gutters dense>
-      <v-col lg=1 xl=1 class="hidden-xs-only hidden-sm-only hidden-md-only mt-6" align="center">
-          <v-toolbar-title class="top" @click="moveTop()">Bundly</v-toolbar-title>
+    <v-row dense>
+      <v-col md=1 lg=1 xl=1 class="hidden-xs-only hidden-sm-only" />
+      <v-col lg=1 xl=1 class="hidden-xs-only hidden-sm-only hidden-md-only mt-7" align="start">
+        <v-toolbar-title class="top ml-n7" @click="moveTop()">Bundly</v-toolbar-title>
       </v-col>
-      <v-col lg=3 xl=3 />
-      <v-col sm=2 md=4 lg=4 xl=4 class="mt-6 hidden-xs-only">
-        <v-text-field rounded height="33" prepend-inner-icon="mdi-magnify" background-color="#212529" v-model="query"
+      <v-col md=1 lg=1 xl=1 class="hidden-xs-only hidden-sm-only ml-n4" />
+      <v-col md=2 lg=3 xl=3 class="mt-6 hidden-xs-only hidden-sm-only">
+        <v-text-field rounded height="38" prepend-inner-icon="mdi-magnify" background-color="#212529" v-model="query"
           @keydown.enter="searchPost(query)" placeholder="Search" />
       </v-col>
-      <v-col xs=12 sm=10 md=8 lg=4 xl=4>
-        <v-row>
-          <v-col lg=5 xl=1 class="hidden-xs-only" />
-          <v-col lg=3 class=mt-1>
-            <notification-menu />
-          </v-col>
-          <v-col lg=1 class="mt-1 ml-n4">
-            <user-menu />
-          </v-col>
-          <v-col lg=1 class="mt-3 ml-8">
-            <base-post-button />
-          </v-col>
-        </v-row>
+      <v-col md=2 lg=3 xl=3 class="ml-5 hidden-xs-only hidden-sm-only" />
+      <v-col cols=4 sm=4 md=2 lg=1 xl=1 class="mt-1 ml-4">
+        <notification-menu />
+      </v-col>
+      <v-col cols=4 sm=4 md=2 lg=1 xl=1 class="mt-1">
+        <user-menu />
+      </v-col>
+      <v-col cols=4 sm=4 md=2 lg=1 xl=1 class="mt-6 ml-n16" align="start">
+        <base-post-button />
       </v-col>
     </v-row>
   </v-app-bar>
@@ -56,7 +53,7 @@
       showAdminLink() {
         return this.$store.getters.isAdmin || this.$store.getters.isManager
       },
-      moveTop(){
+      moveTop() {
         this.$router.push({
           name: 'Top'
         })

@@ -1,7 +1,8 @@
 <template>
     <v-container class="ml-n1">
+      <div class="mb-5 categories">CATEGORY</div>
       <v-row no-gutters>
-        <v-col md=12 lg=12 xl=12 v-for="(category, index) in categories" :key="index" class="mb-5 ml-8">
+        <v-col md=12 lg=12 xl=12 v-for="(category, index) in categories" :key="index" class="mb-5">
           <v-row no-gutters>
             <v-col md=2 lg=2 xl=2>
               <v-btn style="background-color:#212529; width:30px; height:30px;" icon>
@@ -10,7 +11,8 @@
                  </v-icon>
               </v-btn>
             </v-col>
-            <v-col md=8 lg=10 xl=10 align="start" class="mt-1">
+            <v-col md=1 lg=1 xl=1 />
+            <v-col md=5 lg=5 xl=5 align="start" class="mt-1">
               <div @click="moveCategory(category)" class="text">{{ category.attributes.name }}</div>
             </v-col>
           </v-row>
@@ -94,5 +96,13 @@
   .text:hover {
     color: #ffffff;
     cursor: pointer;
+  }
+
+  .categories {
+    font-family: 'Montserrat', sans-serif;
+    font-family: 'Open Sans', sans-serif;
+    font-size:0.5rem;
+    font-weight: bold;
+    color: #495057;
   }
 </style>

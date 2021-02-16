@@ -2,8 +2,8 @@
   <v-responsive class="overflow-y-auto flex-grow-1 flex-shrink-0" style="max-width: 80%;" height="400">
       <v-container class="ml-n1">
         <v-row no-gutters>
-          <div class="mb-5 ml-8 mt-n3 tags">PICKUP TAGS</div>
-          <v-col cols=12 sm=12 md=12 lg=12 xl=12 v-for="(tag, index) in tags" :key="index" class="ml-8">
+          <div class="mb-5 mt-n3 tags">PICKUP TAGS</div>
+          <v-col cols=12 sm=12 md=12 lg=12 xl=12 v-for="(tag, index) in tags" :key="index">
             <v-hover>
               <router-link :to="{name: 'Tag', params: {name: `${ tag.attributes.name }`}}">
                 <!-- <v-btn rounded class="mb-2">
@@ -50,13 +50,13 @@
   }
 </script>
 
-<style>
+<style scoped>
   @import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
 
   .tags {
     font-family: 'Montserrat', sans-serif;
     font-family: 'Open Sans', sans-serif;
-    font-size:0.9rem;
+    font-size:0.5rem;
     font-weight: bold;
     color: #495057;
     text-decoration: none;

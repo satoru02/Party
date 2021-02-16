@@ -1,6 +1,7 @@
 <template>
   <v-row>
-    <v-col md=3 lg=3 xl=3 class="hidden-xs-only hidden-sm-only">
+    <v-col md=1 lg=1 xl=1 />
+    <v-col md=2 lg=2 xl=2 class="hidden-xs-only hidden-sm-only ml-n6">
       <v-row>
         <v-col md=12 lg=12 xl=12>
           <top-category-header v-if="$store.state.signedIn" />

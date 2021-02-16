@@ -1,65 +1,76 @@
 <template>
   <v-row>
-    <v-col class="ml-n2">
-      <v-menu open-on-hover offset-y left nudge-height=800 nudge-right=60 nudge-width=150>
-        <template v-slot:activator="{ on, attrs }">
-          <div v-bind="attrs" v-on="on">
-            <v-badge v-if="entryNotifications.length > 0" color="red" :content="entryNotifications.length" bordered overlap>
-              <router-link to="/notifications">
-                <v-icon class="icon mt-1 ml-7" size=22 color="#8b949e">
-                  mdi-bell-outline
-                </v-icon>
-              </router-link>
-            </v-badge>
-            <router-link to="/notifications">
-              <v-icon v-if="entryNotifications.length === 0" class="icon mt-1 ml-7" size=22 color="#8b949e">
-                mdi-bell-outline
-              </v-icon>
-            </router-link>
-          </div>
-        </template>
-        <v-list class="overflow-y-auto rounded-s" max-height="650" style="background-color:#343a40;">
-          <v-list-item v-if="entryNotifications.length === 0" class="tile">
-            <v-list-item-title class="ml-10 mr-10" style="color:#ced4da">
-              現在、新着のお知らせはありません。
-            </v-list-item-title>
-          </v-list-item>
-          <v-list-item class="tile" v-for="(notification, index) in entryNotifications" :key="index">
-            <router-link :to="{ name: 'Notification', params: {id: `${notification.attributes.id }`}}">
-              <v-badge dot left inline color="#2176ff">
-                <v-list-item-title v-if="notification.attributes.classification === 'entry'" class="ml-10 mr-10"
-                  style="color:#ced4da">
-                  あなたのイベントへのエントリーが届きました！
+    <v-col sm=1 cols=1 md=1 lg=1 xl=1 class="ml-4">
+      <v-row>
+        <v-col sm=12 cols=12 md=12 lg=12 xl=12>
+          <v-menu open-on-hover offset-y left nudge-height=800 nudge-right=60 nudge-width=150>
+            <template v-slot:activator="{ on, attrs }">
+              <div v-bind="attrs" v-on="on">
+                <v-badge v-if="entryNotifications.length > 0" color="red" :content="entryNotifications.length" bordered
+                  overlap>
+                  <router-link to="/notifications">
+                    <v-icon class="icon" size=26 color="#ffffff">
+                      mdi-bell-outline
+                    </v-icon>
+                  </router-link>
+                </v-badge>
+                <router-link to="/notifications">
+                  <v-icon v-if="entryNotifications.length === 0" class="icon" size=26 color="#ffffff">
+                    mdi-bell-outline
+                  </v-icon>
+                </router-link>
+              </div>
+            </template>
+            <v-list class="overflow-y-auto rounded-s" max-height="650" style="background-color:#343a40;">
+              <v-list-item v-if="entryNotifications.length === 0" class="tile">
+                <v-list-item-title class="ml-10 mr-10" style="color:#ced4da">
+                  現在、新着のお知らせはありません。
                 </v-list-item-title>
-                <v-list-item-title v-if="notification.attributes.classification === 'entryResponse'" class="ml-10 mr-10"
-                  style="color:#ced4da">
-                  応募したエントリーの結果が届きました！
-                </v-list-item-title>
-                <v-list-item-action style="color:#6c757d;" v-text="catchedTime(notification.attributes.created_at)">
-                </v-list-item-action>
-              </v-badge>
-            </router-link>
-          </v-list-item>
-        </v-list>
-      </v-menu>
+              </v-list-item>
+              <v-list-item class="tile" v-for="(notification, index) in entryNotifications" :key="index">
+                <router-link :to="{ name: 'Notification', params: {id: `${notification.attributes.id }`}}">
+                  <v-badge dot left inline color="#2176ff">
+                    <v-list-item-title v-if="notification.attributes.classification === 'entry'" class="ml-10 mr-10"
+                      style="color:#ced4da">
+                      あなたのイベントへのエントリーが届きました！
+                    </v-list-item-title>
+                    <v-list-item-title v-if="notification.attributes.classification === 'entryResponse'"
+                      class="ml-10 mr-10" style="color:#ced4da">
+                      応募したエントリーの結果が届きました！
+                    </v-list-item-title>
+                    <v-list-item-action style="color:#6c757d;" v-text="catchedTime(notification.attributes.created_at)">
+                    </v-list-item-action>
+                  </v-badge>
+                </router-link>
+              </v-list-item>
+            </v-list>
+          </v-menu>
+        </v-col>
+      </v-row>
     </v-col>
-    <!-- <v-col cols=8 md=3 /> -->
-    <v-col class="ml-n5">
-      <v-menu>
-        <template v-slot:activator="{on, attrs}">
-          <div v-bind="attrs" v-on="on">
-            <v-badge color="red" bordered overlap v-if="messageNotifications.length > 0"
-              :content="messageNotifications.length">
-              <router-link to="/rooms">
-                <v-icon class="icon mt-1 ml-6" size=22 color="#8b949e">mdi-chat-outline</v-icon>
-              </router-link>
-            </v-badge>
-            <router-link to="/rooms">
-              <v-icon v-if="messageNotifications.length === 0" class="icon mt-1 ml-6" size=22 color="#8b949e">mdi-chat-outline</v-icon>
-            </router-link>
-          </div>
-        </template>
-      </v-menu>
+    <v-col cols=1 sm=1 md=1 lg=2 xl=2 />
+    <v-col cols=1 sm=1 md=1 lg=1 xl=1>
+      <v-row>
+        <v-col lsm=12 cols=12 md=12 lg=12 xl=12>
+          <v-menu>
+            <template v-slot:activator="{on, attrs}">
+              <div v-bind="attrs" v-on="on">
+                <v-badge color="red" bordered overlap v-if="messageNotifications.length > 0"
+                  :content="messageNotifications.length">
+                  <router-link to="/rooms">
+                    <v-icon class="icon" size=26 color="#ffffff">mdi-chat-outline</v-icon>
+                  </router-link>
+                </v-badge>
+                <router-link to="/rooms">
+                  <v-icon v-if="messageNotifications.length === 0" class="icon" size=26 color="#ffffff">
+                    mdi-chat-outline</v-icon>
+                </router-link>
+              </div>
+            </template>
+          </v-menu>
+
+        </v-col>
+      </v-row>
     </v-col>
   </v-row>
 </template>
@@ -90,7 +101,7 @@
           // 4.Notification is readen.
           if (this.$store.state.currentUser.data.attributes.id === data["target_user_id"]) {
             if (((data.attributes.classification === "entry") || (data.attributes.classification ===
-              "entryResponse")) && data["condition"] !== "read") {
+                "entryResponse")) && data["condition"] !== "read") {
               this.entryNotifications.push(data)
             } else if ((data.attributes.classification === "message") && (data.attributes.confirmation === false) && (
                 data.message_confirmation === false)) {
