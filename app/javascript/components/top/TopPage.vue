@@ -65,13 +65,7 @@
 
     <v-col md=2 lg=2 xl=2 class="hidden-xs-only hidden-sm-only">
       <v-row class="mb-4 mt-4">
-        <v-sheet class="rounded-lg" width=320 height=400 color="#11151c" elevation=7
-          style="height:auto; min-height: 220px; max-width: 100%; max-height:1000px;">
-          <v-row>
-          </v-row>
-          <v-row class="mt-n5">
-          </v-row>
-        </v-sheet>
+        <top-users />
       </v-row>
       <v-row>
         <v-sheet class="rounded-lg" width=340 height=520 color="#11151c" elevation=4
@@ -83,7 +77,6 @@
         </v-sheet>
       </v-row>
     </v-col>
-
     <v-col md=1 lg=1 xl=1 />
   </v-row>
 </template>
@@ -91,12 +84,14 @@
 <script>
   import TopCategoryHeader from '../../components/top/TopCategoryHeader';
   import TopTagHeader from '../../components/top/TopTagHeader';
+  import TopUsers from '../../components/top/TopUsers';
 
   export default {
     name: 'TopPage',
     components: {
       'top-category-header': TopCategoryHeader,
-      'top-tag-header': TopTagHeader
+      'top-tag-header': TopTagHeader,
+      'top-users': TopUsers
     },
     data() {
       return {
