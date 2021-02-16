@@ -1,5 +1,5 @@
 <template>
-    <v-container class="ml-16">
+    <v-container class="ml-n1">
       <v-row no-gutters>
         <v-col md=12 lg=12 xl=12 v-for="(category, index) in categories" :key="index" class="mb-5 ml-8">
           <v-row no-gutters>

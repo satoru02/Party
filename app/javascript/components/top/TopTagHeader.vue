@@ -1,6 +1,6 @@
 <template>
   <v-responsive class="overflow-y-auto flex-grow-1 flex-shrink-0" style="max-width: 80%;" height="400">
-      <v-container class="ml-16">
+      <v-container class="ml-n1">
         <v-row no-gutters>
           <div class="mb-5 ml-8 mt-n3 tags">PICKUP TAGS</div>
           <v-col cols=12 sm=12 md=12 lg=12 xl=12 v-for="(tag, index) in tags" :key="index" class="ml-8">
@@ -59,9 +59,11 @@
     font-size:0.9rem;
     font-weight: bold;
     color: #495057;
+    text-decoration: none;
   }
   .tag_item {
     color: #929ba5;
+    text-decoration: none;
   }
 
   .tag_item:hover {

@@ -13,27 +13,26 @@
       </v-row>
     </v-col>
 
-    <v-col cols=12 sm=12 md=6 lg=6 xl=6 class=".d-flex">
+    <v-col cols=12 sm=12 md=6 lg=6 xl=6>
       <v-row>
-        <v-col lg=1 class=".d-md-none .d-lg-flex" />
-        <v-col v-if="$route.name === 'Top'" v-model="date" cols=12 sm=12 md=12 lg=4 xl=5>
-          <h3>最新のイベント</h3>
+        <v-col v-if="$route.name === 'Top'" v-model="date" cols=12 sm=12 md=12 lg=3 xl=5 align="start" class="ml-5 mb-n2">
+          <h2>Discover</h2>
         </v-col>
-        <v-col v-if="$route.name === 'TopFilter'" v-model="date" cols=12 sm=12 md=12 lg=4 xl=5>
-          <h3>{{date}}のイベント</h3>
+        <v-col v-if="$route.name === 'TopFilter'" v-model="date" cols=12 sm=12 md=12 lg=4 xl=5 align="start" class="ml-5 mb-n2">
+          <h2>{{date}}のイベント</h2>
         </v-col>
-        <v-col v-if="$route.name === 'Category'" cols=12 sm=12 md=12 lg=4 xl=5>
-          <h3>カテゴリー：{{this.$route.params.slug}}</h3>
+        <v-col v-if="$route.name === 'Category'" cols=12 sm=12 md=12 lg=4 xl=5 align="start" class="ml-5 mb-n2">
+          <h2>{{this.$route.params.slug}}</h2>
         </v-col>
-        <v-col v-if="$route.name === 'Search'" cols=12 sm=12 md=12 lg=4 xl=5>
-          <h3>検索結果：{{this.$route.params.query}}</h3>
+        <v-col v-if="$route.name === 'Search'" cols=12 sm=12 md=12 lg=4 xl=5 align="start" class="ml-5 mb-n2">
+          <h2>検索結果：{{this.$route.params.query}}</h2>
         </v-col>
-        <v-col v-if="$route.name === 'Tag'" cols=12 sm=12 md=12 lg=4 xl=5>
-          <h3>タグ：{{this.$route.params.name}}</h3>
+        <v-col v-if="$route.name === 'Tag'" cols=12 sm=12 md=12 lg=4 xl=5 align="start" class="ml-5 mb-n2">
+          <h2>タグ：{{this.$route.params.name}}</h2>
         </v-col>
-        <v-col md=1 class=".d-none .d-md-flex .d-lg-none" />
-        <v-col cols=1 class=".d-flex .d-sm-none" />
-        <v-col cols=2 sm=2 md=2 lg=1 xl=1 class="mt-1 ml-1">
+        <!-- <v-col md=1 />
+        <v-col cols=1 lg=2 />
+        <v-col cols=2 sm=2 md=2 lg=1 xl=1 class="ml-2">
           <router-link :to="{name: 'Top'}">
             <v-btn @click="condition = 'Top'" :style="[condition === 'Top' ? pushedStyles : buttonStyles]"
               class="rounded-xl" small elevation=0>
@@ -41,30 +40,30 @@
             </v-btn>
           </router-link>
         </v-col>
-        <v-col cols=2 sm=2 md=2 lg=1 xl=1 class="mt-1 ml-1">
+        <v-col cols=2 sm=2 md=2 lg=1 xl=1 class="ml-2">
           <v-btn @click="filterSearch(today), condition = 'today'"
             :style="[condition === 'today' ? pushedStyles : buttonStyles]" class="rounded-xl" small elevation=0>
             <h3 :style="[condition === 'today' ? pushedTextStyles : buttonTextStyles]">今日</h3>
           </v-btn>
         </v-col>
-        <v-col cols=2 sm=2 md=2 lg=1 xl=1 class="mt-1 ml-1">
+        <v-col cols=2 sm=2 md=2 lg=1 xl=1 class="ml-2">
           <v-btn @click="filterSearch(week), condition = 'week'"
             :style="[condition === 'week' ? pushedStyles : buttonStyles]" small class="rounded-xl" elevation=0>
             <h3 :style="[condition === 'week' ? pushedTextStyles : buttonTextStyles]">今週</h3>
           </v-btn>
         </v-col>
-        <v-col cols=2 sm=2 md=2 lg=1 xl=1 class="mt-1 ml-1">
+        <v-col cols=2 sm=2 md=2 lg=1 xl=1 class="ml-2">
           <v-btn @click="filterSearch(month), condition = 'month'"
             :style="[condition === 'month' ? pushedStyles : buttonStyles]" small class="rounded-xl" elevation=0>
             <h3 :style="[condition === 'month' ? pushedTextStyles : buttonTextStyles]">今月</h3>
           </v-btn>
-        </v-col>
+        </v-col> -->
       </v-row>
       <router-view />
     </v-col>
 
     <v-col md=2 lg=2 xl=2 class="hidden-xs-only hidden-sm-only">
-      <v-row class="mb-4 mt-4">
+      <v-row class="mb-4 mt-16">
         <top-popular-users />
       </v-row>
       <v-row>
@@ -185,5 +184,12 @@
   span {
     font-family: 'Roboto', sans-serif;
     font-size: 10;
+  }
+
+  h2 {
+    font-family: 'Montserrat', sans-serif;
+    font-family: 'Open Sans', sans-serif;
+    font-weight: bold;
+    color: #ffffff;
   }
 </style>
