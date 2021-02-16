@@ -2,9 +2,7 @@
   <v-app-bar fixed app style="background-color:#0e0e10">
     <v-row no-gutters dense>
       <v-col lg=4 xl=4 class="hidden-xs-only hidden-sm-only hidden-md-only mt-6">
-        <!-- <router-link to="/"> -->
-          <v-toolbar-title>Service Titile</v-toolbar-title>
-        <!-- </router-link> -->
+          <v-toolbar-title class="top" @click="moveTop()">Bundly</v-toolbar-title>
       </v-col>
       <v-col sm=2 md=4 lg=4 xl=4 class="mt-6 hidden-xs-only">
         <v-text-field rounded height="38" prepend-inner-icon="mdi-magnify" background-color="#212529" v-model="query"
@@ -56,16 +54,31 @@
       },
       showAdminLink() {
         return this.$store.getters.isAdmin || this.$store.getters.isManager
+      },
+      moveTop(){
+        this.$router.push({
+          name: 'Top'
+        })
       }
     }
   }
 </script>
 
-<style>
+<style scoped>
+  @import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+
   .v-application--is-ltr .v-text-field .v-input__prepend-inner {
     margin-right: auto;
     padding-right: 17px;
     color:darkgrey;
     padding-top: 2px;
+  }
+
+  .top {
+    cursor: pointer;
+    font-family: 'Montserrat', sans-serif;
+    font-family: 'Open Sans', sans-serif;
+    font-weight: bold;
+    color: #ffffff;
   }
 </style>
