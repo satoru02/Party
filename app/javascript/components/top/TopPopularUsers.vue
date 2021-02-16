@@ -71,7 +71,7 @@
   import BaseAvatar from '../base/BaseAvatar';
 
   export default {
-    name: 'TopUsers',
+    name: 'TopPopularUsers',
     components: {
       'base-avatar': BaseAvatar
     }
@@ -85,15 +85,14 @@
     font-family: 'Montserrat', sans-serif;
     font-family: 'Open Sans', sans-serif;
     font-weight: bold;
-    font-size: 0.9rem;
-    color: #d6d6d6;
+    color: #ffffff;
   }
 
   .username {
     font-family: 'Montserrat', sans-serif;
     font-family: 'Open Sans', sans-serif;
     font-weight: bold;
-    font-size: 0.7rem;
+    font-size: 0.6rem;
     color: #8b949e;
   }
 </style>
