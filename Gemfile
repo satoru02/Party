@@ -16,7 +16,7 @@ gem 'rails', '~> 6.0.3', '>= 6.0.3.4'
 gem 'refile', require: 'refile/rails'
 gem 'rspec', '~> 3.10'
 gem 'sass-rails', '>= 6'
-gem 'pg'
+gem 'pg', '~> 1.2', '>= 1.2.3'
 gem 'turbolinks', '~> 5'
 gem 'turnout'
 gem 'webpacker', '~> 4.0'
@@ -58,6 +58,10 @@ group :test do
   gem 'selenium-webdriver'
   gem 'shoulda-matchers', '~> 4.0.1', require: false
   gem 'webdrivers'
+end
+
+group :production do
+  gem 'pg', '~> 1.2', '>= 1.2.3'
 end
 
 gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
