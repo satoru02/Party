@@ -16,4 +16,6 @@ test:
 
 production:
   <<: *default
-  database: winter-party_production
+  database: bundler_production
+  username: root
+  password:
