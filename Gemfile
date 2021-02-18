@@ -60,8 +60,9 @@ group :test do
   gem 'webdrivers'
 end
 
-group :production do
+group :production, :staging do
   gem 'pg', '~> 1.2', '>= 1.2.3'
+  gem 'unicorn'
 end
 
 gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
