@@ -17,5 +17,5 @@ test:
 production:
   <<: *default
   database: bundler_production
-  username: root
-  password:
+  username: satoru
+  password: satoru0021
