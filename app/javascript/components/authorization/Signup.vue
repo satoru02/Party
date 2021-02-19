@@ -142,6 +142,7 @@
           .catch(error => this.signupFailed(error))
       },
       signupSuccessful(response) {
+        // console.log(response)
         this.$router.replace({
           name: "check",
           params: {
