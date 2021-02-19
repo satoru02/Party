@@ -60,17 +60,31 @@ Rails.application.configure do
   # config.active_job.queue_adapter     = :resque
   # config.active_job.queue_name_prefix = "winter_party_production"
 
+  # config.action_mailer.perform_deliveries = true
+  # config.action_mailer.raise_delivery_errors = true
+  # config.action_mailer.perform_caching = false
+  # config.action_mailer.default_url_options = { :host => 'http://176.34.13.245/' }
+  # config.action_mailer.delivery_method = :smtp
+  # config.action_mailer.smtp_settings = {
+  #   address: "smtp.gmail.com",
+  #   domain: 'gmail.com',
+  #   port: 587,
+  #   user_name: ENV['SMTP_USER_NAME'],
+  #   password: ENV['SMTP_PASSWORD'],
+  #   authentication: 'plain',
+  #   enable_starttls_auto: true
+  # }
+
   config.action_mailer.perform_deliveries = true
   config.action_mailer.raise_delivery_errors = true
   config.action_mailer.perform_caching = false
   config.action_mailer.default_url_options = { :host => 'http://176.34.13.245/' }
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.smtp_settings = {
-    address: "smtp.gmail.com",
-    domain: 'gmail.com',
+    address: "email-smtp.ap-northeast-1.amazonaws.com",
     port: 587,
-    user_name: ENV['SMTP_USER_NAME'],
-    password: ENV['SMTP_PASSWORD'],
+    user_name: ENV['SMTP_AWS_USER_NAME'],
+    password: ENV['SMTP_AWS_PASSWORD'],
     authentication: 'plain',
     enable_starttls_auto: true
   }
