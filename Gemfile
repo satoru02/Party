@@ -24,6 +24,7 @@ gem 'bootsnap', '>= 1.4.2', require: false
 gem 'faker', :git => 'https://github.com/faker-ruby/faker.git', :branch => 'master'
 gem 'rack-cors'
 gem 'redis-rails'
+# gem 'redis'
 gem 'jwt_sessions'
 gem 'bcrypt'
 gem 'jwt'
