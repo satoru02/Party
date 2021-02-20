@@ -18,7 +18,7 @@ module Api
           JWTSessions.access_cookie,
           value: tokens[:access],
           httponly: true,
-          secure: Rails.env.production?
+          # secure: Rails.env.production?
         )
 
         render json: { csrf: tokens[:csrf], access_token: tokens[:access] }

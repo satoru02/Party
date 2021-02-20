@@ -13,11 +13,12 @@ module Api
             namespace: "user_#{user.id}"
           )
           tokens = session.login
+
           response.set_cookie(
             JWTSessions.access_cookie,
             value: tokens[:access],
             httponly: true,
-            secure: Rails.env.production?,
+            # secure: Rails.env.production?,
             path: "/"
           )
           render json: { csrf: tokens[:csrf], access_token: tokens[:access] }
