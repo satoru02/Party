@@ -18,12 +18,9 @@
   import InfiniteLoading from 'vue-infinite-loading';
   import ActionCableVue from 'actioncable-vue';
   import '@mdi/font/css/materialdesignicons.css';
-
   import Header from './components/page/TheHeader.vue';
-
   import UsersList from './components/admin/users/List.vue';
   import UserPostsList from './components/admin/users/posts/List.vue';
-
   import Login from './components/authorization/Login';
   import Signup from './components/authorization/Signup';
   import AccountActivation from './components/authorization/AccountActivation';
@@ -31,7 +28,6 @@
   import ResetPassword from './components/authorization/ResetPassword';
   import Logout from './components/authorization/Logout';
   import MailCheck from './components/authorization/MailCheck';
-
   import UserEdit from './components/admin/users/Edit.vue';
   import UserSettings from './components/user/UserSettings';
   import UserTop from './components/user/UserTop';
@@ -39,28 +35,36 @@
   import UserCardFilter from './components/user/UserCardFilter';
   import UserFollowing from './components/user/UserFollowing';
   import UserFollowers from './components/user/UserFollowers';
-
   import Room from './components/room/Room.vue';
   import Rooms from './components/room/Rooms.vue';
   import RoomTop from './components/room/RoomTop';
-
   import Notification from './components/notification/Notification';
   import Notifications from './components/notification/Notifications';
-
   import Post from './components/upload/Post';
   import PostEdit from './components/upload/PostEdit.vue';
-
   import Top from './components/top/TopPage';
   import TopCardFilter from './components/top/TopCardFilter';
 
-  const actionCableVueOptions = {
+  const developmentOptions = {
     debug: true,
     debugLevel: 'error',
     connectionUrl: 'ws://localhost:5000/cable',
     connectImmediately: true
   };
 
-  Vue.use(ActionCableVue, actionCableVueOptions)
+  const productionOptions = {
+    debug: true,
+    debugLevel: 'error',
+    connectionUrl: 'ws://176.34.13.245/cable',
+    connectImmediately: true
+  }
+
+  if(process.env.NODE_ENV === "development") {
+    Vue.use(ActionCableVue, developmentOptions)
+  } else if(process.env.NODE_ENV === "production") {
+    Vue.use(ActionCableVue, productionOptions)
+  }
+
   Vue.use(VuePaginate)
   Vue.use(VueRouter)
   Vue.use(Vuex)

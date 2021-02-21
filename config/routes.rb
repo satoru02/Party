@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
 
   root to: 'home#index'
-
+  mount ActionCable.server => "/cable"
   namespace 'api' do
     namespace 'v1' do
       resources :years, only: [:index]
@@ -71,7 +71,6 @@ Rails.application.routes.draw do
 
   get '/api/v1/users/:id/edit', to:'api/v1/users#edit'
   get '/api/v1/posts/:id/edit', to:'api/v1/posts#edit'
-
   #local
   get '/rails/active_storage/disk/:encoded_key/*filename', to: 'active_storage/disk#show'
   get '*path', to: 'home#index'
