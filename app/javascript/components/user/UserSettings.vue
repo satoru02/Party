@@ -25,8 +25,10 @@
         <v-col cols=3 sm=3 md=3 lg=3 xl=3>
           <h3>アイコン</h3>
         </v-col>
-        <v-col cols=7 sm=7 md=7 lg=7 xl=7 class="ml-n2 mt-n2">
-          <v-file-input dense type="file" ref="inputFile" @change="uploadFile()" />
+        <v-col cols=7 sm=7 md=7 lg=7 xl=7 class="mt-n2">
+          <!-- <v-file-input dark dense outlined type="file" ref="inputFile" @change="uploadFile()" /> -->
+          <!-- <v-file-input dark dense outlined v-on:input="picture = value" /> -->
+          <v-file-input dark dense outlined v-model="picture" />
         </v-col>
       </v-row>
       <v-row>
@@ -216,6 +218,7 @@
     secureAxios
   } from '../../backend/axios.js'
   import BaseTextField from '../base/BaseTextField';
+  import { DirectUpload } from "activestorage"
   const USER_URL = '/api/v1/users/'
 
   export default {
@@ -246,6 +249,7 @@
         this.user = this.$store.state.currentUser.data.attributes
       },
       saveProfile() {
+        this.uploadExecuter()
         secureAxios.patch(USER_URL + `${this.$store.state.currentUser.data.attributes.id}`, {
             email: this.user.email,
             about: this.user.about,
@@ -261,6 +265,18 @@
           })
           .then(response => this.updateSuccessful(response))
           .catch(error => this.Failed(error))
+      },
+      uploadExecuter(){
+        console.log(this.picture)
+        const upload = new DirectUpload(this.picture, '/rails/active_storage/direct_uploads', true)
+        console.log(upload)
+        upload.create((error, blob) => {
+          if(error){
+            console.log(error)
+          } else {
+            console.log(blob)
+          }
+        })
       },
       updateSuccessful(response) {
         this.$store.commit('setCurrentUser', {

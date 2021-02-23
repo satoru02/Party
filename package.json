@@ -8,6 +8,7 @@
     "@rails/ujs": "^6.0.0",
     "@rails/webpacker": "4.3.0",
     "actioncable-vue": "^2.4.0",
+    "activestorage": "^5.2.4-5",
     "axios": "^0.21.0",
     "cropperjs": "^1.5.9",
     "moment": "^2.29.1",
