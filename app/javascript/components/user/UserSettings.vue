@@ -26,9 +26,7 @@
           <h3>アイコン</h3>
         </v-col>
         <v-col cols=7 sm=7 md=7 lg=7 xl=7 class="mt-n2">
-          <!-- <v-file-input dark dense outlined type="file" ref="inputFile" @change="uploadFile()" /> -->
-          <!-- <v-file-input dark dense outlined v-on:input="picture = value" /> -->
-          <v-file-input dark dense outlined v-model="picture" />
+          <v-file-input dark dense outlined v-model="picture" @change="getPresignedURI()" />
         </v-col>
       </v-row>
       <v-row>
@@ -215,11 +213,12 @@
 
 <script>
   import {
-    secureAxios
+    secureAxios, simpleAxios
   } from '../../backend/axios.js'
   import BaseTextField from '../base/BaseTextField';
   import { DirectUpload } from "activestorage"
   const USER_URL = '/api/v1/users/'
+  const GET_PRESIGNED_URL = '/api/v1/direct_upload'
 
   export default {
     name: 'UserSettings',
@@ -248,8 +247,42 @@
         }
         this.user = this.$store.state.currentUser.data.attributes
       },
+      getPresignedURI(){
+        secureAxios.get(GET_PRESIGNED_URL + `/` + `presigned_url`, {
+          params: {
+            filename: this.picture.name,
+            filetype: this.picture.type
+          }
+        }).then(response => {
+          var postdata = new FormData()
+          postdata.append("lastModified", this.picture.lastModified)
+          postdata.append("name", this.picture.name)
+          postdata.append("size", this.picture.size)
+          postdata.append("type", this.picture.type)
+          postdata.append("webkitRelativePath", this.picture.webkitRelativePath)
+
+          var formdata = new FormData()
+          formdata.append("Content-Type", response.data.fields['Content-Type'])
+          formdata.append("key", response.data.fields['key'])
+          formdata.append("acl", response.data.fields['acl'])
+          formdata.append("policy", response.data.fields['policy'])
+          formdata.append("x-amz-algorithm", response.data.fields['x-amz-algorithm'])
+          formdata.append("x-amz-credential", response.data.fields['x-amz-credential'])
+          formdata.append("x-amz-date", response.data.fields['x-amz-date'])
+          formdata.append("x-amz-meta-original-filename", response.data.fields['x-amz-meta-original-filename'])
+          formdata.append("x-amz-signature", response.data.fields['x-amz-signature'])
+          formdata.append("file", postdata)
+
+          simpleAxios.post(response.data.url, formdata, {
+            headers: {
+              'Content-Type': 'multipart/form-data'
+            }
+          })
+            .then((response) => {
+              console.log(response)
+          })
+      })},
       saveProfile() {
-        this.uploadExecuter()
         secureAxios.patch(USER_URL + `${this.$store.state.currentUser.data.attributes.id}`, {
             email: this.user.email,
             about: this.user.about,
@@ -265,18 +298,6 @@
           })
           .then(response => this.updateSuccessful(response))
           .catch(error => this.Failed(error))
-      },
-      uploadExecuter(){
-        console.log(this.picture)
-        const upload = new DirectUpload(this.picture, '/rails/active_storage/direct_uploads', true)
-        console.log(upload)
-        upload.create((error, blob) => {
-          if(error){
-            console.log(error)
-          } else {
-            console.log(blob)
-          }
-        })
       },
       updateSuccessful(response) {
         this.$store.commit('setCurrentUser', {
