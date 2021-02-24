@@ -271,7 +271,13 @@
           formdata.append("x-amz-date", response.data.fields['x-amz-date'])
           formdata.append("x-amz-meta-original-filename", response.data.fields['x-amz-meta-original-filename'])
           formdata.append("x-amz-signature", response.data.fields['x-amz-signature'])
-          formdata.append("file", postdata)
+          // formdata.append("lastModified", this.picture.lastModified)
+          // formdata.append("name", this.picture.name)
+          // formdata.append("size", this.picture.size)
+          // formdata.append("type", this.picture.type)
+          // formdata.append("webkitRelativePath", this.picture.webkitRelativePath)
+          formdata.append("file", this.picture, "file.txt")
+          console.log(formdata)
 
           simpleAxios.post(response.data.url, formdata, {
             headers: {
@@ -294,7 +300,7 @@
             facebook_url: this.user.facebook_url,
             instagram_url: this.user.instagram_url,
             filmarks_url: this.user.filmarks_url,
-            avatar: this.picture
+            avatar: avatardata
           })
           .then(response => this.updateSuccessful(response))
           .catch(error => this.Failed(error))

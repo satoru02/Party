@@ -3,7 +3,6 @@ module Api
     class UsersController < ApplicationController
       before_action :authorize_access_request!
       before_action :set_user, only: [:posts, :show, :edit, :update, :destroy]
-      # before_action :set_host_for_local_storage
 
       def me
         if params[:position] === 'activation'
@@ -34,7 +33,6 @@ module Api
       end
 
       def update
-        # binding.pry
         @user.update!(user_params)
         # @user.avatar.attach(params[:avatar])
         serializer = UserSerializer.new(current_user)
@@ -75,10 +73,6 @@ module Api
         def set_user
           @user = User.includes(:posts).find(params[:id])
         end
-
-        # def set_host_for_local_storage
-        #   ActiveStorage::Current.host = request.base_url if Rails.application.config.active_storage.service == :local
-        # end
     end
   end
 end

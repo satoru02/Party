@@ -15,8 +15,8 @@ class UserSerializer
     object.followers.map(&:id)
   end
 
-  # attribute :avatar_url do |object|
-  #   variant = object.avatar.variant(resize: "454x454")
-  #   object.avatar_url(variant.blob)
-  # end
+  attribute :avatar_url do |object|
+    variant = object.avatar.variant(resize: "50x50")
+    object.avatar_url(variant.blob)
+  end
 end
