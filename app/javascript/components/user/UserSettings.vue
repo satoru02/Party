@@ -216,9 +216,8 @@
     secureAxios, simpleAxios
   } from '../../backend/axios.js'
   import BaseTextField from '../base/BaseTextField';
-  import { DirectUpload } from "activestorage"
   const USER_URL = '/api/v1/users/'
-  const GET_PRESIGNED_URL = '/api/v1/direct_upload'
+  const GET_PRESIGNED_URL = '/api/v1/avatar'
 
   export default {
     name: 'UserSettings',
@@ -254,13 +253,6 @@
             filetype: this.picture.type
           }
         }).then(response => {
-          var postdata = new FormData()
-          postdata.append("lastModified", this.picture.lastModified)
-          postdata.append("name", this.picture.name)
-          postdata.append("size", this.picture.size)
-          postdata.append("type", this.picture.type)
-          postdata.append("webkitRelativePath", this.picture.webkitRelativePath)
-
           var formdata = new FormData()
           formdata.append("Content-Type", response.data.fields['Content-Type'])
           formdata.append("key", response.data.fields['key'])
@@ -271,13 +263,7 @@
           formdata.append("x-amz-date", response.data.fields['x-amz-date'])
           formdata.append("x-amz-meta-original-filename", response.data.fields['x-amz-meta-original-filename'])
           formdata.append("x-amz-signature", response.data.fields['x-amz-signature'])
-          // formdata.append("lastModified", this.picture.lastModified)
-          // formdata.append("name", this.picture.name)
-          // formdata.append("size", this.picture.size)
-          // formdata.append("type", this.picture.type)
-          // formdata.append("webkitRelativePath", this.picture.webkitRelativePath)
           formdata.append("file", this.picture, "file.txt")
-          console.log(formdata)
 
           simpleAxios.post(response.data.url, formdata, {
             headers: {
@@ -300,7 +286,7 @@
             facebook_url: this.user.facebook_url,
             instagram_url: this.user.instagram_url,
             filmarks_url: this.user.filmarks_url,
-            avatar: avatardata
+            file_name: this.picture.name
           })
           .then(response => this.updateSuccessful(response))
           .catch(error => this.Failed(error))

@@ -67,7 +67,7 @@ Rails.application.routes.draw do
         resources :users, only: [:index]
       end
 
-      get '/direct_upload/presigned_url', to: 'direct_upload#presigned_url'
+      get '/avatar/presigned_url', to: 'avatar#presigned_url'
     end
   end
 

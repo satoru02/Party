@@ -1,6 +1,6 @@
 module Api
   module V1
-    class DirectUploadController < ApplicationController
+    class AvatarController < ApplicationController
 
       def presigned_url
         filename = params[:filename]

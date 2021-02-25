@@ -34,7 +34,7 @@ module Api
 
       def update
         @user.update!(user_params)
-        # @user.avatar.attach(params[:avatar])
+        @user.attach_avatar(params[:file_name])
         serializer = UserSerializer.new(current_user)
         render json: serializer.serializable_hash.to_json
       end
@@ -66,7 +66,7 @@ module Api
 
         def user_params
           params.require(:user).permit(
-            :email, :about, :web_url, :name, :username, :youtube_url, :facebook_url, :instagram_url, :filmarks_url, :location, :avatar
+            :email, :about, :web_url, :name, :username, :youtube_url, :facebook_url, :instagram_url, :filmarks_url, :location
           )
         end
 

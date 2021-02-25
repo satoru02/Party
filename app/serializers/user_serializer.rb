@@ -16,7 +16,7 @@ class UserSerializer
   end
 
   attribute :avatar_url do |object|
-    variant = object.avatar.variant(resize: "50x50")
-    object.avatar_url(variant.blob)
+    object.avatar_url(object.avatar.blob)
   end
 end
+
