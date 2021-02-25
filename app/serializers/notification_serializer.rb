@@ -42,9 +42,7 @@ class NotificationSerializer
       @user = User.find_by(id: @message.user.id)
     end
 
-    # ActiveStorage::Current.host = "http://localhost:5000"
     # @index_user_info.push(user: @user, avatar: @user.avatar.blob.service_url)
-    # ActiveStorage::Current.host = "http://localhost:5000"
     @index_user_info.push(user: @user)
   end
 end

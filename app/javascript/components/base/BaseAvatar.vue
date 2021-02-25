@@ -1,13 +1,13 @@
 <template>
-  <v-list-item-avatar
-    color="white darken-3"
+  <v-avatar
+    color="darken-3"
     :size="size"
-    :avatar_url="avatar_url">
+    >
     <v-img
       class="elevation-1"
-      alt=""
+      :size="size"
       :src="avatar_url" />
-  </v-list-item-avatar>
+  </v-avatar>
 </template>
 
 <script>
@@ -17,6 +17,8 @@ export default {
   props:{
     avatar_url: {
       type: String,
+      // #local disk
+      default: "https://cdn.vuetifyjs.com/images/john.jpg"
     },
     size: {
       type: Number,

@@ -18,7 +18,7 @@
           <v-divider />
           <v-row>
             <v-col cols=2 sm=2 md=2 lg=2 xl=2 />
-            <v-col cols=7 sm=7 md=7 lg=7 xl=7 class="mt-n11 ml-9">
+            <v-col cols=7 sm=7 md=7 lg=7 xl=7 class="mt-n6 ml-9">
               <div></div>
             </v-col>
             <v-col cols=1 sm=1 md=1 lg=1 xl=1 />
@@ -28,17 +28,8 @@
             <v-col cols=3 sm=3 md=3 lg=3 xl=3>
               <h3>アイコン</h3>
             </v-col>
-            <v-col cols=2 sm=2 md=2 lg=2 xl=2>
-              <form enctype="multipart/form-data">
-                <input type="file" ref="inputFile" @change="uploadFile()">
-              </form>
-            </v-col>
-            <v-col cols=1 sm=1 md=1 lg=1 xl=1 />
-          </v-row>
-          <v-row>
-            <v-col cols=4 sm=4 md=4 lg=4 xl=4 />
-            <v-col cols=7 sm=7 md=7 lg=7 xl=7 class="mt-n12">
-              <div></div>
+            <v-col cols=7 sm=7 md=7 lg=7 xl=7 class="mt-n2">
+              <v-file-input dark dense outlined v-model="picture" @change="getPresignedURI()" />
             </v-col>
             <v-col cols=1 sm=1 md=1 lg=1 xl=1 />
           </v-row>
@@ -194,17 +185,18 @@
 
 <script>
   import {
-    secureAxios
+    secureAxios, simpleAxios
   } from '../../backend/axios.js'
   import BaseTextField from '../base/BaseTextField';
   const USER_URL = '/api/v1/users/'
+  const GET_PRESIGNED_URL = '/api/v1/avatar'
 
   export default {
     name: 'UserInitialSettings',
     data() {
       return {
         user: '',
-        picture: ''
+        picture: null
       }
     },
     components: {
@@ -214,6 +206,34 @@
       this.user = this.$store.state.currentUser.data.attributes
     },
     methods: {
+      getPresignedURI(){
+        secureAxios.get(GET_PRESIGNED_URL + `/` + `presigned_url`, {
+          params: {
+            filename: this.picture.name,
+            filetype: this.picture.type
+          }
+        }).then(response => {
+          var formdata = new FormData()
+          formdata.append("Content-Type", response.data.fields['Content-Type'])
+          formdata.append("key", response.data.fields['key'])
+          formdata.append("acl", response.data.fields['acl'])
+          formdata.append("policy", response.data.fields['policy'])
+          formdata.append("x-amz-algorithm", response.data.fields['x-amz-algorithm'])
+          formdata.append("x-amz-credential", response.data.fields['x-amz-credential'])
+          formdata.append("x-amz-date", response.data.fields['x-amz-date'])
+          formdata.append("x-amz-meta-original-filename", response.data.fields['x-amz-meta-original-filename'])
+          formdata.append("x-amz-signature", response.data.fields['x-amz-signature'])
+          formdata.append("file", this.picture, "file.txt")
+
+          simpleAxios.post(response.data.url, formdata, {
+            headers: {
+              'Content-Type': 'multipart/form-data'
+            }
+          })
+            .then((response) => {
+              console.log(response)
+          })
+      })},
       saveProfile() {
         secureAxios.patch(USER_URL + `${this.$store.state.currentUser.data.attributes.id}`, {
             email: this.user.email,
@@ -226,7 +246,7 @@
             facebook_url: this.user.facebook_url,
             instagram_url: this.user.instagram_url,
             filmarks_url: this.user.filmarks_url,
-            avatar: this.picture
+            file_name: this.picture.name
           })
           .then(response => this.updateSuccessful(response))
           .catch(error => this.Failed(error))
