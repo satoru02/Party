@@ -1,6 +1,6 @@
 <template>
   <v-sheet class="rounded-lg" width=320 height=400 color="#11151c"
-    style="height:auto; min-height: 220px; max-height:1000px; width:auto; min-width: 275px;">
+    style="border: 1px solid hsla(0,0%,100%,.1); height:auto; min-height: 220px; max-height:1000px; width:auto; min-width: 275px;">
     <v-row no-gutters>
       <v-col lg=1 />
       <v-col lg=10 align="start" class="mt-6">
@@ -8,12 +8,12 @@
       </v-col>
       <v-col lg=1 />
     </v-row>
-    <v-row>
+    <v-row class="mt-2">
       <v-col lg=1 xl=1 />
       <v-col md=2 lg=3 xl=3 align="end">
         <base-avatar :size="40" />
         <v-row no-gutters>
-          <v-col lg=12 xl=12 class="hidden-md-only ml-n1" align="center">
+          <v-col lg=12 xl=12 class="hidden-md-only" align="center">
             <h3 class="username">John</h3>
           </v-col>
         </v-row>
@@ -21,7 +21,7 @@
       <v-col md=2 lg=3 xl=3 align="end" class="ml-3 mr-3">
         <base-avatar :size="40" />
         <v-row no-gutters>
-          <v-col lg=12 xl=12 class="hidden-md-only ml-n1" align="center">
+          <v-col lg=12 xl=12 class="hidden-md-only" align="center">
             <h3 class="username">Smith</h3>
           </v-col>
         </v-row>
@@ -29,19 +29,19 @@
       <v-col md=2 lg=3 xl=3 align="end">
         <base-avatar :size="40" />
         <v-row no-gutters>
-          <v-col lg=12 xl=12 class="hidden-md-only ml-n1" align="center">
+          <v-col lg=12 xl=12 class="hidden-md-only" align="center">
             <h3 class="username">Sugiwaka</h3>
           </v-col>
         </v-row>
       </v-col>
       <v-col lg=1 xl=1 />
     </v-row>
-    <v-row class="mt-n5">
+    <v-row class="mt-n1">
      <v-col lg=1 xl=1 />
       <v-col md=2 lg=3 xl=3 align="end">
         <base-avatar :size="40" />
         <v-row no-gutters>
-          <v-col lg=12 xl=12 class="hidden-md-only ml-n1" align="center">
+          <v-col lg=12 xl=12 class="hidden-md-only" align="center">
             <h3 class="username">Alice</h3>
           </v-col>
         </v-row>
@@ -49,7 +49,7 @@
       <v-col md=2 lg=3 xl=3 align="end" class="ml-3 mr-3">
         <base-avatar :size="40" />
         <v-row no-gutters>
-          <v-col lg=12 xl=12 class="hidden-md-only ml-n1" align="center">
+          <v-col lg=12 xl=12 class="hidden-md-only" align="center">
             <h3 class="username">Ted</h3>
           </v-col>
         </v-row>
@@ -57,7 +57,7 @@
       <v-col md=2 lg=3 xl=3 align="end">
         <base-avatar :size="40" />
         <v-row no-gutters>
-          <v-col lg=12 xl=12 class="hidden-md-only ml-n1" align="center">
+          <v-col lg=12 xl=12 class="hidden-md-only" align="center">
             <h3 class="username">Lowly</h3>
           </v-col>
         </v-row>

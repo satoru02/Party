@@ -4,7 +4,7 @@
       <v-col cols=12 sm=12 md=12 lg=12 xl=12 v-for="post in posts" :key="post.attributes.id + Math.random()" :title="post.attributes.title"
         :user_id="post.attributes.user_id" class="mb-6 mt-n2">
         <v-sheet class="rounded-lg" color="#11151c"
-          style="height:auto; min-height: 150px; width:auto;">
+          style="border: 1px solid hsla(0,0%,100%,.1); height:auto; min-height: 150px; width:auto;">
           <v-row>
             <v-col cols=1 sm=1 md=1 lg=1 xl=1 />
             <v-col cols=2 sm=2 md=2 lg=2 xl=2 class="mt-1 mb-1" color="#efeff1">

@@ -1,6 +1,6 @@
 <template>
   <v-sheet class="rounded-lg" width=340 color="#11151c"
-    style="height:auto; min-height: 420px; max-width: 100%; max-height:1000px; min-width: 275px;">
+    style="border: 1px solid hsla(0,0%,100%,.1); height:auto; min-height: 420px; max-width: 100%; max-height:1000px; min-width: 275px;">
     <v-row no-gutters>
       <v-col lg=1 />
       <v-col lg=10 align="start" class="mt-6">

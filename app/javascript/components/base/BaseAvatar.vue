@@ -1,10 +1,10 @@
 <template>
   <v-avatar
+    class="outlined"
     color="darken-3"
     :size="size"
     >
     <v-img
-      class="elevation-1"
       :size="size"
       :src="avatar_url" />
   </v-avatar>
@@ -27,3 +27,10 @@ export default {
   }
 }
 </script>
+
+<style scoped>
+.outlined {
+  border: 1px solid #495057;
+  border-radius: 50%;
+}
+</style>
