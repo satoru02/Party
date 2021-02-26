@@ -1,56 +1,56 @@
 <template>
   <div justify="center" align="center">
-    <v-row class="mt-4">
+    <v-row class="hidden-xs-only">
       <v-col cols=12 sm=11 md=1 lg=1 xl=1 />
-      <v-col cols=12 sm=11 md=4 lg=4 xl=4 class=ml-n3>
-        <h2>イベントを作ろう</h2>
+      <v-col sm=11 md=4 lg=4 xl=4>
+        <div :class="[$vuetify.breakpoint.mdAndUp ? 'text-h5 ml-n3 mt-5' : 'hidden-xs-only']">イベントを作ろう</div>
       </v-col>
     </v-row>
     <v-row>
       <v-col xs=1 sm=1 md=1 lg=2 xl=2 />
-      <v-col xs=10 sm=10 md=10 lg=8 xl=8>
-        <v-sheet style="border: 1px solid hsla(0,0%,100%,.1); height:auto;" color="#212529" height="510"
+      <v-col cols=10 sm=10 md=10 lg=8 xl=8>
+        <v-sheet style="border: 1px solid hsla(0,0%,100%,.1); height:auto; width:auto;" color="#212529" height="510"
           class="rounded mt-3">
           <v-row>
-            <v-col cols=12 sm=12 md=3 lg=3 xl=3 class="mt-3">
+            <v-col cols=4 sm=12 md=3 lg=3 xl=3 class="mt-3">
               <h3>イベント名</h3>
               <div style="color:#ff006e; font-size:0.6rem;">（※必須）</div>
             </v-col>
-            <v-col cols=12 sm=12 md=8 lg=8 xl=8 class="mt-1">
-              <base-text-field :childValue="title" v-on:input="title = $event" />
+            <v-col cols=7 sm=12 md=8 lg=8 xl=8 class="mt-1">
+              <base-text-field :childValue="titleText" v-on:input="title = $event" />
             </v-col>
           </v-row>
           <v-divider class="mt-n5 hidden-xs-only hidden-sm-only" />
           <v-row>
-            <v-col cols=12 sm=12 md=3 lg=3 xl=3 class="mt-3">
+            <v-col cols=4 sm=12 md=3 lg=3 xl=3 :class="[$vuetify.breakpoint.mdAndUp ? 'mt-3' : 'mt-n6']">
               <h3>開始時間</h3>
               <div style="color:#ff006e; font-size:0.6rem;">（※必須）</div>
             </v-col>
-            <v-col cols=12 sm=12 md=3 lg=3 xl=3 class="mt-1">
+            <v-col cols=7 sm=12 md=3 lg=3 xl=3 :class="[$vuetify.breakpoint.mdAndUp ? 'mt-1' : 'mt-n9']">
               <v-text-field v-model="start_date" type="datetime-local" outlined dark filled dense />
             </v-col>
-            <v-col cols=12 sm=12 md=2 lg=2 xl=2 class="mt-3">
+            <v-col cols=4 sm=12 md=2 lg=2 xl=2 :class="[$vuetify.breakpoint.mdAndUp ? 'mt-3' : 'mt-n6']">
               <h3>終了時間</h3>
               <div style="color:#ff006e; font-size:0.6rem;">（※必須）</div>
             </v-col>
-            <v-col cols=12 sm=12 md=3 lg=3 xl=3 class="mt-1">
+            <v-col cols=7 sm=12 md=3 lg=3 xl=3 :class="[$vuetify.breakpoint.mdAndUp ? 'mt-1' : 'mt-n9']">
               <v-text-field v-model="end_date" type="datetime-local" outlined dark filled dense />
             </v-col>
           </v-row>
           <v-divider class="mt-n5 hidden-xs-only hidden-sm-only" />
           <v-row>
-            <v-col cols=12 sm=12 md=3 lg=3 xl=3 class="mt-3">
+            <v-col cols=4 sm=12 md=3 lg=3 xl=3 :class="[$vuetify.breakpoint.mdAndUp ? 'mt-3' : 'mt-n6']">
               <h3>参加人数</h3>
               <div style="color:#ff006e; font-size:0.6rem;">（※必須）</div>
             </v-col>
-            <v-col cols=12 sm=12 md=3 lg=3 xl=3 class="mt-1">
+            <v-col cols=7 sm=12 md=3 lg=3 xl=3 :class="[$vuetify.breakpoint.mdAndUp ? 'mt-1' : 'mt-n9']">
               <base-selector :selectorText="limitText" :childItems="numbers" v-on:select="limit = $event" />
             </v-col>
-            <v-col cols=12 sm=12 md=2 lg=2 xl=2 class="mt-3">
+            <v-col cols=4 sm=12 md=2 lg=2 xl=2 :class="[$vuetify.breakpoint.mdAndUp ? 'mt-3' : 'mt-n6']">
               <h3>使用ツール</h3>
               <div style="color:#ff006e; font-size:0.6rem;">（※必須）</div>
             </v-col>
-            <v-col cols=12 sm=12 md=3 lg=3 xl=3 class="mt-1">
+            <v-col cols=7 sm=12 md=3 lg=3 xl=3 :class="[$vuetify.breakpoint.mdAndUp ? 'mt-1' : 'mt-n9']">
               <v-select v-model="selected_tools" placeholder="使用ツールを選択" dense :items="tools" filled outlined multiple
                 persistent-hint />
               <!-- <base-selector
@@ -62,38 +62,46 @@
           </v-row>
           <v-divider class="mt-n5 hidden-xs-only hidden-sm-only" />
           <v-row>
-            <v-col cols=12 sm=12 md=3 lg=3 xl=3 class="mt-3">
+            <v-col cols=4 sm=12 md=3 lg=3 xl=3 :class="[$vuetify.breakpoint.mdAndUp ? 'mt-3' : 'mt-n6']">
               <h3>カテゴリー</h3>
               <div style="color:#ff006e; font-size:0.6rem;">（※必須）</div>
             </v-col>
-            <v-col cols=12 sm=12 md=3 lg=3 xl=3 class="mt-1">
+            <v-col cols=7 sm=12 md=3 lg=3 xl=3 :class="[$vuetify.breakpoint.mdAndUp ? 'mt-1' : 'mt-n9']">
               <base-selector :selectorText="categoryText" :childItems="categories"
                 v-on:select="selectedCategory = $event" />
             </v-col>
-            <v-col cols=12 sm=12 md=2 lg=2 xl=2 class="mt-3">
+            <v-col cols=4 sm=12 md=2 lg=2 xl=2 :class="[$vuetify.breakpoint.mdAndUp ? 'mt-3' : 'mt-n6']">
               <h3>タグ</h3>
               <div style="color:#ff006e; font-size:0.4rem;">（例）映画,ドラマ,Zoom</div>
             </v-col>
-            <v-col cols=12 sm=12 md=3 lg=3 xl=3 class="mt-1">
+            <v-col cols=7 sm=12 md=3 lg=3 xl=3 :class="[$vuetify.breakpoint.mdAndUp ? 'mt-1' : 'mt-n9']">
               <base-text-field :childValue="tagText" v-on:input="tag_list = $event" />
             </v-col>
           </v-row>
           <v-divider class="mt-n5 hidden-xs-only hidden-sm-only" />
           <v-row>
-            <v-col cols=12 sm=12 md=3 lg=3 xl=3 class="mt-5">
+            <v-col cols=4 sm=12 md=3 lg=3 xl=3 :class="[$vuetify.breakpoint.mdAndUp ? 'mt-3' : 'mt-n6']">
               <h3>イベント内容</h3>
             </v-col>
-            <v-col cols=12 sm=12 md=8 lg=8 xl=8 class="mt-5">
+            <v-col cols=7 sm=12 md=8 lg=8 xl=8 :class="[$vuetify.breakpoint.mdAndUp ? 'mt-3' : 'mt-n9']">
               <base-text-area :childValue="areaText" v-on:input="content = $event" />
+            </v-col>
+          </v-row>
+          <v-row class="hidden-md-only hidden-sm-only hidden-lg-only hidden-xl-only mt-n8">
+            <v-col cols=1 />
+            <v-col cols=9>
+              <v-btn width="330" @click="postUrl()" style="background-color:#2d00f7; font-weight:bold;" dark class="rounded">
+                アップロード
+              </v-btn>
             </v-col>
           </v-row>
         </v-sheet>
         <base-snackbar v-if="this.snackbar === true" :childValue="display_error_text" v-on:click="snackbar = value" />
       </v-col>
-      <v-col xs=1 sm=1 md=1 lg=2 xl=2 />
+      <v-col cols=1 sm=1 md=1 lg=2 xl=2 />
     </v-row>
     <v-row>
-      <v-col cols=12 sm=12 md=2 lg=2 xl=2 />
+      <v-col sm=12 md=2 lg=2 xl=2 />
       <v-col cols=1 sm=1 class="hidden-md-only hidden-lg-only hidden-xl-only" />
       <v-col cols=3 sm=2 md=2 lg=1 xl=1>
         <v-btn width="100" @click="postUrl()" style="background-color:#2d00f7; font-weight:bold;" large dark
@@ -144,6 +152,7 @@
         snackbar: false,
         display_error_text: [],
         selected_tools: [],
+        titleText: "イベント名を入力",
         limitText: "参加人数を選択",
         toolText: "使用ツールを選択",
         categoryText: "カテゴリーを選択",
