@@ -1,6 +1,6 @@
 <template>
   <div justify="center" align="center">
-    <v-row style="height:115;">
+    <v-row style="height:130;">
       <v-col sm=12 md=12 lg=12 xl=12 />
     </v-row>
     <v-row>
@@ -93,11 +93,11 @@
 
           <v-row>
             <v-col cols=2 sm=2 md=1 lg=1 xl=1 />
-            <v-col cols=3 sm=3 md=3 lg=2 xl=2 :class="[$vuetify.breakpoint.mdAndUp ? 'ml-n2 mt-n1' : 'ml-n10 mt-n1']" @click="makeAccount()">
-              <div class="'caption'" style="font-size:0.7rem; font-weight:bold; color:#6c757d; cursor: pointer;">アカウント作成</div>
+            <v-col cols=3 sm=3 md=3 lg=2 xl=2 :class="[$vuetify.breakpoint.mdAndUp ? 'ml-n2 mt-n1' : 'ml-n10 mt-n1']">
+              <div @click="makeAccount()" class="'caption'" style="font-size:0.7rem; font-weight:bold; color:#6c757d; cursor: pointer;">アカウント作成</div>
             </v-col>
-            <v-col cols=4 sm=3 md=3 lg=4 xl=4 :class="[$vuetify.breakpoint.mdAndUp ? 'ml-n16 mt-n1' : ' ml-n3 mt-n1']" @click="forgetPassword()">
-              <div class="'caption'" style="font-size:0.7rem; font-weight:bold; color:#6c757d; cursor: pointer;">パスワードを忘れた</div>
+            <v-col align="start" cols=4 sm=3 md=3 lg=4 xl=4 :class="[$vuetify.breakpoint.mdAndUp ? 'mt-n1' : ' ml-n3 mt-n1']">
+              <div @click="forgetPassword()" class="'caption'" style="font-size:0.7rem; font-weight:bold; color:#6c757d; cursor: pointer;">パスワードを忘れた</div>
             </v-col>
           </v-row>
         </v-sheet>
