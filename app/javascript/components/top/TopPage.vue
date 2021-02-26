@@ -14,30 +14,30 @@
       </v-row>
     </v-col>
 
-    <v-col cols=12 sm=12 md=6 lg=6 xl=6>
+    <v-col cols=12 sm=12 md=6 lg=6 xl=6 :class="[$vuetify.breakpoint.mdAndUp ? 'mt-0': 'mt-n9']">
       <v-row>
-        <v-col v-if="$route.name === 'Top'" v-model="date" cols=12 sm=12 md=12 lg=4 xl=5 align="start"
+        <v-col v-if="$route.name === 'Top'" v-model="date" cols=4 sm=12 md=12 lg=4 xl=5 align="start"
           class="ml-5 mb-n2">
-          <h2>Discover</h2>
+          <div style="font-weight:bold;" :class="[$vuetify.breakpoint.mdAndUp ? 'mt-1 text-h6': 'subtitle-1']">Discover</div>
         </v-col>
-        <v-col v-if="$route.name === 'TopFilter'" v-model="date" cols=12 sm=12 md=12 lg=4 xl=5 align="start"
+        <v-col v-if="$route.name === 'TopFilter'" v-model="date" cols=4 sm=12 md=12 lg=4 xl=5 align="start"
           class="ml-5 mb-n2">
           <h2>{{date}}のイベント</h2>
         </v-col>
-        <v-col v-if="$route.name === 'Category'" cols=12 sm=12 md=12 lg=4 xl=5 align="start" class="ml-5 mb-n2">
+        <v-col v-if="$route.name === 'Category'" cols=4 sm=12 md=12 lg=4 xl=5 align="start" class="ml-5 mb-n2">
           <h2>{{this.$route.params.slug}}</h2>
         </v-col>
-        <v-col v-if="$route.name === 'Search'" cols=12 sm=12 md=12 lg=4 xl=5 align="start" class="ml-5 mb-n2">
+        <v-col v-if="$route.name === 'Search'" cols=4 sm=12 md=12 lg=4 xl=5 align="start" class="ml-5 mb-n2">
           <h2>検索結果：{{this.$route.params.query}}</h2>
         </v-col>
-        <v-col v-if="$route.name === 'Tag'" cols=12 sm=12 md=12 lg=4 xl=5 align="start" class="ml-5 mb-n2">
+        <v-col v-if="$route.name === 'Tag'" cols=4 sm=12 md=12 lg=4 xl=5 align="start" class="ml-5 mb-n2">
           <h2>タグ：{{this.$route.params.name}}</h2>
         </v-col>
-        <v-col lg=6 />
-        <v-col lg=1 class="mt-2 ml-n11">
+        <v-col cols=4 lg=6 />
+        <v-col xs=1 lg=1 :class="[$vuetify.breakpoint.mdAndUp ? 'mt-2 ml-n11': 'mt-0']">
           <v-menu offset-y>
             <template v-slot:activator="{on, attrs}">
-              <v-btn elevation=0 small width="110" class="rounded-lg" style="background-color:#21262d;" dark v-bind="attrs" v-on="on">
+              <v-btn elevation=0 small width="110" class="rounded-s" style="background-color:#21262d;" dark v-bind="attrs" v-on="on">
                 Filter
                 <v-icon small>mdi-chevron-down</v-icon>
                 </v-btn>

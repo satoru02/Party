@@ -1,11 +1,12 @@
 <template>
   <div id="app">
     <v-app style="background-color:#0e0e10">
-      <top-header v-if="checkRoute()" />
+      <top-header v-if="this.$store.state.signedIn" />
       <v-main>
         <router-view />
       </v-main>
     </v-app>
+    <bottom-navigation v-if="this.$store.state.signedIn" />
   </div>
 </template>
 
@@ -19,6 +20,7 @@
   import ActionCableVue from 'actioncable-vue';
   import '@mdi/font/css/materialdesignicons.css';
   import Header from './components/page/TheHeader.vue';
+  import BottomNavigation from './components/page/TheBottomNavigation';
   import UsersList from './components/admin/users/List.vue';
   import UserPostsList from './components/admin/users/posts/List.vue';
   import Login from './components/authorization/Login';
@@ -59,9 +61,9 @@
     connectImmediately: true
   }
 
-  if(process.env.NODE_ENV === "development") {
+  if (process.env.NODE_ENV === "development") {
     Vue.use(ActionCableVue, developmentOptions)
-  } else if(process.env.NODE_ENV === "production") {
+  } else if (process.env.NODE_ENV === "production") {
     Vue.use(ActionCableVue, productionOptions)
   }
 
@@ -162,8 +164,7 @@
       {
         path: "/users/:id",
         component: UserTop,
-        children: [
-          {
+        children: [{
             path: '',
             name: "MyEvents",
             component: UserCardFilter,
@@ -205,18 +206,17 @@
       {
         path: "/rooms",
         component: Rooms,
-        children: [
-        {
-          path:'',
-          name: "Rooms",
-          component: RoomTop
-        },
-        {
-          path: "/room/:name/:token",
-          name: "Room",
-          component: Room,
-        },
-      ]
+        children: [{
+            path: '',
+            name: "Rooms",
+            component: RoomTop
+          },
+          {
+            path: "/room/:name/:token",
+            name: "Room",
+            component: Room,
+          },
+        ]
       },
       {
         path: "/login",
@@ -300,17 +300,8 @@
     router,
     store,
     components: {
-      'top-header': Header
-    },
-    methods:{
-      checkRoute(){
-        let validationRouter = ['login', 'signup', 'ForgotPassword', 'check']
-        if (validationRouter.includes(this.$route.name)){
-          return false
-        } else {
-          return true
-        }
-      }
+      'top-header': Header,
+      'bottom-navigation': BottomNavigation
     }
   }
 </script>
