@@ -14,7 +14,7 @@
             <v-col cols=6 sm=6 md=6 lg=8 xl=8 class="mt-1" color="#ffffff">
               <h3>{{ post.attributes.title }}</h3>
             </v-col>
-            <v-col cols=1 sm=1 md=1 lg=1 xl=1 class="mt-2">
+            <!-- <v-col cols=1 sm=1 md=1 lg=1 xl=1 class="mt-2">
               <v-menu left offset-y nudge-width="140" nudge-height="100" nudge-bottom="10">
                 <template v-slot:activator="{ on, attrs }">
                   <v-icon color="#edf6f9" v-bind="attrs" v-on="on">mdi-dots-horizontal</v-icon>
@@ -28,7 +28,7 @@
                   </v-list-item>
                 </v-list>
               </v-menu>
-            </v-col>
+            </v-col> -->
           </v-row>
           <v-divider dark />
           <v-row>
