@@ -35,13 +35,16 @@
             <v-col cols=1 sm=1 md=1 lg=1 xl=1 />
             <v-col cols=2 sm=2 md=2 lg=1 xl=1>
               <router-link :to="{name: 'MyEvents', params: {id: `${post.attributes.user.id}`}}">
-                <base-avatar />
+                <base-avatar :size="50" />
               </router-link>
             </v-col>
-            <v-col cols=8 sm=8 md=8 lg=8 xl=8 class="mt-4 ml-n4">
-              <h3 style="color:#adb5bd; font-size:0.5rem;">{{ post.attributes.user.username}}
+            <v-col cols=8 sm=8 md=8 lg=8 xl=8 class="mt-4 ml-2">
+              <h3 style="color:#adb5bd; font-size:0.8rem;">{{ post.attributes.user.username}}
                 ({{ formalizeTime(post.attributes.created_at) }})</h3>
             </v-col>
+          </v-row>
+          <v-row>
+            <v-col cols=12 sm=12 md=12 lg=12 xl=12 />
           </v-row>
           <v-row>
             <v-col cols=1 sm=1 md=1 lg=1 xl=1　/>

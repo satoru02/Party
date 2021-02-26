@@ -16,7 +16,9 @@ class UserSerializer
   end
 
   attribute :avatar_url do |object|
-    object.avatar_url(object.avatar.blob)
+    if object.avatar.attached?
+      object.avatar_url(object.avatar.blob)
+    end
   end
 end
 

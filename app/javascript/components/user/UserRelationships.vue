@@ -7,11 +7,11 @@
             style="border: 1px solid hsla(0,0%,100%,.1); width:auto; height:auto;">
             <v-row no-gutters>
               <v-col cols=1 sm=4 md=4 lg=4 xl=4 />
-              <v-col cols=5 sm=4 md=4 lg=4 xl=4 align="center">
-                <base-avatar :size="70" />
+              <v-col cols=5 sm=4 md=4 lg=4 xl=4 align="center" class="mt-5">
+                <base-avatar :size="60" :avatar_url="user.attributes.avatar_url" />
                 <v-row no-gutters>
                   <v-col cols=4 sm=2 md=2 lg=2 xl=2 />
-                  <v-col cols=2 sm=8 md=8 lg=8 xl=8 align="start" class="ml-n2">
+                  <v-col cols=2 sm=8 md=8 lg=8 xl=8 align="start" class="mt-3">
                     <p>{{ user.attributes.username }}</p>
                   </v-col>
                   <v-col cols=2 sm=2 md=2 lg=2 xl=2 />
