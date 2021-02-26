@@ -1,65 +1,47 @@
 <template>
   <div justify="center" align="center">
+    <v-row style="height:150;">
+      <v-col cols=12 sm=12 md=12 lg=12 xl=12 />
+    </v-row>
     <v-row>
       <v-col cols=1 sm=1 md=1 lg=3 xl=3 />
       <v-col cols=10 sm=10 md=10 lg=6 xl=6>
         <v-sheet elevation=10 style="border: 1px solid hsla(0,0%,100%,.1); width:auto; height:auto;" color="#212529"
           class="rounded-lg mt-6">
           <v-row>
-            <v-col cols=12 md=2></v-col>
-            <v-col cols=12 md=8 class="mt-8">
-              <h2>アカウント作成</h2>
+            <v-col cols=12 md=2 lg=1 />
+            <v-col cols=12 md=8 lg=10 :class="[$vuetify.breakpoint.mdAndUp ? 'mt-8' : 'mt-0']">
+              <div style="font-weight:bold;" class='text-h5'>アカウント作成</div>
             </v-col>
           </v-row>
 
-          <v-row>
-            <v-col cols=1 sm=1 md=1 lg=1 xl=1 />
-            <v-col cols=3 sm=3 md=2 lg=2 xl=2 class="ml-n4">
-              <h3 style="color:#edf2f4;">Eメール</h3>
-            </v-col>
-          </v-row>
-
-          <v-row class="mt-n4">
+          <v-row class="mt-4">
             <v-col cols=1 sm=1 md=1 lg=1 xl=1 />
             <v-col cols=10 sm=10 md=10 lg=10 xl=10>
-              <v-text-field v-model="email" outlined filled dense></v-text-field>
+              <v-text-field v-model="email" outlined filled dense placeholder="Eメール" />
             </v-col>
             <v-col cols=1 sm=1 md=1 lg=1 xl=1 />
           </v-row>
 
-          <v-row class="mt-n4">
-            <v-col cols=1 sm=1 md=1 lg=1 xl=1 />
-            <v-col cols=3 sm=3 md=2 lg=2 xl=2 class="ml-n2">
-              <h3 style="color:#edf2f4;">パスワード</h3>
-            </v-col>
-          </v-row>
-
-          <v-row class="mt-n4">
+          <v-row class="mt-n6">
             <v-col cols=1 sm=1 md=1 lg=1 xl=1 />
             <v-col cols=10 sm=10 md=10 lg=10 xl=10>
               <v-text-field v-model="password" @click="visible = false" :type="visible ? 'text' : 'password'" outlined
-                dark filled dense></v-text-field>
+                dark filled dense placeholder="パスワード" />
             </v-col>
             <v-col cols=1 sm=1 md=1 lg=1 xl=1 />
           </v-row>
 
-          <v-row class="mt-n4">
-            <v-col cols=1 md=1 class=" hidden-sm-only hidden-lg-only hidden-xl-only" />
-            <v-col cols=5 sm=5 md=3 lg=5 xl=5 class="ml-n5">
-              <h3 style="color:#edf2f4;">パスワードの確認</h3>
-            </v-col>
-          </v-row>
-
-          <v-row class="mt-n4">
+          <v-row class="mt-n6">
             <v-col cols=1 sm=1 md=1 lg=1 xl=1 />
             <v-col cols=10 sm=10 md=10 lg=10 xl=10>
               <v-text-field v-model="password_confirmation" @click="visible = false"
-                :type="visible ? 'text' : 'password'" outlined dark filled dense></v-text-field>
+                :type="visible ? 'text' : 'password'" outlined dark filled dense placeholder="パスワードの確認" />
             </v-col>
             <v-col cols=1 sm=1 md=1 lg=1 xl=1 />
           </v-row>
 
-          <v-row>
+          <v-row class="mt-n5">
             <v-col cols=1 sm=1 md=1 lg=1 xl=1 />
             <v-col cols=10 sm=10 md=10 lg=10 xl=10>
               <v-btn @click="signup()" large depressed block color="#2d00f7">
@@ -76,7 +58,7 @@
 
           <v-row>
             <v-col cols=1 sm=1 md=1 lg=1 xl=1 />
-            <v-col cols=6 sm=6 md=4 lg=4 xl=4 class="ml-n7 mt-n4">
+            <v-col cols=6 sm=6 md=4 lg=4 xl=4 :class="[$vuetify.breakpoint.mdAndUp ? 'ml-n7 mt-n1' : 'ml-n4 mt-n1']">
               <router-link :to="{name: 'login'}">
                 <p style="font-size:0.7rem; color:#6c757d;">アカウントを作成した事がある</p>
               </router-link>

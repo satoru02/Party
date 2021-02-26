@@ -1,5 +1,8 @@
 <template>
   <div justify="center" align="center">
+    <v-row style="height:110;">
+      <v-col cols=12 sm=12 md=12 lg=12 xl=12 />
+    </v-row>
     <v-row>
       <v-col cols=1 sm=1 md=1 lg=3 xl=3 />
       <v-col cols=10 sm=10 md=10 lg=6 xl=6>
@@ -8,21 +11,14 @@
           <v-row>
             <v-col sm=2 md=2 lg=2 xl=2 class="hidden-xs-only" />
             <v-col cols=12 sm=8 md=8 lg=8 xl=8 class="mt-8">
-              <h2>パスワードをリセットする</h2>
+              <div style="font-weight:bold;" class='text-h5'>パスワードをリセットする</div>
             </v-col>
           </v-row>
 
-          <v-row>
-            <v-col cols=1 sm=1 md=1 lg=1 xl=1 />
-            <v-col cols=3 sm=2 md=2 lg=2 xl=2 class="ml-n4">
-              <h3 style="color:#edf2f4;">Eメール</h3>
-            </v-col>
-          </v-row>
-
-          <v-row class="mt-n4">
+          <v-row class="mt-4">
             <v-col cols=1 sm=1 md=1 lg=1 xl=1 />
             <v-col cols=10 sm=10 md=10 lg=10 xl=10>
-              <v-text-field v-model="email" outlined filled dense />
+              <v-text-field v-model="email" outlined filled dense placeholder="Eメール" />
             </v-col>
           </v-row>
 
@@ -33,7 +29,7 @@
                 <v-row>
                   <v-col cols=3 sm=4 md=4 lg=4 xl=4 />
                   <v-col cols=1 sm=1 md=1 lg=1 xl=1>
-                    <p class="mt-4 ml-1" style="font-size:1rem;">Eメールを送信する</p>
+                    <p class="mt-4" style="font-size:1rem;">Eメールを送信する</p>
                   </v-col>
                 </v-row>
               </v-btn>
@@ -42,12 +38,12 @@
 
           <v-row>
             <v-col cols=1 sm=1 md=1 lg=1 xl=1 />
-            <v-col cols=3 sm=2 md=2 lg=2 xl=2 class="mt-n4 ml-n5">
+            <v-col cols=3 sm=2 md=2 lg=2 xl=2 class="mt-n1 ml-n5">
               <router-link :to="{name: 'login'}">
                 <p style="font-size:0.7rem; color:#6c757d;">ログイン</p>
               </router-link>
             </v-col>
-            <v-col cols=3 sm=2 md=2 lg=2 xl=2 class="mt-n4 ml-n10">
+            <v-col cols=3 sm=2 md=2 lg=2 xl=2 class="mt-n1 ml-n10">
               <router-link :to="{name: 'signup'}">
                 <p style="font-size:0.7rem; color:#6c757d;">アカウント登録</p>
               </router-link>

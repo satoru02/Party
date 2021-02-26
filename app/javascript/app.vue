@@ -1,9 +1,9 @@
 <template>
   <div id="app">
     <v-app style="background-color:#0e0e10">
-      <top-header></top-header>
+      <top-header v-if="checkRoute()" />
       <v-main>
-        <router-view></router-view>
+        <router-view />
       </v-main>
     </v-app>
   </div>
@@ -301,6 +301,16 @@
     store,
     components: {
       'top-header': Header
+    },
+    methods:{
+      checkRoute(){
+        let validationRouter = ['login', 'signup', 'ForgotPassword', 'check']
+        if (validationRouter.includes(this.$route.name)){
+          return false
+        } else {
+          return true
+        }
+      }
     }
   }
 </script>
