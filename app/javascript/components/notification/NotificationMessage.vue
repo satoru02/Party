@@ -1,6 +1,6 @@
 <template>
   <div class="card-tile" justify="center" align="center">
-    <v-sheet color="#eaf4f4" height="550" class="rounded-s" width="650">
+    <v-sheet height="550" class="rounded-s sheet" width="650">
       <v-row>
         <v-col cols="12" md="12" class="mt-12">
           <h1 class="title" style="color:black;"><span class="underline">New Message</span></h1>
@@ -68,6 +68,13 @@
     background-image: linear-gradient(120deg, #84fab0 0%, #8fd3f4 100%);
     background-repeat: no-repeat;
     background-size: 100% 0.2em;
+    background-position: 0 88%;
+  }
+
+  .sheet {
+    background-image: linear-gradient(120deg, #84fab0 0%, #8fd3f4 100%);
+    background-repeat: no-repeat;
+    background-size: 100% 100em;
     background-position: 0 88%;
   }
 

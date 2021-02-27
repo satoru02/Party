@@ -23,7 +23,7 @@
     name: "TheBottomNavigation",
     data(){
       return{
-        color: "#242629"
+        color: "#222627"
       }
     },
     methods: {

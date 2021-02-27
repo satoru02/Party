@@ -1,6 +1,6 @@
 <template>
   <div>
-    <v-row class="mt-15">
+    <v-row :class="[$vuetify.breakpoint.mdAndUp ? 'mt-15' : 'mt-5']">
       <v-col cols=12 sm=12 md=12 lg=12 xl=12 />
     </v-row>
     <div v-if="notification.classification === 'entry'">

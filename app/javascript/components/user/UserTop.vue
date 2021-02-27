@@ -4,7 +4,6 @@
       <v-row>
         <v-col cols=12 sm=12 md=12 lg=12 xl=12 />
       </v-row>
-
       <v-row>
         <v-col md=3 lg=3 xl=3 align="center" class="hidden-xs-only hidden-sm-only">
           <base-avatar class="ml-6" :size="150" :avatar_url="user.avatar_url" />
@@ -69,11 +68,40 @@
           </v-sheet>
         </v-col>
         <v-spacer />
-        <v-col cols=1 sm=1 class="hidden-md-only hidden-lg-only hidden-xl-only" />
-        <v-col cols=10 sm=10 md=8 lg=8 xl=8 class="fill-height">
-          <v-btn @click="changeUserComponent(n.name)" class="ml-1 mb-1" v-for="(n, index) in items" :key="index" color="#efeff1" text rounded>
-            <div style="color:#efeff1; font-size:0.7rem;">{{ n.title }}</div>
+        <v-col cols=12 sm=10 md=8 lg=8 xl=8 :class="[$vuetify.breakpoint.mdAndUp ? 'fill-height' : 'mt-n12']">
+          <v-btn :class="[$vuetify.breakpoint.mdAndUp ? 'ml-1 mb-1' : 'hidden-xs-only']"
+            @click="changeUserComponent(n.name)" v-for="(n, index) in items" :key="index" color="#efeff1" text rounded>
+            <div style="color:#efeff1; font-size:0.7rem; font-weight:bold;">{{ n.title }}</div>
           </v-btn>
+          <div
+            :class="[$vuetify.breakpoint.mdAndUp ? 'hidden-sm-only hidden-md-only hidden-lg-only hidden-xl-only' : 'mb-0']">
+            <v-row>
+              <v-col cols=1>
+                <base-avatar :size="50" :avatar_url="user.avatar_url" />
+              </v-col>
+              <v-col cols=1 />
+              <v-col cols=2>
+                <div class="body-2 mt-4 ml-n2">{{ user.username }}</div>
+              </v-col>
+              <v-col cols=4 />
+              <v-col cols=2 class="mt-3 ml-7">
+                <v-menu offset-y>
+                  <template v-slot:activator="{on, attrs}">
+                    <v-btn elevation=0 small width="110" class="rounded-s" style="background-color:#21262d;" dark
+                      v-bind="attrs" v-on="on">
+                      Filter
+                      <v-icon small>mdi-chevron-down</v-icon>
+                    </v-btn>
+                  </template>
+                  <v-list>
+                    <v-list-item @click="changeUserComponent(item.name)" class="tile" v-for="(item, n) in items" :key="n">
+                      <v-list-item-title>{{ item.title }}</v-list-item-title>
+                    </v-list-item>
+                  </v-list>
+                </v-menu>
+              </v-col>
+            </v-row>
+          </div>
           <v-divider dark />
           <v-row>
             <v-col cols=12 sm=12 md=12 lg=12 xl=12 />
@@ -179,9 +207,16 @@
       joinedTime(time) {
         return moment(time).format("YYYY/MM/DD")
       },
-      changeUserComponent(name){
-        this.$router.push({name: name})
-      }
+      changeUserComponent(name) {
+        this.$router.push({
+          name: name
+        })
+      },
+      // filterSearch(name){
+      //   this.$router.push({
+      //     name: name
+      //   })
+      // }
     }
   }
 </script>

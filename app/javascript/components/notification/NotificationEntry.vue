@@ -3,7 +3,7 @@
     <v-row>
       <v-col cols=1 sm=1 md=1 lg=3 xl=3 />
       <v-col cols=10 sm=10 md=10 lg=6 xl=6>
-        <v-sheet elevation=5 color="#eaf4f4" style="height:auto; width:auto;" class="rounded-lg">
+        <v-sheet elevation=13 style="height:auto; width:auto;" class="rounded-lg sheet">
           <v-row>
             <v-col cols=12 sm=12 md=12 lg=12 xl=12 class="mt-12">
               <h1 class="title" style="color:black;"><span class="underline">New Entry</span></h1>
@@ -158,6 +158,13 @@
     background-image: linear-gradient(120deg, #f8fa84 0%, #8fd3f4 100%);
     background-repeat: no-repeat;
     background-size: 100% 0.2em;
+    background-position: 0 88%;
+  }
+
+  .sheet {
+    background-image: linear-gradient(120deg, #f8fa84 0%, #8fd3f4 100%);
+    background-repeat: no-repeat;
+    background-size: 100% 100em;
     background-position: 0 88%;
   }
 
