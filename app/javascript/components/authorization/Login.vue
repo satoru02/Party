@@ -144,6 +144,7 @@
       }
     },
     created() {
+      document.title = "VIDEOKIT"
       this.checkSignedIn()
     },
     updated() {

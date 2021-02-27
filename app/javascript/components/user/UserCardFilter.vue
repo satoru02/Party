@@ -36,7 +36,7 @@
         this.$router.replace('/')
       },
       apiURl(){
-        if(this.$route.name === "Posts" || this.$route.name === "JoinedEvents"){
+        if(this.$route.name === "Posts" || this.$route.name === "Joined"){
           return '/api/v1/posts/'
         }
       },
@@ -45,7 +45,7 @@
         if(this.$route.name === "Posts"){
           var params = { position: 'my_events' }
           return Object.assign(basic_params, params)
-        } else if(this.$route.name === "JoinedEvents"){
+        } else if(this.$route.name === "Joined"){
           var params = { position: 'joined_events' }
           return Object.assign(basic_params, params)
         }

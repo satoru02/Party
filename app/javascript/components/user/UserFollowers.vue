@@ -10,7 +10,7 @@
   const  FOLLOWER_URL = '/api/v1/users/';
 
   export default {
-    name: "UserFollowers",
+    name: "Followers",
     components: {
       'user-relationships': UserRelationships
     },

@@ -36,6 +36,7 @@
       }
     },
     created() {
+      document.title = "VIDEOKIT"
       this.checkSignedIn()
       this.email = this.$route.params.email
     },

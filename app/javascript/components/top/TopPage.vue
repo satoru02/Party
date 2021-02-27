@@ -113,20 +113,20 @@
         condition: 'Top',
         items: [
           // {name: '投稿日順'},
-          {name: 'today'},
-          {name: 'week'},
-          {name: 'month'},
+          {name: 'Today'},
+          {name: 'Week'},
+          {name: 'Month'},
         ],
         today: {
-          identifier: 'today',
+          identifier: 'Today',
           date: ''
         },
         week: {
-          identifier: 'week',
+          identifier: 'Week',
           date: ''
         },
         month: {
-          identifier: 'month',
+          identifier: 'Month',
           date: ''
         },
         pushedStyles: {

@@ -69,7 +69,7 @@
         </v-col>
         <v-spacer />
         <v-col cols=12 sm=10 md=8 lg=8 xl=8 :class="[$vuetify.breakpoint.mdAndUp ? 'fill-height' : 'mt-n12']">
-          <v-btn :class="[$vuetify.breakpoint.mdAndUp ? 'ml-4 mb-1' : 'hidden-xs-only']"
+          <v-btn :class="[$vuetify.breakpoint.mdAndUp ? 'ml-3 mb-1' : 'hidden-xs-only']"
             @click="changeUserComponent(n.name)" v-for="(n, index) in items" :key="index" color="#efeff1" text rounded>
             <div style="color:#efeff1; font-size:0.7rem; font-weight:bold;">{{ n.title }}</div>
           </v-btn>
@@ -145,9 +145,9 @@
             name: 'Posts',
             link: ''
           },
-          JoinedEvents: {
+          Joined: {
             title: "Joined",
-            name: 'JoinedEvents',
+            name: 'Joined',
             link: ''
           },
           Activity: {
@@ -162,12 +162,12 @@
           },
           Followers: {
             title: "Followers",
-            name: 'UserFollowers',
+            name: 'Followers',
             link: ''
           },
           Following: {
-            title: "Follows",
-            name: 'UserFollowing',
+            title: "Followings",
+            name: 'Followings',
             link: ''
           },
           About: {
@@ -179,7 +179,7 @@
       }
     },
     created() {
-      document.title = this.$route.name + "- Title"
+      document.title = this.$route.name + " - VIDEOKIT"
       this.checkSignedIn()
       this.fetchUserInformation()
     },
@@ -188,7 +188,7 @@
         immediate: true,
         handler(){
           this.fetchUserInformation()
-          document.title = this.$route.name + "- Title"
+          document.title = this.$route.name + " - VIDEOKIT"
         }
       }
     },

@@ -83,6 +83,9 @@
         display_error_text: `入力されたEメールで登録されたユーザーは存在しません。`,
       }
     },
+    created(){
+      document.title = "VIDEOKIT"
+    },
     methods: {
       resetPassword() {
         secureAxios.post(PASSWORD_RESET_URL, {

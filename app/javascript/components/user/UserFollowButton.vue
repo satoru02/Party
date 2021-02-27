@@ -1,7 +1,7 @@
 <template>
   <v-btn
     :class="roundClass"
-    :style="followed ? followingStyle : followStyle"
+    :style="followed ? followingStyle : Followingstyle"
     @click="followed ? unFollow(user_id) : follow(user_id)"
     dark>
   {{ followed ? folllowingText : followText }}
@@ -36,7 +36,7 @@ export default {
         height: 25
       },
       followText: 'Follow',
-      followStyle: {
+      Followingstyle: {
         backgroundColor: "#2d00f7",
         fontWeight: "bold",
         width: 80,

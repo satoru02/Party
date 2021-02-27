@@ -10,7 +10,7 @@
   const  FOLLOWING_URL = '/api/v1/users/';
 
   export default {
-    name: "UserFollowing",
+    name: "Followings",
     components: {
       'user-relationships': UserRelationships
     },

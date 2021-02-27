@@ -92,6 +92,7 @@
       }
     },
     created() {
+      document.title = "Reset Password - VIDEOKIT"
       this.checkPasswordToken()
     },
     methods: {
