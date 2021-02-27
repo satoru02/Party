@@ -23,12 +23,14 @@
         :class="[ word.user_id === $store.state.currentUser.data.attributes.id ? 'd-flex flex-row-reverse': 'd-flex flex-row']">
         <!-- <avatar class="mt-1 ml-12" v-if="word.user_id !== $store.state.currentUser.data.attributes.id"
             :avatar_url="checkAvatar(word.user_id)"></avatar> -->
-        <v-chip :color="word.user_id === $store.state.currentUser.data.attributes.id ? '#3a36ff': '#212530'"
-          :text-color="word.user_id === $store.state.currentUser.data.attributes.id ? '#ffffff': '#000000'"
-          style="height:auto; min-width:300px; max-width:500px; max-height:3000px; white-space: normal;" class="mr-5">
-          <p class="ml-2 mt-4" style="font-size: 0.8rem;">{{ word.content }}</p>
-          <p v-if="word.classification === 'join'" class="ml-2 mt-4" style="font-size: 1rem;">
-            {{ word.user }}が、{{ word.created_at }}に参加しました。</p>
+        <v-chip :color="word.user_id === $store.state.currentUser.data.attributes.id ? '#212530': '#3a36ff'"
+          :text-color="word.user_id === $store.state.currentUser.data.attributes.id ? '#ffffff': '#ffffff'"
+           class="mr-5"
+           :style="$vuetify.breakpoint.mdAndUp ? 'height:auto; min-width:300px; max-width:500px; max-height:3000px; white-space: normal;': 'height:auto; min-width:150px; max-width:300px; max-height:3000px; white-space: normal;'"
+          >
+          <div style="font-weight:bold;" :class="$vuetify.breakpoint.mdAndUp ? 'ml-2 body-2': 'ml-2 caption'">{{ word.content }}</div>
+          <div style="font-weight:bold;" :class="$vuetify.breakpoint.mdAndUp ? 'ml-2 body-2': 'ml-2 caption'" v-if="word.classification === 'join'" class="ml-2">
+            {{ word.user }}が、{{ word.created_at }}に参加しました。</div>
         </v-chip>
         <div class="mr-3 mt-16 fill-height" style="max-height:1000px; height:auto; font-size: 0.2rem; color:#6c757d;">
           {{ postedTime(word.created_at) }}
