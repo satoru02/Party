@@ -5,8 +5,8 @@
       open-on-hover
       offset-y
       left
-      nudge-top=10
-      nudge-right=60
+      nudge-top=5
+      nudge-right=30
       nudge-height=800
       nudge-width=130>
       <template v-slot:activator="{ on, attrs }">
