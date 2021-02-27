@@ -8,7 +8,7 @@
       <v-col cols=10 sm=10 md=10 lg=6 xl=6>
         <v-sheet color="#212529"
           :style="sheetStyle"
-          elevation=13 class="rounded-lg mt-6">
+          elevation=20 class="rounded-lg mt-6">
           <v-row>
             <v-col md=1 lg=1 />
             <v-col cols=12 md=10 lg=10 :class="[$vuetify.breakpoint.mdAndUp ? 'mt-8' : 'mt-0']">
