@@ -55,7 +55,7 @@
       }
     },
     created() {
-      document.title = "Rooms"
+      document.title = "イベントルーム一覧 - Plaza"
       this.checkSignedIn()
       this.getRooms()
     },

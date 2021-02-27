@@ -36,7 +36,7 @@
       }
     },
     created() {
-      document.title = "VIDEOKIT"
+      document.title = "Plaza - オンラインイベント告知サービス"
       this.checkSignedIn()
       this.email = this.$route.params.email
     },

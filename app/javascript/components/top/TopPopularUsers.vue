@@ -4,7 +4,7 @@
     <v-row no-gutters>
       <v-col lg=1 />
       <v-col lg=10 align="start" class="mt-6">
-        <h3 class="text">Popular Users</h3>
+        <h3 class="text">人気の主催者</h3>
       </v-col>
       <v-col lg=1 />
     </v-row>

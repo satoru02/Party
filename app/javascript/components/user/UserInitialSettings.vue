@@ -203,7 +203,7 @@
       'base-text-field': BaseTextField
     },
     created() {
-      document.title = "InitialSetting - title"
+      document.title = "InitialSetting - Plaza"
       this.user = this.$store.state.currentUser.data.attributes
     },
     methods: {

@@ -56,7 +56,7 @@
       },
     },
     created(){
-      document.title = "Entry - title"
+      document.title = "Entry - Plaza"
     },
     methods: {
       catchedTime(time) {

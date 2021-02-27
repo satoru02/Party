@@ -70,7 +70,7 @@
       }
     },
     created() {
-      document.title = this.$route.params.name + "- Title"
+      document.title = this.$route.params.name + " - Plaza"
       this.checkSignedIn()
     },
     watch: {
@@ -79,7 +79,7 @@
         handler() {
           this.createCable()
           this.getMessage()
-          document.title = this.$route.params.name + "- Title"
+          document.title = this.$route.params.name + " - Plaza"
         }
       }
     },

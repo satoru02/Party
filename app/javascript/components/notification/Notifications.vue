@@ -5,7 +5,7 @@
         <v-col cols=12 sm=12 md=12 lg=12 xl=12>
           <v-list color="#0e0e10">
             <v-list-item-group>
-              <div style="font-weight: bold;" :class="[$vuetify.breakpoint.mdAndUp ? 'mb-5 text-h5': 'body-2 mb-3']">Notifications</div>
+              <div style="font-weight: bold;" :class="[$vuetify.breakpoint.mdAndUp ? 'mb-5 text-h5': 'body-2 mb-3']">通知</div>
               <v-divider dark />
               <template v-for="(notification) in notifications">
                 <router-link :key="notification.attributes.id"
@@ -56,7 +56,7 @@
       }
     },
     created() {
-      document.title = "Notifications - title"
+      document.title = "通知 - Plaza"
       this.checkSignedIn()
     },
     methods: {

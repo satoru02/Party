@@ -1,6 +1,6 @@
 <template>
   <router-link to="/upload">
-    <v-btn style="background-color:#2d00f7; font-weight:bold; height:34px;" dark class="rounded-lg">POST</v-btn>
+    <v-btn style="background-color:#2d00f7; font-weight:bold; height:34px;" dark class="rounded-lg">告知</v-btn>
   </router-link>
 </template>
 

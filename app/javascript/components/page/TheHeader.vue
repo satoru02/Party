@@ -3,12 +3,12 @@
     <v-row dense>
       <v-col md=1 lg=1 xl=1 class="hidden-xs-only hidden-sm-only" />
       <v-col cols=2 lg=1 xl=1 class="hidden-sm-only hidden-md-only mt-7" align="start">
-        <v-toolbar-title :class="[$vuetify.breakpoint.mdAndUp ? 'top ml-n7 mt-n1': 'top mt-n1']" @click="moveTop()">Bundly</v-toolbar-title>
+        <v-toolbar-title :class="[$vuetify.breakpoint.mdAndUp ? 'top ml-n7 mt-n1': 'top mt-n1']" @click="moveTop()">Plaza</v-toolbar-title>
       </v-col>
       <v-col cols=1 md=1 lg=1 xl=1 class="hidden-sm-only ml-n4" />
       <v-col cols=8 md=2 lg=3 xl=3 class="mt-6 hidden-sm-only">
         <v-text-field rounded height="33" prepend-inner-icon="mdi-magnify" background-color="#212529" v-model="query"
-          @keydown.enter="searchPost(query)" placeholder="Search" />
+          @keydown.enter="searchPost(query)" placeholder="検索" />
       </v-col>
       <v-col md=2 lg=3 xl=3 class="ml-5 hidden-xs-only hidden-sm-only" />
       <v-col sm=4 md=2 lg=1 xl=1 :class="[$vuetify.breakpoint.mdAndUp ? 'mt-1 ml-4': 'hidden-xs-only']">

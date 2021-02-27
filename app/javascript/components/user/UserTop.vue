@@ -69,7 +69,7 @@
         </v-col>
         <v-spacer />
         <v-col cols=12 sm=10 md=8 lg=8 xl=8 :class="[$vuetify.breakpoint.mdAndUp ? 'fill-height' : 'mt-n12']">
-          <v-btn :class="[$vuetify.breakpoint.mdAndUp ? 'ml-3 mb-1' : 'hidden-xs-only']"
+          <v-btn :class="[$vuetify.breakpoint.mdAndUp ? 'ml-1 mb-1' : 'hidden-xs-only']"
             @click="changeUserComponent(n.name)" v-for="(n, index) in items" :key="index" color="#efeff1" text rounded>
             <div style="color:#efeff1; font-size:0.7rem; font-weight:bold;">{{ n.title }}</div>
           </v-btn>
@@ -89,7 +89,7 @@
                   <template v-slot:activator="{on, attrs}">
                     <v-btn elevation=0 small width="110" class="rounded-s" style="background-color:#21262d;" dark
                       v-bind="attrs" v-on="on">
-                      Filter
+                      フィルター
                       <v-icon small>mdi-chevron-down</v-icon>
                     </v-btn>
                   </template>
@@ -141,37 +141,37 @@
         error: '',
         items: {
           Events: {
-            title: "Posts",
+            title: "主催イベント",
             name: 'Posts',
             link: ''
           },
           Joined: {
-            title: "Joined",
+            title: "参加イベント",
             name: 'Joined',
             link: ''
           },
           Activity: {
-            title: "Activity",
+            title: "アクティビティ",
             name: '',
             link: ''
           },
           Monthly: {
-            title: "Recommend",
+            title: "レコメンド",
             name: '',
             link: '',
           },
           Followers: {
-            title: "Followers",
+            title: "フォロワー",
             name: 'Followers',
             link: ''
           },
           Following: {
-            title: "Followings",
+            title: "フォロー",
             name: 'Followings',
             link: ''
           },
           About: {
-            title: "Profile",
+            title: "プロフィール",
             name: 'About',
             link: ''
           }
@@ -179,16 +179,16 @@
       }
     },
     created() {
-      document.title = this.$route.name + " - VIDEOKIT"
       this.checkSignedIn()
       this.fetchUserInformation()
+      document.title = `ユーザー画面 - Plaza`
     },
     watch: {
       '$route': {
         immediate: true,
         handler(){
           this.fetchUserInformation()
-          document.title = this.$route.name + " - VIDEOKIT"
+          document.title = `ユーザー画面 - Plaza`
         }
       }
     },

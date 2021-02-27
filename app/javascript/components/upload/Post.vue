@@ -91,7 +91,7 @@
             <v-col cols=1 />
             <v-col cols=9>
               <v-btn width="330" @click="postUrl()" style="background-color:#2d00f7; font-weight:bold;" dark class="rounded">
-                アップロード
+                告知
               </v-btn>
             </v-col>
           </v-row>
@@ -106,7 +106,7 @@
       <v-col cols=3 sm=2 md=2 lg=1 xl=1>
         <v-btn width="100" @click="postUrl()" style="background-color:#2d00f7; font-weight:bold;" large dark
           class="rounded">
-          アップロード
+          告知
         </v-btn>
       </v-col>
       <v-col cols=3 sm=2 md=2 lg=1 xl=1>
@@ -199,7 +199,7 @@
       }
     },
     created() {
-      document.title = "Upload - Title"
+      document.title = "告知 - Plaza"
       this.checkSignedIn()
     },
     methods: {

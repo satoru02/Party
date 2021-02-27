@@ -125,7 +125,7 @@
       }
     },
     created(){
-      document.title = "Entry - title"
+      document.title = "エントリー - Plaza"
     },
     methods: {
       authorizeEntry() {

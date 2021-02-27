@@ -76,7 +76,7 @@
       }
     },
     created(){
-      document.title = "Response - title"
+      document.title = "エントリー結果 - Plaza"
     },
     methods: {
       catchedTime(time) {

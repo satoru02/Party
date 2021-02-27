@@ -92,7 +92,7 @@
       }
     },
     created() {
-      document.title = "Reset Password - VIDEOKIT"
+      document.title = "Reset Password | Plaza - オンラインイベント告知サービス"
       this.checkPasswordToken()
     },
     methods: {
