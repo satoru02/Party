@@ -2,8 +2,10 @@ import Vue from 'vue';
 import App from '../app.vue';
 import Vuetify from 'vuetify';
 import 'vuetify/dist/vuetify.min.css';
+// import GETTILTE from '../mixin/getTitle';
 
 Vue.use(Vuetify)
+// Vue.mixin(GETTILTE)
 
 document.addEventListener('DOMContentLoaded', () => {
   const app = new Vue({
@@ -13,6 +15,5 @@ document.addEventListener('DOMContentLoaded', () => {
       customVariables: ['../src/overrides.scss']
     }),
   }).$mount()
-  console.log(app.$el)
   document.body.appendChild(app.$el)
 })

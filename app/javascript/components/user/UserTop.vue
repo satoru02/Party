@@ -179,11 +179,18 @@
       }
     },
     created() {
+      document.title = this.$route.name + "- Title"
       this.checkSignedIn()
       this.fetchUserInformation()
     },
     watch: {
-      '$route': 'fetchUserInformation'
+      '$route': {
+        immediate: true,
+        handler(){
+          this.fetchUserInformation()
+          document.title = this.$route.name + "- Title"
+        }
+      }
     },
     methods: {
       checkSignedIn() {

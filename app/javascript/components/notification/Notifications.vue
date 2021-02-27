@@ -56,6 +56,7 @@
       }
     },
     created() {
+      document.title = "Notifications - title"
       this.checkSignedIn()
     },
     methods: {

@@ -124,6 +124,9 @@
         required: true
       }
     },
+    created(){
+      document.title = "Entry - title"
+    },
     methods: {
       authorizeEntry() {
         secureAxios.post(ENTRY_URL, {

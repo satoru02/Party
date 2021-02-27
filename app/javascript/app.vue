@@ -19,6 +19,7 @@
   import InfiniteLoading from 'vue-infinite-loading';
   import ActionCableVue from 'actioncable-vue';
   import '@mdi/font/css/materialdesignicons.css';
+  // import GetTitle from '../javascript/mixin/getTitle';
   import Header from './components/page/TheHeader.vue';
   import BottomNavigation from './components/page/TheBottomNavigation';
   import UsersList from './components/admin/users/List.vue';
@@ -70,6 +71,7 @@
   Vue.use(VuePaginate)
   Vue.use(VueRouter)
   Vue.use(Vuex)
+  // Vue.mixin(GetTitle)
   Vue.use(InfiniteLoading, {
     slots: {
       noMore: "",
@@ -302,7 +304,7 @@
     components: {
       'top-header': Header,
       'bottom-navigation': BottomNavigation
-    }
+    },
   }
 </script>
 

@@ -199,6 +199,7 @@
       }
     },
     created() {
+      document.title = "Upload - Title"
       this.checkSignedIn()
     },
     methods: {

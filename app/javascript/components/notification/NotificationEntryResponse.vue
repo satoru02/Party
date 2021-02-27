@@ -75,6 +75,9 @@
         required: true
       }
     },
+    created(){
+      document.title = "Response - title"
+    },
     methods: {
       catchedTime(time) {
         return moment(time).format("YYYY/MM/DD hh:mm")

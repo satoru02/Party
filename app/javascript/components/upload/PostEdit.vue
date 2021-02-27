@@ -192,6 +192,7 @@
       }
     },
     created() {
+      document.title = "EditUpload - Title"
       this.checkSignedIn()
       this.checkUsersPost()
       this.getPost()

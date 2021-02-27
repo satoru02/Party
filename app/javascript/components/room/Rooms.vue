@@ -55,6 +55,7 @@
       }
     },
     created() {
+      document.title = "Rooms"
       this.checkSignedIn()
       this.getRooms()
     },

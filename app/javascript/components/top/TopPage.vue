@@ -154,6 +154,7 @@
       }
     },
     created() {
+      document.title = "Title - Title"
       this.checkSignedIn()
     },
     methods: {

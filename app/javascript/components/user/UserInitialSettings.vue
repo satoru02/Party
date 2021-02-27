@@ -203,6 +203,7 @@
       'base-text-field': BaseTextField
     },
     created() {
+      document.title = "InitialSetting - title"
       this.user = this.$store.state.currentUser.data.attributes
     },
     methods: {
