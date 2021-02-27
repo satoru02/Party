@@ -1,7 +1,7 @@
 <template>
   <v-container fluid fill-height justify="center" align="center" style="position:fixed; height:100%; display: flex; max-height: 10vh;">
     <v-row>
-      <v-col lg=4 xl=4 class="hidden-md-only hidden-xs-only hidden-sm-only">
+      <v-col cols=12 lg=4 xl=4 :class="this.$route.name === 'Room' ? 'hidden-xs-only' : 'hidden-md-only hidden-sm-only' ">
         <v-responsive class="overflow-y-auto flex-grow-1 flex-shrink-0" style="height: 800px;">
           <v-list-item three-line class="tile" v-for="room in rooms" :key="room.id"
             @click="moveRoom(room), checkConfirmation(room)">

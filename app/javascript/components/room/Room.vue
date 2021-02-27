@@ -5,7 +5,6 @@
         <h3>{{ this.$route.params.name }}</h3>
       </v-col>
     </v-row>
-
     <v-row no-gutters>
       <v-col cols=12 sm=12 md=12 lg=12 xl=12>
         <v-sheet max-height="30" style="background-color:#0e0e10; width:auto;">
@@ -19,7 +18,6 @@
         </v-sheet>
       </v-col>
     </v-row>
-
     <v-responsive class="overflow-y-auto flex-grow-1 flex-shrink-0 mt-5" height="550">
       <v-container v-for="word in messages" :word="word" :key="word.id"
         :class="[ word.user_id === $store.state.currentUser.data.attributes.id ? 'd-flex flex-row-reverse': 'd-flex flex-row']">
@@ -38,7 +36,7 @@
       </v-container>
     </v-responsive>
     <v-text-field background-color="#212529" v-model="message" @click:append-outer="sendMessage(message)"
-      style="bottom:0; width: 100%" append-outer-icon="mdi-send" dense class="mt-5 rounded-xl"
+      style="bottom:0; width: 100%" append-outer-icon="mdi-send" dense :class="$vuetify.breakpoint.mdAndUp ? 'mt-5 rounded-xl': 'mt-1 rounded-xl'"
       placeholder="メッセージを送信する" type="text" no-details outlined />
   </div>
 </template>

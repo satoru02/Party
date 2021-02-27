@@ -6,7 +6,7 @@
         <router-view />
       </v-main>
     </v-app>
-    <bottom-navigation v-if="this.$store.state.signedIn" />
+    <bottom-navigation v-if="this.$store.state.signedIn && (this.$route.name !== 'Room')" />
   </div>
 </template>
 

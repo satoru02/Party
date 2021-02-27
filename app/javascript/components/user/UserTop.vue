@@ -84,7 +84,7 @@
                 <div class="body-2 mt-4 ml-n2">{{ user.username }}</div>
               </v-col>
               <v-col cols=4 />
-              <v-col cols=2 class="mt-3 ml-7">
+              <v-col cols=2 class="mt-7 ml-7">
                 <v-menu offset-y>
                   <template v-slot:activator="{on, attrs}">
                     <v-btn elevation=0 small width="110" class="rounded-s" style="background-color:#21262d;" dark
