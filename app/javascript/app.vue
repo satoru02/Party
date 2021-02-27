@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <v-app style="background-color:#0e0e10">
+    <v-app style="background-color:#0e0e10;">
       <top-header v-if="this.$store.state.signedIn" />
       <v-main>
         <router-view />

@@ -13,6 +13,6 @@ document.addEventListener('DOMContentLoaded', () => {
       customVariables: ['../src/overrides.scss']
     }),
   }).$mount()
+  console.log(app.$el)
   document.body.appendChild(app.$el)
-
 })

@@ -2,10 +2,10 @@
   <div infinite-wrapper>
     <v-container>
       <v-row justify="center" align="center">
-        <v-col cols=10 sm=10 md=10 lg=10 xl=10>
+        <v-col cols=12 sm=12 md=12 lg=12 xl=12>
           <v-list color="#0e0e10">
             <v-list-item-group>
-              <h1 class="mb-5">Notifications</h1>
+              <div style="font-weight: bold;" :class="[$vuetify.breakpoint.mdAndUp ? 'mb-5 text-h5': 'body-2 mb-3']">Notifications</div>
               <v-divider dark />
               <template v-for="(notification) in notifications">
                 <router-link :key="notification.attributes.id"
@@ -14,11 +14,12 @@
                     <v-list-item-action>
                       <v-badge v-if="notification.attributes.confirmation === false" dot left inline color="#2176ff" />
                     </v-list-item-action>
-                    <base-avatar 　:avatar_url="notification.attributes.index_user_info[0].avatar" />
+                    <base-avatar :avatar_url="notification.attributes.index_user_info[0].avatar" />
                     <v-list-item-content>
-                      <v-list-item-subtitle class="ml-7" v-html="displayText(notification)" />
+                      <v-list-item-subtitle :class="[$vuetify.breakpoint.mdAndUp ? 'body-2': 'caption']"
+                        style="color:#ffffff; font-weight:bold;" class="ml-7" v-html="displayText(notification)" />
                     </v-list-item-content>
-                    <v-list-item-action style="font-size: 0.5rem; color:#6c757d;"
+                    <v-list-item-action style="font-size: 0.6rem; color:#ffffff;"
                       v-text="catchedTime(notification.attributes.created_at)" />
                   </v-list-item>
                 </router-link>
@@ -101,10 +102,10 @@
 <style scoped>
   .tile {
     margin: 10px;
-    border-radius: 7px;
+    border-radius: 5px;
   }
 
   .tile:hover {
-    background: #6c757d;
+    background: #4e5257;
   }
 </style>
