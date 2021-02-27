@@ -69,7 +69,7 @@
         </v-col>
         <v-spacer />
         <v-col cols=12 sm=10 md=8 lg=8 xl=8 :class="[$vuetify.breakpoint.mdAndUp ? 'fill-height' : 'mt-n12']">
-          <v-btn :class="[$vuetify.breakpoint.mdAndUp ? 'ml-1 mb-1' : 'hidden-xs-only']"
+          <v-btn :class="[$vuetify.breakpoint.mdAndUp ? 'ml-4 mb-1' : 'hidden-xs-only']"
             @click="changeUserComponent(n.name)" v-for="(n, index) in items" :key="index" color="#efeff1" text rounded>
             <div style="color:#efeff1; font-size:0.7rem; font-weight:bold;">{{ n.title }}</div>
           </v-btn>
@@ -141,37 +141,37 @@
         error: '',
         items: {
           Events: {
-            title: "主催イベント",
-            name: 'MyEvents',
+            title: "Posts",
+            name: 'Posts',
             link: ''
           },
           JoinedEvents: {
-            title: "参加イベント",
+            title: "Joined",
             name: 'JoinedEvents',
             link: ''
           },
           Activity: {
-            title: "アクティビティ",
+            title: "Activity",
             name: '',
             link: ''
           },
           Monthly: {
-            title: "レコメンド",
+            title: "Recommend",
             name: '',
             link: '',
           },
           Followers: {
-            title: "フォロワー",
+            title: "Followers",
             name: 'UserFollowers',
             link: ''
           },
           Following: {
-            title: "フォロー",
+            title: "Follows",
             name: 'UserFollowing',
             link: ''
           },
           About: {
-            title: "プロフィール",
+            title: "Profile",
             name: 'About',
             link: ''
           }

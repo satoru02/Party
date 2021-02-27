@@ -48,7 +48,7 @@
         items: [{
             icon: 'mdi-account-outline',
             title: 'プロフィール',
-            name: 'MyEvents',
+            name: 'Posts',
             link: '/users/' + `${this.$store.state.currentUser.data.attributes.id}`,
           },
           {

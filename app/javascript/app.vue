@@ -168,7 +168,7 @@
         component: UserTop,
         children: [{
             path: '',
-            name: "MyEvents",
+            name: "Posts",
             component: UserCardFilter,
             props: (route) => ({
               query: route.query.status

@@ -40,7 +40,7 @@
         this.$router.push({name: "Notifications"})
       },
       moveAccount(){
-        this.$router.push({name: "MyEvents", params:{
+        this.$router.push({name: "Posts", params:{
           id: this.$store.state.currentUser.data.attributes.id
         }})
       }

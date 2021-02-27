@@ -34,7 +34,7 @@
           <v-row>
             <v-col cols=1 sm=1 md=1 lg=1 xl=1 />
             <v-col cols=2 sm=2 md=2 lg=1 xl=1>
-              <router-link :to="{name: 'MyEvents', params: {id: `${post.attributes.user.id}`}}">
+              <router-link :to="{name: 'Posts', params: {id: `${post.attributes.user.id}`}}">
                 <base-avatar :size="50" />
               </router-link>
             </v-col>

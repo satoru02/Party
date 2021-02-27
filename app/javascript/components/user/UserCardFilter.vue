@@ -36,13 +36,13 @@
         this.$router.replace('/')
       },
       apiURl(){
-        if(this.$route.name === "MyEvents" || this.$route.name === "JoinedEvents"){
+        if(this.$route.name === "Posts" || this.$route.name === "JoinedEvents"){
           return '/api/v1/posts/'
         }
       },
       apiParams(){
         var basic_params = { user_id: `${this.$route.params.id}` }
-        if(this.$route.name === "MyEvents"){
+        if(this.$route.name === "Posts"){
           var params = { position: 'my_events' }
           return Object.assign(basic_params, params)
         } else if(this.$route.name === "JoinedEvents"){

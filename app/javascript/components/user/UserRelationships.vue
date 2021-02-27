@@ -2,7 +2,7 @@
   <v-responsive class="overflow-y-auto flex-grow-1 flex-shrink-0" style="max-width: 100%;" height="700">
     <v-row class="ml-1">
       <v-col cols=4 sm=4 md=4 lg=4 xl=4 v-for="(user, index) in relationships" :key="index">
-        <router-link :to="{ name: 'MyEvents', params: {id: user.id} }">
+        <router-link :to="{ name: 'Posts', params: {id: user.id} }">
           <v-sheet class="rounded-lg" elevation=4 color="#212529"
             style="border: 1px solid hsla(0,0%,100%,.1); width:auto; height:auto;">
             <v-row no-gutters>

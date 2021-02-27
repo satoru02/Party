@@ -14,7 +14,7 @@
               <base-avatar />
             </v-col>
             <v-col cols=3 sm=3 md=3 lg=3 xl=3 class="mt-4 ml-n7">
-              <router-link :to="{name: 'MyEvents', params: { id: entry_response.user_info.id }}">
+              <router-link :to="{name: 'Posts', params: { id: entry_response.user_info.id }}">
                 <h3 style="color:black;">{{ entry_response.user_info.name }}</h3>
               </router-link>
             </v-col>

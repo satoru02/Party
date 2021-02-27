@@ -34,7 +34,7 @@
         <v-row v-if="post.type === 'joined_post'">
           <v-col cols=1 sm=1 md=1 lg=1 xl=1 />
           <v-col cols=1 sm=1 md=1 lg=1 xl=1 class="ml-n9">
-            <router-link :to="{name: 'MyEvents', params: {id: `${post.attributes.host_user.id}`}}">
+            <router-link :to="{name: 'Posts', params: {id: `${post.attributes.host_user.id}`}}">
               <base-avatar :size="30" />
             </router-link>
           </v-col>
