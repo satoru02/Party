@@ -11,7 +11,7 @@
           </v-row>
           <v-row>
             <v-col cols=1 sm=1 md=1 lg=1 xl=1 class="ml-15">
-              <base-avatar />
+              <base-avatar :size="50" :avatar_url="notification.index_user_info[0].avatar"/>
             </v-col>
             <v-col cols=3 sm=3 md=3 lg=3 xl=3 class="mt-4 ml-n7" align-self="baseline">
               <router-link :to="{name: 'Posts', params: { id: user.id }}">
@@ -120,6 +120,10 @@
         required: true,
       },
       user: {
+        type: Object,
+        required: true
+      },
+      notification: {
         type: Object,
         required: true
       }

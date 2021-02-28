@@ -35,7 +35,7 @@
             <v-col cols=1 sm=1 md=1 lg=1 xl=1 />
             <v-col cols=2 sm=2 md=2 lg=1 xl=1>
               <router-link :to="{name: 'Posts', params: {id: `${post.attributes.user.id}`}}">
-                <base-avatar :size="50" />
+                <base-avatar :size="50" :avatar_url="post.attributes.user_avatar" />
               </router-link>
             </v-col>
             <v-col cols=8 sm=8 md=8 lg=8 xl=8 class="mt-4 ml-2">

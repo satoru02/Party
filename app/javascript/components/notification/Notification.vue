@@ -8,6 +8,7 @@
         :entry='entry_information'
         :post='requested_post_information'
         :user="requested_user_information"
+        :notification="notification"
       />
     </div>
     <div v-if="notification.classification === 'entryResponse'">

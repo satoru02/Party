@@ -42,7 +42,10 @@ class NotificationSerializer
       @user = User.find_by(id: @message.user.id)
     end
 
-    # @index_user_info.push(user: @user, avatar: @user.avatar.blob.service_url)
-    @index_user_info.push(user: @user)
+    if @user.avatar.attached?
+      @index_user_info.push(user: @user, avatar: @user.avatar_url(@user.avatar.blob))
+    else
+      @index_user_info.push(user: @user)
+    end
   end
 end
