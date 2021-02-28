@@ -192,7 +192,7 @@
       }
     },
     created() {
-      document.title = "編集 - Plaza"
+      document.title = "編集 - PartyKit"
       this.checkSignedIn()
       this.checkUsersPost()
       this.getPost()

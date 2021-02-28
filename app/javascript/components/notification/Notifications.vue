@@ -56,7 +56,7 @@
       }
     },
     created() {
-      document.title = "通知 - Plaza"
+      document.title = "通知 - PartyKit"
       this.checkSignedIn()
     },
     methods: {

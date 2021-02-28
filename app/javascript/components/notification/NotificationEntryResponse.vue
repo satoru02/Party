@@ -76,7 +76,7 @@
       }
     },
     created(){
-      document.title = "エントリー結果 - Plaza"
+      document.title = "エントリー結果 - PartyKit"
     },
     methods: {
       catchedTime(time) {

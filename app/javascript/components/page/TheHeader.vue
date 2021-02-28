@@ -3,7 +3,7 @@
     <v-row dense>
       <v-col md=1 lg=1 xl=1 class="hidden-xs-only hidden-sm-only" />
       <v-col cols=2 lg=1 xl=1 class="hidden-sm-only hidden-md-only mt-7" align="start">
-        <v-toolbar-title :class="[$vuetify.breakpoint.mdAndUp ? 'top ml-n7 mt-n1': 'top mt-n1']" @click="moveTop()">Plaza</v-toolbar-title>
+        <v-toolbar-title :class="[$vuetify.breakpoint.mdAndUp ? 'top ml-n7 mt-n1': 'top mt-n1']" @click="moveTop()">PartyKit</v-toolbar-title>
       </v-col>
       <v-col cols=1 md=1 lg=1 xl=1 class="hidden-sm-only ml-n4" />
       <v-col cols=8 md=2 lg=3 xl=3 class="mt-6 hidden-sm-only">

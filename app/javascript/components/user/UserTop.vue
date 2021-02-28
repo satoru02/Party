@@ -181,14 +181,14 @@
     created() {
       this.checkSignedIn()
       this.fetchUserInformation()
-      document.title = `ユーザー画面 - Plaza`
+      document.title = `ユーザー画面 - PartyKit`
     },
     watch: {
       '$route': {
         immediate: true,
         handler(){
           this.fetchUserInformation()
-          document.title = `ユーザー画面 - Plaza`
+          document.title = `ユーザー画面 - PartyKit`
         }
       }
     },

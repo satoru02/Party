@@ -69,7 +69,7 @@
       }
     },
     created() {
-      document.title = this.$route.params.name + " - Plaza"
+      document.title = this.$route.params.name + " - PartyKit"
       this.checkSignedIn()
     },
     watch: {
@@ -78,7 +78,7 @@
         handler() {
           this.createCable()
           this.getMessage()
-          document.title = this.$route.params.name + " - Plaza"
+          document.title = this.$route.params.name + " - PartyKit"
         }
       }
     },

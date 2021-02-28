@@ -84,7 +84,7 @@
       }
     },
     created(){
-      document.title = "Plaza - オンラインイベント告知サービス"
+      document.title = "PartyKit - オンラインイベント告知サービス"
     },
     methods: {
       resetPassword() {

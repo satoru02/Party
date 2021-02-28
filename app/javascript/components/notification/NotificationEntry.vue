@@ -129,7 +129,7 @@
       }
     },
     created(){
-      document.title = "エントリー - Plaza"
+      document.title = "エントリー - PartyKit"
     },
     methods: {
       authorizeEntry() {

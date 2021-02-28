@@ -54,7 +54,7 @@
       }
     },
     created() {
-      document.title = "イベントルーム一覧 - Plaza"
+      document.title = "イベントルーム一覧 - PartyKit"
       this.checkSignedIn()
       this.getRooms()
     },

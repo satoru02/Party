@@ -56,7 +56,7 @@
       },
     },
     created(){
-      document.title = "Entry - Plaza"
+      document.title = "Entry - PartyKit"
     },
     methods: {
       catchedTime(time) {

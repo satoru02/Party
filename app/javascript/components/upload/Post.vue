@@ -199,7 +199,7 @@
       }
     },
     created() {
-      document.title = "告知 - Plaza"
+      document.title = "告知 - PartyKit"
       this.checkSignedIn()
     },
     methods: {

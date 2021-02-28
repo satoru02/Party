@@ -12,7 +12,7 @@
           <v-row>
             <v-col md=1 lg=1 />
             <v-col cols=12 md=10 lg=10 :class="[$vuetify.breakpoint.mdAndUp ? 'mt-8' : 'mt-0']">
-              <div style="font-weight:bold;" :class="[$vuetify.breakpoint.mdAndUp ? 'text-h5' : 'text-h6']">Plazaコミュニティへようこそ！</div>
+              <div style="font-weight:bold;" :class="[$vuetify.breakpoint.mdAndUp ? 'text-h5' : 'text-h6']">PartyKitコミュニティへようこそ！</div>
               <div style="color:#6c757d; font-weight:bold;" :class="[$vuetify.breakpoint.mdAndUp ? 'text-h6' : 'text-h7']">ここでまとめて告知しよう。</div>
             </v-col>
             <v-col md=1 lg=1 />
@@ -144,7 +144,7 @@
       }
     },
     created() {
-      document.title = "Plaza - オンラインイベント告知サービス"
+      document.title = "PartyKit - オンラインイベント告知サービス"
       this.checkSignedIn()
     },
     updated() {
