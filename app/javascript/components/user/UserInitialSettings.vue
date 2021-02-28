@@ -247,7 +247,7 @@
             facebook_url: this.user.facebook_url,
             instagram_url: this.user.instagram_url,
             filmarks_url: this.user.filmarks_url,
-            file_name: this.picture.name
+            file_name: this.setPicture()
           })
           .then(response => this.updateSuccessful(response))
           .catch(error => this.Failed(error))
@@ -265,7 +265,14 @@
       },
       uploadFile() {
         this.picture = this.$refs.inputFile.files[0];
-      }
+      },
+      setPicture(){
+        if(this.picture){
+          return this.picture.name
+        } else {
+          return null
+        }
+      },
     }
   }
 </script>
