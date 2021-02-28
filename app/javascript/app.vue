@@ -58,7 +58,8 @@
   const productionOptions = {
     debug: true,
     debugLevel: 'error',
-    connectionUrl: 'ws://176.34.13.245/cable',
+    // connectionUrl: 'ws://176.34.13.245/cable',
+    connectionUrl: 'ws://partykit.jp/cable',
     connectImmediately: true
   }
 
