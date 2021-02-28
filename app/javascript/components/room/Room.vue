@@ -18,22 +18,22 @@
         </v-sheet>
       </v-col>
     </v-row>
+    <!-- #fix -->
     <v-responsive class="overflow-y-auto flex-grow-1 flex-shrink-0 mt-5" height="550">
-      <v-container v-for="word in messages" :word="word" :key="word.id"
-        :class="[ word.user_id === $store.state.currentUser.data.attributes.id ? 'd-flex flex-row-reverse': 'd-flex flex-row']">
-        <!-- <avatar class="mt-1 ml-12" v-if="word.user_id !== $store.state.currentUser.data.attributes.id"
-            :avatar_url="checkAvatar(word.user_id)"></avatar> -->
-        <v-chip :color="word.user_id === $store.state.currentUser.data.attributes.id ? '#212530': '#3a36ff'"
-          :text-color="word.user_id === $store.state.currentUser.data.attributes.id ? '#ffffff': '#ffffff'"
+      <v-container v-for="word in messages" :word="word" :key="word.message.id"
+        :class="[ word.message.user_id === $store.state.currentUser.data.attributes.id ? 'd-flex flex-row-reverse': 'd-flex flex-row']">
+        <base-avatar class="mt-1 ml-12" v-if="word.message.user_id !== $store.state.currentUser.data.attributes.id" :avatar_url="word.avatar" />
+        <v-chip :color="word.message.user_id === $store.state.currentUser.data.attributes.id ? '#212530': '#3a36ff'"
+          :text-color="word.message.user_id === $store.state.currentUser.data.attributes.id ? '#ffffff': '#ffffff'"
            class="mr-5"
            :style="$vuetify.breakpoint.mdAndUp ? 'height:auto; min-width:300px; max-width:500px; max-height:3000px; white-space: normal;': 'height:auto; min-width:150px; max-width:300px; max-height:3000px; white-space: normal;'"
           >
-          <div style="font-weight:bold;" :class="$vuetify.breakpoint.mdAndUp ? 'ml-2 body-2': 'ml-2 caption'">{{ word.content }}</div>
-          <div style="font-weight:bold;" :class="$vuetify.breakpoint.mdAndUp ? 'ml-2 body-2': 'ml-2 caption'" v-if="word.classification === 'join'" class="ml-2">
-            {{ word.user }}が、{{ word.created_at }}に参加しました。</div>
+          <div style="font-weight:bold;" :class="$vuetify.breakpoint.mdAndUp ? 'ml-2 body-2': 'ml-2 caption'">{{ word.message.content }}</div>
+          <div style="font-weight:bold;" :class="$vuetify.breakpoint.mdAndUp ? 'ml-2 body-2': 'ml-2 caption'" v-if="word.message.classification === 'join'" class="ml-2">
+            {{ word.user }}が、{{ word.message.created_at }}に参加しました。</div>
         </v-chip>
         <div class="mr-3 mt-16 fill-height" style="max-height:1000px; height:auto; font-size: 0.2rem; color:#6c757d;">
-          {{ postedTime(word.created_at) }}
+          {{ postedTime(word.message.created_at) }}
         </div>
       </v-container>
     </v-responsive>
@@ -50,7 +50,6 @@
   import RoomAppearance from '../../components/room/RoomAppearance';
   import BaseAvatar from '../base/BaseAvatar';
   import moment from 'moment';
-
   const ROOM_URL = '/api/v1/rooms'
 
   export default {
@@ -89,7 +88,8 @@
         rejected() {},
         received(data) {
           if ((data["token"] === this.room_token) && (data["token"] === `${this.$route.params.token}`)) {
-            this.messages.push(data)
+            // #fix
+            this.messages.push({message: data, avatar: data["avatar"]})
           }
         },
         disconnected() {}
@@ -117,7 +117,6 @@
         this.room_token = response.data.data.attributes.resource_token
         this.messages = response.data.data.attributes.message_info
         this.room_users = response.data.data.attributes.user_info
-        this.avatar = response.data.data.attributes.avatar_info
       },
       Failed(error) {
         this.error = (error.response && error.response.data && error.response.data.error) || ""
@@ -137,13 +136,6 @@
         }
         this.message = ''
       },
-      // checkAvatar(user_id) {
-      //   for (let i = 0; this.avatar.length > i; i++) {
-      //     if (this.avatar[i]["user_id"] === user_id) {
-      //       return this.avatar[i].avatar
-      //     }
-      //   }
-      // },
       postedTime(message) {
         moment.locale('ja')
         return moment(message).format("MMMDo(dd) h:mm")

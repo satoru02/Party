@@ -6,8 +6,7 @@
           <v-list-item three-line class="tile" v-for="room in rooms" :key="room.id"
             @click="moveRoom(room), checkConfirmation(room)">
             <v-list-item-icon>
-              <base-avatar :size="40" />
-              <!-- <base-avatar :avatar_url="checkAvatar(room.attributes.host_id, room.attributes.avatar_info)" class="mt-n1"></base-avatar> -->
+              <base-avatar :size="40" :avatar_url="room.attributes.host_avatar"/>
             </v-list-item-icon>
             <v-list-item-content>
               <v-list-item-title>{{ room.attributes.name }}</v-list-item-title>
@@ -95,13 +94,6 @@
       },
       Failed(error) {
         this.error = (error.response && error.response.data && error.response.data.error) || ""
-      },
-      checkAvatar(host_id, room_avatar) {
-        for (let i = 0; room_avatar.length > i; i++) {
-          if (room_avatar[i]["user_id"] === host_id) {
-            return room_avatar[i].avatar
-          }
-        }
       },
       postTime(time) {
         return moment(time).format("YYYY/MM/DD hh:mm")

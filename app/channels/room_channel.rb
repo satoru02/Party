@@ -20,6 +20,7 @@ class RoomChannel < ApplicationCable::Channel
     # 1.Inside room broadcast
     ActionCable.server.broadcast("room_channel_#{data["room_token"]}", {
       content: message.content,
+      avatar: if message.user.avatar.attached? ; message.user.avatar_url(message.user.avatar.blob) end,
       user: message.user.username,
       user_id: message.user.id,
       time: message.created_at,

@@ -21,7 +21,8 @@ class Room < ApplicationRecord
 
   def host_user
     @user = User.find_by!(id: self.host_id)
-    @user.username
+    # @user.username
+    @user
   end
 
     private
