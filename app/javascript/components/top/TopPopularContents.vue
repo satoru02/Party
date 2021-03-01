@@ -28,7 +28,7 @@
 
 <script>
   import {
-    secureAxios
+    secureAxios, simpleAxios
   } from '../../backend/axios';
   const POPULARITY_URL = `/api/v1/posts/popularity`
   export default {
@@ -44,7 +44,7 @@
     },
     methods: {
       fetchPosts() {
-        secureAxios.get(POPULARITY_URL)
+        simpleAxios.get(POPULARITY_URL)
          .then(res => this.Successful(res))
          .catch(error => this.Failed(error))
       },

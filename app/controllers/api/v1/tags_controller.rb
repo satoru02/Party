@@ -1,7 +1,6 @@
 module Api
   module V1
     class TagsController < ApplicationController
-      before_action :authorize_access_request!
       before_action :set_tag, only: [:show]
 
       def index

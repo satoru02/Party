@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <v-app style="background-color:#0e0e10;">
-      <top-header v-if="this.$store.state.signedIn" />
+      <top-header v-if="checkRoute()" />
       <v-main>
         <router-view />
       </v-main>
@@ -306,6 +306,16 @@
       'top-header': Header,
       'bottom-navigation': BottomNavigation
     },
+    methods: {
+      checkRoute(){
+       let validationRouter = ['login', 'signup', 'ForgotPassword', 'check']
+       if (validationRouter.includes(this.$route.name)){
+         return false
+       } else {
+         return true
+       }
+      }
+    }
   }
 </script>
 

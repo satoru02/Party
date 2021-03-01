@@ -115,7 +115,7 @@
             </div>
             <v-col cols=8 sm=8 md=8 lg=8 xl=8 />
           </v-row>
-          <v-row>
+          <v-row v-if="$store.state.signedIn">
             <v-col cols=7 sm=7 md=8 lg=8 xl=8 />
             <v-col cols=2 sm=2 md=2 lg=2 xl=2 class="mb-2"
               v-if="($store.state.currentUser.data.attributes.id !== post.attributes.user_id) && (post.attributes.can_request_entry === true)">

@@ -123,9 +123,16 @@
       })
     },
     created() {
-      this.getNotifications()
+      if(this.checkSignedIn()){
+        this.getNotifications()
+      }
     },
     methods: {
+      checkSignedIn(){
+        if (!this.$store.state.signedIn) {
+          return false
+        }
+      },
       getNotifications() {
         secureAxios.get(NOTIFICATIONS_URL, {
             params: {

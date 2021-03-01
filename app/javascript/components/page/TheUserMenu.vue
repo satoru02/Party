@@ -16,7 +16,7 @@
             :avatar_url="avatar"/>
         </div>
       </template>
-      <v-list class="rounded-s" style="background-color:#343a40;">
+      <v-list class="rounded-s" style="background-color:#343a40;" v-if="$store.state.signedIn">
         <v-list-item
           class="tile"
           v-for="(item, index) in items"

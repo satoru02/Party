@@ -15,10 +15,12 @@
         <notification-menu />
       </v-col>
       <v-col cols=1 sm=4 md=2 lg=1 xl=1 :class="[$vuetify.breakpoint.mdAndUp ? 'mt-1': 'mt-1 ml-4']">
-        <user-menu />
+        <user-menu v-if="$store.state.signedIn"/>
+        <base-avatar class="mt-6" :size="27" v-else />
       </v-col>
       <v-col sm=4 md=2 lg=1 xl=1 :class="[$vuetify.breakpoint.mdAndUp ? 'mt-6 ml-n16': 'hidden-xs-only']" align="start">
-        <base-post-button />
+        <base-post-button v-if="$store.state.signedIn" />
+        <base-login-button v-else />
       </v-col>
     </v-row>
   </v-app-bar>
@@ -27,6 +29,8 @@
 <script>
   import NotificationMenu from './TheNotificationMenu';
   import BasePostButton from '../base/BasePostButton';
+  import BaseLoginButton from '../base/BaseLoginButton';
+  import BaseAvatar from '../base/BaseAvatar';
   import UserMenu from '../page/TheUserMenu';
 
   export default {
@@ -34,6 +38,8 @@
     components: {
       'notification-menu': NotificationMenu,
       'base-post-button': BasePostButton,
+      'base-login-button': BaseLoginButton,
+      'base-avatar': BaseAvatar,
       'user-menu': UserMenu,
     },
     data() {

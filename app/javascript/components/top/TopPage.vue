@@ -4,12 +4,14 @@
     <v-col md=2 lg=2 xl=2 class="hidden-xs-only hidden-sm-only ml-n6">
       <v-row>
         <v-col md=12 lg=12 xl=12>
-          <top-category-header v-if="$store.state.signedIn" />
+          <!-- <top-category-header v-if="$store.state.signedIn" /> -->
+          <top-category-header />
         </v-col>
       </v-row>
       <v-row>
         <v-col md=12 lg=12 xl=12>
-          <top-tag-header v-if="$store.state.signedIn" />
+          <!-- <top-tag-header v-if="$store.state.signedIn" /> -->
+          <top-tag-header />
         </v-col>
       </v-row>
     </v-col>
@@ -151,7 +153,7 @@
     },
     created() {
       document.title = "PartyKit - オンラインイベント告知サービス"
-      this.checkSignedIn()
+      // this.checkSignedIn()
     },
     methods: {
       checkSignedIn() {

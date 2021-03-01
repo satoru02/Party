@@ -23,7 +23,7 @@
 
 <script>
   import {
-    secureAxios
+    secureAxios, simpleAxios
   } from '../../backend/axios.js'
   const CATEGORY_URL = `/api/v1/categories`
 
@@ -45,7 +45,7 @@
     },
     methods: {
       getCategory() {
-        secureAxios.get(CATEGORY_URL)
+        simpleAxios.get(CATEGORY_URL)
           .then(response => this.Successful(response))
           .catch(error => this.Failed(error))
       },

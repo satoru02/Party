@@ -7,7 +7,7 @@
 
 <script>
   import {
-    secureAxios
+    secureAxios, simpleAxios
   } from '../../backend/axios';
   import BaseAvatar from '../../components/base/BaseAvatar.vue';
   import InfiniteLoading from 'vue-infinite-loading';
@@ -42,7 +42,7 @@
         this.posts = []
       },
       infiniteHandler($state) {
-        secureAxios.get(this.apiUrl(), {
+        simpleAxios.get(this.apiUrl(), {
             params: this.apiParams()
           })
           .then((res) => {
@@ -74,7 +74,7 @@
         var basic_params = {
           page: this.page,
           per_page: this.pageSize,
-          user_id: `${this.$store.state.currentUser.data.attributes.id}`
+          // user_id: `${this.$store.state.currentUser.data.attributes.id}`
         }
         if (this.$route.name === "Top") {
           var params = {

@@ -20,7 +20,7 @@
 
 <script>
   import {
-    secureAxios
+    secureAxios, simpleAxios
   } from '../../backend/axios';
   const TAG_URL = `/api/v1/tags`
 
@@ -36,7 +36,7 @@
     },
     methods: {
       getTags() {
-        secureAxios.get(TAG_URL)
+        simpleAxios.get(TAG_URL)
           .then(response => this.Successful(response))
           .catch(error => this.Failed(error))
       },
