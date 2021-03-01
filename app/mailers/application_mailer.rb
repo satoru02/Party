@@ -1,4 +1,4 @@
 class ApplicationMailer < ActionMailer::Base
-  default from: 'cs@partykit.jp'
+  default from: 'PartyKit <cs@partykit.jp>'
   layout 'mailer'
 end
