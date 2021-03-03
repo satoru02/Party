@@ -41,8 +41,8 @@ Rails.application.configure do
   # Mount Action Cable outside main process or domain.
   config.action_cable.mount_path = nil
   # config.action_cable.url = 'wss://176.34.13.245/cable'
-  config.action_cable.url = 'ws://partykit.jp/cable'
-  config.action_cable.allowed_request_origins = [ 'http://partykit.jp' ]
+  config.action_cable.url = 'wss://partykit.jp/cable'
+  config.action_cable.allowed_request_origins = [ 'https://partykit.jp' ]
 
   # Force all access to the app over SSL, use Strict-Transport-Security, and use secure cookies.
   # config.force_ssl = true
@@ -64,7 +64,7 @@ Rails.application.configure do
   config.action_mailer.perform_deliveries = true
   config.action_mailer.raise_delivery_errors = true
   config.action_mailer.perform_caching = false
-  config.action_mailer.default_url_options = { :host => 'http://partykit.jp/' }
+  config.action_mailer.default_url_options = { :host => 'https://partykit.jp/' }
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.smtp_settings = {
     address: "smtp.gmail.com",
